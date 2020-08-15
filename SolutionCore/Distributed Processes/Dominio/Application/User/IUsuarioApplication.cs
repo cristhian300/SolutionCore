@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
+namespace SolutionCore.Distributed_Processes.Dominio.Application
 {
-  public  interface IUsuarioQuery
+    public class IUsuarioApplication
     {
     }
 }

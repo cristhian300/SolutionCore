@@ -1,10 +1,16 @@
+using Arch.EntityFrameworkCore.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SolutionCore.Contract;
+using SolutionCore.Distributed_Processes.Dominio.Application;
+using SolutionCore.Infrastructure.Data.Context;
+using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
 
 namespace SolutionCore
 {
@@ -26,6 +32,16 @@ namespace SolutionCore
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddTransient<IUsuarioQuery, UsuarioQuery>();
+            services.AddTransient<IUsuarioContract, UsuarioApplication>();
+
+            services
+        //.AddDbContext<CoreContext>(opt => opt.UseInMemoryDatabase())
+        .AddUnitOfWork<CoreContext>()
+        //.AddCustomRepository<Blog, CustomBlogRepository>();
+        ;
+            services.AddDbContext<CoreContext>(option => option.UseSqlServer(Configuration["ConnectionStrings:SpartacusContext"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
