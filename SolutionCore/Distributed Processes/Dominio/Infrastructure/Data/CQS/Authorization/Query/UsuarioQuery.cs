@@ -11,6 +11,8 @@ using SolutionCore.Infrastructure.Transport.Core.Authorization.QueryEntity;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Result;
 using System.Collections.Immutable;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Parameter;
+using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
+using SolutionCore.Infrastructure.Transport.Core.Authorization.Request;
 
 namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
 {
@@ -26,20 +28,23 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
             _CoreContext = CoreContext;
         }
 
-        public UsuarioResult GetUsuario(UsuarioParameter parameter) {
+      
 
 
+      public  UsuarioResponse GetUsuario(UsuarioRequest parameter)
+        {
             var _usuario = (from u in _CoreContext.DbContext.Usuarios
                             where u.UsuarioId == parameter.UsuarioId
 
-                            select new UsuarioQueryEntity {
-                               UsuarioId=u.UsuarioId,
-                               NombreCompleto=  u.NombreCompleto
-                           }).FirstOrDefault();
+                            select new UsuarioQueryEntity
+                            {
+                                UsuarioId = u.UsuarioId,
+                                NombreCompleto = u.NombreCompleto
+                            }).FirstOrDefault();
 
-             return new UsuarioResult { usuario = _usuario };
+            return new UsuarioResponse { usuario = _usuario };
         }
-        
-      
+
+       
     }
 }

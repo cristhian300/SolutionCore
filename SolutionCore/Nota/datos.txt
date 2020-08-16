@@ -1,0 +1,55 @@
+﻿Descargar .Net Core para IIS:
+
+https://www.patreon.com/powerhdeleon
+https://dotnet.microsoft.com/download/dotnet-core/thank-you/runtime-aspnetcore-2.2.5-windows-hosting-bundle-installer
+
+-------------------------------------
+
+
+select @@SERVERNAME
+
+create dataBase Core
+go
+use Core
+go
+Create table Category(
+CategoryId int identity(1,1) not null,
+Name Varchar(200),
+Description varchar(200)
+)
+
+alter table Category add constraint pk_category primary key (CategoryId)
+
+go 
+
+
+CREATE TABLE [dbo].[Usuario](
+	[UsuarioId] [int] IDENTITY(1,1) NOT NULL,
+	[NombreCompleto] [nvarchar](200) NULL,
+	[Credencial] [nvarchar](200) NULL,
+	[Clave] [nvarchar](200) NULL,
+	[Rol] [nvarchar](200) NULL,
+ CONSTRAINT [PK_Usuario] PRIMARY KEY ([UsuarioId] ASC)
+ ) 
+
+
+-------------------------------------------------------------------------
+entity framework core power tools
+
+https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools
+
+---------------------------------------------------------------------------
+conexion 
+services.AddDbContext<CoreContext>(option => option.UseSqlServer(Configuration["ConnectionStrings:SpartacusContext"])
+--------------------------------------------------------------------------------------------------------
+
+---AWS---------------------------------------------------------------
+dotnet --version 
+
+**install entity framework core cli
+dotnet tool install --global dotnet-ef
+
+install extension AWS Toolkit for visual Studio
+
+----------------------------------------------------
+

@@ -8,6 +8,8 @@ using SolutionCore.Contract;
 using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Parameter;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Result;
+using SolutionCore.Infrastructure.Transport.Core.Authorization.Request;
+using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 
 namespace SolutionCore.Controllers
 {
@@ -27,9 +29,9 @@ namespace SolutionCore.Controllers
 
        
        [HttpPost]
-        public UsuarioResult Post(UsuarioParameter parameter)
+        public async Task<UsuarioResponse> Post(UsuarioRequest parameter)
         {
-            return _IUsuarioContract.GetUsuario(parameter);
+            return   await _IUsuarioContract.GetUsuario(parameter);
 
         }
 

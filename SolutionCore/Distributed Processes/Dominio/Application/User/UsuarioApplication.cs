@@ -2,6 +2,8 @@
 using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Parameter;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Result;
+using SolutionCore.Infrastructure.Transport.Core.Authorization.Request;
+using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +21,9 @@ namespace SolutionCore.Distributed_Processes.Dominio.Application
             _IUsuarioQuery = IUsuarioQuery;
         }
 
-        public UsuarioResult GetUsuario(UsuarioParameter parameter)
+        public    Task<UsuarioResponse> GetUsuario(UsuarioRequest parameter) 
         {
-            return _IUsuarioQuery.GetUsuario(parameter);
+            return   Task.FromResult( _IUsuarioQuery.GetUsuario(parameter));
         }
     }
 }

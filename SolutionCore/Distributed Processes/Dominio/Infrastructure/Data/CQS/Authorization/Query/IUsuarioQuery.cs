@@ -1,5 +1,7 @@
 ﻿using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Parameter;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Result;
+using SolutionCore.Infrastructure.Transport.Core.Authorization.Request;
+using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,6 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
 {
   public  interface IUsuarioQuery
     {
-        public UsuarioResult GetUsuario(UsuarioParameter parameter);
+         UsuarioResponse GetUsuario(UsuarioRequest parameter);
     }
 }
