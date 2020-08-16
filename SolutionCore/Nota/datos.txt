@@ -1,9 +1,4 @@
-﻿Descargar .Net Core para IIS:
-
-https://www.patreon.com/powerhdeleon
-https://dotnet.microsoft.com/download/dotnet-core/thank-you/runtime-aspnetcore-2.2.5-windows-hosting-bundle-installer
-
--------------------------------------
+﻿
 
 
 select @@SERVERNAME
@@ -53,3 +48,14 @@ install extension AWS Toolkit for visual Studio
 
 ----------------------------------------------------
 
+Descargar .Net Core para IIS:
+
+https://www.patreon.com/powerhdeleon
+https://dotnet.microsoft.com/download/dotnet-core/thank-you/runtime-aspnetcore-2.2.5-windows-hosting-bundle-installer
+
+-------------------------------------
+
+
+swagger
+https://thecodebuzz.com/resolved-failed-to-load-api-definition-undefined-swagger-v1-swagger-json/
+swashbuckle.ApiNetCore

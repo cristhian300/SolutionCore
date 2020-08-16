@@ -11,6 +11,8 @@ using SolutionCore.Contract;
 using SolutionCore.Distributed_Processes.Dominio.Application;
 using SolutionCore.Infrastructure.Data.Context;
 using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
+using Microsoft.OpenApi.Models;
+using System;
 
 namespace SolutionCore
 {
@@ -26,7 +28,15 @@ namespace SolutionCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           
             services.AddControllersWithViews();
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyTestService", Version = "v1", });
+            });
+
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -36,20 +46,22 @@ namespace SolutionCore
             services.AddTransient<IUsuarioQuery, UsuarioQuery>();
             services.AddTransient<IUsuarioContract, UsuarioApplication>();
 
-            services
-        //.AddDbContext<CoreContext>(opt => opt.UseInMemoryDatabase())
-        .AddUnitOfWork<CoreContext>()
-        //.AddCustomRepository<Blog, CustomBlogRepository>();
-        ;
+            services.AddUnitOfWork<CoreContext>();
+
+            //AddSwagger(services);
+           
+
             services.AddDbContext<CoreContext>(option => option.UseSqlServer(Configuration["ConnectionStrings:SpartacusContext"]));
         }
 
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
             else
             {
@@ -57,14 +69,21 @@ namespace SolutionCore
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseSwagger();
 
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TestService");
+            });
             app.UseHttpsRedirection();
+            
+
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
             }
-
+           
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -86,6 +105,16 @@ namespace SolutionCore
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
-        }
+
+           
+
+
+            
+
+
+        }    
+           
+  
+        
     }
 }
