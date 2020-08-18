@@ -19,11 +19,12 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
     public class UsuarioQuery: IUsuarioQuery
     {
 
-         private readonly IUnitOfWork<CoreContext> _CoreContext;
+        private readonly IUnitOfWork<CoreContext> _CoreContext;
 
         //private  CoreContext _CoreContext;
 
         public UsuarioQuery(IUnitOfWork<CoreContext> CoreContext)
+        //public UsuarioQuery(CoreContext CoreContext)
         {
             _CoreContext = CoreContext;
         }
@@ -34,17 +35,37 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
       public  UsuarioResponse GetUsuario(UsuarioRequest parameter)
         {
             var _usuario = (from u in _CoreContext.DbContext.Usuarios
+                                //var _usuario = (from u in _CoreContext .Usuarios
                             where u.UsuarioId == parameter.UsuarioId
 
                             select new UsuarioQueryEntity
                             {
                                 UsuarioId = u.UsuarioId,
-                                NombreCompleto = u.NombreCompleto
+                                NombreCompleto = u.NombreCompleto,
+                                Credencial=u.Credencial
+
                             }).FirstOrDefault();
 
             return new UsuarioResponse { usuario = _usuario };
         }
 
-       
+
+        public ListUsuarioResponse ListUsuario(ListUsuarioRequest parameter)
+        {
+            var _usuario = (from u in _CoreContext.DbContext.Usuarios
+                               
+                            where u.Credencial == parameter.Credencial
+
+                            select new ListUsuarioQueryEntity
+                            {
+                                UsuarioId = u.UsuarioId,
+                                NombreCompleto = u.NombreCompleto,
+                                Credencial = u.Credencial
+                            }).ToList();
+
+            return new ListUsuarioResponse { ListUsuario = _usuario };
+        }
+
+
     }
 }

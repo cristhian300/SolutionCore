@@ -13,7 +13,7 @@ using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 
 namespace SolutionCore.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -29,12 +29,18 @@ namespace SolutionCore.Controllers
 
        
        [HttpPost]
-        public async Task<UsuarioResponse> Post(UsuarioRequest parameter)
+        public async Task<UsuarioResponse> GetUsuario([FromBody]  UsuarioRequest parameter)
         {
             return   await _IUsuarioContract.GetUsuario(parameter);
 
         }
 
 
+        [HttpPost]
+        public async Task<ListUsuarioResponse> ListUsuario([FromBody]  ListUsuarioRequest parameter)
+        {
+            return await _IUsuarioContract.ListUsuario(parameter);
+
+        }
     }
 }

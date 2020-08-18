@@ -12,5 +12,6 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
   public  interface IUsuarioQuery
     {
          UsuarioResponse GetUsuario(UsuarioRequest parameter);
+         ListUsuarioResponse ListUsuario(ListUsuarioRequest parameter);
     }
 }
