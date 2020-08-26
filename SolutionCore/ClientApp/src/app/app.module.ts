@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
+import { NetworkManager } from './agent/common/network-manager';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { MaterialModule } from './shared/material/material.module';
     ]),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [NetworkManager],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

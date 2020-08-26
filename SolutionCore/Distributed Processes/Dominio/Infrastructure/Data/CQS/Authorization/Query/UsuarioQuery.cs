@@ -63,7 +63,7 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
                                 Credencial = u.Credencial
                             }).ToList();
 
-            return new ListUsuarioResponse { ListUsuario = _usuario };
+            return new ListUsuarioResponse { ListUsuarios = _usuario };
         }
 
 

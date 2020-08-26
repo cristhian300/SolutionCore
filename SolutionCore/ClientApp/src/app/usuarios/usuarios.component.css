@@ -1,0 +1,12 @@
+table{
+
+width: 100%;
+}
+/* #tbcontent  */
+#tbUsuarios   .mat-header-row .mat-header-cell {
+    font-size: 15px;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    z-index: 10000 !important;
+  }

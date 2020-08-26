@@ -9,6 +9,6 @@ namespace SolutionCore.Infrastructure.Transport.Core.Authorization.Response
     public class ListUsuarioResponse
     {
 
-        public List<ListUsuarioQueryEntity> ListUsuario { get; set; }
+        public List<ListUsuarioQueryEntity> ListUsuarios { get; set; }
     }
 }

@@ -18,14 +18,16 @@ alter table Category add constraint pk_category primary key (CategoryId)
 go 
 
 
-CREATE TABLE [dbo].[Usuario](
+  CREATE TABLE [dbo].[Usuario]
+  (
 	[UsuarioId] [int] IDENTITY(1,1) NOT NULL,
 	[NombreCompleto] [nvarchar](200) NULL,
 	[Credencial] [nvarchar](200) NULL,
 	[Clave] [nvarchar](200) NULL,
 	[Rol] [nvarchar](200) NULL,
+	[Deleted]  [bit] NOT NULL DEFAULT (0) ,
  CONSTRAINT [PK_Usuario] PRIMARY KEY ([UsuarioId] ASC)
- ) 
+ )
 
 
 -------------------------------------------------------------------------
