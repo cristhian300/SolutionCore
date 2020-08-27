@@ -9,10 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SolutionCore.Contract;
 using SolutionCore.Distributed_Processes.Dominio.Application;
-using SolutionCore.Infrastructure.Data.Context;
+
 using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
 using Microsoft.OpenApi.Models;
 using System;
+using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context;
 
 namespace SolutionCore
 {

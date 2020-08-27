@@ -1,10 +1,10 @@
-﻿using SolutionCore.Infrastructure.Data.Context;
+﻿
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SolutionCore.Infrastructure.Data.Entities;
+
 using Microsoft.EntityFrameworkCore;
 using Arch.EntityFrameworkCore.UnitOfWork;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.QueryEntity;
@@ -13,6 +13,7 @@ using System.Collections.Immutable;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Parameter;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Request;
+using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context;
 
 namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
 {

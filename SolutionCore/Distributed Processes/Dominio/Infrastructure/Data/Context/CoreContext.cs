@@ -2,9 +2,9 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using SolutionCore.Infrastructure.Data.Entities;
+using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Entities;
 
-namespace SolutionCore.Infrastructure.Data.Context
+namespace SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context
 {
     public partial class CoreContext : DbContext
     {
