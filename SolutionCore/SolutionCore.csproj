@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Distributed Processes\Dominio\Infrastructure\Data\CQS\Authorization\Commands\" />
+    <Folder Include="Distributed_Processes\Dominio\Infrastructure\Data\CQS\Authorization\Commands\" />
     <Folder Include="Infrastructure\Data.Generator\" />
   </ItemGroup>
 
