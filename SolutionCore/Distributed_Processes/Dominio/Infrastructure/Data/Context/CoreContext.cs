@@ -16,7 +16,7 @@ namespace SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context
             : base(options)
         {
         }
-        
+
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
