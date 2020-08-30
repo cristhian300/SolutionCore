@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CoreService } from '../services/core.service';
 import { ListUsuarioRequest } from '../agent/User/request/ListUsuariosRequest';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { ListUsuarioResult } from '../agent/User/response/ListUsuarioResponse';
 
 
@@ -24,12 +24,13 @@ export class UsuariosComponent implements OnInit {
 
    }
 
-
+   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
  
 
   ngOnInit() {
 
     this.ListUsuarios();
+    this.dataSource.paginator = this.paginator;
   }
 
 
@@ -40,6 +41,7 @@ export class UsuariosComponent implements OnInit {
     this.coreService.ListUsuario(params).subscribe(
     response =>{
       this.dataSource = new MatTableDataSource<ListUsuarioResult> (response.listUsuarios)
+      this.dataSource.paginator = this.paginator;
       console.log(response.listUsuarios)
     
     },

@@ -55,7 +55,8 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
         {
             var _usuario = (from u in _CoreContext.DbContext.Usuarios
                                
-                            where u.Credencial == parameter.Credencial
+                            where u.Deleted==false 
+                            //&& u.Credencial == parameter.Credencial
 
                             select new ListUsuarioQueryEntity
                             {
