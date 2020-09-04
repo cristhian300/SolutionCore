@@ -35,7 +35,7 @@ ListUsuario( parameter: ListUsuarioRequest):Observable<ListUsuarioResponse>{
  const parameters = new PostParameter()
  parameters.PathOperation= this.Url+ 'ListUsuario'
  parameters.RequestParameter=parameter
- return this.networkManager.post(parameters) as Observable<ListUsuarioResponse> ;
+ return this.networkManager.post(parameters)  as Observable<ListUsuarioResponse>;
 
 }
 

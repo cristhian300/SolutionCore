@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CoreService } from '../services/core.service';
 import { ListUsuarioRequest } from '../agent/User/request/ListUsuariosRequest';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatAutocompleteSelectedEvent } from '@angular/material';
 import { ListUsuarioResult } from '../agent/User/response/ListUsuarioResponse';
 
 
@@ -23,14 +23,19 @@ export class UsuariosComponent implements OnInit {
   constructor( private coreService :CoreService   ) {
 
    }
-
+   @ViewChild(MatSort, {static: true}) sort: MatSort;
    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
- 
+   filtroEstado :string = "0"
+   selectedCar :string 
+
 
   ngOnInit() {
 
     this.ListUsuarios();
-    this.dataSource.paginator = this.paginator;
+    
+   
+    // this.dataSource.paginator = this.paginator;
+   
   }
 
 
@@ -42,12 +47,26 @@ export class UsuariosComponent implements OnInit {
     response =>{
       this.dataSource = new MatTableDataSource<ListUsuarioResult> (response.listUsuarios)
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       console.log(response.listUsuarios)
     
     },
     error =>{console.log(error)} ) 
    
   }
+
+  OnChangeEstados(event){
+
+    let target = event.source.selected._element.nativeElement;
+    console.log (event)
+    console.log (target)
+    let selectedData = {
+      value: event.value,
+      text: target.innerText.trim()
+    };
+    console.log(selectedData);
+  }
+
 }
   
 
