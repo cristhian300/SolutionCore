@@ -13,5 +13,7 @@ namespace SolutionCore.Infrastructure.Transport.Core.Authorization.QueryEntity
         public string Credencial { get; set; }
       
         public string Rol { get; set; }
+
+        public bool Deleted { get; set; }
     }
 }

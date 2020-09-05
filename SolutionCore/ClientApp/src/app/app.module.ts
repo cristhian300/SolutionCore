@@ -6,10 +6,10 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { UsuariosComponent } from './usuarios/usuarios.component';
+import { HomeComponent } from './modules/web/home/home.component';
+import { CounterComponent } from './modules/web/counter/counter.component';
+import { FetchDataComponent } from './modules/web/fetch-data/fetch-data.component';
+import { UsuariosComponent } from './modules/security/usuarios/usuarios.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
 import { NetworkManager } from './agent/common/network-manager';

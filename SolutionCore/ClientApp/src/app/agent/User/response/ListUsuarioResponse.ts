@@ -7,4 +7,5 @@ export class  ListUsuarioResult {
   nombreCompleto: string;
   credencial: string;
   rol?: any;
+  deleted  :boolean
 }

@@ -55,14 +55,15 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
         {
             var _usuario = (from u in _CoreContext.DbContext.Usuarios
                                
-                            where u.Deleted==false 
+                            //where u.Deleted==false 
                             //&& u.Credencial == parameter.Credencial
 
                             select new ListUsuarioQueryEntity
                             {
                                 UsuarioId = u.UsuarioId,
                                 NombreCompleto = u.NombreCompleto,
-                                Credencial = u.Credencial
+                                Credencial = u.Credencial,
+                                Deleted  =u.Deleted
                             }).ToList();
 
             return new ListUsuarioResponse { ListUsuarios = _usuario };
