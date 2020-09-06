@@ -17,20 +17,24 @@ namespace SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context
         {
         }
 
-        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<RolesUser> RolesUsers { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>(entity =>
+            modelBuilder.Entity<RolesUser>(entity =>
             {
-                entity.ToTable("Category");
+                entity.HasKey(e => e.RoleId)
+                    .HasName("pkRolesUsers");
+
+                entity.Property(e => e.RoleId).HasColumnName("RoleID");
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.RoleCode)
+                    .IsRequired()
                     .HasMaxLength(200)
                     .IsUnicode(false);
             });
@@ -46,6 +50,13 @@ namespace SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context
                 entity.Property(e => e.NombreCompleto).HasMaxLength(200);
 
                 entity.Property(e => e.Rol).HasMaxLength(200);
+
+                entity.Property(e => e.RoleId).HasColumnName("RoleID");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.Usuarios)
+                    .HasForeignKey(d => d.RoleId)
+                    .HasConstraintName("fk_Usuario_RolesUsers");
             });
 
             OnModelCreatingPartial(modelBuilder);

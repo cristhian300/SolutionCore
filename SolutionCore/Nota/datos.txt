@@ -18,17 +18,28 @@ alter table Category add constraint pk_category primary key (CategoryId)
 go 
 
 
-  CREATE TABLE [dbo].[Usuario]
-  (
-	[UsuarioId] [int] IDENTITY(1,1) NOT NULL,
-	[NombreCompleto] [nvarchar](200) NULL,
-	[Credencial] [nvarchar](200) NULL,
-	[Clave] [nvarchar](200) NULL,
-	[Rol] [nvarchar](200) NULL,
-	[Deleted]  [bit] NOT NULL DEFAULT (0) ,
- CONSTRAINT [PK_Usuario] PRIMARY KEY ([UsuarioId] ASC)
- )
+ CREATE TABLE Core.dbo.RolesUsers (
+	RoleID int IDENTITY(1,1) NOT NULL,
+	RoleCode varchar(200) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	Description varchar(200) COLLATE Modern_Spanish_CI_AS NULL,
+	Deleted bit NOT NULL,
+	CONSTRAINT pkRolesUsers PRIMARY KEY (RoleID)
+) GO
 
+ go 
+
+ CREATE TABLE Core.dbo.Usuario (
+	UsuarioId int IDENTITY(1,1) NOT NULL,
+	NombreCompleto nvarchar(200) COLLATE Modern_Spanish_CI_AS NULL,
+	Credencial nvarchar(200) COLLATE Modern_Spanish_CI_AS NULL,
+	Clave nvarchar(200) COLLATE Modern_Spanish_CI_AS NULL,
+	Rol nvarchar(200) COLLATE Modern_Spanish_CI_AS NULL,
+	Deleted bit NOT NULL,
+	RoleID int NULL,
+	CONSTRAINT PK_Usuario PRIMARY KEY (UsuarioId)
+) GO
+
+ALTER TABLE Core.dbo.Usuario ADD CONSTRAINT fk_Usuario_RolesUsers FOREIGN KEY (RoleID) REFERENCES Core.dbo.RolesUsers(RoleID) GO
 
 -------------------------------------------------------------------------
 entity framework core power tools

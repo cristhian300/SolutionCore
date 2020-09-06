@@ -12,5 +12,8 @@ namespace SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Entitie
         public string Clave { get; set; }
         public string Rol { get; set; }
         public bool Deleted { get; set; }
+        public int? RoleId { get; set; }
+
+        public virtual RolesUser Role { get; set; }
     }
 }

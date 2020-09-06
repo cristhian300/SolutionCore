@@ -2,17 +2,19 @@
    "ContextClassName": "CoreContext",
    "ContextNamespace": null,
    "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
    "IncludeConnectionString": false,
    "ModelNamespace": null,
    "OutputContextPath": "Distributed_Processes\/Dominio\/Infrastructure\/Data\/Context",
    "OutputPath": "Distributed_Processes\/Dominio\/Infrastructure\/Data\/Entities",
    "ProjectRootNamespace": "SolutionCore",
+   "Schemas": null,
    "SelectedHandlebarsLanguage": 0,
    "SelectedToBeGenerated": 0,
    "Tables": [
       {
          "HasPrimaryKey": true,
-         "Name": "[dbo].[Category]"
+         "Name": "[dbo].[RolesUsers]"
       },
       {
          "HasPrimaryKey": true,
