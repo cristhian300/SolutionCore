@@ -54,15 +54,19 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
         public ListUsuarioResponse ListUsuario(ListUsuarioRequest parameter)
         {
             var _usuario = (from u in _CoreContext.DbContext.Usuarios
-                               
-                            //where u.Deleted==false 
+                               join  r in  _CoreContext.DbContext.RolesUsers
+                               on u.RoleId equals r.RoleId
+                            orderby r.RoleId   
+                            where r.Deleted==false 
                             //&& u.Credencial == parameter.Credencial
-
+                             
                             select new ListUsuarioQueryEntity
                             {
                                 UsuarioId = u.UsuarioId,
                                 NombreCompleto = u.NombreCompleto,
-                                Credencial = u.Credencial,
+                                Rol = r.Description,
+                                Credencial=u.Credencial,
+                                RoleId=u.RoleId,
                                 Deleted  =u.Deleted
                             }).ToList();
 

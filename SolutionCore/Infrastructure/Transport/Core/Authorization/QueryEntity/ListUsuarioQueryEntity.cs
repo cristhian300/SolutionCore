@@ -15,5 +15,7 @@ namespace SolutionCore.Infrastructure.Transport.Core.Authorization.QueryEntity
         public string Rol { get; set; }
 
         public bool Deleted { get; set; }
+
+        public int? RoleId { get; set; }
     }
 }

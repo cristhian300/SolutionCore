@@ -8,4 +8,5 @@ export class  ListUsuarioResult {
   credencial: string;
   rol?: any;
   deleted  :boolean
+  roleId?: number;
 }
