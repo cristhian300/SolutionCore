@@ -13,6 +13,7 @@ import { UsuariosComponent } from './modules/security/usuarios/usuarios.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
 import { NetworkManager } from './agent/common/network-manager';
+import { FlexLayoutModule } from '@angular/flex-layout/typings/module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NetworkManager } from './agent/common/network-manager';
     UsuariosComponent
   ],
   imports: [
+    FlexLayoutModule,
     MaterialModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
