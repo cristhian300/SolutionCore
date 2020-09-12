@@ -72,7 +72,3 @@ https://dotnet.microsoft.com/download/dotnet-core/thank-you/runtime-aspnetcore-2
 swagger
 https://thecodebuzz.com/resolved-failed-to-load-api-definition-undefined-swagger-v1-swagger-json/
 swashbuckle.ApiNetCore
-
--------------------------------------
-npm install -g npm@latest
-ng build --prod --aot --build-optimizer
