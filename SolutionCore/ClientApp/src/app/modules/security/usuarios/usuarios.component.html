@@ -54,7 +54,7 @@
 
 <hr>
 
-<div *ngIf="Panel != null">
+<div fxFlex="25" *ngIf="Panel != null">
   <mat-tab-group>
     <div *ngFor="let item of Panel">
       <mat-tab label="{{item.Title}}">
