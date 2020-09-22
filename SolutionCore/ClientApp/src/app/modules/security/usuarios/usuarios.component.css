@@ -13,4 +13,66 @@ width: 100%;
 
 
 
+  .parametros__datos mat-form-field {
+    width: 50px !important;
+    text-align: right;
+  }
+
+
+  /* #tb_option table {
+    width: 30%;
+    font-size: 15px;
+    line-height: 26px;
+   border: solid;
+  } */
+  #tb_option {
+    width: 50%;
+    font-size: 15px;
+    line-height: 26px;
+    padding: 5px;
+   /* border: solid; */
+  }
+
+
+  form.normal-form{
+    margin: 10px;
+  }
+
+  .controles-container{
+    width: 100%;
+    padding: 5%;    
+}
+
+.controles-container > * {
+    width: 100%;
+    }
+
+    .add-bottom-padding{
+      padding-bottom: 10px;
+  }
+
+
+  #tbl_modal{
+    width: 80%;
+    padding: 5px;
+    margin: 0 auto;
+  }
+  #tbl_modal  mat-form-field {
+
+      width: 100%;
+      padding: 10px;
+      
+    }
+
+
+
+  .search-form-field{
+    width: 100%;
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    }
+
+
   

@@ -13,5 +13,9 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
     {
          UsuarioResponse GetUsuario(UsuarioRequest parameter);
          ListUsuarioResponse ListUsuario(ListUsuarioRequest parameter);
+
+          ListRolesResponse ListRoles(ListRolesRequest parameter);
+
+        AddUsuarioResponse AddUsuario(AddUsuarioRequest parameter);
     }
 }

@@ -14,6 +14,7 @@ using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Paramet
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Request;
 using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context;
+using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Entities;
 
 namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
 {
@@ -73,6 +74,47 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
             return new ListUsuarioResponse { ListUsuarios = _usuario };
         }
 
+        public ListRolesResponse ListRoles(ListRolesRequest parameter)
+        {
+            var roles = ( 
+                            from r in _CoreContext.DbContext.RolesUsers
+                           
+                            where r.Deleted == false
+                           
+
+                            select new RolesQueryEntity
+                            {
+                                Value =r.RoleId,
+                                Description=r.Description
+                            }).ToList();
+
+            return new ListRolesResponse { ListRoles = roles };
+        }
+
+
+
+
+        public AddUsuarioResponse AddUsuario(AddUsuarioRequest parameter)
+        {
+
+            Usuario usuario = new Usuario
+            {
+                NombreCompleto = parameter.NombreCompleto,
+                Credencial = parameter.Credencial,
+                Clave=parameter.Clave,
+                RoleId=parameter.RoleId,
+                Deleted=false
+
+
+             };
+
+            _CoreContext.DbContext.Usuarios.Add(usuario);
+            _CoreContext.DbContext.SaveChanges();
+
+            return new AddUsuarioResponse {
+            UsuarioId = usuario.UsuarioId
+            };
+        }
 
     }
 }

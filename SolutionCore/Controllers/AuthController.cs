@@ -42,5 +42,22 @@ namespace SolutionCore.Controllers
             return await _IUsuarioContract.ListUsuario(parameter);
 
         }
+
+        [HttpPost]
+        public async Task<ListRolesResponse> ListRoles(ListRolesRequest parameter)
+        {
+            return await _IUsuarioContract.ListRoles(parameter);
+
+        }
+
+       
+
+
+        [HttpPost]
+        public async Task<AddUsuarioResponse> AddUsuario(AddUsuarioRequest parameter)
+        {
+            return await _IUsuarioContract.AddUsuario(parameter);
+
+        }
     }
 }

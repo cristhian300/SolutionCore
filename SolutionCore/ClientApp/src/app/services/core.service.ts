@@ -5,6 +5,10 @@ import { ListUsuarioRequest } from '../agent/User/request/ListUsuariosRequest';
 import { NetworkManager } from '../agent/common/network-manager';
 import { PostParameter } from '../agent/common/post-parameter';
 import { ListUsuarioResponse } from '../agent/User/response/ListUsuarioResponse';
+import { ListRoleResponse } from '../agent/User/response/ListRolesResponse';
+import { ListRolesRequest } from '../agent/User/request/ListRolesRequest';
+import { AddUsuarioRequest } from '../agent/User/request/AddUsuariosRequest';
+import { AddUsuarioResponse } from '../agent/User/response/AddUsuarioResponse';
 
  
 
@@ -39,7 +43,15 @@ ListUsuario( parameter: ListUsuarioRequest):Observable<ListUsuarioResponse>{
 
 }
 
+ListRoles( parameter: ListRolesRequest):Observable<ListRoleResponse>{
 
+  const parameters = new PostParameter()
+  parameters.PathOperation= this.Url+ 'ListRoles'
+  parameters.RequestParameter=parameter
+  return this.networkManager.post(parameters)  as Observable<ListRoleResponse>;
+ 
+ }
+ 
  
 
 postRespuesta(parameterr: any): Observable<any> {
@@ -49,6 +61,14 @@ postRespuesta(parameterr: any): Observable<any> {
   return this.http.post<any>( this.Url +'ListUsuario',  parameters   , options);
  
 }
+
+AddUsuario( parameter: AddUsuarioRequest):Observable<AddUsuarioResponse>{
+  const parameters = new PostParameter()
+  parameters.PathOperation= this.Url+ 'AddUsuario'
+  parameters.RequestParameter=parameter
+  return this.networkManager.post(parameters)  as Observable<AddUsuarioResponse>;
+}
+
 
 
 }

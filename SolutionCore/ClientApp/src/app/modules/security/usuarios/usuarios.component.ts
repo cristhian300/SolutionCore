@@ -6,6 +6,10 @@ import { MatTableDataSource, MatPaginator, MatSort, MatAutocompleteSelectedEvent
 import { ListUsuarioResult } from '../../../agent/User/response/ListUsuarioResponse';
 import { SecurityViewModel } from '../SecurityViewModels/security-list-viewmodel';
 import { UserResultPanelViewModel } from '../SecurityViewModels/user-result-panel-view.model';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ListRolesRequest } from 'src/app/agent/User/request/ListRolesRequest';
+import { ListRoleResult } from 'src/app/agent/User/response/ListRolesResponse';
+import { AddUsuarioRequest } from 'src/app/agent/User/request/AddUsuariosRequest';
 
 
 
@@ -16,15 +20,18 @@ import { UserResultPanelViewModel } from '../SecurityViewModels/user-result-pane
 })
 export class UsuariosComponent implements OnInit {
 
+formGroup:FormGroup
+
   displayedColumns: string[] = ["usuarioId", "nombreCompleto", "credencial", "rol"];
 
   dataSource: MatTableDataSource<ListUsuarioResult>;
 
   SecurityViewModel = new SecurityViewModel()
 
-  constructor(private coreService: CoreService) {
-
+  constructor(private coreService: CoreService, private formbuilder:FormBuilder) {
+    this.formGroup = this.CreateForm();
   }
+
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   filtroEstado: string = "0"
@@ -34,10 +41,10 @@ export class UsuariosComponent implements OnInit {
   ngOnInit() {
 
     this.ListUsuarios();
-
+    this.ListRoles()
 
     // this.dataSource.paginator = this.paginator;
-
+  
   }
 
   UsuarioToShow: ListUsuarioResult[];
@@ -64,6 +71,19 @@ export class UsuariosComponent implements OnInit {
       error => { console.log(error) })
 
   }
+
+
+RolesList:ListRoleResult[]
+ListRoles(){
+
+  let paramas = new ListRolesRequest()
+
+  this.coreService.ListRoles(paramas ).subscribe( response =>{
+   this.RolesList = response.listRoles
+     
+
+  })
+}
 
   OnChangeEstados(event) {
     // let target = event.source.selected._element.nativeElement;
@@ -119,5 +139,61 @@ export class UsuariosComponent implements OnInit {
     return this.Panel
 
   }
+
+CreateForm() : FormGroup {
+  return this.formbuilder.group({
+    nombre: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
+    credencial: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
+    clave: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
+    rol: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
+    isDeleted:[false]
+  
+  })
+
+}
+
+
+searchKey: string;  
+
+onSearchClear() {
+  this.searchKey = "";
+  this.applyFilter();
+}
+
+applyFilter() {
+  this.dataSource.filter = this.searchKey.trim().toLowerCase();
+}
+
+onCreate(){}
+onClear(){}
+
+
+
+onSubmit(){
+
+  let params = new AddUsuarioRequest()
+  params.nombreCompleto = this.formGroup.get("nombre").value
+  params.credencial = this.formGroup.get("credencial").value
+  params.clave= this.formGroup.get("clave").value
+  params.roleId=  parseInt( this.formGroup.get("rol").value)
+  params.deleted = this.formGroup.get("isDeleted").value
+
+this.coreService.AddUsuario(params).subscribe(
+response =>{},
+error =>{
+
+  console.log(error)
+}
+
+
+)
+
+
+console.log(this.formGroup.value);
+// console.log(`parametros ${ JSON.stringify( params)}`);
+}
+
+
+
 
 }

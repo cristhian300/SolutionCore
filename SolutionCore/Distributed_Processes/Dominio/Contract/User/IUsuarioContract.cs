@@ -15,5 +15,9 @@ namespace SolutionCore.Contract
             Task<UsuarioResponse> GetUsuario(UsuarioRequest parameter);
 
            Task<ListUsuarioResponse> ListUsuario(ListUsuarioRequest parameter);
+
+              Task<ListRolesResponse> ListRoles(ListRolesRequest parameter);
+
+        Task<AddUsuarioResponse> AddUsuario(AddUsuarioRequest parameter);
     }
 }

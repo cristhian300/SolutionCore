@@ -30,5 +30,17 @@ namespace SolutionCore.Distributed_Processes.Dominio.Application
         {
             return Task.FromResult(_IUsuarioQuery.ListUsuario(parameter));
         }
+
+        
+        public Task<ListRolesResponse> ListRoles(ListRolesRequest parameter)
+        {
+            return Task.FromResult(_IUsuarioQuery.ListRoles(parameter));
+        }
+
+        public Task<AddUsuarioResponse> AddUsuario(AddUsuarioRequest parameter)
+        {
+            return Task.FromResult(_IUsuarioQuery.AddUsuario(parameter));
+        }
+       
     }
 }
