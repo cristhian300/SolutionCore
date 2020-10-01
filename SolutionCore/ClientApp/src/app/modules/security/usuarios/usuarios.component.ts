@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CoreService } from '../../../services/core.service';
 import { ListUsuarioRequest } from '../../../agent/User/request/ListUsuariosRequest';
-import { MatTableDataSource, MatPaginator, MatSort, MatAutocompleteSelectedEvent } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatAutocompleteSelectedEvent, MatDialog } from '@angular/material';
 import { ListUsuarioResult } from '../../../agent/User/response/ListUsuarioResponse';
 import { SecurityViewModel } from '../SecurityViewModels/security-list-viewmodel';
 import { UserResultPanelViewModel } from '../SecurityViewModels/user-result-panel-view.model';
@@ -10,6 +10,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ListRolesRequest } from 'src/app/agent/User/request/ListRolesRequest';
 import { ListRoleResult } from 'src/app/agent/User/response/ListRolesResponse';
 import { AddUsuarioRequest } from 'src/app/agent/User/request/AddUsuariosRequest';
+import { ModalUsuariosComponent } from './modal-usuarios/modal-usuarios.component';
 
 
 
@@ -22,13 +23,13 @@ export class UsuariosComponent implements OnInit {
 
 formGroup:FormGroup
 
-  displayedColumns: string[] = ["usuarioId", "nombreCompleto", "credencial", "rol"];
+  displayedColumns: string[] = ["usuarioId", "nombreCompleto", "credencial", "rol", 'actions'];
 
   dataSource: MatTableDataSource<ListUsuarioResult>;
 
   SecurityViewModel = new SecurityViewModel()
 
-  constructor(private coreService: CoreService, private formbuilder:FormBuilder) {
+  constructor(public dialog: MatDialog,private coreService: CoreService, private formbuilder:FormBuilder) {
     this.formGroup = this.CreateForm();
   }
 
@@ -164,7 +165,24 @@ applyFilter() {
   this.dataSource.filter = this.searchKey.trim().toLowerCase();
 }
 
-onCreate(){}
+onCreate(){
+
+  const dialogRef = this.dialog.open(ModalUsuariosComponent, {
+    width: '60%',
+    // disableClose: true
+    // data: {name: this.name, animal: this.animal}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    this.ListUsuarios();
+
+
+  });
+
+}
+
+
 onClear(){}
 
 
@@ -194,6 +212,24 @@ console.log(this.formGroup.value);
 }
 
 
+onEdit(elemento:ListUsuarioResult){
 
+  console.log(`update ${ JSON.stringify(elemento) }`);
+
+ 
+
+  const dialogRef = this.dialog.open(ModalUsuariosComponent, {
+    width: '60%',
+    // disableClose: true
+    data: elemento
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    this.ListUsuarios();
+
+
+  });
+}
 
 }

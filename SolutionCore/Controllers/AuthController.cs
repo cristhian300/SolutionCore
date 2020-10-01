@@ -59,5 +59,13 @@ namespace SolutionCore.Controllers
             return await _IUsuarioContract.AddUsuario(parameter);
 
         }
+
+        
+        [HttpPost]
+        public async Task<UpdateUsuarioResponse> UpdateUsuario(UpdateUsuarioRequest parameter)
+        {
+            return await _IUsuarioContract.UpdateUsuario(parameter);
+
+        }
     }
 }

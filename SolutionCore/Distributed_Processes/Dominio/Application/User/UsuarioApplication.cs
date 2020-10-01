@@ -41,6 +41,12 @@ namespace SolutionCore.Distributed_Processes.Dominio.Application
         {
             return Task.FromResult(_IUsuarioQuery.AddUsuario(parameter));
         }
-       
-    }
+
+        public Task<UpdateUsuarioResponse> UpdateUsuario(UpdateUsuarioRequest parameter)
+        {
+            return Task.FromResult(_IUsuarioQuery.UpdateUsuario(parameter));
+        }
+
+
+}
 }

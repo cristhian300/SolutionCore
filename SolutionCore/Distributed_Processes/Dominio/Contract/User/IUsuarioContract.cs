@@ -19,5 +19,7 @@ namespace SolutionCore.Contract
               Task<ListRolesResponse> ListRoles(ListRolesRequest parameter);
 
         Task<AddUsuarioResponse> AddUsuario(AddUsuarioRequest parameter);
+
+        Task<UpdateUsuarioResponse> UpdateUsuario(UpdateUsuarioRequest parameter);
     }
 }

@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
 import { NetworkManager } from './agent/common/network-manager';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ModalUsuariosComponent } from './modules/security/usuarios/modal-usuarios/modal-usuarios.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    ModalUsuariosComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -39,6 +41,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserAnimationsModule
   ],
   providers: [NetworkManager],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents :[ModalUsuariosComponent]
 })
 export class AppModule { }

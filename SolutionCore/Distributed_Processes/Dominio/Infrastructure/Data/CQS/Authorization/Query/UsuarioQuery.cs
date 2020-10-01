@@ -68,7 +68,8 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
                                 Rol = r.Description,
                                 Credencial=u.Credencial,
                                 RoleId=u.RoleId,
-                                Deleted  =u.Deleted
+                                Deleted  =u.Deleted,
+                                Clave = u.Clave
                             }).ToList();
 
             return new ListUsuarioResponse { ListUsuarios = _usuario };
@@ -115,6 +116,32 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
             UsuarioId = usuario.UsuarioId
             };
         }
+
+
+        public UpdateUsuarioResponse UpdateUsuario(UpdateUsuarioRequest parameter)
+        {
+
+            Usuario usuario = new Usuario
+            {
+                UsuarioId = parameter.UsuarioId,
+                NombreCompleto = parameter.NombreCompleto,
+                Credencial = parameter.Credencial,
+                Clave = parameter.Clave,
+                RoleId = parameter.RoleId,
+                Deleted = false
+
+
+            };
+
+            _CoreContext.DbContext.Usuarios.Update(usuario);
+            _CoreContext.DbContext.SaveChanges();
+
+            return new UpdateUsuarioResponse
+            {
+                //UsuarioId = usuario.UsuarioId
+            };
+        }
+
 
     }
 }

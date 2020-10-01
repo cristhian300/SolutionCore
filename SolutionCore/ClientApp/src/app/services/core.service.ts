@@ -9,6 +9,7 @@ import { ListRoleResponse } from '../agent/User/response/ListRolesResponse';
 import { ListRolesRequest } from '../agent/User/request/ListRolesRequest';
 import { AddUsuarioRequest } from '../agent/User/request/AddUsuariosRequest';
 import { AddUsuarioResponse } from '../agent/User/response/AddUsuarioResponse';
+import { UpdateUsuarioRequest } from '../agent/User/request/UpdateUsuarioRequest';
 
  
 
@@ -69,6 +70,11 @@ AddUsuario( parameter: AddUsuarioRequest):Observable<AddUsuarioResponse>{
   return this.networkManager.post(parameters)  as Observable<AddUsuarioResponse>;
 }
 
-
+UpdateUsuario( parameter: UpdateUsuarioRequest):Observable<AddUsuarioResponse>{
+  const parameters = new PostParameter()
+  parameters.PathOperation= this.Url+ 'UpdateUsuario'
+  parameters.RequestParameter=parameter
+  return this.networkManager.post(parameters)  as Observable<AddUsuarioResponse>;
+}
 
 }

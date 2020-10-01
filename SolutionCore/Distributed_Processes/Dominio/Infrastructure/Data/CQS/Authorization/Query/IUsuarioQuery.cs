@@ -17,5 +17,7 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
           ListRolesResponse ListRoles(ListRolesRequest parameter);
 
         AddUsuarioResponse AddUsuario(AddUsuarioRequest parameter);
+
+        UpdateUsuarioResponse UpdateUsuario(UpdateUsuarioRequest parameter);
     }
 }

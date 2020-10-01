@@ -9,4 +9,5 @@ export class  ListUsuarioResult {
   rol?: any;
   deleted  :boolean
   roleId?: number;
+  clave: string;
 }

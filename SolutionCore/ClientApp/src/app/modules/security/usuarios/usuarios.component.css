@@ -1,78 +1,75 @@
-table{
-
-width: 100%;
+table {
+    width: 100%;
 }
+
+
 /* #tbcontent  */
-#tbUsuarios   .mat-header-row .mat-header-cell {
+
+#tbUsuarios .mat-header-row .mat-header-cell {
     font-size: 15px;
     font-weight: bold;
     background-color: black;
     color: white;
     z-index: 10000 !important;
-  }
+}
 
-
-
-  .parametros__datos mat-form-field {
+.parametros__datos mat-form-field {
     width: 50px !important;
     text-align: right;
-  }
+}
 
 
-  /* #tb_option table {
+/* #tb_option table {
     width: 30%;
     font-size: 15px;
     line-height: 26px;
    border: solid;
   } */
-  #tb_option {
+
+#tb_option {
     width: 50%;
     font-size: 15px;
     line-height: 26px;
     padding: 5px;
-   /* border: solid; */
-  }
-
-
-  form.normal-form{
-    margin: 10px;
-  }
-
-  .controles-container{
-    width: 100%;
-    padding: 5%;    
+    /* border: solid; */
 }
 
-.controles-container > * {
+#tb_option td {
+    padding: 5px;
+}
+
+form.normal-form {
+    margin: 10px;
+}
+
+.controles-container {
     width: 100%;
-    }
+    padding: 5%;
+}
 
-    .add-bottom-padding{
-      padding-bottom: 10px;
-  }
+.controles-container>* {
+    width: 100%;
+}
 
+.add-bottom-padding {
+    padding-bottom: 10px;
+}
 
-  #tbl_modal{
-    width: 80%;
+#tbl_modal {
+    width: 100%;
     padding: 5px;
     margin: 0 auto;
-  }
-  #tbl_modal  mat-form-field {
+}
 
-      width: 100%;
-      padding: 10px;
-      
-    }
-
-
-
-  .search-form-field{
+#tbl_modal mat-form-field {
     width: 100%;
-    margin-left: 10px;
-    padding: 5px 10px;
+    padding: 10px;
+}
+
+.search-form-field {
+    /* width: 100%; */
+    /* margin-left: 10px;
+    padding: 5px 10px; */
     background-color: #f5f5f5;
     border-radius: 5px;
-    }
-
-
-  
+}
