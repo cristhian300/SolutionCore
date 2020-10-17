@@ -15,6 +15,8 @@ import { MaterialModule } from './shared/material/material.module';
 import { NetworkManager } from './agent/common/network-manager';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ModalUsuariosComponent } from './modules/security/usuarios/modal-usuarios/modal-usuarios.component';
+import { InterceptorService } from './agent/common/interceptor.service';
+import { LoginComponent } from './modules/security/authentication/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,8 @@ import { ModalUsuariosComponent } from './modules/security/usuarios/modal-usuari
     CounterComponent,
     FetchDataComponent,
     UsuariosComponent,
-    ModalUsuariosComponent
+    ModalUsuariosComponent,
+    LoginComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -33,14 +36,17 @@ import { ModalUsuariosComponent } from './modules/security/usuarios/modal-usuari
     FormsModule,
    ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'usuarios', component: UsuariosComponent },
+       { path: 'log', component: LoginComponent }
     ]),
     BrowserAnimationsModule
   ],
-  providers: [NetworkManager],
+  providers: [NetworkManager,
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+  ],
   bootstrap: [AppComponent],
   entryComponents :[ModalUsuariosComponent]
 })

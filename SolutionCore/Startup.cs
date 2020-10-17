@@ -14,6 +14,9 @@ using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
 using Microsoft.OpenApi.Models;
 using System;
 using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace SolutionCore
 {
@@ -29,7 +32,43 @@ namespace SolutionCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
+            services.AddAuthentication(opt =>
+
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer( option =>
+                {
+                    option.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+
+
+                        ValidIssuer = "https://localhos:5001",
+                        ValidAudience = "https://localhos:5001",
+
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"))
+                    };
+                }
+                
+               
+                );
+
+            services.AddCors(option =>
+            {
+                option.AddPolicy("mi_politica", builder =>
+                {
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyHeader();
+                    builder.AllowAnyMethod();
+
+                });
+            } );
+
             services.AddControllersWithViews();
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -59,6 +98,10 @@ namespace SolutionCore
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+             
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -77,7 +120,8 @@ namespace SolutionCore
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "TestService");
             });
             app.UseHttpsRedirection();
-            
+
+            app.UseCors("mi_politica");
 
             app.UseStaticFiles();
             if (!env.IsDevelopment())
@@ -87,6 +131,10 @@ namespace SolutionCore
            
             app.UseRouting();
 
+            //se agrego de JWT
+            app.UseAuthentication();
+
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

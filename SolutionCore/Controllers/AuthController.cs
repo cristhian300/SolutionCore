@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using SolutionCore.Contract;
 using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Parameter;
@@ -15,11 +20,41 @@ namespace SolutionCore.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    
     public class AuthController : ControllerBase
     {
         // GET: api/Auth
 
         private IUsuarioContract _IUsuarioContract;
+
+        [HttpPost]
+       
+        public IActionResult Login([FromBody] LoginRequest user ) {
+
+            if (user == null)
+            {
+                return BadRequest("Algo Salio Mal");
+            }
+
+            if (user.UserName == "cristhian" && user.Password == "cristhian")
+            {
+                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"));
+                var signigCredencial = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+
+                var tokenOption = new JwtSecurityToken(
+                    issuer: "https://localhos:5001",
+                    audience: "https://localhos:5001",
+                    claims : new List<Claim>(),
+                    expires:DateTime.Now.AddMinutes(5),
+                    signingCredentials: signigCredencial
+
+                    );
+
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOption);
+                return   Ok(new { token = tokenString });
+            }
+            return Unauthorized();
+        }
 
         public AuthController(IUsuarioContract IUsuarioContract)
         {
@@ -44,6 +79,7 @@ namespace SolutionCore.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ListRolesResponse> ListRoles(ListRolesRequest parameter)
         {
             return await _IUsuarioContract.ListRoles(parameter);

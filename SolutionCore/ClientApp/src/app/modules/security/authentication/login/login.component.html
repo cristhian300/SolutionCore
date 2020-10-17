@@ -1,0 +1,53 @@
+<div class="box wrapper" fxLayout>
+
+    <div class="login" fxLayout fxLayoutAlign="center center">
+        <form fxLayout="column" [formGroup]="loginForm">
+            <h2><strong>CAMPAIGN</strong> MANAGER</h2>
+            <mat-form-field class="login">
+                <input type="text" matInput required formControlName="userName" name="userName" />
+                <mat-placeholder class="placeholder">Usuario</mat-placeholder>
+                <mat-error>El usuario es requerido</mat-error>
+            </mat-form-field>
+            <mat-form-field class="login">
+                <input type="password" matInput required formControlName="password" name="password" />
+                <mat-placeholder class="placeholder">Contraseña</mat-placeholder>
+                <mat-error>La contraseña es requerida</mat-error>
+            </mat-form-field>
+            <div class="actions">
+                <button mat-raised-button color="primary" (click)="login()" class="login-form-field">
+          <span class="label-white">VAMOS</span>
+        </button>
+            </div>
+            <!-- <a href="/">Olvidé mi contraseña</a> -->
+        </form>
+    </div>
+</div>
+
+
+
+
+<!-- <div class="container" fxLayout>
+
+    <div class="login" fxFlex="1 1 28%" fxFlex.lt-md="1 1 100%" fxLayout fxLayoutAlign="center center">
+        <form fxLayout="column" [formGroup]="loginForm">
+            <h2><strong>CAMPAIGN</strong> MANAGER</h2>
+            <mat-form-field class="login">
+                <input type="text" matInput required formControlName="userName" name="userName" />
+                <mat-placeholder class="placeholder">Usuario</mat-placeholder>
+                <mat-error>El usuario es requerido</mat-error>
+            </mat-form-field>
+            <mat-form-field class="login">
+                <input type="password" matInput required formControlName="password" name="password" />
+                <mat-placeholder class="placeholder">Contraseña</mat-placeholder>
+                <mat-error>La contraseña es requerida</mat-error>
+            </mat-form-field>
+            <div class="actions">
+                <button mat-raised-button color="primary" (click)="login()" class="login-form-field">
+            <span class="label-white">VAMOS</span>
+          </button>
+            </div>
+
+        </form>
+    </div>
+    <div class="photo" fxFlex="1 1 72%" fxHide.lt-md="true"></div>
+</div> -->
