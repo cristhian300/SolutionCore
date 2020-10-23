@@ -10,6 +10,8 @@ import { ListRolesRequest } from '../agent/User/request/ListRolesRequest';
 import { AddUsuarioRequest } from '../agent/User/request/AddUsuariosRequest';
 import { AddUsuarioResponse } from '../agent/User/response/AddUsuarioResponse';
 import { UpdateUsuarioRequest } from '../agent/User/request/UpdateUsuarioRequest';
+import { GetTokenRequest } from '../agent/Authentication/request/GetTokenRequest';
+import { GetTokenResponse } from '../agent/Authentication/response/GetTokenResponse';
 
  
 
@@ -19,6 +21,7 @@ import { UpdateUsuarioRequest } from '../agent/User/request/UpdateUsuarioRequest
 export class CoreService {
  
 ruta:string ;
+storage: Storage ;
 
   constructor(private http:HttpClient ,@Inject('BASE_URL') baseUrl: string ,private networkManager:NetworkManager) { 
 
@@ -76,5 +79,48 @@ UpdateUsuario( parameter: UpdateUsuarioRequest):Observable<AddUsuarioResponse>{
   parameters.RequestParameter=parameter
   return this.networkManager.post(parameters)  as Observable<AddUsuarioResponse>;
 }
+
+
+login(parameter:GetTokenRequest): Observable<GetTokenResponse> {
+  return new Observable<GetTokenResponse>(observer => {
+
+
+    const parameters = new PostParameter()
+    parameters.PathOperation= this.Url+ 'Login'
+    parameters.RequestParameter=parameter
+    // return this.networkManager.post(parameters)  as Observable<GetTokenResponse>;
+
+    const getTokenCall = this.networkManager.post(parameters);
+    (getTokenCall as Observable<GetTokenResponse>).subscribe(getTokenResponse => {
+        observer.next(getTokenResponse);
+    }, error => {
+        observer.next(error);
+    });
+
+    
+      // this.authenticationService.getToken(userName, password).subscribe(token => {
+      //     if (token) {
+      //         const userModel = new UserModel();
+      //         userModel.Token = token;
+      //         userModel.userName = userName;
+
+      //         // this.loginStorageService.setLoggedInUser(userModel);
+      //         this.storage.setItem("User", JSON.stringify(userModel.Token));
+      //         observer.next('');
+      //     }
+
+      //     else {
+
+      //         observer.next("USUARIO_PASSWORD_INCORRECTOS");
+      //     }
+
+      // }, error => {
+      //     observer.next(error);
+      // });
+  });
+
+}
+
+ 
 
 }

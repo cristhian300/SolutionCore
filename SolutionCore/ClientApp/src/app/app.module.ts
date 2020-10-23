@@ -17,6 +17,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ModalUsuariosComponent } from './modules/security/usuarios/modal-usuarios/modal-usuarios.component';
 import { InterceptorService } from './agent/common/interceptor.service';
 import { LoginComponent } from './modules/security/authentication/login/login.component';
+import { SecurityGuardGuard } from './services/security/security-guard.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,10 +37,10 @@ import { LoginComponent } from './modules/security/authentication/login/login.co
     FormsModule,
    ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: LoginComponent, pathMatch: 'full' },
+      { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'usuarios', component: UsuariosComponent },
+      { path: 'usuarios', component: UsuariosComponent,canActivate:[SecurityGuardGuard] },
        { path: 'log', component: LoginComponent }
     ]),
     BrowserAnimationsModule

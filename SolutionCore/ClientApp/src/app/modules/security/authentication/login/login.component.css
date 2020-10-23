@@ -1,18 +1,7 @@
-.wrapper,
-html,
-body {
-    height: 100%;
-    margin: 0;
-}
-
-.wrapper {
-    display: flex;
-    flex-direction: column;
-}
-
-.box {
-    height: 100%;
-    border: 10px solid;
+.photo {
+    background-image: url(../../../../../assets/images/presentacion_inicial.jpg);
+    background-size: cover;
+    background-position: left top;
 }
 
 .login {
@@ -83,10 +72,4 @@ a:hover {
 
 .mat-form-field-infix {
     border-bottom: 1px solid #fff !important;
-}
-
-.photo {
-    background-image: url(../../../../../assets/images/photo-login.png);
-    background-size: cover;
-    background-position: left top;
 }

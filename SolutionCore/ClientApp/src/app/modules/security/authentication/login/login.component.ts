@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+import { GetTokenRequest } from 'src/app/agent/Authentication/request/GetTokenRequest';
+import { CoreService } from 'src/app/services/core.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +11,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  public isLoading: boolean;
   public loginForm: FormGroup;
-  isLoading: boolean;
-  constructor(private formBuilder: FormBuilder,) { }
+  private storage: any
+  // public SystemStyleSheet = SystemStyleSheet;
+  // public SPINNER = SPINNER;
+
+  constructor(
+    // private ngxUiLoaderService: NgxUiLoaderService,
+    // private loginService: LoginService,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private formBuilder: FormBuilder,
+    // private configurationService: ConfigurationService,
+    // private loginStorageService: LoginStorageService
+    private loginService:CoreService
+  ) {
+  }
 
   ngOnInit() {
     this.isLoading = false;
@@ -17,6 +35,61 @@ export class LoginComponent implements OnInit {
       userName: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
+  }
+
+  ngAfterViewInit() {
+    // setTimeout(() => {
+    //   if (this.loginStorageService.isUserLoggedIn()) {
+    //     this.router.navigateByUrl(AppConstants.Routes.HOME);
+    //   }
+    // });
+  }
+
+  login() {
+
+    if (!this.loginForm.valid) {
+      this.snackBar.open('Complete los datos requeridos.', 'close', { duration: 3000, panelClass: ['error-snackbar'] });
+      return;
+    }
+
+    this.isLoading = true;
+    const _self = this;
+    // this.ngxUiLoaderService.start('loadingLogin');
+
+    const param = new  GetTokenRequest();
+    param.userName=this.loginForm.get('userName').value
+    param.password= this.loginForm.get('password').value
+
+    this.loginService.login( param ).subscribe(
+      response => {
+        const successLogin = response.token 
+        if (successLogin) {
+          // this.configurationService.getConfiguration().subscribe(() => {
+
+          //   // this.ngxUiLoaderService.stop('loadingLogin');
+          //   // this.router.navigateByUrl(AppConstants.Routes.HOME).then();
+          // });
+
+          console.log( "Token "+  response.token);
+          localStorage.setItem("User", JSON.stringify(response.token));
+          this.router.navigateByUrl("/usuarios").then();
+
+
+        } else {
+          // this.ngxUiLoaderService.stop('loadingLogin');
+          this.snackBar.open(response.token, 'close', { duration: 3000 });
+        }
+        this.isLoading = false;
+      },
+      () => {
+        // this.ngxUiLoaderService.stop('loadingLogin');
+      });
+
+  }
+
+
+  ErrorHandler() {
+    this.isLoading = false;
   }
 
 }

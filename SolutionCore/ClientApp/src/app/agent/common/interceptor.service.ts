@@ -1,14 +1,18 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InterceptorService implements HttpInterceptor {
 
-  constructor() { }
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  constructor(private router: Router,) { }
+  intercept(
+    
+    req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
 
 
@@ -18,10 +22,23 @@ export class InterceptorService implements HttpInterceptor {
 
     req = req.clone({
       setHeaders: {
-          Authorization: `Bearer ${"ClaveCristhian123456"}`
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("User"))}`
       }
   });
-      return next.handle(req);
+  return next.handle(req)
+  .pipe(
+      tap(
+          (event: HttpEvent<any>) => { if (event instanceof HttpResponse) { } },
+          (err: any) => {
+              if (err instanceof HttpErrorResponse && err.status === 401) {
+                  // this.loginService.logOut();
+                  localStorage.removeItem("User");
+                  this.router.navigate(["/log"]);
+                  console.warn(err)
+              }
+          }
+      )
+  );
   
 
   }
