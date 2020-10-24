@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -20,7 +21,7 @@ namespace SolutionCore.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    
+    //[EnableCors("mi_politica")]
     public class AuthController : ControllerBase
     {
         // GET: api/Auth

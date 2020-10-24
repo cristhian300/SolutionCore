@@ -12,6 +12,7 @@ import { AddUsuarioResponse } from '../agent/User/response/AddUsuarioResponse';
 import { UpdateUsuarioRequest } from '../agent/User/request/UpdateUsuarioRequest';
 import { GetTokenRequest } from '../agent/Authentication/request/GetTokenRequest';
 import { GetTokenResponse } from '../agent/Authentication/response/GetTokenResponse';
+import { environment } from 'src/environments/environment';
 
  
 
@@ -86,10 +87,10 @@ login(parameter:GetTokenRequest): Observable<GetTokenResponse> {
 
 
     const parameters = new PostParameter()
-    parameters.PathOperation= this.Url+ 'Login'
+    parameters.PathOperation= environment.apiBaseURI   +"/Auth/"+ 'Login'
     parameters.RequestParameter=parameter
     // return this.networkManager.post(parameters)  as Observable<GetTokenResponse>;
-
+     console.log('Login :>> ', this.Url+ 'Login');
     const getTokenCall = this.networkManager.post(parameters);
     (getTokenCall as Observable<GetTokenResponse>).subscribe(getTokenResponse => {
         observer.next(getTokenResponse);

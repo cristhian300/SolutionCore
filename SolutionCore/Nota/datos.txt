@@ -80,3 +80,8 @@ ng build --prod --aot --build-optimizer
 ng g m authentication --routing=true
 
 ng g g services/security/SecurityGuard
+
+------------------------------------------------
+
+Get-Help about_EntityFrameworkCore
+Update-Database
