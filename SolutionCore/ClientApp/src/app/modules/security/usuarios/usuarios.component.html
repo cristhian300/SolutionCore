@@ -1,85 +1,55 @@
 <p>Listado de Usuarios</p>
 
 
+<div class="containerFiltro">
+    <!-- class="search-div" -->
+    <table id="tb_option">
+        <tr>
+            <td style="width: 100px;">
+                <button mat-raised-button (click)="onCreate()">
+                    <mat-icon>add</mat-icon>Create
+                </button></td>
+            <td>
+
+                <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+                    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+                </mat-form-field>
+
+            </td>
+
+            <!-- <td>
+        <mat-form-field>
+            <mat-label>Select an option</mat-label>
+
+            <mat-select (selectionChange)="OnChangeEstados($event)" [(ngModel)]="selectedCar" [(value)]="filtroEstado">
+                <mat-option value="1">Habilitado</mat-option>
+                <mat-option value="0">Desabilitado</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </td> -->
+        </tr>
+    </table>
+</div>
+
+
+<div fxLayout="row wrap" fxLayoutAlign="center center">
+    <!-- <perfect-scrollbar style="height: calc(100vh - 300px)"> -->
+    <perfect-scrollbar style="width: 100%;height: 50vh">
+        <div class="containerMain">
 
 
 
-<!-- <div style="background-color: gray;">
-
-
-    <form [formGroup]="formGroup" class="normal-form" (submit)="onSubmit()">
 
 
 
-        <table id="tbl_modal" >
-
-            <tr>
-                <td>
-                    <mat-form-field>
-                        <mat-label>Nombre</mat-label>
-                        <input matInput formControlName="nombre" type="text" required placeholder="Nombre Completo">
-                    </mat-form-field>
-
-                </td>
-                <td>
-
-                    <mat-form-field>
-                        <mat-label>Credencial</mat-label>
-                        <input matInput formControlName="credencial" type="text" required placeholder="">
-                    </mat-form-field>
-
-                </td>
-            </tr>
-            <tr>
-
-                <td>
-                    <mat-form-field>
-                        <mat-label>Clave</mat-label>
-                        <input matInput formControlName="clave" type="password" required placeholder="clave">
-                    </mat-form-field>
-                </td>
-
-                <td>
-                    <mat-form-field>
-                        <mat-label>Select an option</mat-label>
-
-                        <mat-select formControlName="rol">
-                            <div *ngFor="let item of RolesList">
-                                <mat-option value="{{item.value}}">{{item.description}} </mat-option>
-                            </div>
-                        </mat-select>
-                    </mat-form-field>
-
-                </td>
-
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="add-bottom-padding">
-                        <mat-checkbox formControlName="isDeleted">Desabilitar</mat-checkbox>
-
-                    </div>
-                </td>
-                <td>
-                    <div class="button-row">
 
 
-                        <button mat-raised-button color="primary" type="submit">Submit</button>
-                        <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </form>
-
-</div> -->
 
 
-<div fxLayout="column">
+            <!-- <div fxLayout="column"> -->
 
 
-    <!-- <div fxLayout="row">
+            <!-- <div fxLayout="row">
     <mat-form-field>
       <mat-label>Select an option</mat-label>
 
@@ -89,91 +59,64 @@
       </mat-select>
     </mat-form-field>
   </div> -->
-    <!-- ------------------------------------------------------------------------- -->
-
-    <div>
-        <!-- class="search-div" -->
-        <table id="tb_option">
-            <tr>
-                <td style="width: 100px;">
-                    <button mat-raised-button (click)="onCreate()">
-            <mat-icon>add</mat-icon>Create
-          </button></td>
-                <td>
-
-                    <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
-                        <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
-                    </mat-form-field>
-
-                </td>
-
-                <!-- <td>
-                    <mat-form-field>
-                        <mat-label>Select an option</mat-label>
-
-                        <mat-select (selectionChange)="OnChangeEstados($event)" [(ngModel)]="selectedCar" [(value)]="filtroEstado">
-                            <mat-option value="1">Habilitado</mat-option>
-                            <mat-option value="0">Desabilitado</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </td> -->
-            </tr>
-        </table>
-    </div>
-
-    <!-- ---------------------------------------------------------------------------------- -->
-
-    <div fxLayout="column wrap" class="mat-elevation-z8">
-        <table id="tbUsuarios" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
-            <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-            <!-- Position Column -->
-            <ng-container matColumnDef="usuarioId">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> usuarioId. </th>
-                <td mat-cell *matCellDef="let element"> {{element.usuarioId}} </td>
-            </ng-container>
-
-            <!-- Name Column -->
-            <ng-container matColumnDef="nombreCompleto">
-                <th mat-header-cell *matHeaderCellDef> nombreCompleto </th>
-                <td mat-cell *matCellDef="let element"> {{element.nombreCompleto}} </td>
-            </ng-container>
-
-            <!-- Weight Column -->
-            <ng-container matColumnDef="credencial">
-                <th mat-header-cell *matHeaderCellDef> credencial </th>
-                <td mat-cell *matCellDef="let element"> {{element.credencial}} </td>
-            </ng-container>
-
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="rol">
-                <th mat-header-cell *matHeaderCellDef> rol </th>
-                <td mat-cell *matCellDef="let element"> {{element.rol}} </td>
-            </ng-container>
+            <!-- ------------------------------------------------------------------------- -->
 
 
-            <ng-container matColumnDef="actions">
-                <th mat-header-cell *matHeaderCellDef> </th>
-                <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button (click)="onEdit(element)"><mat-icon>launch</mat-icon></button>
-                    <button mat-icon-button color="warn" (click)="onDelete(element.$key)"><mat-icon>delete_outline</mat-icon></button>
-                </td>
-            </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+            <!-- ---------------------------------------------------------------------------------- -->
 
-        <mat-paginator [pageSizeOptions]="[4, 10, 20]" showFirstLastButtons></mat-paginator>
-
-    </div>
+            <div class="mat-elevation-z8">
+                <table id="tbUsuarios" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
 
-    <hr>
+                    <ng-container matColumnDef="usuarioId">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.usuarioId}} </td>
+                    </ng-container>
 
-    <!-- <div fxFlex="30" *ngIf="Panel != null">
+
+                    <ng-container matColumnDef="nombreCompleto">
+                        <th mat-header-cell *matHeaderCellDef> Nombres <br> Apellidos </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombreCompleto}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="credencial">
+                        <th mat-header-cell *matHeaderCellDef> Credencial </th>
+                        <td mat-cell *matCellDef="let element"> {{element.credencial}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="rol">
+                        <th mat-header-cell *matHeaderCellDef> Rol </th>
+                        <td mat-cell *matCellDef="let element"> {{element.rol}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef> </th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-icon-button (click)="onEdit(element)">
+                                <mat-icon>launch</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="onDelete(element.$key)">
+                                <mat-icon>delete_outline</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns;  sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+
+
+            </div>
+
+
+
+
+            <!-- <div fxFlex="30" *ngIf="Panel != null">
         <mat-tab-group>
             <div *ngFor="let item of Panel">
                 <mat-tab label="{{item.Title}}">
@@ -196,5 +139,19 @@
             </div>
         </mat-tab-group>
     </div> -->
+
+            <!-- </div> -->
+
+
+        </div>
+    </perfect-scrollbar>
+
+
+    <div class="containerPaginado">
+        <mat-paginator class="mat-paginator-sticky" [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
+
+    </div>
+
+    <!-- <hr> -->
 
 </div>

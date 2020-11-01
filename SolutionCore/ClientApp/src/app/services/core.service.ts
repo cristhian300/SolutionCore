@@ -27,7 +27,7 @@ storage: Storage ;
   constructor(private http:HttpClient ,@Inject('BASE_URL') baseUrl: string ,private networkManager:NetworkManager) { 
 
 this.ruta = baseUrl
-
+console.log( "BASE_URL" +this.ruta);
   }
   // port = '44378';
   // baseUrl = `${this.window.location.protocol}//${this.window.location.hostname}:${this.port}`;
@@ -87,7 +87,7 @@ login(parameter:GetTokenRequest): Observable<GetTokenResponse> {
 
 
     const parameters = new PostParameter()
-    parameters.PathOperation= environment.apiBaseURI   +"/Auth/"+ 'Login'
+    parameters.PathOperation= this.Url+  'Login'
     parameters.RequestParameter=parameter
     // return this.networkManager.post(parameters)  as Observable<GetTokenResponse>;
      console.log('Login :>> ', this.Url+ 'Login');

@@ -18,6 +18,15 @@ import { ModalUsuariosComponent } from './modules/security/usuarios/modal-usuari
 import { InterceptorService } from './agent/common/interceptor.service';
 import { LoginComponent } from './modules/security/authentication/login/login.component';
 import { SecurityGuardGuard } from './services/security/security-guard.guard';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: false
+};
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +39,7 @@ import { SecurityGuardGuard } from './services/security/security-guard.guard';
     LoginComponent
   ],
   imports: [
+    PerfectScrollbarModule,
     FlexLayoutModule,
     MaterialModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -47,6 +57,10 @@ import { SecurityGuardGuard } from './services/security/security-guard.guard';
   ],
   providers: [NetworkManager,
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
   ],
   bootstrap: [AppComponent],
   entryComponents :[ModalUsuariosComponent]
