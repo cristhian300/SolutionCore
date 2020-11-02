@@ -21,6 +21,7 @@ import { SecurityGuardGuard } from './services/security/security-guard.guard';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: false
@@ -39,6 +40,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LoginComponent
   ],
   imports: [
+    NgxUiLoaderModule ,
     PerfectScrollbarModule,
     FlexLayoutModule,
     MaterialModule,

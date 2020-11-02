@@ -11,7 +11,7 @@ import { ListRolesRequest } from 'src/app/agent/User/request/ListRolesRequest';
 import { ListRoleResult } from 'src/app/agent/User/response/ListRolesResponse';
 import { AddUsuarioRequest } from 'src/app/agent/User/request/AddUsuariosRequest';
 import { ModalUsuariosComponent } from './modal-usuarios/modal-usuarios.component';
-
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 
 @Component({
@@ -29,7 +29,7 @@ formGroup:FormGroup
 
   SecurityViewModel = new SecurityViewModel()
 
-  constructor(public dialog: MatDialog,private coreService: CoreService, private formbuilder:FormBuilder) {
+  constructor( private ngxLoader: NgxUiLoaderService ,public dialog: MatDialog,private coreService: CoreService, private formbuilder:FormBuilder) {
     this.formGroup = this.CreateForm();
   }
 
@@ -77,11 +77,11 @@ formGroup:FormGroup
 RolesList:ListRoleResult[]
 ListRoles(){
 
+  this.ngxLoader.start();
   let paramas = new ListRolesRequest()
-
   this.coreService.ListRoles(paramas ).subscribe( response =>{
    this.RolesList = response.listRoles
-     
+      this.ngxLoader.stop();
 
   })
 }

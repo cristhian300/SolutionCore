@@ -81,6 +81,9 @@ ng g m authentication --routing=true
 
 ng g g services/security/SecurityGuard
 
+Loader
+npm i --save ngx-ui-loader@8.0.0
+https://tdev.app/ngx-ui-loader
 ------------------------------------------------
 
 Get-Help about_EntityFrameworkCore
