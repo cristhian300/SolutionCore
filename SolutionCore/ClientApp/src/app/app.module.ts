@@ -40,7 +40,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LoginComponent
   ],
   imports: [
-    NgxUiLoaderModule ,
+    NgxUiLoaderModule.forRoot({}),
     PerfectScrollbarModule,
     FlexLayoutModule,
     MaterialModule,
