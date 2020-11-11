@@ -14,17 +14,14 @@ export class LoginComponent implements OnInit {
   public isLoading: boolean;
   public loginForm: FormGroup;
   private storage: any
-  // public SystemStyleSheet = SystemStyleSheet;
-  // public SPINNER = SPINNER;
+
 
   constructor(
-    // private ngxUiLoaderService: NgxUiLoaderService,
-    // private loginService: LoginService,
+   
     private router: Router,
     private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
-    // private configurationService: ConfigurationService,
-    // private loginStorageService: LoginStorageService
+
     private loginService:CoreService
   ) {
   }
@@ -38,11 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    // setTimeout(() => {
-    //   if (this.loginStorageService.isUserLoggedIn()) {
-    //     this.router.navigateByUrl(AppConstants.Routes.HOME);
-    //   }
-    // });
+  
   }
 
   login() {
@@ -54,7 +47,7 @@ export class LoginComponent implements OnInit {
 
     this.isLoading = true;
     const _self = this;
-    // this.ngxUiLoaderService.start('loadingLogin');
+
 
     const param = new  GetTokenRequest();
     param.userName=this.loginForm.get('userName').value
