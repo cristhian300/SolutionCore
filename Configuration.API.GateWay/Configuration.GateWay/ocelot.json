@@ -1,0 +1,18 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/employee/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44300
+        }
+      ],
+      "UpstreamPathTemplate": "/api/employee/{everything}",
+      "UpstreamHttpMethod": [ "Get","Post","Put","Delete" ]
+    }
+  ],
+  "GlobalConfiguration": {
+  }
+}

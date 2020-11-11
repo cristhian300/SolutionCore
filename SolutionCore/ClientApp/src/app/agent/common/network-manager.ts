@@ -20,7 +20,32 @@ export class NetworkManager {
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
         const options = { headers: headers };
         const parameters = parameter.RequestParameter
-        return this.HttpClient.post<any>( `${parameter.PathOperation}` , JSON.stringify(parameters)    , options);
+        return    Observable.create(observer => {
+        this.HttpClient.post<any>( `${parameter.PathOperation}` , JSON.stringify(parameters)    , options).subscribe(
+
+          response =>{
+
+          try {
+            observer.next(response)
+          } catch (error) {
+
+            console.log("error post "+ error)
+            observer.error(error);
+          }
+
+          }
+        )
+         
+       
+
+        })
+        
+        
+        
+
+        
+        
+        
        
       }
 

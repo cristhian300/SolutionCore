@@ -21,13 +21,23 @@ namespace SolutionCore.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[EnableCors("mi_politica")]
+    [EnableCors("mi_politica")]
+    [Authorize]
     public class AuthController : ControllerBase
     {
         // GET: api/Auth
 
         private IUsuarioContract _IUsuarioContract;
+        [AllowAnonymous]
+        [HttpGet]
+        public string MetAuth()
+        {
 
+            return "usuario getWat";
+        }
+
+
+        [AllowAnonymous]
         [HttpPost]
        
         public IActionResult Login([FromBody] LoginRequest user ) {
@@ -80,7 +90,7 @@ namespace SolutionCore.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        
         public async Task<ListRolesResponse> ListRoles(ListRolesRequest parameter)
         {
             return await _IUsuarioContract.ListRoles(parameter);

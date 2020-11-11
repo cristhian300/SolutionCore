@@ -88,3 +88,7 @@ https://tdev.app/ngx-ui-loader
 
 Get-Help about_EntityFrameworkCore
 Update-Database
+
+------------------------------------------------
+
+https://ocelot.readthedocs.io/en/latest/features/routing.html

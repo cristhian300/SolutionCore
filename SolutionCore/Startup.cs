@@ -17,6 +17,8 @@ using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data;
+using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 
 namespace SolutionCore
 {
@@ -32,9 +34,10 @@ namespace SolutionCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(opt =>
 
-            {
+
+            /*Autenticacion para WEBTOKEN*/
+            services.AddAuthentication(opt =>{
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
@@ -46,17 +49,14 @@ namespace SolutionCore
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-
-
                         ValidIssuer = "https://localhos:5001",
                         ValidAudience = "https://localhos:5001",
-
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"))
                     };
-                }
+                });
                 
                
-                );
+                
 
             services.AddCors(option =>
             {
@@ -65,6 +65,7 @@ namespace SolutionCore
                     builder.AllowAnyOrigin();
                     builder.AllowAnyHeader();
                     builder.AllowAnyMethod();
+                    //builder.AllowCredentials();
 
                 });
             } );
@@ -89,9 +90,11 @@ namespace SolutionCore
             services.AddUnitOfWork<CoreContext>();
 
             //AddSwagger(services);
-           
 
-            services.AddDbContext<CoreContext>(option => option.UseSqlServer(Configuration["ConnectionStrings:SpartacusContext"]));
+            //Cadena de Conexion de base de datos SQL Server
+            //services.AddDbContext<CoreContext>(option => option.UseSqlServer(Configuration["ConnectionStrings:SpartacusContext"]));
+            services.AddDataServicesSQL(Configuration);
+            services.Configure<GetConfigurationResponse>(Configuration.GetSection("Services"));
         }
 
         
@@ -121,7 +124,7 @@ namespace SolutionCore
             });
             app.UseHttpsRedirection();
 
-            app.UseCors("mi_politica");
+            
 
             app.UseStaticFiles();
             if (!env.IsDevelopment())
@@ -133,7 +136,7 @@ namespace SolutionCore
 
             //se agrego de JWT
             app.UseAuthentication();
-
+            app.UseCors("mi_politica");
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

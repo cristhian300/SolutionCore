@@ -64,11 +64,7 @@ export class LoginComponent implements OnInit {
       response => {
         const successLogin = response.token 
         if (successLogin) {
-          // this.configurationService.getConfiguration().subscribe(() => {
-
-          //   // this.ngxUiLoaderService.stop('loadingLogin');
-          //   // this.router.navigateByUrl(AppConstants.Routes.HOME).then();
-          // });
+    
 
           console.log( "Token "+  response.token);
           localStorage.setItem("User", JSON.stringify(response.token));
@@ -76,13 +72,13 @@ export class LoginComponent implements OnInit {
 
 
         } else {
-          // this.ngxUiLoaderService.stop('loadingLogin');
+      
           this.snackBar.open(response.token, 'close', { duration: 3000 });
         }
         this.isLoading = false;
       },
       () => {
-        // this.ngxUiLoaderService.stop('loadingLogin');
+      
       });
 
   }

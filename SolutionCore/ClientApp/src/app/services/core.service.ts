@@ -27,7 +27,7 @@ storage: Storage ;
   constructor(private http:HttpClient ,@Inject('BASE_URL') baseUrl: string ,private networkManager:NetworkManager) { 
 
 this.ruta = baseUrl
-console.log( "BASE_URL" +this.ruta);
+console.log( "BASE_URL " +this.ruta);
   }
   // port = '44378';
   // baseUrl = `${this.window.location.protocol}//${this.window.location.hostname}:${this.port}`;
@@ -83,11 +83,14 @@ UpdateUsuario( parameter: UpdateUsuarioRequest):Observable<AddUsuarioResponse>{
 
 
 login(parameter:GetTokenRequest): Observable<GetTokenResponse> {
+
+
+  console.log("Empezo login");
   return new Observable<GetTokenResponse>(observer => {
 
 
     const parameters = new PostParameter()
-    parameters.PathOperation= this.Url+  'Login'
+    parameters.PathOperation= this.ruta + this.Url+  'Login'
     parameters.RequestParameter=parameter
     // return this.networkManager.post(parameters)  as Observable<GetTokenResponse>;
      console.log('Login :>> ', this.Url+ 'Login');
@@ -99,25 +102,7 @@ login(parameter:GetTokenRequest): Observable<GetTokenResponse> {
     });
 
     
-      // this.authenticationService.getToken(userName, password).subscribe(token => {
-      //     if (token) {
-      //         const userModel = new UserModel();
-      //         userModel.Token = token;
-      //         userModel.userName = userName;
-
-      //         // this.loginStorageService.setLoggedInUser(userModel);
-      //         this.storage.setItem("User", JSON.stringify(userModel.Token));
-      //         observer.next('');
-      //     }
-
-      //     else {
-
-      //         observer.next("USUARIO_PASSWORD_INCORRECTOS");
-      //     }
-
-      // }, error => {
-      //     observer.next(error);
-      // });
+    
   });
 
 }
