@@ -94,6 +94,8 @@ namespace SolutionCore
             //Cadena de Conexion de base de datos SQL Server
             //services.AddDbContext<CoreContext>(option => option.UseSqlServer(Configuration["ConnectionStrings:SpartacusContext"]));
             services.AddDataServicesSQL(Configuration);
+
+            //estrae informacion AppSetting
             services.Configure<GetConfigurationResponse>(Configuration.GetSection("Services"));
         }
 

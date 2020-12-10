@@ -21,8 +21,9 @@ namespace SolutionCore.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+
     [EnableCors("mi_politica")]
-    [Authorize]
+    [Authorize]  //Todos los metodos necesitan token 
     public class AuthController : ControllerBase
     {
         // GET: api/Auth
@@ -37,7 +38,7 @@ namespace SolutionCore.Controllers
         }
 
 
-        [AllowAnonymous]
+        [AllowAnonymous]//No necesita Token
         [HttpPost]
        
         public IActionResult Login([FromBody] LoginRequest user ) {

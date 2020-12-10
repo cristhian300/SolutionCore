@@ -7,6 +7,7 @@ create dataBase Core
 go
 use Core
 go
+
 Create table Category(
 CategoryId int identity(1,1) not null,
 Name Varchar(200),
@@ -18,7 +19,7 @@ alter table Category add constraint pk_category primary key (CategoryId)
 go 
 
 
- CREATE TABLE Core.dbo.RolesUsers (
+ CREATE TABLE  dbo.RolesUsers (
 	RoleID int IDENTITY(1,1) NOT NULL,
 	RoleCode varchar(200) COLLATE Modern_Spanish_CI_AS NOT NULL,
 	Description varchar(200) COLLATE Modern_Spanish_CI_AS NULL,
@@ -28,7 +29,7 @@ go
 
  go 
 
- CREATE TABLE Core.dbo.Usuario (
+ CREATE TABLE  dbo.Usuario (
 	UsuarioId int IDENTITY(1,1) NOT NULL,
 	NombreCompleto nvarchar(200) COLLATE Modern_Spanish_CI_AS NULL,
 	Credencial nvarchar(200) COLLATE Modern_Spanish_CI_AS NULL,
@@ -39,8 +40,28 @@ go
 	CONSTRAINT PK_Usuario PRIMARY KEY (UsuarioId)
 ) GO
 
-ALTER TABLE Core.dbo.Usuario ADD CONSTRAINT fk_Usuario_RolesUsers FOREIGN KEY (RoleID) REFERENCES Core.dbo.RolesUsers(RoleID) GO
+ALTER TABLE  dbo.Usuario ADD CONSTRAINT fk_Usuario_RolesUsers FOREIGN KEY (RoleID) REFERENCES  dbo.RolesUsers(RoleID) GO
 
+
+
+
+INSERT INTO  dbo.RolesUsers (RoleCode,Description,Deleted) VALUES 
+('ADM','Administrador',0)
+,('USE','Usuario',0)
+;
+
+
+CREATE TABLE  dbo.Product (
+	ProductId int IDENTITY(1,1) NOT NULL,
+	Name varchar(200)  ,
+	Description varchar(200) NULL,
+	Price decimal(10,2) ,
+	CreateDate datetime default CURRENT_TIMESTAMP,
+	UpdatedDate datetime default CURRENT_TIMESTAMP,
+	Deleted bit NOT NULL,
+	constraint PK_Product primary key (ProductId)
+)
+-----------------------------------------------------------------------
 -------------------------------------------------------------------------
 entity framework core power tools
 
@@ -92,3 +113,7 @@ Update-Database
 ------------------------------------------------
 
 https://ocelot.readthedocs.io/en/latest/features/routing.html
+
+------------------------------------------------------
+
+ng g component foo/fooList --module=foo.module.ts

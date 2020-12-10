@@ -45,6 +45,8 @@
   <ItemGroup>
     <Folder Include="Distributed_Processes\Dominio\Infrastructure\Data\CQS\Authorization\Commands\" />
     <Folder Include="Infrastructure\Data.Generator\" />
+    <Folder Include="Infrastructure\Transport\Core\Product\NewFolder\" />
+    <Folder Include="Infrastructure\Transport\Core\Product\Request\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

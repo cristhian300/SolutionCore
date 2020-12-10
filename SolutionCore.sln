@@ -5,13 +5,11 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolutionCore", "SolutionCore\SolutionCore.csproj", "{5D87B73A-19CE-48CC-B63B-3A44A0A838F5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PruebaGateWay", "PruebaGateWay", "{0D7F4E61-BC5B-4185-995F-99393E6A845B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Demo.Report", "PruebaGateWay\Microservice.Demo.Report\Microservice.Demo.Report.csproj", "{01E89994-4A6D-43AF-856F-E2B5CF697D33}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration.API.GateWay", "Configuration.API.GateWay", "{7D21903E-063E-463C-BA3F-E190EA08BC8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration.GateWay", "Configuration.API.GateWay\Configuration.GateWay\Configuration.GateWay.csproj", "{0CAA224E-A69F-4DE2-B44C-BD5EE7B1411E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configuration.GateWay", "Configuration.API.GateWay\Configuration.GateWay\Configuration.GateWay.csproj", "{0CAA224E-A69F-4DE2-B44C-BD5EE7B1411E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
