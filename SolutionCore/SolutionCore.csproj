@@ -16,13 +16,10 @@
     <PackageReference Include="Abp" Version="5.12.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.7" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -37,16 +34,21 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="Distributed_Processes\Dominio\Infrastructure\**" />
+    <Compile Remove="Infrastructure\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="Distributed_Processes\Dominio\Infrastructure\**" />
+    <Content Remove="Infrastructure\**" />
+    <EmbeddedResource Remove="Distributed_Processes\Dominio\Infrastructure\**" />
+    <EmbeddedResource Remove="Infrastructure\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="Distributed_Processes\Dominio\Infrastructure\**" />
+    <None Remove="Infrastructure\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Distributed_Processes\Dominio\Infrastructure\Data\CQS\Authorization\Commands\" />
-    <Folder Include="Infrastructure\Data.Generator\" />
-    <Folder Include="Infrastructure\Transport\Core\Product\NewFolder\" />
-    <Folder Include="Infrastructure\Transport\Core\Product\Request\" />
+    <ProjectReference Include="..\Data Acces\SolutionCore.Api.DataAcces\SolutionCore.Api.DataAcces.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
