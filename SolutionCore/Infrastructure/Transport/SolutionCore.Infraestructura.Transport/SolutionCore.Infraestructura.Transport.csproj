@@ -5,8 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Core\Product\NewFolder\" />
+    <Compile Remove="Core\Product\NewFolder\**" />
+    <EmbeddedResource Remove="Core\Product\NewFolder\**" />
+    <None Remove="Core\Product\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Core\Product\CQS\Query\Parameter\" />
+    <Folder Include="Core\Product\QueryEntity\" />
     <Folder Include="Core\Product\Request\" />
+    <Folder Include="Core\Product\Response\" />
   </ItemGroup>
 
 </Project>
