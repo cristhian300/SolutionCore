@@ -34,20 +34,22 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
-    <Compile Remove="Distributed_Processes\Dominio\Infrastructure\**" />
+    <Compile Remove="Distributed_Processes\**" />
     <Compile Remove="Infrastructure\**" />
     <Content Remove="$(SpaRoot)**" />
-    <Content Remove="Distributed_Processes\Dominio\Infrastructure\**" />
+    <Content Remove="Distributed_Processes\**" />
     <Content Remove="Infrastructure\**" />
-    <EmbeddedResource Remove="Distributed_Processes\Dominio\Infrastructure\**" />
+    <EmbeddedResource Remove="Distributed_Processes\**" />
     <EmbeddedResource Remove="Infrastructure\**" />
     <None Remove="$(SpaRoot)**" />
-    <None Remove="Distributed_Processes\Dominio\Infrastructure\**" />
+    <None Remove="Distributed_Processes\**" />
     <None Remove="Infrastructure\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\SolutionCore.Application.Contracts\SolutionCore.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Application\SolutionCore.Application\SolutionCore.Application.csproj" />
     <ProjectReference Include="..\Data Acces\SolutionCore.Api.DataAcces\SolutionCore.Api.DataAcces.csproj" />
   </ItemGroup>
 

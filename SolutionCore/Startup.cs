@@ -8,8 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SolutionCore.Contract;
-using SolutionCore.Distributed_Processes.Dominio.Application;
-
 using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
 using Microsoft.OpenApi.Models;
 using System;
@@ -19,6 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
+using SolutionCore.Distributed_Processes.Dominio.Application;
 
 namespace SolutionCore
 {
