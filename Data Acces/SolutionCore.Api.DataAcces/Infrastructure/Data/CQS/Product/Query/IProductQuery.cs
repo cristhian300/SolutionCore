@@ -1,4 +1,6 @@
-﻿using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Parameter;
+﻿using SolutionCore.Infraestructura.Transport.Core.Product.Request;
+using SolutionCore.Infraestructura.Transport.Core.Product.Response;
+using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Parameter;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Result;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Request;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
@@ -11,6 +13,6 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
 {
   public  interface IProductQuery
     {
-          
+        ListProductResponse ListProduct(ListProductRequest parameter);
     }
 }

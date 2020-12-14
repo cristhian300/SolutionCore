@@ -12,9 +12,6 @@
 
   <ItemGroup>
     <Folder Include="Core\Product\CQS\Query\Parameter\" />
-    <Folder Include="Core\Product\QueryEntity\" />
-    <Folder Include="Core\Product\Request\" />
-    <Folder Include="Core\Product\Response\" />
   </ItemGroup>
 
 </Project>
