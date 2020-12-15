@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SolutionCore.Application.Contracts.Contract.Product;
@@ -16,17 +18,20 @@ namespace SolutionCore.Controllers
     {
         // GET: api/Product
         private IProductContract _IProductContract;
+        private readonly IWebHostEnvironment _env;
 
-
-        public ProductController(IProductContract  IProductContract)
+        public ProductController(IProductContract  IProductContract, IWebHostEnvironment env)
         {
             _IProductContract = IProductContract;
+            _env = env;
         }
 
         // POST: api/Product
         [HttpPost]
         public async Task<ListProductResponse> Post([FromBody] ListProductRequest parameter)
         {
+            var path = Path.Combine(_env.WebRootPath, "images", "defaul_pamplonera.jpg");
+
 
             return await  _IProductContract.ListProduct(parameter);
             // prueba azure devops

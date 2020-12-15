@@ -15,5 +15,7 @@ namespace SolutionCore.Infraestructura.Transport.Core.Product.QueryEntity
         public DateTime? UpdatedDate { get; set; }
         public bool Deleted { get; set; }
 
+        public string  Photo { get; set; }
+
     }
 }

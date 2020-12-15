@@ -18,6 +18,9 @@ using System.Text;
 using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 using SolutionCore.Distributed_Processes.Dominio.Application;
+using SolutionCore.Application.Contracts.Contract.Product;
+using SolutionCore.Application.Application.Product;
+using SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query;
 
 namespace SolutionCore
 {
@@ -85,6 +88,10 @@ namespace SolutionCore
 
             services.AddTransient<IUsuarioQuery, UsuarioQuery>();
             services.AddTransient<IUsuarioContract, UsuarioApplication>();
+
+            services.AddTransient<IProductQuery, ProductQuery>();
+            services.AddTransient<IProductContract, ProductApplication>();
+
 
             services.AddUnitOfWork<CoreContext>();
 
