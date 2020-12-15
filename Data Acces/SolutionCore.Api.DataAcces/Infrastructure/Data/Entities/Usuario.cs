@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Entities
+namespace SolutionCore.Api.DataAcces.Infrastructure.Data.Entities
 {
     public partial class Usuario
     {

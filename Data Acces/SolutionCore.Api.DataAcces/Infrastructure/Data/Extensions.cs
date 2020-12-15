@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context;
+using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

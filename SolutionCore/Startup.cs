@@ -11,7 +11,7 @@ using SolutionCore.Contract;
 using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
 using Microsoft.OpenApi.Models;
 using System;
-using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context;
+using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;

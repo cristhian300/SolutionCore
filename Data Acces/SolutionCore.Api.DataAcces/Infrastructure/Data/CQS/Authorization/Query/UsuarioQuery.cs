@@ -13,8 +13,8 @@ using System.Collections.Immutable;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Parameter;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Request;
-using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context;
-using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Entities;
+using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
+using SolutionCore.Api.DataAcces.Infrastructure.Data.Entities;
 
 namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
 {

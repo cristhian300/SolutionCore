@@ -2,9 +2,9 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Entities;
+using SolutionCore.Api.DataAcces.Infrastructure.Data.Entities;
 
-namespace SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context
+namespace SolutionCore.Api.DataAcces.Infrastructure.Data.Context
 {
     public partial class CoreContext : DbContext
     {
@@ -17,12 +17,26 @@ namespace SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context
         {
         }
 
+        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<RolesUser> RolesUsers { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Category>(entity =>
+            {
+                entity.ToTable("Category");
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.ToTable("Product");
@@ -38,6 +52,8 @@ namespace SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data.Context
                 entity.Property(e => e.Name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Photo).HasColumnType("text");
 
                 entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
 
