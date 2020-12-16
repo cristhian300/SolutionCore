@@ -1,25 +1,26 @@
-﻿using Arch.EntityFrameworkCore.UnitOfWork;
-using Microsoft.AspNetCore.Hosting;
-
-
-using SolutionCore.Infraestructura.Transport.Core.Product.QueryEntity;
-using SolutionCore.Infraestructura.Transport.Core.Product.Request;
-using SolutionCore.Infraestructura.Transport.Core.Product.Response;
-using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
-using System;
-
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Web;
-using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
-using SolutionCore.Api.DataAcces.Infrastructure.Data.Entities;
+﻿
 
 
 
 namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
 {
-   public class ProductQuery: IProductQuery
+
+    using Arch.EntityFrameworkCore.UnitOfWork;
+    using Microsoft.AspNetCore.Hosting;
+    using SolutionCore.Infraestructura.Transport.Core.Product.QueryEntity;
+    using SolutionCore.Infraestructura.Transport.Core.Product.Request;
+    using SolutionCore.Infraestructura.Transport.Core.Product.Response;
+    using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Web;
+    using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
+    using SolutionCore.Api.DataAcces.Infrastructure.Data.Entities;
+    using Microsoft.AspNetCore.Http;
+
+    public class ProductQuery: IProductQuery
     {
 
         private IHostingEnvironment hostingEnvironment;
@@ -66,31 +67,18 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
 
 
 
-        public ListProductResponse AddtProduct(ListProductRequest parameter)
+        public AddProductResponse AddProduct(IFormFile files ,  AddProductRequest parameter)
         {
 
 
+
+            Product product = new Product();
+
+
+            _CoreContext.DbContext.Products.Add(product);
+            _CoreContext.DbContext.SaveChanges();
              
-          
-
-            //_CoreContext.DbContext.Products.Add(product);
-
-            //_CoreContext.DbContext.Products.Add(parameter);
-            //_CoreContext.DbContext.SaveChanges();
-
-
-            var listProduct = (from p in _CoreContext.DbContext.Products
-                               where p.Deleted == false
-                               select new ListProductQueryEntity
-                               {
-                                   ProductId = p.ProductId,
-                                   Name = p.Name,
-                                   Description = p.Description,
-                                   Price = p.Price,
-                                   Deleted = p.Deleted
-                               }
-                               ).ToList();
-            return new ListProductResponse { ListProduct = listProduct };
+            return new AddProductResponse {   };
 
         }
 
