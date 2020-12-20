@@ -14,7 +14,7 @@ Description varchar(200)
 
 alter table Category add constraint pk_category primary key (CategoryId)
 
-go 
+ 
 
 
  CREATE TABLE  dbo.RolesUsers (
@@ -23,9 +23,10 @@ go
 	Description varchar(200) COLLATE Modern_Spanish_CI_AS NULL,
 	Deleted bit NOT NULL,
 	CONSTRAINT pkRolesUsers PRIMARY KEY (RoleID)
-) GO
+); 
+ 
 
- go 
+ 
 
  CREATE TABLE  dbo.Usuario (
 	UsuarioId int IDENTITY(1,1) NOT NULL,
@@ -36,9 +37,9 @@ go
 	Deleted bit NOT NULL,
 	RoleID int NULL,
 	CONSTRAINT PK_Usuario PRIMARY KEY (UsuarioId)
-) GO
+);  
 
-ALTER TABLE  dbo.Usuario ADD CONSTRAINT fk_Usuario_RolesUsers FOREIGN KEY (RoleID) REFERENCES  dbo.RolesUsers(RoleID) GO
+ALTER TABLE  dbo.Usuario ADD CONSTRAINT fk_Usuario_RolesUsers FOREIGN KEY (RoleID) REFERENCES  dbo.RolesUsers(RoleID);  
 
 
 
@@ -47,8 +48,7 @@ INSERT INTO  dbo.RolesUsers (RoleCode,Description,Deleted) VALUES
 ('ADM','Administrador',0)
 ,('USE','Usuario',0)
 ;
-
-
+ 
 CREATE TABLE  dbo.Product (
 	ProductId int IDENTITY(1,1) NOT NULL,
 	Name varchar(200)  ,
@@ -59,5 +59,4 @@ CREATE TABLE  dbo.Product (
 	Photo text,
 	Deleted bit NOT NULL,
 	constraint PK_Product primary key (ProductId)
-)
---
+);

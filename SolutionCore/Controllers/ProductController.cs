@@ -48,6 +48,11 @@ namespace SolutionCore.Controllers
 
             List<Product> lstProduct = new List<Product>();
 
+
+            try
+            {
+
+           
             if (parameter.files.Count >= 1) {
 
                 if( !Directory.Exists(_env.WebRootPath + "\\images\\"))
@@ -93,9 +98,16 @@ namespace SolutionCore.Controllers
 
             }
 
-
+            
             //return await _IProductContract.ListProduct(parameter);
             return Ok(lstProduct);
+
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
         }
 
         
