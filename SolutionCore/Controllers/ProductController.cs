@@ -34,21 +34,19 @@ namespace SolutionCore.Controllers
 
         // POST: api/Product
         [HttpPost]
-        public async Task<ListProductResponse> ListProduct([FromBody] ListProductRequest parameter)
+        public async Task<ListProductResponse> ListProduct()
         {
+            //[FromBody] ListProductRequest parameter
+            ListProductRequest parameter = new ListProductRequest() ;
             return await  _IProductContract.ListProduct(parameter);
         }
 
 
         [HttpPost]
         //public async Task<ListProductResponse> AddProduct([FromForm] List<IFormFile> files, [FromBody] ListProductRequest parameter
-        public async Task<ActionResult> AddProduct([FromForm] AddProductRequest parameter )
-            
+        public async Task<ActionResult> AddProduct([FromForm] AddProductRequest parameter )   
         {
-
             List<Product> lstProduct = new List<Product>();
-
-
             try
             {
 

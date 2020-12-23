@@ -66,3 +66,10 @@ https://ocelot.readthedocs.io/en/latest/features/routing.html
 ------------------------------------------------------
 
 ng g component foo/fooList --module=foo.module.ts
+
+
+---------------------------
+
+PS C:\Windows\system32> get-executionPolicy
+AllSigned
+PS C:\Windows\system32> set-executionPolicy Unrestricted

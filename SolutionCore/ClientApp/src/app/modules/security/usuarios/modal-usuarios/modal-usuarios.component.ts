@@ -1,11 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
-import { AddUsuarioRequest } from 'src/app/agent/User/request/AddUsuariosRequest';
-import { ListRolesRequest } from 'src/app/agent/User/request/ListRolesRequest';
-import { UpdateUsuarioRequest } from 'src/app/agent/User/request/UpdateUsuarioRequest';
-import { ListRoleResult } from 'src/app/agent/User/response/ListRolesResponse';
-import { ListUsuarioResult } from 'src/app/agent/User/response/ListUsuarioResponse';
+
+ 
+import { AddUsuarioRequest } from '../../../../agent/User/request/AddUsuariosRequest';
+import { ListRolesRequest } from '../../../../agent/User/request/ListRolesRequest';
+import { UpdateUsuarioRequest } from '../../../../agent/User/request/UpdateUsuarioRequest';
+import { ListRoleResult } from '../../../../agent/User/response/ListRolesResponse';
+import { ListUsuarioResult } from '../../../../agent/User/response/ListUsuarioResponse';
 import { CoreService } from '../../../../services/core.service';
 
 @Component({
@@ -86,7 +88,7 @@ export class ModalUsuariosComponent implements OnInit {
 
 
   AddUsuario(formGroup: FormGroup) {
-
+debugger
     let params = new AddUsuarioRequest()
     params.nombreCompleto = this.formGroup.get("nombre").value
     params.credencial = this.formGroup.get("credencial").value

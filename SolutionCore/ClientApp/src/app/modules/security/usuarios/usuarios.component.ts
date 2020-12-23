@@ -7,11 +7,13 @@ import { ListUsuarioResult } from '../../../agent/User/response/ListUsuarioRespo
 import { SecurityViewModel } from '../SecurityViewModels/security-list-viewmodel';
 import { UserResultPanelViewModel } from '../SecurityViewModels/user-result-panel-view.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ListRolesRequest } from 'src/app/agent/User/request/ListRolesRequest';
-import { ListRoleResult } from 'src/app/agent/User/response/ListRolesResponse';
-import { AddUsuarioRequest } from 'src/app/agent/User/request/AddUsuariosRequest';
+
+
 import { ModalUsuariosComponent } from './modal-usuarios/modal-usuarios.component';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ListRolesRequest } from '../../../agent/User/request/ListRolesRequest';
+import { ListRoleResult } from '../../../agent/User/response/ListRolesResponse';
+import { AddUsuarioRequest } from '../../../agent/User/request/AddUsuariosRequest';
 
 
 @Component({
@@ -51,7 +53,7 @@ formGroup:FormGroup
   UsuarioToShow: ListUsuarioResult[];
 
   ListUsuarios() {
-
+ 
     let params = new ListUsuarioRequest()
     // params.Credencial = 'cristhian';
     this.coreService.ListUsuario(params).subscribe(
