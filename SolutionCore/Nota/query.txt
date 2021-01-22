@@ -56,7 +56,7 @@ CREATE TABLE  dbo.Product (
 	Price decimal(10,2) ,
 	CreateDate datetime default CURRENT_TIMESTAMP,
 	UpdatedDate datetime default CURRENT_TIMESTAMP,
-	Photo text,
+	Photo varchar(200),
 	Deleted bit NOT NULL,
 	constraint PK_Product primary key (ProductId)
 );

@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 
+#nullable disable
+
 namespace SolutionCore.Api.DataAcces.Infrastructure.Data.Entities
 {
     public partial class Product
@@ -12,7 +14,7 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.Entities
         public decimal? Price { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public bool Deleted { get; set; }
         public string Photo { get; set; }
+        public bool Deleted { get; set; }
     }
 }

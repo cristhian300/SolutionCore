@@ -13,20 +13,20 @@
    "SelectedToBeGenerated": 0,
    "Tables": [
       {
-         "HasPrimaryKey": true,
-         "Name": "[dbo].[Category]"
+         "Name": "[dbo].[Category]",
+         "ObjectType": 0
       },
       {
-         "HasPrimaryKey": true,
-         "Name": "[dbo].[Product]"
+         "Name": "[dbo].[Product]",
+         "ObjectType": 0
       },
       {
-         "HasPrimaryKey": true,
-         "Name": "[dbo].[RolesUsers]"
+         "Name": "[dbo].[RolesUsers]",
+         "ObjectType": 0
       },
       {
-         "HasPrimaryKey": true,
-         "Name": "[dbo].[Usuario]"
+         "Name": "[dbo].[Usuario]",
+         "ObjectType": 0
       }
    ],
    "UseDatabaseNames": false,
@@ -36,6 +36,5 @@
    "UseInflector": true,
    "UseLegacyPluralizer": false,
    "UseNodaTime": false,
-   "UseSpatial": false,
-   "UseStoredProcedures": false
+   "UseSpatial": false
 }

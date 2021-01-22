@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Entities;
 
+#nullable disable
+
 namespace SolutionCore.Api.DataAcces.Infrastructure.Data.Context
 {
     public partial class CoreContext : DbContext
@@ -24,6 +26,8 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
+
             modelBuilder.Entity<Category>(entity =>
             {
                 entity.ToTable("Category");
@@ -53,7 +57,9 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.Context
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Photo).HasColumnType("text");
+                entity.Property(e => e.Photo)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
 

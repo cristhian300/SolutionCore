@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Arch.EntityFrameworkCore.UnitOfWork;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.DotNet.PlatformAbstractions;
+using Microsoft.Extensions.Configuration;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Entities;
 using SolutionCore.Application.Contracts.Contract.Product;
 using SolutionCore.Infraestructura.Transport.Core.Product.Request;
 using SolutionCore.Infraestructura.Transport.Core.Product.Response;
+
 
 namespace SolutionCore.Controllers
 {
@@ -20,16 +24,22 @@ namespace SolutionCore.Controllers
     public class ProductController : ControllerBase
     {
         // GET: api/Product
-        private IProductContract _IProductContract;
+       private IProductContract _IProductContract;
         private readonly IWebHostEnvironment _env;
         IUnitOfWork<CoreContext> _CoreContext;
+       // private readonly IHttpContextAccessor _httpContextAccessor;
 
-
-        public ProductController(IProductContract  IProductContract, IWebHostEnvironment env, IUnitOfWork<CoreContext>  CoreContext)
+        public ProductController(
+           //  IHttpContextAccessor httpContextAccessor,
+           IProductContract  IProductContract, 
+            IWebHostEnvironment env, IUnitOfWork<CoreContext>  CoreContext  )
         {
-            _IProductContract = IProductContract;
+             //_httpContextAccessor = httpContextAccessor;
+          _IProductContract = IProductContract;
             _env = env;
             _CoreContext = CoreContext;
+            
+        
         }
 
         // POST: api/Product
@@ -38,7 +48,9 @@ namespace SolutionCore.Controllers
         {
             //[FromBody] ListProductRequest parameter
             ListProductRequest parameter = new ListProductRequest() ;
-            return await  _IProductContract.ListProduct(parameter);
+            parameter.MainUrl=   $"{Request.Scheme}:{Request.Host}/images/";
+
+            return await _IProductContract.ListProduct(parameter);
         }
 
 
@@ -46,11 +58,12 @@ namespace SolutionCore.Controllers
         //public async Task<ListProductResponse> AddProduct([FromForm] List<IFormFile> files, [FromBody] ListProductRequest parameter
         public async Task<ActionResult> AddProduct([FromForm] AddProductRequest parameter )   
         {
+
+           
+
             List<Product> lstProduct = new List<Product>();
             try
             {
-
-           
             if (parameter.files.Count >= 1) {
 
                 if( !Directory.Exists(_env.WebRootPath + "\\images\\"))
@@ -58,35 +71,44 @@ namespace SolutionCore.Controllers
                     Directory.CreateDirectory(_env.WebRootPath + "\\images\\");
                 }
 
-
-                foreach (var file in parameter.files)
+                    foreach (var file in parameter.files)
                 {
                      var type= file.ContentType.Split('/') ;
 
                     if (type[0] != "image") {
                         throw new Exception("Solo se acepta archivos tipo imagenes");
                     }
-                    //lugar donde quiero copiar  C:\\abc\\final\\ + nombre
+             
                     var path = Path.Combine(_env.WebRootPath, "images", file.FileName );
-                    using (var Stream = System.IO.File.Create(path))
+
+                    using (Stream Stream = System.IO.File.Create(path))
                     {
                         //crear el archivo
                          await   file.CopyToAsync(Stream);
+                         Stream.Flush();
                     }
-                    var tamañobyte = file.Length;
-                    var tamañoMegas =    tamañobyte / 1000000;
-                    var extension = Path.GetExtension(file.FileName).Substring(1);
-                    var nombre =  Path.GetFileNameWithoutExtension( file.FileName ) ;
+                        /* detalle del archivo
+                        var tamañobyte = file.Length;
+                        var tamañoMegas =    tamañobyte / 1000000;
+                        var extension = Path.GetExtension(file.FileName).Substring(1);
+                        var nombre =  Path.GetFileNameWithoutExtension( file.FileName ) ;
+                        */
+                        //var directoryFiles = Directory.GetFiles("wwwroot/images");
 
+                        //foreach (var item in directoryFiles)
+                        //{
+                        //}
 
-                    Product product = new Product
+                       var imag = $"{Request.Scheme}:{Request.Host}/images/{file.FileName }";
+  
+                        Product product = new Product
                     {
                         Name = parameter.Name,
                         Description = parameter.Description,
                         Price=parameter.Price,
-                        Photo = path
+                        Photo = file.FileName
 
-                    };
+                        };
 
                     lstProduct.Add(product);
                 

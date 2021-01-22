@@ -21,6 +21,9 @@ using SolutionCore.Distributed_Processes.Dominio.Application;
 using SolutionCore.Application.Contracts.Contract.Product;
 using SolutionCore.Application.Application.Product;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace SolutionCore
 {
@@ -135,6 +138,21 @@ namespace SolutionCore
             
 
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
+                RequestPath = new PathString("/images")
+            });
+
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
+                RequestPath = new PathString("/images")
+            });
+
+
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();

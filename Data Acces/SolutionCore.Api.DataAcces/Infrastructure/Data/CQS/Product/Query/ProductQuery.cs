@@ -19,18 +19,30 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
     using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
     using SolutionCore.Api.DataAcces.Infrastructure.Data.Entities;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc.Routing;
+    using Microsoft.AspNetCore.Mvc;
+
+     
+    using System.Net.Http;
+    using System.Threading.Tasks;
+ 
 
     public class ProductQuery: IProductQuery
     {
 
         private IHostingEnvironment hostingEnvironment;
-
-       
+      
+        //private  IHttpContextAccessor HttpContextAccessor;
 
 
         IUnitOfWork<CoreContext> _CoreContext;
-        public ProductQuery(IHostingEnvironment env, IUnitOfWork<CoreContext>  CoreContext)
+        public ProductQuery(
+            //IHttpContextAccessor httpContextAccessor,
+
+
+            IHostingEnvironment env, IUnitOfWork<CoreContext>  CoreContext)
         {
+       //HttpContextAccessor = httpContextAccessor;
             hostingEnvironment = env;
             _CoreContext = CoreContext;
         }
@@ -38,9 +50,7 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
 
         public ListProductResponse ListProduct(ListProductRequest  parameter ) {
 
-           //C:\\Users\\cristhian\\source\\repos\\copia2\\SolutionCore\\SolutionCore\\wwwroot\\images\\defaul_pamplonera.jpg
-            var path = Path.Combine(hostingEnvironment.WebRootPath, "images", "defaul_pamplonera.jpg");
-            
+
 
             //if (System.IO.File.Exists(fileSavePath))
             //{
@@ -49,19 +59,32 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
 
             //// Save the uploaded file to "UploadedFiles" folder
             //file.SaveAs(fileSavePath);
+            //string scheme = HttpContextAccessor.HttpContext.Request.Scheme;
 
-            var listProduct = (from p in _CoreContext.DbContext.Products
+            var a = parameter.MainUrl;
+
+            try
+            {
+              var listProduct = (from p in _CoreContext.DbContext.Products
                                where p.Deleted == false
                                select new ListProductQueryEntity {
                                ProductId = p.ProductId,
                                Name=p.Name,
                                Description=p.Description,
                                Price= p.Price,
-                               Deleted=p.Deleted,
-                               Photo = path
+                               //Deleted=p.Deleted,
+                               Photo =a + p.Photo
+                                
                                }
                                ).ToList();
             return  new ListProductResponse { ListProduct = listProduct }  ;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+           
         
         }
 

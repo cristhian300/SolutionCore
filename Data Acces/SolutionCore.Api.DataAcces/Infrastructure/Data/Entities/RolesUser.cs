@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 
+#nullable disable
+
 namespace SolutionCore.Api.DataAcces.Infrastructure.Data.Entities
 {
     public partial class RolesUser

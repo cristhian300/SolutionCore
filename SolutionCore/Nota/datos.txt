@@ -73,3 +73,26 @@ ng g component foo/fooList --module=foo.module.ts
 PS C:\Windows\system32> get-executionPolicy
 AllSigned
 PS C:\Windows\system32> set-executionPolicy Unrestricted
+-------------------
+
+C:\Windows\System32\drivers\etc
+
+hosts
+
+======
+ 
+$cert = New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dns weather.io
+$cert
+$pwd = ConvertTo-SecureString -String "pa55w0rd!" -Force -AsPlainText
+$certPath = "Cert:\localmachine\my\$($cert.Thumbprint)"
+
+Export-PfxCertificate -Cert $certpath -FilePath d:\weather.pfx -Password $pwd
+
+
+
+   <UserSecretsId>28c108b1-e811-4344-8025-7ecc2c4cf42d</UserSecretsId> 
+   dotnet user-secrets set "CertPassword" "pa55w0rd!"
+
+---------------------------
+Conveyor by Keyoti
+https://marketplace.visualstudio.com/items?itemName=vs-publisher-1448185.ConveyorbyKeyoti
