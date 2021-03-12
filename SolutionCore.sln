@@ -21,9 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolutionCore.Infraestructur
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{3F0DBB2D-2ABB-4437-983D-D31C9F09690E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionCore.Application", "Application\SolutionCore.Application\SolutionCore.Application.csproj", "{EAAE891E-C1A9-44EF-BAA4-68E0FC11D1EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolutionCore.Application", "Application\SolutionCore.Application\SolutionCore.Application.csproj", "{EAAE891E-C1A9-44EF-BAA4-68E0FC11D1EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionCore.Application.Contracts", "Application\SolutionCore.Application.Contracts\SolutionCore.Application.Contracts.csproj", "{049D08EA-8D79-4BBE-AA64-CAC34159D902}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolutionCore.Application.Contracts", "Application\SolutionCore.Application.Contracts\SolutionCore.Application.Contracts.csproj", "{049D08EA-8D79-4BBE-AA64-CAC34159D902}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
