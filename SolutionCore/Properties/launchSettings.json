@@ -2,9 +2,13 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/SolutionCore",
+      "sslPort": 0
+    },
     "iisExpress": {
-      "applicationUrl": "http://localhost:53338",
-      "sslPort": 44378
+      "applicationUrl": "http://localhost:53338"
+    //  ,"sslPort": 44378
     }
   },
   "profiles": {
@@ -16,7 +20,7 @@
       }
     },
     "SolutionCore": {
-      "commandName": "Project",
+      "commandName": "IIS",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
