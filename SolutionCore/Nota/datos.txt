@@ -59,3 +59,57 @@ https://dotnet.microsoft.com/download/dotnet-core/thank-you/runtime-aspnetcore-2
 swagger
 https://thecodebuzz.com/resolved-failed-to-load-api-definition-undefined-swagger-v1-swagger-json/
 swashbuckle.ApiNetCore
+
+----------------------------------
+
+ng build --prod --aot --build-optimizer
+
+ng g m authentication --routing=true
+
+ng g g services/security/SecurityGuard
+
+Loader
+npm i --save ngx-ui-loader@8.0.0
+https://tdev.app/ngx-ui-loader
+------------------------------------------------
+
+Get-Help about_EntityFrameworkCore
+Update-Database
+
+------------------------------------------------
+
+https://ocelot.readthedocs.io/en/latest/features/routing.html
+
+------------------------------------------------------
+
+ng g component foo/fooList --module=foo.module.ts
+
+
+---------------------------
+
+PS C:\Windows\system32> get-executionPolicy
+AllSigned
+PS C:\Windows\system32> set-executionPolicy Unrestricted
+-------------------
+
+C:\Windows\System32\drivers\etc
+
+hosts
+
+======
+ 
+$cert = New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dns weather.io
+$cert
+$pwd = ConvertTo-SecureString -String "pa55w0rd!" -Force -AsPlainText
+$certPath = "Cert:\localmachine\my\$($cert.Thumbprint)"
+
+Export-PfxCertificate -Cert $certpath -FilePath d:\weather.pfx -Password $pwd
+
+
+
+   <UserSecretsId>28c108b1-e811-4344-8025-7ecc2c4cf42d</UserSecretsId> 
+   dotnet user-secrets set "CertPassword" "pa55w0rd!"
+
+---------------------------
+Conveyor by Keyoti
+https://marketplace.visualstudio.com/items?itemName=vs-publisher-1448185.ConveyorbyKeyoti
