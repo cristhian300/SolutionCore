@@ -50,7 +50,7 @@ namespace Configuration.GateWay
                 endpoints.MapControllers();
             });
 
-            app.UseOcelot();
+            app.UseOcelot().Wait();
         }
     }
 }
