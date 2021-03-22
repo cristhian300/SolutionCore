@@ -82,7 +82,7 @@ namespace SolutionCore.Controllers
 
         }
 
-        [AllowAnonymous]
+       
         [HttpPost]
         public async Task<ListUsuarioResponse> ListUsuario([FromBody]  ListUsuarioRequest parameter)
         {
