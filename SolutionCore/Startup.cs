@@ -40,43 +40,42 @@ namespace SolutionCore
         public void ConfigureServices(IServiceCollection services)
         {
 
-           
+
 
             /*Autenticacion para WEBTOKEN*/
-            services.AddAuthentication(opt =>{
+            services.AddAuthentication(opt =>
+            {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-                .AddJwtBearer( option =>
-                {
-                    option.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = "https://localhos:5001",
-                        ValidAudience = "https://localhos:5001",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"))
-                    };
-                });
+                .AddJwtBearer(option =>
+               {
+                   option.TokenValidationParameters = new TokenValidationParameters
+                   {
+                       ValidateIssuer = true,
+                       ValidateAudience = true,
+                       ValidateLifetime = true,
+                       ValidateIssuerSigningKey = true,
+                       ValidIssuer = "https://localhos:5001",
+                       ValidAudience = "https://localhos:5001",
+                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"))
+                   };
+               });
 
 
             String[] ruta = { "http://localhost:5000", "https://localhost:44306" };
 
-            services.AddCors(opt => opt.AddPolicy("mi_politica",
-       builder =>
-       {
-           builder
-               .AllowAnyHeader()
-               .AllowAnyMethod()
-               .AllowCredentials()
-               .WithOrigins(ruta);
-       }));
 
 
 
-
+           
+            services.AddCors(options =>
+            {
+                options.AddPolicy("mi_politica",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
 
             services.AddControllersWithViews();
             services.AddControllers();
@@ -166,27 +165,14 @@ namespace SolutionCore
             //se agrego de JWT
             app.UseAuthentication();
             app.UseCors("mi_politica");
-            app.UseAuthorization();
+             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapControllers();
+                  
             });
 
-            //app.UseSpa(spa =>
-            //{
-            //    // To learn more about options for serving an Angular SPA from ASP.NET Core,
-            //    // see https://go.microsoft.com/fwlink/?linkid=864501
-
-            //    spa.Options.SourcePath = "ClientApp";
-
-            //    if (env.IsDevelopment())
-            //    {
-            //        spa.UseAngularCliServer(npmScript: "start");
-            //    }
-            //});
-
+         
 
 
 

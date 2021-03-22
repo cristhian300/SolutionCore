@@ -75,14 +75,14 @@ namespace SolutionCore.Controllers
         }
 
        
-       [HttpPost]
+        [HttpPost]
         public async Task<UsuarioResponse> GetUsuario([FromBody]  UsuarioRequest parameter)
         {
             return   await _IUsuarioContract.GetUsuario(parameter);
 
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ListUsuarioResponse> ListUsuario([FromBody]  ListUsuarioRequest parameter)
         {
@@ -90,8 +90,8 @@ namespace SolutionCore.Controllers
 
         }
 
+        //[AllowAnonymous]
         [HttpPost]
-        
         public async Task<ListRolesResponse> ListRoles(ListRolesRequest parameter)
         {
             return await _IUsuarioContract.ListRoles(parameter);

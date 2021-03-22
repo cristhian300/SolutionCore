@@ -55,7 +55,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'usuarios', component: UsuariosComponent
-     // ,canActivate:[SecurityGuardGuard]
+      ,canActivate:[SecurityGuardGuard]
      },
        { path: 'log', component: LoginComponent }
     ]),
@@ -63,7 +63,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     
   ],
   providers: [NetworkManager,
-   // { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

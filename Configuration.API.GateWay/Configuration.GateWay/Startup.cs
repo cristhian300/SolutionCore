@@ -77,9 +77,11 @@ namespace Configuration.GateWay
             {
                 app.UseDeveloperExceptionPage();
             }
-       
+
+            //app.UseAuthentication();
             app.UseCors("mi_politica");
-          
+            //app.UseAuthorization();
+
 
             app.UseOcelot().Wait();
         }

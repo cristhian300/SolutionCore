@@ -36,30 +36,13 @@ namespace web_core
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //services.AddCors(option =>
-            //{
-            //    option.AddPolicy("mi_politica", builder =>
-            //    {
-            //        builder.WithOrigins( );
-            //        builder.AllowAnyHeader();
-            //        builder.AllowAnyMethod();
-            //        //builder.AllowCredentials();
+            services.AddControllersWithViews();
+            // In production, the Angular files will be served from this directory
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/dist";
+            });
 
-            //    });
-            //});
-
-            services
-                           .AddMvc()
-                           .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-                           .AddJsonOptions(options =>
-                           options.JsonSerializerOptions.PropertyNamingPolicy = null
-                           );
-
-            services
-                .AddOptions()
-                .AddLogging()
-                .AddSpaStaticFiles(config => { config.RootPath = "ClientApp/dist"; });
-       
         }
 
         
@@ -88,8 +71,8 @@ namespace web_core
 
 
 
-             //app.UseCors("mi_politica");
-             //  app.UseAuthentication();
+            //app.UseCors("mi_politica");
+            //  app.UseAuthentication();
 
             app.UseRouting();
 
@@ -100,45 +83,19 @@ namespace web_core
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
+            app.UseSpa(spa =>
+            {
+                // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                // see https://go.microsoft.com/fwlink/?linkid=864501
 
+                spa.Options.SourcePath = "ClientApp";
 
-
-               app.UseSpa(spa =>
-               {
-                   // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                   // see https://go.microsoft.com/fwlink/?linkid=864501
-
-                   spa.Options.SourcePath = "ClientApp";
-
-                   if (env.IsDevelopment())
-                   {
-                       spa.UseAngularCliServer(npmScript: "start");
-                   }
-               });
-
-
-
-            //app.UseRouting();
-
-            //  //se agrego de JWT
-
-
-
-
-            //  //app.UseEndpoints(endpoints =>
-            //  // {
-            //  //     endpoints.MapControllerRoute(
-            //  //         name: "default",
-            //  //         pattern: "{controller}/{action=Index}/{id?}");
-            //  // });
-
-
-
-
-
-
-
-
+                if (env.IsDevelopment())
+                {
+                    spa.Options.StartupTimeout = new TimeSpan(0, 10, 0);
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
+            });
 
 
         }
