@@ -12,7 +12,8 @@ import { AddUsuarioResponse } from '../agent/User/response/AddUsuarioResponse';
 import { UpdateUsuarioRequest } from '../agent/User/request/UpdateUsuarioRequest';
 import { GetTokenRequest } from '../agent/Authentication/request/GetTokenRequest';
 import { GetTokenResponse } from '../agent/Authentication/response/GetTokenResponse';
-import { environment } from 'src/environments/environment';
+import { AppConfig, APP_CONFIG } from '../shared/appconfig/appconfig.module';
+ 
 
  
 
@@ -24,20 +25,25 @@ export class CoreService {
 ruta:string ;
 storage: Storage ;
 
-  constructor(private http:HttpClient ,@Inject('BASE_URL') baseUrl: string ,private networkManager:NetworkManager) { 
+  constructor(private http:HttpClient ,
+   // @Inject('BASE_URL') baseUrl: string 
+    @Inject(APP_CONFIG)  public config:AppConfig
+    ,private networkManager:NetworkManager) { 
 
-this.ruta = baseUrl
-console.log( "BASE_URL " +this.ruta);
+//this.ruta = baseUrl
+//console.log( "BASE_URL " +this.ruta);
+console.log( "BASE_URL " +this.config.apiEndpoint);
+
   }
   // port = '44378';
   // baseUrl = `${this.window.location.protocol}//${this.window.location.hostname}:${this.port}`;
 
   redirectUrl: string;
   isAuthenticated = false;
-  Url: string = 'api/Auth/';
-
-
-
+ // Url: string = 'api/Auth/';
+ //Url: string =   `${this.config.apiEndpoint}Auth/`  ;
+ 
+ Url: string =   'https://localhost:44306/api/employee/' + 'Auth/'
 
 ListUsuario( parameter: ListUsuarioRequest):Observable<ListUsuarioResponse>{
 
@@ -90,10 +96,11 @@ login(parameter:GetTokenRequest): Observable<GetTokenResponse> {
 
 
     const parameters = new PostParameter()
-    parameters.PathOperation= this.ruta + this.Url+  'Login'
+   // parameters.PathOperation= this.ruta + this.Url+  'Login'
+    parameters.PathOperation =   this.Url + 'Login'
     parameters.RequestParameter=parameter
     // return this.networkManager.post(parameters)  as Observable<GetTokenResponse>;
-     console.log('Login :>> ', this.Url+ 'Login');
+    // console.log('Login :>> ', this.Url+ 'Login');
     const getTokenCall = this.networkManager.post(parameters);
     (getTokenCall as Observable<GetTokenResponse>).subscribe(getTokenResponse => {
         observer.next(getTokenResponse);

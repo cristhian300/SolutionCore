@@ -40,6 +40,7 @@ namespace SolutionCore
         public void ConfigureServices(IServiceCollection services)
         {
 
+           
 
             /*Autenticacion para WEBTOKEN*/
             services.AddAuthentication(opt =>{
@@ -59,21 +60,23 @@ namespace SolutionCore
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"))
                     };
                 });
-                
-               
-                
 
-            services.AddCors(option =>
-            {
-                option.AddPolicy("mi_politica", builder =>
-                {
-                    builder.AllowAnyOrigin();
-                    builder.AllowAnyHeader();
-                    builder.AllowAnyMethod();
-                    //builder.AllowCredentials();
 
-                });
-            } );
+            String[] ruta = { "http://localhost:5000", "https://localhost:44306" };
+
+            services.AddCors(opt => opt.AddPolicy("mi_politica",
+       builder =>
+       {
+           builder
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials()
+               .WithOrigins(ruta);
+       }));
+
+
+
+
 
             services.AddControllersWithViews();
             services.AddControllers();

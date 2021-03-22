@@ -53,7 +53,7 @@ formGroup:FormGroup
   UsuarioToShow: ListUsuarioResult[];
 
   ListUsuarios() {
- 
+ debugger
     let params = new ListUsuarioRequest()
     // params.Credencial = 'cristhian';
     this.coreService.ListUsuario(params).subscribe(

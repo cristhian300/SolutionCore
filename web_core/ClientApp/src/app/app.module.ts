@@ -22,6 +22,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { AppconfigModule } from './shared/appconfig/appconfig.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: false
@@ -46,19 +47,23 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MaterialModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    AppconfigModule,
     FormsModule,
    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'usuarios', component: UsuariosComponent,canActivate:[SecurityGuardGuard] },
+      { path: 'usuarios', component: UsuariosComponent
+     // ,canActivate:[SecurityGuardGuard]
+     },
        { path: 'log', component: LoginComponent }
     ]),
     BrowserAnimationsModule
+    
   ],
   providers: [NetworkManager,
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+   // { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
