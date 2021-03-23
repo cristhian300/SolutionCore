@@ -37,7 +37,7 @@ namespace web_core
         {
 
             services.AddControllersWithViews();
-            // In production, the Angular files will be served from this directory
+             
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
@@ -67,8 +67,11 @@ namespace web_core
             
             app.UseHttpsRedirection();
              app.UseStaticFiles();
-            app.UseSpaStaticFiles();
 
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+            }
 
 
             //app.UseCors("mi_politica");

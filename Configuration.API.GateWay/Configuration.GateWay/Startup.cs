@@ -50,23 +50,23 @@ namespace Configuration.GateWay
          }));
 
 
-            services.AddAuthentication(opt => {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-           .AddJwtBearer(option =>
-           {
-               option.TokenValidationParameters = new TokenValidationParameters
-               {
-                   ValidateIssuer = true,
-                   ValidateAudience = true,
-                   ValidateLifetime = true,
-                   ValidateIssuerSigningKey = true,
-                   ValidIssuer = "https://localhos:5001",
-                   ValidAudience = "https://localhos:5001",
-                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"))
-               };
-           });
+           // services.AddAuthentication(opt => {
+           //     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+           //     opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+           // })
+           //.AddJwtBearer(option =>
+           //{
+           //    option.TokenValidationParameters = new TokenValidationParameters
+           //    {
+           //        ValidateIssuer = true,
+           //        ValidateAudience = true,
+           //        ValidateLifetime = true,
+           //        ValidateIssuerSigningKey = true,
+           //        ValidIssuer = "https://localhos:5001",
+           //        ValidAudience = "https://localhos:5001",
+           //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"))
+           //    };
+           //});
 
         }
 
@@ -78,8 +78,9 @@ namespace Configuration.GateWay
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseAuthentication();
+             
             app.UseCors("mi_politica");
+            app.UseAuthentication();
             //app.UseAuthorization();
 
 

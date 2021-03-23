@@ -163,7 +163,7 @@ namespace SolutionCore
             app.UseRouting();
 
             //se agrego de JWT
-            app.UseAuthentication();
+             app.UseAuthentication();
             app.UseCors("mi_politica");
              app.UseAuthorization();
             app.UseEndpoints(endpoints =>
