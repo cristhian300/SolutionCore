@@ -31,7 +31,7 @@ namespace Configuration.GateWay
         public void ConfigureServices(IServiceCollection services)
         {
 
-            String[] ruta = { "http://localhost:5000", "https://localhost:44306" };
+            String[] ruta = { "http://localhost:5000", "https://localhost:44306", "http://localhost:44306" };
 
             services.AddControllers();
             services.AddOptions();

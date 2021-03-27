@@ -15,6 +15,7 @@
   ],
   "GlobalConfiguration": {
 
-    "BaseUrl": "https://localhost:44306/"
+    //"BaseUrl": "https://localhost:44306/"
+    "BaseUrl": "http://localhost:44306/"
   }
 }
