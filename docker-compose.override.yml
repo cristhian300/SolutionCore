@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  configuration.gateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    links:
+      - solutioncore
+    depends_on:
+      - solutioncore
+    ports:
+      - "80"
+  solutioncore:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    hostname: solutioncore
+    ports:
+      - "80"
+    #volumes:
+     # - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

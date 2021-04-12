@@ -5,7 +5,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "solutioncore",
           "Port": 44344
         }
       ],
@@ -15,7 +15,7 @@
   ],
   "GlobalConfiguration": {
 
-    //"BaseUrl": "https://localhost:44306/"
+   
     "BaseUrl": "http://localhost:44306/"
   }
 }
