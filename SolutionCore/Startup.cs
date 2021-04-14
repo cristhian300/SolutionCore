@@ -63,7 +63,7 @@ namespace SolutionCore
                });
 
 
-            String[] ruta = { "http://localhost:5000", "https://localhost:44306", "http://localhost:44306" };
+            String[] ruta = { "http://localhost:5000", "https://localhost:5052", "http://localhost:5052" };
 
 
 

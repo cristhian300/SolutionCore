@@ -5,17 +5,20 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "solutioncore",
-          "Port": 44344
+          "Host": "solutioncore"
+            ,
+          "Port": 80 
+         
+
         }
       ],
-      "UpstreamPathTemplate": "/api/employee/{everything}",
+      "UpstreamPathTemplate": "/employee/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     }
   ],
   "GlobalConfiguration": {
 
    
-    "BaseUrl": "http://localhost:44306/"
+    "BaseUrl": "http://localhost:5052/"
   }
 }

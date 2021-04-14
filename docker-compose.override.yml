@@ -4,6 +4,7 @@ services:
   configuration.gateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+    hostname: configuration.gateway
     links:
       - solutioncore
     depends_on:
@@ -16,5 +17,6 @@ services:
     hostname: solutioncore
     ports:
       - "80"
+    
     #volumes:
      # - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

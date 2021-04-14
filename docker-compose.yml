@@ -4,10 +4,10 @@ services:
   configuration.gateway:
     image: ${DOCKER_REGISTRY-}configurationgateway
     container_name: gateway
-    expose:
-      - 80
+    #expose:
+    #  - 80
     ports:
-      - 44306:80
+      - 5052:80
     build:
       context: .
       dockerfile: Configuration.API.GateWay/Configuration.GateWay/Dockerfile
@@ -15,8 +15,8 @@ services:
   solutioncore:
     image: ${DOCKER_REGISTRY-}solutioncore
     container_name: solutioncore_api
-    expose:
-      - 80
+    #expose:
+    #  - 5053
     ports:
       - 5053:80
     build:
