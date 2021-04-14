@@ -5,10 +5,9 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "solutioncore"
-            ,
-          "Port": 80 
-         
+          "Host": "solutioncore",
+          //"Port": 80 
+          "Port": 44344
 
         }
       ],

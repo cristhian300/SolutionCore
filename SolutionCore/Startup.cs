@@ -63,11 +63,7 @@ namespace SolutionCore
                });
 
 
-            String[] ruta = { "http://localhost:5000", "https://localhost:5052", "http://localhost:5052" };
-
-
-
-
+  
            
             services.AddCors(options =>
             {

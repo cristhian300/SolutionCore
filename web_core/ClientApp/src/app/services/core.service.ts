@@ -44,7 +44,7 @@ console.log( "BASE_URL " +this.config.apiEndpoint);
  //Url: string =   `${this.config.apiEndpoint}Auth/`  ;
  
 /* Url: string =   'https://localhost:5052/api/employee/' + 'Auth/'*/
-  Url: string = 'http://localhost:5052/api/employee/' + 'Auth/'
+  Url: string = 'http://localhost:5052/employee/api/' + 'Auth/'
 ListUsuario( parameter: ListUsuarioRequest):Observable<ListUsuarioResponse>{
 
  const parameters = new PostParameter()

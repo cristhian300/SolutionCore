@@ -31,7 +31,7 @@ namespace Configuration.GateWay
         public void ConfigureServices(IServiceCollection services)
         {
 
-            String[] ruta = { "http://localhost:5000",  "http://localhost:5052" };
+            String[] ruta = { "http://localhost:44512",  "http://localhost:5052", "http://localhost:5000" };
 
             services.AddControllers();
             services.AddOptions();
@@ -50,23 +50,7 @@ namespace Configuration.GateWay
          }));
 
 
-           // services.AddAuthentication(opt => {
-           //     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-           //     opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-           // })
-           //.AddJwtBearer(option =>
-           //{
-           //    option.TokenValidationParameters = new TokenValidationParameters
-           //    {
-           //        ValidateIssuer = true,
-           //        ValidateAudience = true,
-           //        ValidateLifetime = true,
-           //        ValidateIssuerSigningKey = true,
-           //        ValidIssuer = "https://localhos:5001",
-           //        ValidAudience = "https://localhos:5001",
-           //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"))
-           //    };
-           //});
+         
 
         }
 

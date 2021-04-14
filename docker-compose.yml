@@ -23,3 +23,13 @@ services:
       context: .
       dockerfile: SolutionCore/Dockerfile
 
+
+  web_core:
+    image: ${DOCKER_REGISTRY-}webcore
+    container_name: web_core
+    ports:
+      - 44512:80
+    build:
+      context: .
+      dockerfile: web_core/Dockerfile
+
