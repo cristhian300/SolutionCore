@@ -13,77 +13,106 @@ using Ocelot.Middleware;
 
 namespace Configuration.GateWay
 {
-    public class Program
-    {
-        public static void Main(string[] args)
+    
+        public class Program
         {
-
-            CreateHostBuilder(args).Build().Run();
-          
-        }
-
-        public static IWebHostBuilder CreateHostBuilder(string[] args) =>
-
-             WebHost.CreateDefaultBuilder(args)
-         //.UseUrls("http://*:5052")
-         .ConfigureAppConfiguration((hostingContext, config) =>
-         {
-             //if (hostingContext.HostingEnvironment.EnvironmentName == "Production")
-             //{
-             //    config
-             //   .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-             //   .AddJsonFile("ocelot.Production.json")
-             //   .AddEnvironmentVariables();
-             //}
-             //else
-             //{
-             //
-             config
-              .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-                        .AddJsonFile("appsettings.json", true, true)
-                        .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
-              .AddJsonFile("ocelot.json")
-              .AddEnvironmentVariables();
-             //}
-
-         })
-        .ConfigureServices(services =>
-        {
-            services.AddOcelot();
-            //.AddConsul();
-        })
-       .ConfigureLogging((hostingContext, logging) =>
+            public static void Main(string[] args)
             {
-                //add your logging
-            })
-                .UseIISIntegration()
-        .Configure(app =>
-        {
-            app.UseOcelot().Wait();
-        });
-            //.Build()
-            //    .Run();
-        // Host.CreateDefaultBuilder(args)
-        //  .ConfigureAppConfiguration((hostingContext, config) =>
-        //  {
-        //      config
-        //          .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-        //          .AddJsonFile("appsettings.json", true, true)
-        //          .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true,
-        //              true)
-        //          .AddJsonFile("ocelot.json", false, false)
-        //          .AddEnvironmentVariables();
-        //  })
+                CreateHostBuilder(args).Build().Run();
+            }
 
+            public static IHostBuilder CreateHostBuilder(string[] args) =>
+                Host.CreateDefaultBuilder(args)
 
+                 .ConfigureAppConfiguration((hostingContext, config) =>
+                 {
+                     config
+                         .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+                         .AddJsonFile("appsettings.json", true, true)
+                         .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true,
+                             true)
+                         .AddJsonFile("ocelot.json", false, false)
+                         .AddEnvironmentVariables();
+                 })
 
-        //.ConfigureWebHostDefaults(webBuilder =>
-        //{
-        //    webBuilder.UseStartup<Startup>();
-        //    //webBuilder.UseUrls("http://localhost:5052");
-
-        //});
-
-
-    }
+                    .ConfigureWebHostDefaults(webBuilder =>
+                    {
+                        webBuilder.UseStartup<Startup>();
+                    });
+        }
 }
+
+
+
+//    public static void Main(string[] args)
+//    {
+
+//        CreateHostBuilder(args).Build().Run();
+
+//    }
+
+//    public static IWebHostBuilder CreateHostBuilder(string[] args) =>
+
+//         WebHost.CreateDefaultBuilder(args)
+//     //.UseUrls("http://*:5052")
+//     .ConfigureAppConfiguration((hostingContext, config) =>
+//     {
+//         //if (hostingContext.HostingEnvironment.EnvironmentName == "Production")
+//         //{
+//         //    config
+//         //   .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+//         //   .AddJsonFile("ocelot.Production.json")
+//         //   .AddEnvironmentVariables();
+//         //}
+//         //else
+//         //{
+//         //
+//         config
+//          .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+//                    .AddJsonFile("appsettings.json", true, true)
+//                    .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
+//          .AddJsonFile("ocelot.json")
+//          .AddEnvironmentVariables();
+//         //}
+
+//     })
+//    .ConfigureServices(services =>
+//    {
+//        services.AddOcelot();
+//        //.AddConsul();
+//    })
+//   .ConfigureLogging((hostingContext, logging) =>
+//        {
+//            //add your logging
+//        })
+//            .UseIISIntegration()
+//    .Configure(app =>
+//    {
+//        app.UseOcelot().Wait();
+//    });
+//        //.Build()
+//        //    .Run();
+//    // Host.CreateDefaultBuilder(args)
+//    //  .ConfigureAppConfiguration((hostingContext, config) =>
+//    //  {
+//    //      config
+//    //          .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+//    //          .AddJsonFile("appsettings.json", true, true)
+//    //          .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true,
+//    //              true)
+//    //          .AddJsonFile("ocelot.json", false, false)
+//    //          .AddEnvironmentVariables();
+//    //  })
+
+
+
+//    //.ConfigureWebHostDefaults(webBuilder =>
+//    //{
+//    //    webBuilder.UseStartup<Startup>();
+//    //    //webBuilder.UseUrls("http://localhost:5052");
+
+//    //});
+
+
+//}
+

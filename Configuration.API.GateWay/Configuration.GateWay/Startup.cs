@@ -31,12 +31,14 @@ namespace Configuration.GateWay
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddOcelot();
+
             String[] ruta = { "http://localhost:44512",  "http://localhost:5052", "http://localhost:5000" };
 
             services.AddControllers();
             services.AddOptions();
             services.AddLogging();
-            services.AddOcelot();
+            
             
 
             services.AddCors(opt => opt.AddPolicy("mi_politica",
@@ -61,14 +63,23 @@ namespace Configuration.GateWay
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseHttpsRedirection();
 
-             
+            app.UseRouting();
+
             app.UseCors("mi_politica");
             app.UseAuthentication();
             //app.UseAuthorization();
+            app.UseAuthorization();
 
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
-            app.UseOcelot().Wait();
+             app.UseOcelot().Wait();
+
+           
         }
     }
 }

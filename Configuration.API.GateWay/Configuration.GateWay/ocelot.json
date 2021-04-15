@@ -5,13 +5,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "solutioncore",
-          //"Port": 80 
-          "Port": 44344
+          "Host": "localhost",
+          "Port": 44342
 
         }
       ],
-      "UpstreamPathTemplate": "/employee/{everything}",
+      "UpstreamPathTemplate": "/api/employee/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     }
   ],
