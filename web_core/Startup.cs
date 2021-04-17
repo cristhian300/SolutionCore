@@ -64,10 +64,10 @@ namespace web_core
                 app.UseHsts();
             }
 
-            app.UseCors(x => x
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader());
+            //app.UseCors(x => x
+            //.AllowAnyOrigin()
+            //.AllowAnyMethod()
+            //.AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
