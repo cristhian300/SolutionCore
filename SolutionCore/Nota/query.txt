@@ -60,3 +60,4 @@ CREATE TABLE  dbo.Product (
 	Deleted bit NOT NULL,
 	constraint PK_Product primary key (ProductId)
 );
+

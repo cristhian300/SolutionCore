@@ -2,13 +2,7 @@ version: '3.4'
 
 services:
 
-  db:
-    image: "mcr.microsoft.com/mssql/server:2017-latest"
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=cristhian
-    ports:
-      - 1433:1433
+ 
 
   configuration.gateway:
     image: ${DOCKER_REGISTRY-}configurationgateway
@@ -32,7 +26,7 @@ services:
       context: .
       dockerfile: SolutionCore/Dockerfile
     depends_on:
-      - db
+      - dbCore
 
   web_core:
     image: ${DOCKER_REGISTRY-}webcore
@@ -43,4 +37,12 @@ services:
       context: .
       dockerfile: web_core/Dockerfile
 
- 
+  dbCore:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    environment: 
+     ACCEPT_EULA: "Y"
+     SA_PASSWORD: "Cris@cristhian"
+     #MSSQL_PID: Express
+     
+    ports:
+      - 1433:1433

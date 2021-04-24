@@ -1,0 +1,7 @@
+﻿
+docker run --name sqlserver2x -p 14333:1433 -e 'ACCEPT_EULA=Y' -e  'SA_PASSWORD=cris@cristhian' -d mcr.microsoft.com/mssql/server:2019-latest
+
+docker exec -it sqlserver2x /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P cris@cristhian
+
+docker logs sqlserver2x
+---------------------------------------------------------------------------------
