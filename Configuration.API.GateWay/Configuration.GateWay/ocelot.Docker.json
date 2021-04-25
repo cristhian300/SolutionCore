@@ -5,11 +5,11 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 44342 
+          //"Host": "localhost",
+          //"Port": 44342 
 
-          //"Host": "solutioncore",
-          //"Port": 80
+          "Host": "solutioncore",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/employee/{everything}",
