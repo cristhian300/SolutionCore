@@ -155,7 +155,13 @@ namespace SolutionCore
             {
                 app.UseSpaStaticFiles();
             }
-           
+
+
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("hosting enviromen " + env.EnvironmentName);
+            //});
+
             app.UseRouting();
 
             //se agrego de JWT

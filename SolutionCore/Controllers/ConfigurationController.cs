@@ -16,7 +16,6 @@ namespace SolutionCore.Controllers
         private readonly IOptionsSnapshot<GetConfigurationResponse> _configurationOption;
         public ConfigurationController(IOptionsSnapshot<GetConfigurationResponse>  configurationOption )
         {
-
             _configurationOption = configurationOption;
         }
 
