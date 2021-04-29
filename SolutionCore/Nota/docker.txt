@@ -5,3 +5,11 @@ docker exec -it sqlserver2x /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P cr
 
 docker logs sqlserver2x
 ---------------------------------------------------------------------------------
+
+docker cp  ${ruta del backup local}.back    ${codigo_contenedor}:/var/opt/mssql/data
+
+
+
+https://dockertips.com/crear-im%C3%A1gen-sql-server-para-docker-personalizada
+
+https://www.youtube.com/watch?v=u5rCiyZyHo8

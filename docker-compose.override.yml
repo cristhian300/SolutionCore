@@ -30,6 +30,5 @@ services:
       - "80"
 
   dbCore:
-  
    ports:
       - "1433"
