@@ -3,7 +3,7 @@ version: '3.4'
 services:
   configuration.gateway:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Docker
     hostname: configuration.gateway
     links:
       - solutioncore
@@ -13,7 +13,7 @@ services:
       - "80"
   solutioncore:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Docker
     hostname: solutioncore
     ports:
       - "80"

@@ -29,9 +29,10 @@ namespace Configuration.GateWay
                      config
                          .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
                          .AddJsonFile("appsettings.json", true, true)
-                         .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true,
-                             true)
+                         .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
+                            
                          .AddJsonFile("ocelot.json", false, false)
+                         .AddJsonFile($"ocelot.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
                          .AddEnvironmentVariables();
                  })
 
