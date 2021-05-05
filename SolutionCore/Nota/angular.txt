@@ -1,0 +1,10 @@
+npm i @angular/flex-layout
+
+
+-----------------------------------
+
+* principal modulo
+ng g c new-component --module app
+
+* otro directorio
+ng g c component-name --module ../

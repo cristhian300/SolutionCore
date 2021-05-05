@@ -102,7 +102,7 @@ namespace SolutionCore.Controllers
                        var imag = $"{Request.Scheme}:{Request.Host}/images/{file.FileName }";
   
                         Product product = new Product
-                    {
+                       {
                         Name = parameter.Name,
                         Description = parameter.Description,
                         Price=parameter.Price,

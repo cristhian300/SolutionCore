@@ -170,7 +170,8 @@ applyFilter() {
 onCreate(){
 
   const dialogRef = this.dialog.open(ModalUsuariosComponent, {
-    width: '60%',
+    width: '50%',
+    height: '70%',
     // disableClose: true
     // data: {name: this.name, animal: this.animal}
   });
@@ -221,7 +222,8 @@ onEdit(elemento:ListUsuarioResult){
  
 
   const dialogRef = this.dialog.open(ModalUsuariosComponent, {
-    width: '60%',
+    width: '50%',
+    height: '70%',
     // disableClose: true
     data: elemento
   });

@@ -138,7 +138,8 @@ namespace SolutionCore
             
 
             app.UseStaticFiles();
-         /*   app.UseStaticFiles(new StaticFileOptions()
+
+            app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(
                 Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
@@ -150,7 +151,7 @@ namespace SolutionCore
                 FileProvider = new PhysicalFileProvider(
             Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
                 RequestPath = new PathString("/images")
-            });*/
+            });
 
 
             if (!env.IsDevelopment())

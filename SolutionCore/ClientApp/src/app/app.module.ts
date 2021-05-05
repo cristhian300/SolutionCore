@@ -22,6 +22,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { ProductsComponent } from './modules/web/products/products.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: false
@@ -37,7 +38,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FetchDataComponent,
     UsuariosComponent,
     ModalUsuariosComponent,
-    LoginComponent
+    LoginComponent,
+    ProductsComponent
   ],
   imports: [
     NgxUiLoaderModule.forRoot({}),
@@ -53,7 +55,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'usuarios', component: UsuariosComponent,canActivate:[SecurityGuardGuard] },
-       { path: 'log', component: LoginComponent }
+       { path: 'log', component: LoginComponent },
+       { path: 'productos', component: ProductsComponent }
     ]),
     BrowserAnimationsModule
   ],
