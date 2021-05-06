@@ -8,3 +8,5 @@ ng g c new-component --module app
 
 * otro directorio
 ng g c component-name --module ../
+
+node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --prod --aot --build-optimizer
