@@ -1,4 +1,5 @@
-﻿using SolutionCore.Infraestructura.Transport.Core.Product.Request;
+﻿
+using SolutionCore.Infraestructura.Transport.Core.Product.Request;
 using SolutionCore.Infraestructura.Transport.Core.Product.Response;
 using System;
 using System.Collections.Generic;

@@ -7,9 +7,7 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
 
     using Arch.EntityFrameworkCore.UnitOfWork;
     using Microsoft.AspNetCore.Hosting;
-    using SolutionCore.Infraestructura.Transport.Core.Product.QueryEntity;
-    using SolutionCore.Infraestructura.Transport.Core.Product.Request;
-    using SolutionCore.Infraestructura.Transport.Core.Product.Response;
+
     using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
     using System;
     using System.IO;
@@ -25,7 +23,9 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
      
     using System.Net.Http;
     using System.Threading.Tasks;
- 
+    using SolutionCore.Infraestructura.Transport.Core.Product.Response;
+    using SolutionCore.Infraestructura.Transport.Core.Product.QueryEntity;
+    using SolutionCore.Infraestructura.Transport.Core.Product.Request;
 
     public class ProductQuery: IProductQuery
     {
