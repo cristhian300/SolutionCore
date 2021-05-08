@@ -51,13 +51,13 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FormsModule,
    ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'usuarios', component: UsuariosComponent,canActivate:[SecurityGuardGuard] },
-       { path: 'log', component: LoginComponent },
-       { path: 'productos', component: ProductsComponent }
-    ]),
+    { path: '', component: HomeComponent, pathMatch: 'full' },
+    { path: 'counter', component: CounterComponent },
+    { path: 'fetch-data', component: FetchDataComponent },
+    { path: 'usuarios', component: UsuariosComponent, canActivate: [SecurityGuardGuard] },
+    { path: 'log', component: LoginComponent },
+    { path: 'productos', component: ProductsComponent }
+], { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule
   ],
   providers: [NetworkManager,
