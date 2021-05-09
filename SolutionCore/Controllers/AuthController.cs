@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SolutionCore.Contract;
-
+using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Parameter;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Result;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Request;
