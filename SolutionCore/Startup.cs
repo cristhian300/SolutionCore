@@ -1,29 +1,26 @@
 using Arch.EntityFrameworkCore.UnitOfWork;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using SolutionCore.Contract;
-using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
-using Microsoft.OpenApi.Models;
-using System;
-using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data;
-using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
-using SolutionCore.Distributed_Processes.Dominio.Application;
-using SolutionCore.Application.Contracts.Contract.Product;
-using SolutionCore.Application.Application.Product;
-using SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
+using SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query;
+using SolutionCore.Application.Application.Product;
+using SolutionCore.Application.Contracts.Contract.Product;
+using SolutionCore.Contract;
+using SolutionCore.Distributed_Processes.Dominio.Application;
+using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data;
+using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
+using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 using System.IO;
-using Microsoft.AspNetCore.Http;
+using System.Text;
 
 namespace SolutionCore
 {
@@ -42,11 +39,11 @@ namespace SolutionCore
 
 
             /*Autenticacion para WEBTOKEN*/
-            services.AddAuthentication(opt =>{
+            services.AddAuthentication(opt => {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-                .AddJwtBearer( option =>
+                .AddJwtBearer(option =>
                 {
                     option.TokenValidationParameters = new TokenValidationParameters
                     {
@@ -59,9 +56,9 @@ namespace SolutionCore
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"))
                     };
                 });
-                
-               
-                
+
+
+
 
             services.AddCors(option =>
             {
@@ -73,7 +70,7 @@ namespace SolutionCore
                     //builder.AllowCredentials();
 
                 });
-            } );
+            });
 
             services.AddControllersWithViews();
             services.AddControllers();
@@ -108,18 +105,18 @@ namespace SolutionCore
             services.Configure<GetConfigurationResponse>(Configuration.GetSection("Services"));
         }
 
-        
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
-             
+
 
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                
+
             }
             else
             {
@@ -135,7 +132,7 @@ namespace SolutionCore
             //});
             app.UseHttpsRedirection();
 
-            
+
 
             app.UseStaticFiles();
 
@@ -158,7 +155,7 @@ namespace SolutionCore
             {
                 app.UseSpaStaticFiles();
             }
-           
+
             app.UseRouting();
 
             //se agrego de JWT
@@ -185,15 +182,15 @@ namespace SolutionCore
                 }
             });
 
-           
 
 
-            
 
 
-        }    
-           
-  
-        
+
+
+        }
+
+
+
     }
 }
