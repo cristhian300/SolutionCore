@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CoreService } from '../../../services/core.service';
 import { ListUsuarioRequest } from '../../../agent/User/request/ListUsuariosRequest';
-
+import { MatTableDataSource, MatPaginator, MatSort, MatAutocompleteSelectedEvent, MatDialog } from '@angular/material';
 import { ListUsuarioResult } from '../../../agent/User/response/ListUsuarioResponse';
 import { SecurityViewModel } from '../SecurityViewModels/security-list-viewmodel';
 import { UserResultPanelViewModel } from '../SecurityViewModels/user-result-panel-view.model';
@@ -14,10 +14,6 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ListRolesRequest } from '../../../agent/User/request/ListRolesRequest';
 import { ListRoleResult } from '../../../agent/User/response/ListRolesResponse';
 import { AddUsuarioRequest } from '../../../agent/User/request/AddUsuariosRequest';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -174,8 +170,7 @@ applyFilter() {
 onCreate(){
 
   const dialogRef = this.dialog.open(ModalUsuariosComponent, {
-    width: '50%',
-    height: '70%',
+    width: '60%',
     // disableClose: true
     // data: {name: this.name, animal: this.animal}
   });
@@ -226,8 +221,7 @@ onEdit(elemento:ListUsuarioResult){
  
 
   const dialogRef = this.dialog.open(ModalUsuariosComponent, {
-    width: '50%',
-    height: '70%',
+    width: '60%',
     // disableClose: true
     data: elemento
   });

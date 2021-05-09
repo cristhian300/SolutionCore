@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
- 
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { GetTokenRequest } from 'src/app/agent/Authentication/request/GetTokenRequest';
 import { CoreService } from 'src/app/services/core.service';
