@@ -1,0 +1,32 @@
+<!-- *ngIf="viewModel.IsNewScenario && !viewModel.IsKpiResultVisible" -->
+<div >
+
+	<div  #fututoTitulo   class="title-options" fxLayout fxLayoutAlign="space-between" style="margin-bottom: 10px;">
+		<div   fxFlex="25" fxLayout>
+			<h2>
+                <!-- {{viewModel.ScenarioNewEdit.Description}} -->
+            </h2>
+			<div class="title-description">
+				<h3>Campaña - 
+                    <!-- {{viewModel.CampaignNumber}} -->
+                </h3>
+				<span>
+                    <!-- {{viewModel.CountryCode}} - {{viewModel.CampaignYear}} -->
+                </span>
+			</div>
+		</div>
+
+		<div fxFlex="23"></div>
+
+		<div fxLayout fxLayoutAlign="flex-end" class="buttons">
+			<!-- <app-cm-button-stroked (click)="showScenarioList()">
+				<mat-icon matTooltip="REGRESAR">keyboard_backspace</mat-icon>
+			</app-cm-button-stroked> -->
+		</div>
+
+	</div>
+
+	<!-- <app-new-edit-scenario [viewModel]="viewModel.ScenarioNewEdit" [editedScenarios]="this.viewModel.EditedScenarios"
+		(return)="showScenarioList()" (goToHandleParameters)="this.showHandleParameters($event)">
+	</app-new-edit-scenario> -->
+</div>

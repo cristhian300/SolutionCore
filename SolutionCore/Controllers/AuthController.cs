@@ -48,7 +48,7 @@ namespace SolutionCore.Controllers
                 return BadRequest("Algo Salio Mal");
             }
 
-            if (user.UserName == "cristhian" && user.Password == "cristhian")
+            if (user.UserName == "flor" && user.Password == "flor")
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"));
                 var signigCredencial = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);

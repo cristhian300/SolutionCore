@@ -22,6 +22,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { AdministradorComponent } from './modules/web/administrador/administrador.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: false
@@ -37,7 +38,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FetchDataComponent,
     UsuariosComponent,
     ModalUsuariosComponent,
-    LoginComponent
+    LoginComponent,
+    AdministradorComponent
      
   ],
   imports: [
@@ -51,10 +53,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      // { path: 'counter', component: CounterComponent },
+      // { path: 'fetch-data', component: FetchDataComponent },
       { path: 'usuarios', component: UsuariosComponent,canActivate:[SecurityGuardGuard] },
-       { path: 'log', component: LoginComponent }
+       { path: 'login', component: LoginComponent },
+       { path: 'administrador', component: AdministradorComponent }
     ]),
     BrowserAnimationsModule
   ],

@@ -21,15 +21,15 @@
 
         <form fxLayout="column" [formGroup]="loginForm">
             <h2><strong>MAGIC</strong> STORE</h2>
-
+<!-- name="userName"  -->
             <mat-form-field class="login">
-                <input type="text" matInput required formControlName="userName" name="userName" />
+                <input type="text" matInput required formControlName="userName" />
                 <mat-placeholder class="placeholder">Usuario</mat-placeholder>
                 <mat-error>El usuario es requerido</mat-error>
             </mat-form-field>
-
+<!-- name="password" -->
             <mat-form-field class="login">
-                <input type="password" matInput required formControlName="password" name="password" />
+                <input type="password" matInput required formControlName="password"  />
                 <mat-placeholder class="placeholder">Contraseña</mat-placeholder>
                 <mat-error>La contraseña es requerida</mat-error>
             </mat-form-field>

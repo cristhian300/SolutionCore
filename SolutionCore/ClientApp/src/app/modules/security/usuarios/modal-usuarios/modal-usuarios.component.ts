@@ -51,9 +51,9 @@ export class ModalUsuariosComponent implements OnInit {
     return this.formbuilder.group({
 
       codUsuario: [""],
-      nombre: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
+      name: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
       credencial: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
-      clave: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
+      password: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
       rol: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
       isDeleted: [false]
 
@@ -61,40 +61,67 @@ export class ModalUsuariosComponent implements OnInit {
 
   }
 
-  onSubmit() {
+  // onSubmit() {
 
 
-    if (!this.formGroup.valid) {
-      this.snackBar.open('DEBE_INGRESAR_DATOS_OBLIGATORIOS', 'close', { duration: 3000, panelClass: ['error-snackbar'] });
-      return;
-    } else {
+  //   if (!this.formGroup.valid) {
+  //     this.snackBar.open('DEBE_INGRESAR_DATOS_OBLIGATORIOS', 'close', { duration: 3000, panelClass: ['error-snackbar'] });
+  //     return;
+  //   } else {
 
 
-      if (!this.formGroup.get('codUsuario').value) {
-        this.AddUsuario(this.formGroup);
+  //     if (!this.formGroup.get('codUsuario').value) {
+  //       this.AddUsuario(this.formGroup);
 
 
-      } else {
+  //     } else {
 
-        this.UpdateUsuario(this.formGroup)
-
-
-      }
+  //       this.UpdateUsuario(this.formGroup)
 
 
-
-    }
-
-  };
+  //     }
 
 
+
+  //   }
+
+  // };
+
+  transaccion(){
+
+
+if (this.formGroup.invalid) {
+  this.snackBar.open('DEBE_INGRESAR_DATOS_OBLIGATORIOS', 'close', { duration: 3000, panelClass: ['error-snackbar'] });
+} else {
+
+
+  if (!this.formGroup.get('codUsuario').value  && this.formGroup.valid) {
+
+     
+
+    this.AddUsuario(this.formGroup);
+
+
+  } else {
+
+    this.UpdateUsuario(this.formGroup)
+
+  }
+}
+
+ 
+
+  }
 
   AddUsuario(formGroup: FormGroup) {
-debugger
+
+
+    
+
     let params = new AddUsuarioRequest()
-    params.nombreCompleto = this.formGroup.get("nombre").value
+    params.nombreCompleto = this.formGroup.get("name").value
     params.credencial = this.formGroup.get("credencial").value
-    params.clave = this.formGroup.get("clave").value
+    params.clave = this.formGroup.get("password").value
     params.roleId = parseInt(this.formGroup.get("rol").value)
     params.deleted = this.formGroup.get("isDeleted").value
 
@@ -118,9 +145,9 @@ debugger
 
     let params = new UpdateUsuarioRequest()
     params.usuarioId = this.formGroup.get('codUsuario').value
-    params.nombreCompleto = this.formGroup.get("nombre").value
+    params.nombreCompleto = this.formGroup.get("name").value
     params.credencial = this.formGroup.get("credencial").value
-    params.clave = this.formGroup.get("clave").value
+    params.clave = this.formGroup.get("password").value
     params.roleId = parseInt(this.formGroup.get("rol").value)
     params.deleted = this.formGroup.get("isDeleted").value
 
@@ -144,7 +171,17 @@ debugger
 
   onClear() {
 
-    this.formGroup.reset()
+    // this.formGroup.reset()
+    
+     this.formGroup.controls.name.setValue('');
+     this.formGroup.controls.credencial.setValue('');
+     this.formGroup.controls.password.setValue('');
+     this.formGroup.controls.rol.setValue('');
+     this.formGroup.controls.isDeleted.setValue(false);
+   
+     this.snackBar.open('DEBE_INGRESAR_DATOS_OBLIGATORIOS', 'close', { duration: 3000, panelClass: ['error-snackbar'] });
+ 
+     
 
   }
 
@@ -170,12 +207,12 @@ debugger
   CargaDatosModal(modal: ListUsuarioResult) {
 
     console.log(`model ${modal}`);
-
+    // this.formGroup.reset()
       if (modal  != null) {
-          this.formGroup.get('nombre').setValue(modal.nombreCompleto);
+          this.formGroup.get('name').setValue(modal.nombreCompleto);
     this.formGroup.get('credencial').setValue(modal.credencial);
     this.formGroup.get('rol').setValue(modal.roleId.toString());
-    this.formGroup.get('clave').setValue(modal.clave);
+    this.formGroup.get('password').setValue(modal.clave);
     this.formGroup.get('codUsuario').setValue(modal.usuarioId);
       }
   

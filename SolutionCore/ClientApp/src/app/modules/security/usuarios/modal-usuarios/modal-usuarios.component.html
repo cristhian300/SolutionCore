@@ -2,9 +2,9 @@
 <!-- fxLayout.xs="column" si es un tamaño xs se pone en columna     -->
 <!-- fxLayoutGap ="25px" espacio de separacion entre div hijos-->
 
-
+<!-- (submit)="onSubmit()" -->
 <perfect-scrollbar style="width: 100%;height: 60vh">
-  <form [formGroup]="formGroup" (submit)="onSubmit()" style="width: 100%;">
+  <form [formGroup]="formGroup"  style="width: 100%;">
 
 
 
@@ -27,18 +27,21 @@
       <div>
         <mat-card>
 
-          <mat-form-field style="width: 100%;" appearance="outline">
+          <!-- *ngIf="formGroup.value.codUsuario == 'Actualizar Usuario'" -->
+          <mat-form-field  [hidden]="!(formGroup.value.codUsuario)"   style="width: 100%;" appearance="outline">
             <mat-label>Codigo de Usuario</mat-label>
             <input matInput formControlName="codUsuario" type="text" placeholder="Codigo de Usuario"
                    readonly>
           </mat-form-field>
+
+
           <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
             <mat-label>Nombre</mat-label>
-            <input matInput formControlName="nombre" type="text" required placeholder="Nombre Completo">
+            <input matInput formControlName="name" type="text" required placeholder="Nombre Completo">
           </mat-form-field>
           <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
             <mat-label>Clave</mat-label>
-            <input matInput formControlName="clave" type="password" required placeholder="clave">
+            <input matInput formControlName="password" type="password" required placeholder="clave">
           </mat-form-field>
 
           <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
@@ -66,7 +69,8 @@
           <div style="padding-top: 10px;" fxLayoutAlign="center">
 
             <p>
-              <button mat-raised-button color="primary" type="submit">Submit</button>
+              <!-- <button mat-raised-button color="primary" type="submit">Submit</button> -->
+              <button mat-raised-button color="primary" (click)="transaccion()"  >Submit</button>
               <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
             </p>
           </div>
