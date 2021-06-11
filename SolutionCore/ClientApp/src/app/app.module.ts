@@ -23,6 +23,8 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AdministradorComponent } from './modules/web/administrador/administrador.component';
+import { ModalProductComponent } from './modules/web/administrador/modal-product/modal-product.component';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: false
@@ -39,7 +41,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     UsuariosComponent,
     ModalUsuariosComponent,
     LoginComponent,
-    AdministradorComponent
+    AdministradorComponent,
+    ModalProductComponent
+   
      
   ],
   imports: [
@@ -69,6 +73,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents :[ModalUsuariosComponent]
+  entryComponents :[ModalUsuariosComponent,ModalProductComponent]
 })
 export class AppModule { }

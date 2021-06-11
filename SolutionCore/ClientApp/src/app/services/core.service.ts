@@ -13,6 +13,9 @@ import { UpdateUsuarioRequest } from '../agent/User/request/UpdateUsuarioRequest
 import { GetTokenRequest } from '../agent/Authentication/request/GetTokenRequest';
 import { GetTokenResponse } from '../agent/Authentication/response/GetTokenResponse';
 import { environment } from 'src/environments/environment';
+import { ListProductResponse } from '../agent/Admin/Response/ListProductResponse';
+import { AddProductResponse } from '../agent/Product/Response/AddProductResponse';
+import { AddProductRequest } from '../agent/Product/Request/AddProductRequest';
 
  
 
@@ -42,7 +45,7 @@ console.log( "BASE_URL " +this.ruta);
 ListUsuario( parameter: ListUsuarioRequest):Observable<ListUsuarioResponse>{
 
  const parameters = new PostParameter()
- parameters.PathOperation= this.Url+ 'ListUsuario'
+ parameters.PathOperation=  'api/Auth/ListUsuario'
  parameters.RequestParameter=parameter
  return this.networkManager.post(parameters)  as Observable<ListUsuarioResponse>;
 
@@ -51,7 +54,7 @@ ListUsuario( parameter: ListUsuarioRequest):Observable<ListUsuarioResponse>{
 ListRoles( parameter: ListRolesRequest):Observable<ListRoleResponse>{
 
   const parameters = new PostParameter()
-  parameters.PathOperation= this.Url+ 'ListRoles'
+  parameters.PathOperation=  'api/Auth/ListRoles'
   parameters.RequestParameter=parameter
   return this.networkManager.post(parameters)  as Observable<ListRoleResponse>;
  
@@ -63,20 +66,20 @@ postRespuesta(parameterr: any): Observable<any> {
   const headers = new HttpHeaders({ 'content-type': 'application/json' });
   const options = { headers: headers };
   const parameters = JSON.stringify(parameterr)
-  return this.http.post<any>( this.Url +'ListUsuario',  parameters   , options);
+  return this.http.post<any>(  'api/Auth/ListUsuario',  parameters   , options);
  
 }
 
 AddUsuario( parameter: AddUsuarioRequest):Observable<AddUsuarioResponse>{
   const parameters = new PostParameter()
-  parameters.PathOperation= this.Url+ 'AddUsuario'
+  parameters.PathOperation=   'api/Auth/AddUsuario'
   parameters.RequestParameter=parameter
   return this.networkManager.post(parameters)  as Observable<AddUsuarioResponse>;
 }
 
 UpdateUsuario( parameter: UpdateUsuarioRequest):Observable<AddUsuarioResponse>{
   const parameters = new PostParameter()
-  parameters.PathOperation= this.Url+ 'UpdateUsuario'
+  parameters.PathOperation=   'api/Auth/UpdateUsuario'
   parameters.RequestParameter=parameter
   return this.networkManager.post(parameters)  as Observable<AddUsuarioResponse>;
 }
@@ -90,7 +93,7 @@ login(parameter:GetTokenRequest): Observable<GetTokenResponse> {
 
 
     const parameters = new PostParameter()
-    parameters.PathOperation= this.ruta + this.Url+  'Login'
+    parameters.PathOperation=    'api/Auth/Login'
     parameters.RequestParameter=parameter
     // return this.networkManager.post(parameters)  as Observable<GetTokenResponse>;
      console.log('Login :>> ', this.Url+ 'Login');
@@ -107,6 +110,35 @@ login(parameter:GetTokenRequest): Observable<GetTokenResponse> {
 
 }
 
- 
+ /*Product*/ 
+public ListProduct(parameter:any = null){
+
+  const parameters = new PostParameter()
+  parameters.PathOperation=   'api/Product/ListProduct'
+  parameters.RequestParameter=parameter
+  return this.networkManager.post(parameters)  as Observable<ListProductResponse>;
+
+}
+
+public AddProduct(parameter:AddProductRequest = null){
+
+  const parameters = new PostParameter()
+  parameters.PathOperation=   'api/Product/AddProduct'
+  parameters.RequestParameter=parameter
+
+
+  const formData = new FormData();
+  formData.append('files', parameter.files);
+  //formData.append('ScenarioId', request.Parameters.ScenarioId.toString());
+  formData.append('Name', parameter.Name);
+  formData.append('Description', parameter.Description);
+  formData.append('Price', parameter.Price.toString());
+
+
+  return this.networkManager.postFile(parameters,formData)  as Observable<AddProductResponse>;
+
+}
+
+
 
 }

@@ -1,18 +1,18 @@
 <!-- *ngIf="viewModel.IsNewScenario && !viewModel.IsKpiResultVisible" -->
-<div >
+<div>
 
-	<div  #fututoTitulo   class="title-options" fxLayout fxLayoutAlign="space-between" style="margin-bottom: 10px;">
-		<div   fxFlex="25" fxLayout>
+	<div #fututoTitulo class="title-options" fxLayout fxLayoutAlign="space-between" style="margin-bottom: 10px;">
+		<div fxFlex="25" fxLayout>
 			<h2>
-                <!-- {{viewModel.ScenarioNewEdit.Description}} -->
-            </h2>
+				<!-- {{viewModel.ScenarioNewEdit.Description}} -->
+			</h2>
 			<div class="title-description">
-				<h3>Campaña - 
-                    <!-- {{viewModel.CampaignNumber}} -->
-                </h3>
+				<h3>Campaña -
+					<!-- {{viewModel.CampaignNumber}} -->
+				</h3>
 				<span>
-                    <!-- {{viewModel.CountryCode}} - {{viewModel.CampaignYear}} -->
-                </span>
+					<!-- {{viewModel.CountryCode}} - {{viewModel.CampaignYear}} -->
+				</span>
 			</div>
 		</div>
 
@@ -26,7 +26,64 @@
 
 	</div>
 
-	<!-- <app-new-edit-scenario [viewModel]="viewModel.ScenarioNewEdit" [editedScenarios]="this.viewModel.EditedScenarios"
-		(return)="showScenarioList()" (goToHandleParameters)="this.showHandleParameters($event)">
-	</app-new-edit-scenario> -->
+	<div class="containers">
+
+		<div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column">
+			<div fxLayoutAlign="center center">
+				<button style="width: 100%;" (click)="CrearProduct()" mat-raised-button>Crear Producto</button>
+			</div>
+
+			<div fxFlex="80%">
+				<mat-form-field style="width: 100%;" floatLabel="always" appearance="outline">
+					<mat-label>Buscar Producto</mat-label>
+					<input [(ngModel)]="filtro" (ngModelChange)="inputChange($event)" matInput type="text"
+						placeholder="Nombre de Producto">
+				</mat-form-field>
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+	<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"
+		[length]="totalSize" [pageIndex]="currentPage" (page)="handlePage($event)">
+	</mat-paginator>
+
+	<perfect-scrollbar style="height: calc(100vh - 292px)">
+		<div style="padding-top: 10px;" class="containers" fxLayout="row wrap" fxLayoutGap="20px">
+
+			<div #formatImagen *ngFor="let viewModel of ListProductToShow">
+				<div class="elemento" fxLayout="column" fxLayoutAlign="center center">
+
+
+					<div fxFlex="70">
+						<img style="width: 100%;height: 100%;" src="images/{{viewModel.photo}}" alt="" />
+					</div>
+
+					<div fxFlex="10" class="elemento__titulo">
+						{{viewModel.name}}
+					</div>
+					<div fxFlex="10" class="elemento__fecha">
+						{{viewModel.description}}
+					</div>
+
+					<div fxFlex="10" class="elemento__notas" fxLayout fxLayoutAlign="space-between center">
+						<button mat-icon-button (click)="update(viewModel)">
+							<mat-icon color="primary">update</mat-icon>
+						</button>
+
+						<button mat-icon-button>
+							<mat-icon color="warn">delete</mat-icon>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</perfect-scrollbar>
+
+
+
+
 </div>

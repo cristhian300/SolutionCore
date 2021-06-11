@@ -20,8 +20,16 @@ git reset --hard <commit>
 git reset <commit>
 
 
+------------------------------------------------------------------
+
+How to display images saved in wwwroot (asp.net core ) in Angular project
 
 
+
+--------------------------------------------------------
+https://github.com/angular/flex-layout/blob/master/docs/documentation/Responsive-API.md
+
+https://www.angularjswiki.com/flexlayout/basics/
 
 
 

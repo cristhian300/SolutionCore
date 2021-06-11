@@ -58,8 +58,7 @@ namespace SolutionCore.Controllers
         //public async Task<ListProductResponse> AddProduct([FromForm] List<IFormFile> files, [FromBody] ListProductRequest parameter
         public async Task<ActionResult> AddProduct([FromForm] AddProductRequest parameter )   
         {
-
-           
+            var x = Request.Form.Files[0];
 
             List<Product> lstProduct = new List<Product>();
             try

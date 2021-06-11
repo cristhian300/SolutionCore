@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
- 
 
- 
+
+
 import { AddUsuarioRequest } from '../../../../agent/User/request/AddUsuariosRequest';
 import { ListRolesRequest } from '../../../../agent/User/request/ListRolesRequest';
 import { UpdateUsuarioRequest } from '../../../../agent/User/request/UpdateUsuarioRequest';
@@ -40,11 +40,9 @@ export class ModalUsuariosComponent implements OnInit {
 
 
   ngAfterViewInit() {
-
     setTimeout(() => {
       this.CargaDatosModal(this.data)
     }, 0)
-
   }
 
   CreateForm(): FormGroup {
@@ -87,36 +85,36 @@ export class ModalUsuariosComponent implements OnInit {
 
   // };
 
-  transaccion(){
+  transaccion() {
 
 
-if (this.formGroup.invalid) {
-  this.snackBar.open('DEBE_INGRESAR_DATOS_OBLIGATORIOS', 'close', { duration: 3000, panelClass: ['error-snackbar'] });
-} else {
+    if (this.formGroup.invalid) {
+      this.snackBar.open('DEBE_INGRESAR_DATOS_OBLIGATORIOS', 'close', { duration: 3000, panelClass: ['error-snackbar'] });
+    } else {
 
 
-  if (!this.formGroup.get('codUsuario').value  && this.formGroup.valid) {
-
-     
-
-    this.AddUsuario(this.formGroup);
+      if (!this.formGroup.get('codUsuario').value && this.formGroup.valid) {
 
 
-  } else {
 
-    this.UpdateUsuario(this.formGroup)
+        this.AddUsuario(this.formGroup);
 
-  }
-}
 
- 
+      } else {
+
+        this.UpdateUsuario(this.formGroup)
+
+      }
+    }
+
+
 
   }
 
   AddUsuario(formGroup: FormGroup) {
 
 
-    
+
 
     let params = new AddUsuarioRequest()
     params.nombreCompleto = this.formGroup.get("name").value
@@ -172,16 +170,16 @@ if (this.formGroup.invalid) {
   onClear() {
 
     // this.formGroup.reset()
-    
-     this.formGroup.controls.name.setValue('');
-     this.formGroup.controls.credencial.setValue('');
-     this.formGroup.controls.password.setValue('');
-     this.formGroup.controls.rol.setValue('');
-     this.formGroup.controls.isDeleted.setValue(false);
-   
-     this.snackBar.open('DEBE_INGRESAR_DATOS_OBLIGATORIOS', 'close', { duration: 3000, panelClass: ['error-snackbar'] });
- 
-     
+
+    this.formGroup.controls.name.setValue('');
+    this.formGroup.controls.credencial.setValue('');
+    this.formGroup.controls.password.setValue('');
+    this.formGroup.controls.rol.setValue('');
+    this.formGroup.controls.isDeleted.setValue(false);
+
+    this.snackBar.open('DEBE_INGRESAR_DATOS_OBLIGATORIOS', 'close', { duration: 3000, panelClass: ['error-snackbar'] });
+
+
 
   }
 
@@ -208,14 +206,14 @@ if (this.formGroup.invalid) {
 
     console.log(`model ${modal}`);
     // this.formGroup.reset()
-      if (modal  != null) {
-          this.formGroup.get('name').setValue(modal.nombreCompleto);
-    this.formGroup.get('credencial').setValue(modal.credencial);
-    this.formGroup.get('rol').setValue(modal.roleId.toString());
-    this.formGroup.get('password').setValue(modal.clave);
-    this.formGroup.get('codUsuario').setValue(modal.usuarioId);
-      }
-  
+    if (modal != null) {
+      this.formGroup.get('name').setValue(modal.nombreCompleto);
+      this.formGroup.get('credencial').setValue(modal.credencial);
+      this.formGroup.get('rol').setValue(modal.roleId.toString());
+      this.formGroup.get('password').setValue(modal.clave);
+      this.formGroup.get('codUsuario').setValue(modal.usuarioId);
+    }
+
   }
 
 }

@@ -67,16 +67,19 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
             {
               var listProduct = (from p in _CoreContext.DbContext.Products
                                where p.Deleted == false
+                               orderby p.ProductId descending
                                select new ListProductQueryEntity {
                                ProductId = p.ProductId,
                                Name=p.Name,
                                Description=p.Description,
                                Price= p.Price,
                                //Deleted=p.Deleted,
-                               Photo =a + p.Photo
+                               Photo =  p.Photo
                                 
                                }
-                               ).ToList();
+                               ).ToList()
+                              
+                               ;
             return  new ListProductResponse { ListProduct = listProduct }  ;
             }
             catch (Exception e)

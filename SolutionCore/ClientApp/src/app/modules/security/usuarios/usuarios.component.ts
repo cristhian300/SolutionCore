@@ -193,29 +193,29 @@ onClear(){}
 
 
 
-onSubmit(){
+// onSubmit(){
 
-  let params = new AddUsuarioRequest()
-  params.nombreCompleto = this.formGroup.get("nombre").value
-  params.credencial = this.formGroup.get("credencial").value
-  params.clave= this.formGroup.get("clave").value
-  params.roleId=  parseInt( this.formGroup.get("rol").value)
-  params.deleted = this.formGroup.get("isDeleted").value
+//   let params = new AddUsuarioRequest()
+//   params.nombreCompleto = this.formGroup.get("nombre").value
+//   params.credencial = this.formGroup.get("credencial").value
+//   params.clave= this.formGroup.get("clave").value
+//   params.roleId=  parseInt( this.formGroup.get("rol").value)
+//   params.deleted = this.formGroup.get("isDeleted").value
 
-this.coreService.AddUsuario(params).subscribe(
-response =>{},
-error =>{
+// this.coreService.AddUsuario(params).subscribe(
+// response =>{},
+// error =>{
 
-  console.log(error)
-}
-
-
-)
+//   console.log(error)
+// }
 
 
-console.log(this.formGroup.value);
-// console.log(`parametros ${ JSON.stringify( params)}`);
-}
+// )
+
+
+// console.log(this.formGroup.value);
+// // console.log(`parametros ${ JSON.stringify( params)}`);
+// }
 
 
 onEdit(elemento:ListUsuarioResult){
