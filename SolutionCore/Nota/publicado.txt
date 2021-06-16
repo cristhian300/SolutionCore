@@ -1,0 +1,4 @@
+ // build and publish
+dotnet publish -c Release -o published
+
+dotnet published/SolutionCore.dll
