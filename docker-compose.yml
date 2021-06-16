@@ -3,6 +3,9 @@ version: '3.4'
 services:
   solutioncore:
     image: ${DOCKER_REGISTRY-}solutioncore
+    ports:
+      - 44221:80
     build:
       context: .
       dockerfile: SolutionCore/Dockerfile
+    
