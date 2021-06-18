@@ -54,6 +54,7 @@
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
   </Target>
 
-  
+   
+
 
 </Project>
