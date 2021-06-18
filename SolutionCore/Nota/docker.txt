@@ -1,0 +1,3 @@
+docker tag solutioncore:latest  cristhian300/solutioncore:v1
+
+docker push  cristhian300/solutioncore:v1
