@@ -3,8 +3,8 @@ version: '3.4'
 services:
   solutioncore:
     environment:
-      - ASPNETCORE_ENVIRONMENT=qas
+      - ASPNETCORE_ENVIRONMENT=Production
     ports:
-      - "80"
+      - 4422:80
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
