@@ -93,10 +93,10 @@ export class AdministradorComponent implements OnInit {
     update(product){
       console.log(product)
 
-      // const modal = this.dialog.open(ModalProductComponent, 
-      //   { width: '90%' ,
-      //     data:product
-      // })
+      const modal = this.dialog.open(ModalProductComponent, 
+        { width: '90%' ,
+          data:product
+      })
 
 
       // modal.afterClosed().subscribe(result => {

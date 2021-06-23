@@ -1,5 +1,5 @@
 <!-- *ngIf="viewModel.IsNewScenario && !viewModel.IsKpiResultVisible" -->
-<div>
+<div >
 
 	<div #fututoTitulo class="title-options" fxLayout fxLayoutAlign="space-between" style="margin-bottom: 10px;">
 		<div fxFlex="25" fxLayout>
@@ -7,7 +7,7 @@
 				<!-- {{viewModel.ScenarioNewEdit.Description}} -->
 			</h2>
 			<div class="title-description">
-				<h3>Campaña -
+				<h3>Campañaxxii -
 					<!-- {{viewModel.CampaignNumber}} -->
 				</h3>
 				<span>
@@ -51,7 +51,9 @@
 		[length]="totalSize" [pageIndex]="currentPage" (page)="handlePage($event)">
 	</mat-paginator>
 
-	<perfect-scrollbar style="height: calc(100vh - 292px)">
+
+	<div fxLayout="row wrap" fxLayoutAlign="center center">
+	<perfect-scrollbar style="height: calc(100vh - 360px)">
 		<div style="padding-top: 10px;" class="containers" fxLayout="row wrap" fxLayoutGap="20px">
 
 			<div #formatImagen *ngFor="let viewModel of ListProductToShow">
@@ -82,7 +84,7 @@
 			</div>
 		</div>
 	</perfect-scrollbar>
-
+</div>
 
 
 
