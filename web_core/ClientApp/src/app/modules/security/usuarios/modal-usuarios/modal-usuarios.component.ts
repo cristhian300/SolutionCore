@@ -88,7 +88,7 @@ export class ModalUsuariosComponent implements OnInit {
 
 
   AddUsuario(formGroup: FormGroup) {
-debugger
+ 
     let params = new AddUsuarioRequest()
     params.nombreCompleto = this.formGroup.get("nombre").value
     params.credencial = this.formGroup.get("credencial").value
