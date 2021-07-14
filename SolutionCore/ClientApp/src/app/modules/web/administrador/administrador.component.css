@@ -39,7 +39,7 @@
   }
   
   .elemento:hover {
-    box-shadow: 0 2px 12px 0 rgba(136, 136, 136, 0.5);
+    box-shadow: 0 2px 12px 0 rgba(136, 136, 136, 0.973);
   }
   
   .elemento img {

@@ -9,7 +9,7 @@ import { AddUsuarioRequest } from '../../../../agent/User/request/AddUsuariosReq
 import { ListRolesRequest } from '../../../../agent/User/request/ListRolesRequest';
 import { UpdateUsuarioRequest } from '../../../../agent/User/request/UpdateUsuarioRequest';
 import { ListRoleResult } from '../../../../agent/User/response/ListRolesResponse';
-import { ListUsuarioResult } from '../../../../agent/User/response/ListUsuarioResponse';
+import { ListUsuarioEntity } from '../../../../agent/User/response/ListUsuarioResponse';
 import { CoreService } from '../../../../services/core.service';
 
 @Component({
@@ -20,7 +20,7 @@ import { CoreService } from '../../../../services/core.service';
 export class ModalUsuariosComponent implements OnInit {
   formGroup: FormGroup;
 
-  constructor(private snackBar: MatSnackBar, @Inject(MAT_DIALOG_DATA) public data: ListUsuarioResult
+  constructor(private snackBar: MatSnackBar, @Inject(MAT_DIALOG_DATA) public data: ListUsuarioEntity
     , private modalUsuario: MatDialogRef<ModalUsuariosComponent>,
     private coreService: CoreService, private formbuilder: FormBuilder) {
 
@@ -40,6 +40,8 @@ export class ModalUsuariosComponent implements OnInit {
 
 
   ngAfterViewInit() {
+
+    console.log('ngAfterViewInit');
     setTimeout(() => {
       this.CargaDatosModal(this.data)
     }, 0)
@@ -202,7 +204,7 @@ export class ModalUsuariosComponent implements OnInit {
   }
 
 
-  CargaDatosModal(modal: ListUsuarioResult) {
+  CargaDatosModal(modal: ListUsuarioEntity) {
 
     console.log(`model ${modal}`);
     // this.formGroup.reset()

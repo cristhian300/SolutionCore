@@ -3,26 +3,27 @@
 <!-- fxLayoutGap ="25px" espacio de separacion entre div hijos-->
 
 <!-- (submit)="onSubmit()" -->
+
+<div>
+  <mat-toolbar fxLayout fxLayoutAlign="space-between center">
+    <h2>{{this.formGroup.get('codUsuario').value? "Actualizar Usuario" :"Nuevo Usuario" }}</h2>
+
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+            (click)="CloseModal()">
+      <mat-icon>close</mat-icon>
+     
+    </button>
+
+  </mat-toolbar>
+</div>
+
+
 <perfect-scrollbar style="width: 100%;height: 60vh">
   <form [formGroup]="formGroup"  style="width: 100%;">
 
 
 
     <div>
-
-
-      <div>
-        <mat-toolbar fxLayout fxLayoutAlign="space-between center">
-          <h2>{{this.formGroup.get('codUsuario').value? "Actualizar Usuario" :"Nuevo Usuario" }}</h2>
-
-          <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
-                  (click)="CloseModal()">
-            <mat-icon>close</mat-icon>
-          </button>
-
-        </mat-toolbar>
-      </div>
-
 
       <div>
         <mat-card>

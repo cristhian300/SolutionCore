@@ -13,7 +13,7 @@ import { UpdateUsuarioRequest } from '../agent/User/request/UpdateUsuarioRequest
 import { GetTokenRequest } from '../agent/Authentication/request/GetTokenRequest';
 import { GetTokenResponse } from '../agent/Authentication/response/GetTokenResponse';
 import { environment } from 'src/environments/environment';
-import { ListProductResponse } from '../agent/Admin/Response/ListProductResponse';
+import { ListProductResponse } from '../agent/Product/Response/ListProductResponse';
 import { AddProductResponse } from '../agent/Product/Response/AddProductResponse';
 import { AddProductRequest } from '../agent/Product/Request/AddProductRequest';
 

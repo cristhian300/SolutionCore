@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { CoreService } from '../../../services/core.service';
 import { ListUsuarioRequest } from '../../../agent/User/request/ListUsuariosRequest';
 //import { MatTableDataSource, MatPaginator, MatSort, MatAutocompleteSelectedEvent, MatDialog } from '@angular/material';
-import { ListUsuarioResult } from '../../../agent/User/response/ListUsuarioResponse';
+import { ListUsuarioEntity } from '../../../agent/User/response/ListUsuarioResponse';
 import { SecurityViewModel } from '../SecurityViewModels/security-list-viewmodel';
 import { UserResultPanelViewModel } from '../SecurityViewModels/user-result-panel-view.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -31,7 +31,7 @@ formGroup:FormGroup
 
   displayedColumns: string[] = ["usuarioId", "nombreCompleto", "credencial", "rol", 'actions'];
 
-  dataSource: MatTableDataSource<ListUsuarioResult>;
+  dataSource: MatTableDataSource<ListUsuarioEntity>;
 
   SecurityViewModel = new SecurityViewModel()
 
@@ -54,7 +54,7 @@ formGroup:FormGroup
   
   }
 
-  UsuarioToShow: ListUsuarioResult[];
+  UsuarioToShow: ListUsuarioEntity[];
 
   ListUsuarios() {
  
@@ -65,7 +65,7 @@ formGroup:FormGroup
 
         this.SecurityViewModel.listUsuarios = response.listUsuarios
         this.UsuarioToShow = this.SecurityViewModel.listUsuarios
-        this.dataSource = new MatTableDataSource<ListUsuarioResult>(this.UsuarioToShow)
+        this.dataSource = new MatTableDataSource<ListUsuarioEntity>(this.UsuarioToShow)
 
 
         this.dataSource.paginator = this.paginator;
@@ -105,7 +105,7 @@ ListRoles(){
 
     this.UsuarioToShow = this.SecurityViewModel.listUsuarios.filter(f => f.deleted == event.value)
 
-    this.dataSource = new MatTableDataSource<ListUsuarioResult>(this.UsuarioToShow)
+    this.dataSource = new MatTableDataSource<ListUsuarioEntity>(this.UsuarioToShow)
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -115,7 +115,7 @@ ListRoles(){
 
 
   Panel: UserResultPanelViewModel[] = []
-  ListUsuarioGrupoDetail(ListUsuarioGrupo: ListUsuarioResult[]) {
+  ListUsuarioGrupoDetail(ListUsuarioGrupo: ListUsuarioEntity[]) {
 
     let columns: string[] = ['Codigo', 'Nombre', 'Credencial', 'Rol']
     let cabecera: string[] = []
@@ -218,7 +218,7 @@ onClear(){}
 // }
 
 
-onEdit(elemento:ListUsuarioResult){
+onEdit(elemento:ListUsuarioEntity){
 
   console.log(`update ${ JSON.stringify(elemento) }`);
 

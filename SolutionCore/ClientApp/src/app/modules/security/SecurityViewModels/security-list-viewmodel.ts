@@ -1,8 +1,8 @@
-import { ListUsuarioResult } from "../../../agent/User/response/ListUsuarioResponse";
+import { ListUsuarioEntity } from "../../../agent/User/response/ListUsuarioResponse";
 
 export class SecurityViewModel{
 
-    listUsuarios: ListUsuarioResult[];
+    listUsuarios: ListUsuarioEntity[];
 
     /**
      *

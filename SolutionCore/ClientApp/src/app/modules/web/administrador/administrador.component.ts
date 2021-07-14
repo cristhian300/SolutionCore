@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, PageEvent } from '@angular/material';
-import { ListProductEntity, ListProductResponse } from 'src/app/agent/Admin/Response/ListProductResponse';
+import { ListProductEntity, ListProductResponse } from 'src/app/agent/Product/Response/ListProductResponse';
 import { CoreService } from 'src/app/services/core.service';
 import { ModalProductComponent } from './modal-product/modal-product.component';
 
@@ -90,7 +90,7 @@ export class AdministradorComponent implements OnInit {
     }
  
 
-    update(product){
+    update(product : ListProductEntity){
       console.log(product)
 
       const modal = this.dialog.open(ModalProductComponent, 

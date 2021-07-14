@@ -1,8 +1,9 @@
 import { stringify } from '@angular/compiler/src/util';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MatSnackBar } from '@angular/material';
+import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { AddProductRequest } from 'src/app/agent/Product/Request/AddProductRequest';
+import { ListProductEntity } from 'src/app/agent/Product/Response/ListProductResponse';
 import { CoreService } from 'src/app/services/core.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class ModalProductComponent implements OnInit {
   constructor(private formbuilder: FormBuilder,
     private coreService: CoreService,
     private modalProduct : MatDialogRef<ModalProductComponent>,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) private data: ListProductEntity
 
     ) {
 
@@ -24,7 +26,16 @@ export class ModalProductComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  this.formGroupProduct.get('name').setValue(this.data.name);
+  this.formGroupProduct.get('precio').setValue(this.data.price);
+  this.formGroupProduct.get('detalle').setValue(this.data.description);
+  this.imagen='images/'+ this.data.photo;
+
   }
+
+
+
   fileName: any = '';
   CreateForm(): FormGroup {
     return this.formbuilder.group({
@@ -56,6 +67,8 @@ export class ModalProductComponent implements OnInit {
         this.imagen = event.target.result;
       }
       console.log("archivo " + event.target.files[0].name.toString())
+
+      //coloca el nombre al inputFile
       document.getElementById('fichero').innerHTML = event.target.files[0].name.toString();
     }
   };
@@ -90,4 +103,9 @@ export class ModalProductComponent implements OnInit {
     }
   };
 
+
+  closeModal(){
+
+    this.modalProduct.close();
+  }
 }

@@ -1,8 +1,8 @@
    export class ListUsuarioResponse {
-  listUsuarios: ListUsuarioResult[];
+  listUsuarios: ListUsuarioEntity[];
 }
 
-export class  ListUsuarioResult {
+export class  ListUsuarioEntity {
   usuarioId: number;
   nombreCompleto: string;
   credencial: string;
