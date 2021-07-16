@@ -84,7 +84,7 @@ export class AdministradorComponent implements OnInit {
 
   inputChange(value) {
 
-      this.ListProductToShow = this.viewModel.listProduct.filter(f => {
+      this.ListProductToShow = this.viewModel.listProduct.filter(f =>  {
         return f.name.includes(value)
       });
     }
