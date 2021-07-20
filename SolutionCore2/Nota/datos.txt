@@ -1,0 +1,115 @@
+﻿
+
+
+select @@SERVERNAME
+
+create dataBase Core
+go
+use Core
+go
+Create table Category(
+CategoryId int identity(1,1) not null,
+Name Varchar(200),
+Description varchar(200)
+)
+
+alter table Category add constraint pk_category primary key (CategoryId)
+
+go 
+
+
+CREATE TABLE [dbo].[Usuario](
+	[UsuarioId] [int] IDENTITY(1,1) NOT NULL,
+	[NombreCompleto] [nvarchar](200) NULL,
+	[Credencial] [nvarchar](200) NULL,
+	[Clave] [nvarchar](200) NULL,
+	[Rol] [nvarchar](200) NULL,
+ CONSTRAINT [PK_Usuario] PRIMARY KEY ([UsuarioId] ASC)
+ ) 
+
+
+-------------------------------------------------------------------------
+entity framework core power tools
+
+https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools
+
+---------------------------------------------------------------------------
+conexion 
+services.AddDbContext<CoreContext>(option => option.UseSqlServer(Configuration["ConnectionStrings:SpartacusContext"])
+--------------------------------------------------------------------------------------------------------
+
+---AWS---------------------------------------------------------------
+dotnet --version 
+
+**install entity framework core cli
+dotnet tool install --global dotnet-ef
+
+install extension AWS Toolkit for visual Studio
+
+----------------------------------------------------
+
+Descargar .Net Core para IIS:
+
+https://www.patreon.com/powerhdeleon
+https://dotnet.microsoft.com/download/dotnet-core/thank-you/runtime-aspnetcore-2.2.5-windows-hosting-bundle-installer
+
+-------------------------------------
+
+
+swagger
+https://thecodebuzz.com/resolved-failed-to-load-api-definition-undefined-swagger-v1-swagger-json/
+swashbuckle.ApiNetCore
+
+----------------------------------
+
+ng build --prod --aot --build-optimizer
+
+ng g m authentication --routing=true
+
+ng g g services/security/SecurityGuard
+
+Loader
+npm i --save ngx-ui-loader@8.0.0
+https://tdev.app/ngx-ui-loader
+------------------------------------------------
+
+Get-Help about_EntityFrameworkCore
+Update-Database
+
+------------------------------------------------
+
+https://ocelot.readthedocs.io/en/latest/features/routing.html
+
+------------------------------------------------------
+
+ng g component foo/fooList --module=foo.module.ts
+
+
+---------------------------
+
+PS C:\Windows\system32> get-executionPolicy
+AllSigned
+PS C:\Windows\system32> set-executionPolicy Unrestricted
+-------------------
+
+C:\Windows\System32\drivers\etc
+
+hosts
+
+======
+ 
+$cert = New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dns weather.io
+$cert
+$pwd = ConvertTo-SecureString -String "pa55w0rd!" -Force -AsPlainText
+$certPath = "Cert:\localmachine\my\$($cert.Thumbprint)"
+
+Export-PfxCertificate -Cert $certpath -FilePath d:\weather.pfx -Password $pwd
+
+
+
+   <UserSecretsId>28c108b1-e811-4344-8025-7ecc2c4cf42d</UserSecretsId> 
+   dotnet user-secrets set "CertPassword" "pa55w0rd!"
+
+---------------------------
+Conveyor by Keyoti
+https://marketplace.visualstudio.com/items?itemName=vs-publisher-1448185.ConveyorbyKeyoti
