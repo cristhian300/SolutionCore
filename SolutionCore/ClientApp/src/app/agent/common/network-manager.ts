@@ -13,16 +13,16 @@ export class NetworkManager {
    */
   constructor(private HttpClient: HttpClient,
     private snackBar: MatSnackBar
-    
+
     ) {
 
 
   }
 
   post(parameter: PostParameter): Observable<any> {
-     
-     const headers = new HttpHeaders({ 'content-type': 'application/json' });
-     
+
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
     const options = { headers: headers };
     const parameters = parameter.RequestParameter
     //create recive el valor del servicio llamado
@@ -55,28 +55,28 @@ export class NetworkManager {
     var rpt = Observable.create(observer =>{
       this.HttpClient.post<any>(`${parameter.PathOperation}`,data
      ,options)
-     .subscribe( 
-       response =>{ 
-         
+     .subscribe(
+       response =>{
+
         try {
-          observer.next(response) 
+          observer.next(response)
         } catch (e) {
-          
+
           this.snackBar.open('catch '+e.message, 'close', { duration: 5000, panelClass: ['error-snackbar'] });
           observer.error(e);
         }},
- 
+
         httpError => {
           this.snackBar.open('Observable Ha ocurrido un error al tratar de procesar la acción requerida.', 'close', { duration: 5000, panelClass: ['error-snackbar'] });
           observer.error(httpError);
         }
 
        );
-    })   
-    
-    
+    })
+
+
     return  rpt
-    
+
    /* Observable.create(observer => {
       this.HttpClient.post<any>(`${parameter.PathOperation}`,JSON.stringify(parameters)
         , options)
