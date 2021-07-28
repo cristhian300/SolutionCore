@@ -5,7 +5,8 @@ export class UpdateUsuarioRequest{
     nombreCompleto : string
     credencial: string
     clave: string
-    
+
     deleted: boolean
+
     roleId?: number
 }
