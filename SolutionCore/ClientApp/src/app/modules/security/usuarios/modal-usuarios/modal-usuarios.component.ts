@@ -130,6 +130,7 @@ export class ModalUsuariosComponent implements OnInit {
     params.roleId = parseInt(this.formGroupD.get("rol").value)
     params.deleted = this.formGroupD.get("isDeleted").value
 
+
     this.coreService.AddUsuario(params).subscribe(
       response => {
 
