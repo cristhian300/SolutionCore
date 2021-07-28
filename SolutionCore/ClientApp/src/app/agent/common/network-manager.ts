@@ -34,7 +34,7 @@ export class NetworkManager {
           response => {
             try {
               observer.next(response)
-            } catch (error) {
+            } catch ( error) {
 
               console.log("error post " + error)
               observer.error(error);
