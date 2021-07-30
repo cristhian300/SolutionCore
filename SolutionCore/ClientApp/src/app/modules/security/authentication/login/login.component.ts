@@ -1,7 +1,8 @@
+import { JsonpClientBackend } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
- 
+
 import { Router } from '@angular/router';
 import { GetTokenRequest } from 'src/app/agent/Authentication/request/GetTokenRequest';
 import { CoreService } from 'src/app/services/core.service';
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
 
 
   constructor(
-   
+
     private router: Router,
     private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-  
+
   }
 
   login() {
@@ -56,23 +57,32 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login( param ).subscribe(
       response => {
-        const successLogin = response.token 
+        const successLogin = response.token
         if (successLogin) {
-    
-
           console.log( "Token "+  response.token);
           localStorage.setItem("User", JSON.stringify(response.token));
           this.router.navigateByUrl("/usuarios").then();
 
+          let objecto = {
+
+            codigo : 1,
+            nombres : "cristhian , curiñaupa"
+          }
+
+
+
+          const value = !(objecto) ? "" : typeof objecto === "object" ? JSON.stringify(objecto) :objecto;
+
+          localStorage.setItem("valore", btoa(value))   
 
         } else {
-      
+
           this.snackBar.open(response.token, 'close', { duration: 3000 });
         }
         this.isLoading = false;
       },
       () => {
-      
+
       });
 
   }

@@ -10,9 +10,9 @@ import { tap } from 'rxjs/operators';
 export class InterceptorService implements HttpInterceptor {
 
   constructor(private router: Router,) { }
-  intercept(
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
-    req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    
 
 
 

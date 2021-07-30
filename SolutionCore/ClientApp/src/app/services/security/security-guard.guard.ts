@@ -11,8 +11,8 @@ export class SecurityGuardGuard implements CanActivate, CanActivateChild, CanLoa
  *
  */
 constructor( private router:Router) {
-  
-  
+
+
 }
 
   canActivate(
@@ -20,13 +20,15 @@ constructor( private router:Router) {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
 
-     console.log("ENtro al guard "+state.url); 
+     console.log("ENtro al guard "+state.url);
 
   if (!localStorage.getItem("User")) {
 
-    console.log("ENtro al if guard "+localStorage.getItem("User")); 
+   // console.log("ENtro al if guard "+localStorage.getItem("User"));
+    console.log( "validacion de tocker no encontrada retorna a login");
+   // this.router.navigate(["/log"]);
 
-    this.router.navigate(["/log"]);
+    this.router.navigateByUrl("/log").then();
     return false
   }
 
@@ -40,6 +42,7 @@ constructor( private router:Router) {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return true;
   }
+
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
