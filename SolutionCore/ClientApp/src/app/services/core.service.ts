@@ -17,17 +17,17 @@ import { ListProductResponse } from '../agent/Product/Response/ListProductRespon
 import { AddProductResponse } from '../agent/Product/Response/AddProductResponse';
 import { AddProductRequest } from '../agent/Product/Request/AddProductRequest';
 
- 
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoreService {
- 
+
 ruta:string ;
 storage: Storage ;
 
-  constructor(private http:HttpClient ,@Inject('BASE_URL') baseUrl: string ,private networkManager:NetworkManager) { 
+  constructor(private http:HttpClient ,@Inject('BASE_URL') baseUrl: string ,private networkManager:NetworkManager) {
 
 this.ruta = baseUrl
 console.log( "BASE_URL " +this.ruta);
@@ -57,17 +57,17 @@ ListRoles( parameter: ListRolesRequest):Observable<ListRoleResponse>{
   parameters.PathOperation=  'api/Auth/ListRoles'
   parameters.RequestParameter=parameter
   return this.networkManager.post(parameters)  as Observable<ListRoleResponse>;
- 
+
  }
- 
- 
+
+
 
 postRespuesta(parameterr: any): Observable<any> {
   const headers = new HttpHeaders({ 'content-type': 'application/json' });
   const options = { headers: headers };
   const parameters = JSON.stringify(parameterr)
   return this.http.post<any>(  'api/Auth/ListUsuario',  parameters   , options);
- 
+
 }
 
 AddUsuario( parameter: AddUsuarioRequest):Observable<AddUsuarioResponse>{
@@ -104,13 +104,13 @@ login(parameter:GetTokenRequest): Observable<GetTokenResponse> {
         observer.next(error);
     });
 
-    
-    
+
+
   });
 
 }
 
- /*Product*/ 
+ /*Product*/
 public ListProduct(parameter:any = null){
 
   const parameters = new PostParameter()
@@ -129,7 +129,7 @@ public AddProduct(parameter:AddProductRequest = null){
 
   const formData = new FormData();
   formData.append('files', parameter.files);
-  //formData.append('ScenarioId', request.Parameters.ScenarioId.toString());
+
   formData.append('Name', parameter.Name);
   formData.append('Description', parameter.Description);
   formData.append('Price', parameter.Price.toString());

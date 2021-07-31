@@ -69,11 +69,9 @@ export class LoginComponent implements OnInit {
             nombres : "cristhian , curiñaupa"
           }
 
-
-
           const value = !(objecto) ? "" : typeof objecto === "object" ? JSON.stringify(objecto) :objecto;
 
-          localStorage.setItem("valore", btoa(value))   
+          localStorage.setItem("valore", btoa(value))
 
         } else {
 

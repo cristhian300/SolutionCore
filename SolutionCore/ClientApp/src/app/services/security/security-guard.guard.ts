@@ -24,9 +24,9 @@ constructor( private router:Router) {
 
   if (!localStorage.getItem("User")) {
 
-   // console.log("ENtro al if guard "+localStorage.getItem("User"));
+
     console.log( "validacion de tocker no encontrada retorna a login");
-   // this.router.navigate(["/log"]);
+
 
     this.router.navigateByUrl("/log").then();
     return false
