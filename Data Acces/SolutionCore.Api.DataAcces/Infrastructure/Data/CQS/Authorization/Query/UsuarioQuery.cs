@@ -44,7 +44,7 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
                             {
                                 UsuarioId = u.UsuarioId,
                                 NombreCompleto = u.NombreCompleto,
-                                Credencial=u.Credencial
+                                //Credencial=u.Credencial
 
                             }).FirstOrDefault();
 
@@ -66,7 +66,7 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
                                 UsuarioId = u.UsuarioId,
                                 NombreCompleto = u.NombreCompleto,
                                 Rol = r.Description,
-                                Credencial=u.Credencial,
+                                //Credencial=u.Credencial,
                                 RoleId=u.RoleId,
                                 Deleted  =u.Deleted,
                                 Clave = u.Clave
@@ -101,7 +101,7 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
             Usuario usuario = new Usuario
             {
                 NombreCompleto = parameter.NombreCompleto,
-                Credencial = parameter.Credencial,
+                //Credencial = parameter.Credencial,
                 Clave=parameter.Clave,
                 RoleId=parameter.RoleId,
                 Deleted=false
@@ -125,7 +125,7 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
             {
                 UsuarioId = parameter.UsuarioId,
                 NombreCompleto = parameter.NombreCompleto,
-                Credencial = parameter.Credencial,
+                //Credencial = parameter.Credencial,
                 Clave = parameter.Clave,
                 RoleId = parameter.RoleId,
                 Deleted = false
