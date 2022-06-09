@@ -14,6 +14,7 @@ using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query;
 using SolutionCore.Application.Application.Product;
 using SolutionCore.Application.Contracts.Contract.Product;
+using SolutionCore.BackGroundService;
 using SolutionCore.Contract;
 using SolutionCore.Distributed_Processes.Dominio.Application;
 using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data;
@@ -92,6 +93,9 @@ namespace SolutionCore
             services.AddTransient<IProductQuery, ProductQuery>();
             services.AddTransient<IProductContract, ProductApplication>();
 
+            //services.AddSingleton<IHostedService, CronJobService>();
+            //services.AddScoped<CronJobService>();
+
 
             services.AddUnitOfWork<CoreContext>();
 
@@ -103,6 +107,10 @@ namespace SolutionCore
 
             //estrae informacion AppSetting
             services.Configure<GetConfigurationResponse>(Configuration.GetSection("Services"));
+
+
+            ////services.AddSingleton<IHostedService, CronJobService>();
+            //services.AddScoped<CronJobService>();
         }
 
 

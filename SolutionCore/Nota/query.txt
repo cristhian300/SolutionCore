@@ -60,3 +60,5 @@ CREATE TABLE  dbo.Product (
 	Deleted bit NOT NULL,
 	constraint PK_Product primary key (ProductId)
 );
+
+https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-6.0

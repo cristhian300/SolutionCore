@@ -7,6 +7,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+ 
+using System.Threading;
+using Microsoft.Extensions.DependencyInjection;
+ 
+using System.IO;
+ 
+ 
+using Microsoft.AspNetCore;
+using SolutionCore.BackGroundService;
+
 namespace SolutionCore
 {
     public class Program
@@ -20,7 +30,18 @@ namespace SolutionCore
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
+            .ConfigureLogging(logging =>
+            {
+                logging.ClearProviders();
+                logging.AddConsole();
+            })
 
+            .ConfigureLogging((context,loggin)=> {
+                loggin.ClearProviders();
+                loggin.AddConfiguration(context.Configuration.GetSection("Logging"));
+
+                loggin.AddConsole();
+            })
 
              .ConfigureAppConfiguration((hostingContext, config) =>
              {
@@ -37,7 +58,9 @@ namespace SolutionCore
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseStartup<Startup>();
-            });
+            }).ConfigureServices((hostContext, services) =>
+                 services.AddHostedService<CronJobService>()
+               );
 
     }
 }
