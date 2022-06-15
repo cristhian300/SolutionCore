@@ -1,12 +1,12 @@
 {
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/api/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamPathTemplate": "/api/Auth/{everything}",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44342
+          "Port": 25782
         }
       ],
       "UpstreamPathTemplate": "/api/employee/{everything}",

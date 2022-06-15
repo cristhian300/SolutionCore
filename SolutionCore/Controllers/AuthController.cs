@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using SolutionCore.Contract;
 using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
@@ -29,6 +30,18 @@ namespace SolutionCore.Controllers
         // GET: api/Auth
 
         private IUsuarioContract _IUsuarioContract;
+
+        public IConfiguration _Configuration { get; }
+
+       
+
+        public AuthController(IUsuarioContract IUsuarioContract, IConfiguration configuration)
+        {
+
+            _IUsuarioContract = IUsuarioContract;
+            _Configuration = configuration;
+        }
+
         [AllowAnonymous]
         [HttpGet]
         public string MetAuth()
@@ -48,7 +61,7 @@ namespace SolutionCore.Controllers
                 return BadRequest("Algo Salio Mal");
             }
 
-            if (user.UserName == "flor" && user.Password == "flor")
+            if (user.UserName == "cristhian" && user.Password == "cristhian")
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"));
                 var signigCredencial = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -68,11 +81,7 @@ namespace SolutionCore.Controllers
             return Unauthorized();
         }
 
-        public AuthController(IUsuarioContract IUsuarioContract)
-        {
-
-            _IUsuarioContract = IUsuarioContract;
-        }
+      
 
        
        [HttpPost]
@@ -113,6 +122,16 @@ namespace SolutionCore.Controllers
         public async Task<UpdateUsuarioResponse> UpdateUsuario(UpdateUsuarioRequest parameter)
         {
             return await _IUsuarioContract.UpdateUsuario(parameter);
+
+        }
+
+        [AllowAnonymous]//No necesita Token
+        [HttpGet]
+        
+        public    Dictionary<string,string>  GetConfig()
+        {
+            return   _Configuration.GetSection("Demo").GetChildren()
+                .ToDictionary(a=> a.Key , a=> a.Value);
 
         }
     }

@@ -44,7 +44,7 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
                             {
                                 UsuarioId = u.UsuarioId,
                                 NombreCompleto = u.NombreCompleto,
-                                Credencial=u.Credencial
+                                //Credencial=u.Credencial
 
                             }).FirstOrDefault();
 
@@ -54,25 +54,36 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
 
         public ListUsuarioResponse ListUsuario(ListUsuarioRequest parameter)
         {
-            var _usuario = (from u in _CoreContext.DbContext.Usuarios
-                               join  r in  _CoreContext.DbContext.RolesUsers
-                               on u.RoleId equals r.RoleId
-                            orderby r.RoleId   
-                            where r.Deleted==false 
-                            //&& u.Credencial == parameter.Credencial
-                             
-                            select new ListUsuarioQueryEntity
-                            {
-                                UsuarioId = u.UsuarioId,
-                                NombreCompleto = u.NombreCompleto,
-                                Rol = r.Description,
-                                Credencial=u.Credencial,
-                                RoleId=u.RoleId,
-                                Deleted  =u.Deleted,
-                                Clave = u.Clave
-                            }).ToList();
 
-            return new ListUsuarioResponse { ListUsuarios = _usuario };
+            try
+            {
+                var _usuario = (from u in _CoreContext.DbContext.Usuarios
+                                join r in _CoreContext.DbContext.RolesUsers
+                                on u.RoleId equals r.RoleId
+                                orderby r.RoleId
+                                where r.Deleted == false
+                                //&& u.Credencial == parameter.Credencial
+
+                                select new ListUsuarioQueryEntity
+                                {
+                                    UsuarioId = u.UsuarioId,
+                                    NombreCompleto = u.NombreCompleto,
+                                    Rol = r.Description,
+                                    //Credencial=u.Credencial,
+                                    RoleId = u.RoleId,
+                                    Deleted = u.Deleted,
+                                    Clave = u.Clave
+                                }
+                                         ).ToList();
+
+                return new ListUsuarioResponse { ListUsuarios = _usuario };
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+         
         }
 
         public ListRolesResponse ListRoles(ListRolesRequest parameter)
@@ -101,7 +112,7 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
             Usuario usuario = new Usuario
             {
                 NombreCompleto = parameter.NombreCompleto,
-                Credencial = parameter.Credencial,
+                //Credencial = parameter.Credencial,
                 Clave=parameter.Clave,
                 RoleId=parameter.RoleId,
                 Deleted=false
@@ -125,7 +136,7 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
             {
                 UsuarioId = parameter.UsuarioId,
                 NombreCompleto = parameter.NombreCompleto,
-                Credencial = parameter.Credencial,
+                //Credencial = parameter.Credencial,
                 Clave = parameter.Clave,
                 RoleId = parameter.RoleId,
                 Deleted = false

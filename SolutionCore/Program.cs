@@ -47,9 +47,11 @@ namespace SolutionCore
              {
                  config
                      .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-                     .AddJsonFile("appsettings.json", true, true)
-                     .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true,
-                         true)
+                     //.AddJsonFile("appsettings.json", true, true)
+                     .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json"
+                     //, true,
+                     //    true
+                         )
 
                      .AddEnvironmentVariables();
              })

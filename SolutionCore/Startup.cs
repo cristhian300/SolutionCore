@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query;
 using SolutionCore.Application.Application.Product;
@@ -75,12 +76,12 @@ namespace SolutionCore
 
             services.AddControllersWithViews();
             services.AddControllers();
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyTestService", Version = "v1", });
-            //});
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyTestService", Version = "v1", });
+            });
 
-
+            
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -138,6 +139,7 @@ namespace SolutionCore
             //{
             //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TestService");
             //});
+           
             app.UseHttpsRedirection();
 
 
