@@ -56,80 +56,84 @@ namespace SolutionCore.Controllers
 
         [HttpPost]
         //public async Task<ListProductResponse> AddProduct([FromForm] List<IFormFile> files, [FromBody] ListProductRequest parameter
-        public async Task<ActionResult> AddProduct([FromForm] AddProductRequest parameter )   
+        public async Task<AddProductResponse> AddProduct([FromForm] AddProductRequest parameter )   
         {
-            var x = Request.Form.Files[0];
+            return await _IProductContract.AddProduct(parameter);
 
-            List<Product> lstProduct = new List<Product>();
-            try
-            {
-            if (parameter.files.Count >= 1) {
+            //     var x = Request.Form.Files[0];
 
-                if( !Directory.Exists(_env.WebRootPath + "\\images\\"))
-                {
-                    Directory.CreateDirectory(_env.WebRootPath + "\\images\\");
-                }
+            //List<Product> lstProduct = new List<Product>();
+            //try
+            //{
+            //    if (parameter.files.Count >= 1)
+            //    {
 
-                    foreach (var file in parameter.files)
-                {
-                     var type= file.ContentType.Split('/') ;
+            //        if (!Directory.Exists(_env.WebRootPath + "\\images\\"))
+            //        {
+            //            Directory.CreateDirectory(_env.WebRootPath + "\\images\\");
+            //        }
 
-                    if (type[0] != "image") {
-                        throw new Exception("Solo se acepta archivos tipo imagenes");
-                    }
-             
-                    var path = Path.Combine(_env.WebRootPath, "images", file.FileName );
+            //        foreach (var file in parameter.files)
+            //        {
+            //            var type = file.ContentType.Split('/');
 
-                    using (Stream Stream = System.IO.File.Create(path))
-                    {
-                        //crear el archivo
-                         await   file.CopyToAsync(Stream);
-                         Stream.Flush();
-                    }
-                        /* detalle del archivo
-                        var tamañobyte = file.Length;
-                        var tamañoMegas =    tamañobyte / 1000000;
-                        var extension = Path.GetExtension(file.FileName).Substring(1);
-                        var nombre =  Path.GetFileNameWithoutExtension( file.FileName ) ;
-                        */
-                        //var directoryFiles = Directory.GetFiles("wwwroot/images");
+            //            if (type[0] != "image")
+            //            {
+            //                throw new Exception("Solo se acepta archivos tipo imagenes");
+            //            }
 
-                        //foreach (var item in directoryFiles)
-                        //{
-                        //}
+            //            var path = Path.Combine(_env.WebRootPath, "images", file.FileName);
 
-                       var imag = $"{Request.Scheme}:{Request.Host}/images/{file.FileName }";
-  
-                        Product product = new Product
-                       {
-                        Name = parameter.Name,
-                        Description = parameter.Description,
-                        Price=parameter.Price,
-                        Photo = file.FileName
+            //            using (Stream Stream = System.IO.File.Create(path))
+            //            {
+            //                //crear el archivo
+            //                await file.CopyToAsync(Stream);
+            //                Stream.Flush();
+            //            }
+            //            /* detalle del archivo
+            //            var tamañobyte = file.Length;
+            //            var tamañoMegas =    tamañobyte / 1000000;
+            //            var extension = Path.GetExtension(file.FileName).Substring(1);
+            //            var nombre =  Path.GetFileNameWithoutExtension( file.FileName ) ;
+            //            */
+            //            //var directoryFiles = Directory.GetFiles("wwwroot/images");
 
-                        };
+            //            //foreach (var item in directoryFiles)
+            //            //{
+            //            //}
 
-                    lstProduct.Add(product);
-                
-                }
-                _CoreContext.DbContext.Products.AddRange(lstProduct);
-                _CoreContext.SaveChanges();
+            //            var imag = $"{Request.Scheme}:{Request.Host}/images/{file.FileName }";
 
-            }
+            //            Product product = new Product
+            //            {
+            //                Name = parameter.Name,
+            //                Description = parameter.Description,
+            //                Price = parameter.Price,
+            //                Photo = file.FileName
 
-            
-            //return await _IProductContract.ListProduct(parameter);
-            return Ok(lstProduct);
+            //            };
 
-            }
-            catch (Exception e)
-            {
+            //            lstProduct.Add(product);
 
-                throw new Exception(e.Message);
-            }
+            //        }
+            //        _CoreContext.DbContext.Products.AddRange(lstProduct);
+            //        _CoreContext.SaveChanges();
+
+            //    }
+
+
+            //    //return await _IProductContract.ListProduct(parameter);
+            //    return Ok(lstProduct);
+
+            //}
+            //catch (Exception e)
+            //{
+
+            //    throw new Exception(e.Message);
+            //}
         }
 
-        
+
 
     }
 }

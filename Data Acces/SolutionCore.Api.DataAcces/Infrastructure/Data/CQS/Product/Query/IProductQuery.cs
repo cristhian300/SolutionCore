@@ -14,5 +14,6 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
   public  interface IProductQuery
     {
         ListProductResponse ListProduct(ListProductRequest parameter);
+        AddProductResponse AddProduct(AddProductRequest parameter);
     }
 }

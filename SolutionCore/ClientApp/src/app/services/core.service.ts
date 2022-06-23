@@ -126,13 +126,18 @@ public AddProduct(parameter:AddProductRequest = null){
   parameters.PathOperation=   'api/Product/AddProduct'
   parameters.RequestParameter=parameter
 
-
   const formData = new FormData();
-  formData.append('files', parameter.files);
+  for (const key in parameter) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (parameter .hasOwnProperty(key)) {
+      formData.append(key, parameter[key]);
+    }
+  }
 
-  formData.append('Name', parameter.Name);
-  formData.append('Description', parameter.Description);
-  formData.append('Price', parameter.Price.toString());
+  // formData.append('files', parameter.files);
+  // formData.append('Name', parameter.Name);
+  // formData.append('Description', parameter.Description);
+  // formData.append('Price', parameter.Price.toString());
 
 
   return this.networkManager.postFile(parameters,formData)  as Observable<AddProductResponse>;

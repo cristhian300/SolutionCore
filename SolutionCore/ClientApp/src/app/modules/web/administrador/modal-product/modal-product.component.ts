@@ -44,7 +44,7 @@ export class ModalProductComponent implements OnInit {
       detalle: ["", [Validators.required]],
       // imageInput: [this.fileName, Validators.required]
       //  ,
-      // archivo: [this.fileName, [Validators.required]]  
+      // archivo: [this.fileName, [Validators.required]]
     })
 
   }
@@ -100,12 +100,13 @@ export class ModalProductComponent implements OnInit {
        () => { }
 
       );
+
+
     }
   };
 
 
   closeModal(){
-
     this.modalProduct.close();
   }
 }

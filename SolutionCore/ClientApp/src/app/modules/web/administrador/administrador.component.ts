@@ -4,6 +4,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, PageEvent } from '@angular/material';
 import { ListProductEntity, ListProductResponse } from 'src/app/agent/Product/Response/ListProductResponse';
 import { CoreService } from 'src/app/services/core.service';
+import { ModalDeleteProductComponent } from './modal-delete-product/modal-delete-product.component';
 import { ModalProductComponent } from './modal-product/modal-product.component';
 
 @Component({
@@ -29,17 +30,17 @@ export class AdministradorComponent implements OnInit {
     public totalSize = 0;
 
   ngOnInit() {
-    
+
     this.ListadoProducto()
-    
+
 
   }
 
 
   ListadoProducto() {
 
-    //   var parameters = { 
-    //     MainUrl:"bb" 
+    //   var parameters = {
+    //     MainUrl:"bb"
     //  };
     // parameters
     this.coreService.ListProduct().subscribe(
@@ -50,7 +51,7 @@ export class AdministradorComponent implements OnInit {
 
         this.totalSize = this.viewModel.listProduct.length;
         this.iterator();
-        
+
       }
 
     )
@@ -61,7 +62,7 @@ export class AdministradorComponent implements OnInit {
     this.pageSize = e.pageSize;
     this.iterator();
   }
-  
+
   private iterator() {
     const end = (this.currentPage + 1) * this.pageSize;
     const start = this.currentPage * this.pageSize;
@@ -72,7 +73,10 @@ export class AdministradorComponent implements OnInit {
 
   CrearProduct() {
 
-    const modal = this.dialog.open(ModalProductComponent, { width: '90%' })
+    const modal = this.dialog.open(ModalProductComponent, {
+      width: '90%',
+      data:1
+    })
 
 
     modal.afterClosed().subscribe(result => {
@@ -88,12 +92,12 @@ export class AdministradorComponent implements OnInit {
         return f.name.includes(value)
       });
     }
- 
+
 
     update(product : ListProductEntity){
       console.log(product)
 
-      const modal = this.dialog.open(ModalProductComponent, 
+      const modal = this.dialog.open(ModalProductComponent,
         { width: '90%' ,
           data:product
       })
@@ -106,4 +110,12 @@ export class AdministradorComponent implements OnInit {
 
     }
 
+    delete(product : ListProductEntity){
+      const modal = this.dialog.open(ModalDeleteProductComponent,
+        { width: '90%' ,
+          data:product
+      })
+
+
+    }
 }

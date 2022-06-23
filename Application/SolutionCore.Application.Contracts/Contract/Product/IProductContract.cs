@@ -12,5 +12,7 @@ namespace SolutionCore.Application.Contracts.Contract.Product
     {
 
         Task<ListProductResponse> ListProduct(ListProductRequest parameter);
+
+        Task<AddProductResponse> AddProduct(AddProductRequest parameter);
     }
 }
