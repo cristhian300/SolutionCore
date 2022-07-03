@@ -49,7 +49,7 @@ export class NetworkManager {
 
     const headers = new HttpHeaders().set( 'Accept', 'application/json');
     const options = { headers: headers };
-    const parameters = parameter.RequestParameter
+    // const parameters = parameter.RequestParameter
     //create recive el valor del servicio llamado
 
     var rpt = Observable.create(observer =>{

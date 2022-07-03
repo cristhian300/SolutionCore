@@ -95,7 +95,17 @@ namespace SolutionCore.Controllers
         [HttpPost]
         public async Task<ListUsuarioResponse> ListUsuario([FromBody]  ListUsuarioRequest parameter)
         {
-            return await _IUsuarioContract.ListUsuario(parameter);
+
+            try
+            {
+       return await _IUsuarioContract.ListUsuario(parameter);
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+            
 
         }
 

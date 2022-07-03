@@ -1,8 +1,8 @@
 import { stringify } from '@angular/compiler/src/util';
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
-import { AddProductRequest } from 'src/app/agent/Product/Request/AddProductRequest';
+import { AddProductRequest, EditProductRequest } from 'src/app/agent/Product/Request/AddProductRequest';
 import { ListProductEntity } from 'src/app/agent/Product/Response/ListProductResponse';
 import { CoreService } from 'src/app/services/core.service';
 
@@ -11,26 +11,43 @@ import { CoreService } from 'src/app/services/core.service';
   templateUrl: './modal-product.component.html',
   styleUrls: ['./modal-product.component.css']
 })
-export class ModalProductComponent implements OnInit {
+export class ModalProductComponent implements OnInit   {
+  @ViewChild("foto", { static: false }) foto: ElementRef;
+  @ViewChild("image", { static: false }) image: ElementRef;
+  @ViewChild("imgProduct", { static: false }) imgProduct: ElementRef;
+
+
   formGroupProduct: FormGroup;
+  title: string;
 
   constructor(private formbuilder: FormBuilder,
     private coreService: CoreService,
-    private modalProduct : MatDialogRef<ModalProductComponent>,
+    private modalProduct: MatDialogRef<ModalProductComponent>,
     private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) private data: ListProductEntity
 
-    ) {
+  ) {
 
     this.formGroupProduct = this.CreateForm();
+    if (data) {
+      this.title = "Editar Productos"
+    }
+    else {
+      this.title = "Registrar Productos"
+    }
   }
 
   ngOnInit() {
 
-  this.formGroupProduct.get('name').setValue(this.data.name);
-  this.formGroupProduct.get('precio').setValue(this.data.price);
-  this.formGroupProduct.get('detalle').setValue(this.data.description);
-  this.imagen='images/'+ this.data.photo;
+
+    this.formGroupProduct.get('name').setValue(this.data.name);
+    this.formGroupProduct.get('precio').setValue(this.data.price);
+    this.formGroupProduct.get('detalle').setValue(this.data.description);
+    this.imagen = 'images/' + this.data.photo;
+
+  // console.log(this.foto.nativeElement.files);
+    //  console.log(this.imgProduct.nativeElement);
+
 
   }
 
@@ -63,7 +80,7 @@ export class ModalProductComponent implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(this.fileData);
       reader.onload = (event: any) => {
-        // you can perform an action with readed data here
+      // console.log("detalle reade resul",reader.result);
         this.imagen = event.target.result;
       }
       console.log("archivo " + event.target.files[0].name.toString())
@@ -75,38 +92,67 @@ export class ModalProductComponent implements OnInit {
 
 
   CargarProduct() {
-
     if (this.formGroupProduct.valid) {
-      let request = new AddProductRequest()
+      if (!this.data) {
+        this.insertar();
+      } else {
+        console.log("detalle src",this.imgProduct.nativeElement.src);
+        console.log("detalle src2",this.imgProduct.nativeElement);
+          this.update();
 
-      request.files = this.fileData;
-      request.Name = this.formGroupProduct.get("name").value;
-      request.Price = this.formGroupProduct.get("precio").value;
-      request.Description = this.formGroupProduct.get("detalle").value;
-      console.log(this.formGroupProduct)
-      console.log(request)
-
-
-      if (!request.files) {
-        this.snackBar.open('No existe archivo cargado', 'close', { duration: 5000, panelClass: ['error-snackbar'] });
-        return
       }
-
-      this.coreService.AddProduct(request).subscribe(
-      response =>{
-        this.modalProduct.close()
-      },
-       error =>{},
-       () => { }
-
-      );
-
-
     }
   };
 
+  insertar() {
+    let request = new AddProductRequest()
 
-  closeModal(){
+    request.files = this.fileData;
+    request.Name = this.formGroupProduct.get("name").value;
+    request.Price = this.formGroupProduct.get("precio").value;
+    request.Description = this.formGroupProduct.get("detalle").value;
+    // console.log(this.formGroupProduct)
+    console.log(request)
+
+
+    if (!request.files) {
+      this.snackBar.open('No existe archivo cargado', 'close', { duration: 5000, panelClass: ['error-snackbar'] });
+      return
+    }
+
+    this.coreService.AddProduct(request).subscribe(
+      response => {
+        this.modalProduct.close()
+      },
+      error => { },
+      () => { }
+
+    );
+
+  }
+
+
+  update() {
+
+    let request = new EditProductRequest()
+    request.ProductId = this.data.productId;
+    request.files = this.fileData;
+    request.Name = this.formGroupProduct.get("name").value;
+    request.Price = this.formGroupProduct.get("precio").value;
+    request.Description = this.formGroupProduct.get("detalle").value;
+
+    this.coreService.EditProduct(request).subscribe(
+      response => {
+        this.modalProduct.close()
+      },
+      error => { },
+      () => { }
+
+    );
+  }
+
+
+  closeModal() {
     this.modalProduct.close();
   }
 }

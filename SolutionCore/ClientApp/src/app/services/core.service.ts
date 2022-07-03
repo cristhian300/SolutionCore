@@ -15,7 +15,7 @@ import { GetTokenResponse } from '../agent/Authentication/response/GetTokenRespo
 import { environment } from 'src/environments/environment';
 import { ListProductResponse } from '../agent/Product/Response/ListProductResponse';
 import { AddProductResponse } from '../agent/Product/Response/AddProductResponse';
-import { AddProductRequest } from '../agent/Product/Request/AddProductRequest';
+import { AddProductRequest, EditProductRequest } from '../agent/Product/Request/AddProductRequest';
 
 
 
@@ -128,22 +128,29 @@ public AddProduct(parameter:AddProductRequest = null){
 
   const formData = new FormData();
   for (const key in parameter) {
-    // eslint-disable-next-line no-prototype-builtins
     if (parameter .hasOwnProperty(key)) {
       formData.append(key, parameter[key]);
     }
   }
 
-  // formData.append('files', parameter.files);
-  // formData.append('Name', parameter.Name);
-  // formData.append('Description', parameter.Description);
-  // formData.append('Price', parameter.Price.toString());
-
-
   return this.networkManager.postFile(parameters,formData)  as Observable<AddProductResponse>;
-
 }
 
 
+public EditProduct(parameter:EditProductRequest = null){
+
+  const parameters = new PostParameter()
+  parameters.PathOperation=   'api/Product/EditProduct'
+  parameters.RequestParameter=parameter
+
+  const formData = new FormData();
+  for (const key in parameter) {
+    if (parameter .hasOwnProperty(key)) {
+      formData.append(key, parameter[key]);
+    }
+  }
+
+  return this.networkManager.postFile(parameters,formData)  as Observable<AddProductResponse>;
+}
 
 }

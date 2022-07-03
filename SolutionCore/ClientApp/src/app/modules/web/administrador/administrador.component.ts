@@ -75,7 +75,7 @@ export class AdministradorComponent implements OnInit {
 
     const modal = this.dialog.open(ModalProductComponent, {
       width: '90%',
-      data:1
+
     })
 
 
@@ -103,10 +103,10 @@ export class AdministradorComponent implements OnInit {
       })
 
 
-      // modal.afterClosed().subscribe(result => {
-      //   console.log('The dialog was closed');
-      //   this.ListadoProducto();
-      // });
+      modal.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        this.ListadoProducto();
+      });
 
     }
 

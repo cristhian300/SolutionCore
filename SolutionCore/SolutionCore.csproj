@@ -34,14 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\images\defaul_pamplonera.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\images\defaul_pamplonera.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Application\SolutionCore.Application.Contracts\SolutionCore.Application.Contracts.csproj" />
     <ProjectReference Include="..\Application\SolutionCore.Application\SolutionCore.Application.csproj" />
     <ProjectReference Include="..\Data Acces\SolutionCore.Api.DataAcces\SolutionCore.Api.DataAcces.csproj" />

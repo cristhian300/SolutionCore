@@ -80,7 +80,7 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
             }
             catch (Exception e)
             {
-
+                
                 throw;
             }
          

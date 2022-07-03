@@ -3,36 +3,38 @@
 
 <div class="container" style=" text-align: end;">
     <mat-icon (click)="closeModal()"  style="cursor: pointer;font-size: 36px;">close</mat-icon>
+
+    <h1 style=" text-align: start;">{{title}}</h1>
 </div>
 
 
 <form [formGroup]="formGroupProduct">
 
- 
+
     <perfect-scrollbar style="width: 100%;height: 60vh">
         <div class="container">
 
             <div class="row">
                 <div class="col" style=" display: flex;justify-content: center;align-items: center;">
-                    <img style="width: 300px;height: 300px;" [src]="imagen" alt="">
+                    <img #imgProduct style="width: 300px;height: 300px;" [src]="imagen" alt="">
                 </div>
 
-                
+
             </div>
-        
+
             <div class="row">
                 <div class="col">
 
-                
+
                     <label id="fichero" class="subir" for="file-upload" style="width: 100%;">
                         Subir archivo
                         <div style="display: inline;padding-left: 10px;">
-                            <img style="width: 20px;height: 20px;" src="../../../../../assets/images/save.png" alt="">
+                            <img #image style="width: 20px;height: 20px;" src="../../../../../assets/images/save.png" alt="">
                         </div>
-                    <input required  id="file-upload" (change)="CargaImagen($event)" type="file" style='display: none;' />
+                    <input #foto required  id="file-upload" (change)="CargaImagen($event)" type="file" style='display: none;' />
                     <!-- <input type="hidden" name="fileHidden" formControlName="imageInput"/> Validation Field -->
                     </label>
-                    
+
 
                 </div>
             </div>
@@ -43,16 +45,16 @@
                         <mat-label>Nombre</mat-label>
                         <input matInput formControlName="name" type="text" required placeholder="Nombre Completo">
                     </mat-form-field>
-                   
+
 
                 </div>
                 <div class="col">
- 
+
                     <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
                         <mat-label>Precio</mat-label>
                         <input matInput formControlName="precio" type="number" required min="0" placeholder="Precio">
                     </mat-form-field>
- 
+
                 </div>
             </div>
 

@@ -61,7 +61,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       { path: '', component: HomeComponent, pathMatch: 'full' },
       // { path: 'counter', component: CounterComponent },
       // { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'usuarios', component: UsuariosComponent,canActivate:[SecurityGuardGuard] },
+      { path: 'usuarios', component: UsuariosComponent
+      // ,canActivate:[SecurityGuardGuard]
+    },
        { path: 'login', component: LoginComponent },
        { path: 'administrador', component: AdministradorComponent }
     ]),

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Arch.EntityFrameworkCore.UnitOfWork;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -46,11 +47,11 @@ namespace SolutionCore.Controllers
         [HttpPost]
         public async Task<ListProductResponse> ListProduct()
         {
-            //[FromBody] ListProductRequest parameter
-            ListProductRequest parameter = new ListProductRequest() ;
-            parameter.MainUrl=   $"{Request.Scheme}:{Request.Host}/images/";
-
-            return await _IProductContract.ListProduct(parameter);
+           
+                ListProductRequest parameter = new ListProductRequest();
+                parameter.MainUrl = $"{Request.Scheme}:{Request.Host}/images/";
+                return await _IProductContract.ListProduct(parameter);
+            
         }
 
 
@@ -134,6 +135,11 @@ namespace SolutionCore.Controllers
         }
 
 
-
+        [HttpPost]
+        
+        public async Task<EditProductResponse> EditProduct([FromForm] EditProductRequest parameter)
+        {
+            return await _IProductContract.EditProduct(parameter);
+        }
     }
 }

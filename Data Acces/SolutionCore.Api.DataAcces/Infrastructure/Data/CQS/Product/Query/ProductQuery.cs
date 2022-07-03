@@ -115,25 +115,41 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
         }
 
 
-        public AddProductResponse EditProduct(AddProductRequest parameter)
+        public EditProductResponse EditProduct(EditProductRequest parameter)
         {
-            List<Product> lstProduct = new List<Product>();
-            var lstfileNames = ValidationFiles(parameter.files);
 
-            foreach (var item in lstfileNames)
+            try
             {
-                Product product = new Product()
+                var Queryproduct = _CoreContext.DbContext.Products.FirstOrDefault(p =>
+                                                         p.ProductId == parameter.ProductId &&
+                                                         !p.Deleted);
+                if (Queryproduct != null)
                 {
-                    Name = parameter.Name,
-                    Description = parameter.Description,
-                    Photo = "detalle"
-                };
-                lstProduct.Add(product);
+                    Queryproduct.Name = parameter.Name;
+                    Queryproduct.Description = parameter.Description;
+                    Queryproduct.Price = parameter.Price;
+
+                    if (parameter.files != null)
+                    {
+                        List<Product> lstProduct = new List<Product>();
+                        var lstfileNames = ValidationFiles(parameter.files);
+                        foreach (var nameFiles in lstfileNames)
+                        {
+                            Queryproduct.Photo = nameFiles;
+                        }
+                    }
+                    _CoreContext.DbContext.Products.UpdateRange(Queryproduct);
+                    _CoreContext.DbContext.SaveChanges();
+                }
+
+                return new EditProductResponse { };
             }
-           
-            _CoreContext.DbContext.Products.UpdateRange(lstProduct);
-            _CoreContext.DbContext.SaveChanges();
-            return new AddProductResponse { };
+            catch (Exception ex )
+            {
+
+                throw;
+            }
+            
         }
 
 
@@ -142,7 +158,7 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
 
             List<String> lstFileNames = new List<String>();
 
-            if (files.Count >= 1)
+            if (files != null &&   files.Count >= 1)
             {
 
                 if (!Directory.Exists(hostingEnvironment.WebRootPath + "\\images\\"))

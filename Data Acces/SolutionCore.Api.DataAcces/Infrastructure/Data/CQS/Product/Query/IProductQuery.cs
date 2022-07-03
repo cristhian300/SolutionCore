@@ -15,5 +15,8 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
     {
         ListProductResponse ListProduct(ListProductRequest parameter);
         AddProductResponse AddProduct(AddProductRequest parameter);
+        EditProductResponse EditProduct(EditProductRequest parameter);
+
+
     }
 }
