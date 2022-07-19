@@ -57,6 +57,9 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
 
             try
             {
+
+                var x = _CoreContext.DbContext.Set<Usuario>().ToList();
+
                 var _usuario = (from u in _CoreContext.DbContext.Usuarios
                                 join r in _CoreContext.DbContext.RolesUsers
                                 on u.RoleId equals r.RoleId
