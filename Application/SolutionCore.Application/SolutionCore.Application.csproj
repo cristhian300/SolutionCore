@@ -5,6 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Application\Product\**" />
+    <Compile Remove="Application\User\**" />
+    <Compile Remove="Contract\Product\**" />
+    <Compile Remove="Contract\User\**" />
+    <EmbeddedResource Remove="Application\Product\**" />
+    <EmbeddedResource Remove="Application\User\**" />
+    <EmbeddedResource Remove="Contract\Product\**" />
+    <EmbeddedResource Remove="Contract\User\**" />
+    <None Remove="Application\Product\**" />
+    <None Remove="Application\User\**" />
+    <None Remove="Contract\Product\**" />
+    <None Remove="Contract\User\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Data Acces\SolutionCore.Api.DataAcces\SolutionCore.Api.DataAcces.csproj" />
   </ItemGroup>
 
