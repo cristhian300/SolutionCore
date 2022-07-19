@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29728.190
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration.API.GateWay", "Configuration.API.GateWay", "{7D21903E-063E-463C-BA3F-E190EA08BC8B}"
 EndProject
@@ -18,8 +18,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{3F0DBB2D-2ABB-4437-983D-D31C9F09690E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolutionCore.Application", "Application\SolutionCore.Application\SolutionCore.Application.csproj", "{EAAE891E-C1A9-44EF-BAA4-68E0FC11D1EE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolutionCore.Application.Contracts", "Application\SolutionCore.Application.Contracts\SolutionCore.Application.Contracts.csproj", "{049D08EA-8D79-4BBE-AA64-CAC34159D902}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolutionCore.Infraestructura.Transport", "Infrastructure\Transport\SolutionCore.Infraestructura.Transport\SolutionCore.Infraestructura.Transport.csproj", "{728BBF3F-1996-4C54-ADDB-894C88AEF256}"
 EndProject
@@ -45,10 +43,6 @@ Global
 		{EAAE891E-C1A9-44EF-BAA4-68E0FC11D1EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAAE891E-C1A9-44EF-BAA4-68E0FC11D1EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAAE891E-C1A9-44EF-BAA4-68E0FC11D1EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{049D08EA-8D79-4BBE-AA64-CAC34159D902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{049D08EA-8D79-4BBE-AA64-CAC34159D902}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{049D08EA-8D79-4BBE-AA64-CAC34159D902}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{049D08EA-8D79-4BBE-AA64-CAC34159D902}.Release|Any CPU.Build.0 = Release|Any CPU
 		{728BBF3F-1996-4C54-ADDB-894C88AEF256}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{728BBF3F-1996-4C54-ADDB-894C88AEF256}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{728BBF3F-1996-4C54-ADDB-894C88AEF256}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -70,7 +64,6 @@ Global
 		{4EC1ECFB-32AF-442F-BB33-21E6DF0D3C18} = {3D10789D-A32F-47BA-BE1E-AE2CD7D9D1D5}
 		{C2CFCF65-65F4-4E27-99FD-61D8C318CBC3} = {0C54E463-9C65-4059-8C8A-0069A33C73D5}
 		{EAAE891E-C1A9-44EF-BAA4-68E0FC11D1EE} = {3F0DBB2D-2ABB-4437-983D-D31C9F09690E}
-		{049D08EA-8D79-4BBE-AA64-CAC34159D902} = {3F0DBB2D-2ABB-4437-983D-D31C9F09690E}
 		{728BBF3F-1996-4C54-ADDB-894C88AEF256} = {C2CFCF65-65F4-4E27-99FD-61D8C318CBC3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
