@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using SolutionCore.Contract;
 using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
@@ -66,10 +67,19 @@ namespace SolutionCore.Controllers
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"));
                 var signigCredencial = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
+
+                var claims = new List<Claim>
+            {
+                //new Claim(ClaimTypes.NameIdentifier, user.Id),
+                //new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Name, user.UserName),
+                //new Claim(ClaimTypes.Surname, user.LastName)
+            };
+
                 var tokenOption = new JwtSecurityToken(
                     issuer: "https://localhos:5001",
                     audience: "https://localhos:5001",
-                    claims : new List<Claim>(),
+                    claims : claims,
                     expires:DateTime.Now.AddMinutes(5),
                     signingCredentials: signigCredencial
 
@@ -95,8 +105,15 @@ namespace SolutionCore.Controllers
         [HttpPost]
         public async Task<ListUsuarioResponse> ListUsuario([FromBody]  ListUsuarioRequest parameter)
         {
-   
-           return await _IUsuarioContract.ListUsuario(parameter);
+            StringValues authorization;
+            //string content = "HTTP 401 Unauthorized";
+
+             
+                bool hasValue = HttpContext.Request.Headers.TryGetValue("Authorization", out authorization);
+                string[] prases = authorization.ToString().Split(' ');
+
+
+            return await _IUsuarioContract.ListUsuario(parameter);
  
         }
 
