@@ -11,7 +11,7 @@ export class NetworkManager {
      *
      */
     constructor( private HttpClient:HttpClient) {
-        
+
 
     }
 
@@ -21,7 +21,10 @@ export class NetworkManager {
         const options = { headers: headers };
         const parameters = parameter.RequestParameter
         return    Observable.create(observer => {
-        this.HttpClient.post<any>( `${parameter.PathOperation}` , JSON.stringify(parameters)    , options).subscribe(
+        this.HttpClient.post<any>( `${parameter.PathOperation}`
+        , JSON.stringify(parameters)
+        , options)
+        .subscribe(
 
           response =>{
 
@@ -35,33 +38,33 @@ export class NetworkManager {
 
           }
         )
-         
-       
+
+
 
         })
-        
-        
-        
 
-        
-        
-        
-       
+
+
+
+
+
+
+
       }
 
 
       // getTokenPost(postParameters: PostParameter): Observable<BaseResponse> {
 
-    
-     
+
+
       //    const headers = new HttpHeaders({ 'content-type': 'application/x-www-form-urlencoded' });
       //    const options = { headers: headers };
-     
+
       //    const parameters = postParameters.RequestParameter || null;
-     
+
       //    const publicConfiguration = this.configurationStorageService.getPublicConfiguration();
-     
-        
+
+
       //    const body = new URLSearchParams();
       //    body.set('grant_type', 'password');
       //    body.set('client_id', publicConfiguration.clientId);
@@ -69,13 +72,13 @@ export class NetworkManager {
       //    body.set('scope', publicConfiguration.clientScope);
       //    body.set('username', parameters.userName);
       //    body.set('password', parameters.password);
-     
+
       //    return Observable.create(observer => {
       //      this.httpClient.post(`${postParameters.PathOperation}`, body.toString(), options).subscribe(
       //        (data: GetTokenResponse) => {
       //          try {
       //            const response: BaseResponse = <BaseResponse>data;
-                
+
       //            if (data.access_token) {
       //              observer.next(response);
       //            } else {
@@ -91,7 +94,7 @@ export class NetworkManager {
       //            httpError.error.error_description === AppConstants.IdentityValidation.INVALID_USERNAME_OR_PASSWORD
       //          ) {
       //            errorMessage = AppConstants.Messages.USUARIO_PASSWORD_INCORRECTOS;
-     
+
       //          } else if (httpError.status === 400 && httpError.error.error === AppConstants.IdentityValidation.INVALID_CLIENT) {
       //            errorMessage = AppConstants.Messages.CONFIGURACION_INCORRECTA_IDENTITY_SERVER;
       //          } else {

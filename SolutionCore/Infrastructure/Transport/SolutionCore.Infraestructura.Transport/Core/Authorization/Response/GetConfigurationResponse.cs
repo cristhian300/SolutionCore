@@ -17,6 +17,6 @@ namespace SolutionCore.Infrastructure.Transport.Core.Authorization.Response
         public string SystemConfigurationUrl { get; set; }
         public string InputUrl { get; set; }
         public string LoggingProcessUrl { get; set; }
-
+        public string CoreUrl { get; set; }
     }
 }

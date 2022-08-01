@@ -78,6 +78,29 @@ namespace SolutionCore
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyTestService", Version = "v1", });
+                c.AddSecurityDefinition("Bearer",new OpenApiSecurityScheme
+                {
+                 In = ParameterLocation.Header,
+                 Description="Please Insert token",
+                 Name="Authorization",
+                 Type=SecuritySchemeType.Http,
+                 BearerFormat="JWT",
+                 Scheme="bearer"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                    {
+                        new OpenApiSecurityScheme{
+                    
+                        Reference=new OpenApiReference{
+                        
+                            Type=ReferenceType.SecurityScheme,
+                            Id="Bearer" 
+                        }
+                    }, 
+                    new string[]{}
+                    }
+                });
             });
 
 
@@ -103,7 +126,8 @@ namespace SolutionCore
             services.AddDataServicesSQL(Configuration);
 
             //estrae informacion AppSetting
-            services.Configure<GetConfigurationResponse>(Configuration.GetSection("Services"));
+            //services.Configure<GetConfigurationResponse>(Configuration.GetSection("Services"));
+            //services.ConfigureAPI(Configuration);
         }
 
         

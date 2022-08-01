@@ -91,11 +91,11 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.Context
 
                 entity.Property(e => e.Clave).HasMaxLength(200);
 
-                entity.Property(e => e.Credencial).HasMaxLength(200);
+                //entity.Property(e => e.Credencial).HasMaxLength(200);
 
                 entity.Property(e => e.NombreCompleto).HasMaxLength(200);
 
-                entity.Property(e => e.Rol).HasMaxLength(200);
+                //entity.Property(e => e.Rol).HasMaxLength(200);
 
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
 

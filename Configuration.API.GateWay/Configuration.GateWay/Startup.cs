@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 
 namespace Configuration.GateWay
 {
@@ -22,10 +23,10 @@ namespace Configuration.GateWay
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration _configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -33,26 +34,35 @@ namespace Configuration.GateWay
 
             services.AddOcelot();
 
-            String[] ruta = { "http://localhost:44512",  "http://localhost:5052", "http://localhost:5000" };
+            String[] ruta = { "http://localhost:44512" , "http://localhost:5000" };
 
             services.AddControllers();
             services.AddOptions();
             services.AddLogging();
-            
-            
-
-            services.AddCors(opt => opt.AddPolicy("mi_politica",
-         builder =>
-         {
-             builder
-                 .AllowAnyHeader()
-                 .AllowAnyMethod()
-                 .AllowCredentials()
-                 .WithOrigins(ruta);
-         }));
 
 
-         
+            services.AddCors(options =>
+            {
+                options.AddPolicy("mi_politica",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+            //   services.AddCors(opt => opt.AddPolicy("mi_politica",
+            //builder =>
+            //{
+            //    builder
+            //        .AllowAnyHeader()
+            //        .AllowAnyMethod()
+            //        .AllowCredentials()
+            //        .AllowAnyOrigin();
+            //        //.WithOrigins(ruta);
+            //}));
+
+
+            services
+
+              .Configure<GetConfigurationResponse>(_configuration.GetSection("Services"));
 
         }
 

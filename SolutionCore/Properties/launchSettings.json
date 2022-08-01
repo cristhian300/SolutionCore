@@ -2,13 +2,11 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
-    "iis": {
-      "applicationUrl": "http://localhost/SolutionCore",
-      "sslPort": 0
-    },
+  
     "iisExpress": {
-      "applicationUrl": "http://localhost:44342",
-      "sslPort": 0
+      "applicationUrl": "http://localhost:44342"
+        //,
+      //"sslPort": 44362
     }
   },
   "profiles": {
@@ -26,7 +24,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:44344"
+      "applicationUrl": "http://localhost:44342"
     },
     "Docker": {
       "commandName": "Docker",

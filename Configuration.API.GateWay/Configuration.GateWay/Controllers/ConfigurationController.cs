@@ -9,7 +9,7 @@ using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 
 namespace SolutionCore.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]/[action]")]
     [ApiController]
     public class ConfigurationController : ControllerBase
     {

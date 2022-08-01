@@ -13,26 +13,31 @@ import { UpdateUsuarioRequest } from '../agent/User/request/UpdateUsuarioRequest
 import { GetTokenRequest } from '../agent/Authentication/request/GetTokenRequest';
 import { GetTokenResponse } from '../agent/Authentication/response/GetTokenResponse';
 import { AppConfig, APP_CONFIG } from '../shared/appconfig/appconfig.module';
- 
+import { StorageService } from './common/storage.service';
+import { ConfigurationResponse } from './configuration/configuration';
+import { debug } from 'console';
 
- 
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoreService {
- 
-ruta:string ;
-storage: Storage ;
 
-  constructor(private http:HttpClient ,
-   // @Inject('BASE_URL') baseUrl: string 
-    @Inject(APP_CONFIG)  public config:AppConfig
-    ,private networkManager:NetworkManager) { 
+  ruta: string;
+  storage: Storage;
 
-//this.ruta = baseUrl
-//console.log( "BASE_URL " +this.ruta);
-console.log( "BASE_URL " +this.config.apiEndpoint);
+  Url: string;
+  constructor(private http: HttpClient,
+    // @Inject('BASE_URL') baseUrl: string
+    @Inject(APP_CONFIG) public config: AppConfig
+    , private networkManager: NetworkManager,
+    private storageService: StorageService
+  ) {
+    console.log("BASE_URL " + this.config.apiEndpoint);
+    this.Url = (this.storageService.retrieve("configuration") as ConfigurationResponse).coreUrl
+    console.log('recuperado pathMain', this.Url);
 
   }
   // port = '44378';
@@ -40,80 +45,81 @@ console.log( "BASE_URL " +this.config.apiEndpoint);
 
   redirectUrl: string;
   isAuthenticated = false;
- // Url: string = 'api/Auth/';
- //Url: string =   `${this.config.apiEndpoint}Auth/`  ;
- 
- 
-  Url: string = 'http://localhost:5052/api/employee/' + 'Auth/'
-ListUsuario( parameter: ListUsuarioRequest):Observable<ListUsuarioResponse>{
-
- const parameters = new PostParameter()
- parameters.PathOperation= this.Url+ 'ListUsuario'
- parameters.RequestParameter=parameter
- return this.networkManager.post(parameters)  as Observable<ListUsuarioResponse>;
-
-}
-
-ListRoles( parameter: ListRolesRequest):Observable<ListRoleResponse>{
-
-  const parameters = new PostParameter()
-  parameters.PathOperation= this.Url+ 'ListRoles'
-  parameters.RequestParameter=parameter
-  return this.networkManager.post(parameters)  as Observable<ListRoleResponse>;
- 
- }
- 
- 
-
-postRespuesta(parameterr: any): Observable<any> {
-  const headers = new HttpHeaders({ 'content-type': 'application/json' });
-  const options = { headers: headers };
-  const parameters = JSON.stringify(parameterr)
-  return this.http.post<any>( this.Url +'ListUsuario',  parameters   , options);
- 
-}
-
-AddUsuario( parameter: AddUsuarioRequest):Observable<AddUsuarioResponse>{
-  const parameters = new PostParameter()
-  parameters.PathOperation= this.Url+ 'AddUsuario'
-  parameters.RequestParameter=parameter
-  return this.networkManager.post(parameters)  as Observable<AddUsuarioResponse>;
-}
-
-UpdateUsuario( parameter: UpdateUsuarioRequest):Observable<AddUsuarioResponse>{
-  const parameters = new PostParameter()
-  parameters.PathOperation= this.Url+ 'UpdateUsuario'
-  parameters.RequestParameter=parameter
-  return this.networkManager.post(parameters)  as Observable<AddUsuarioResponse>;
-}
+  // Url: string = 'api/Auth/';
+  //Url: string =   `${this.config.apiEndpoint}Auth/`  ;
 
 
-login(parameter:GetTokenRequest): Observable<GetTokenResponse> {
-
-
-  console.log("Empezo login");
-  return new Observable<GetTokenResponse>(observer => {
-
+  // Url: string = 'http://localhost:44342/api/Auth/'
+  ListUsuario(parameter: ListUsuarioRequest): Observable<ListUsuarioResponse> {
 
     const parameters = new PostParameter()
-   // parameters.PathOperation= this.ruta + this.Url+  'Login'
-    parameters.PathOperation =   this.Url + 'Login'
-    parameters.RequestParameter=parameter
-    // return this.networkManager.post(parameters)  as Observable<GetTokenResponse>;
-    // console.log('Login :>> ', this.Url+ 'Login');
-    const getTokenCall = this.networkManager.post(parameters);
-    (getTokenCall as Observable<GetTokenResponse>).subscribe(getTokenResponse => {
+    parameters.PathOperation = this.Url + 'Auth/ListUsuario'
+    parameters.RequestParameter = parameter
+    return this.networkManager.post(parameters) as Observable<ListUsuarioResponse>;
+
+  }
+
+  ListRoles(parameter: ListRolesRequest): Observable<ListRoleResponse> {
+
+    const parameters = new PostParameter()
+    parameters.PathOperation = this.Url + 'Auth/ListRoles'
+    parameters.RequestParameter = parameter
+    return this.networkManager.post(parameters) as Observable<ListRoleResponse>;
+
+  }
+
+
+
+  postRespuesta(parameterr: any): Observable<any> {
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    const options = { headers: headers };
+    const parameters = JSON.stringify(parameterr)
+    return this.http.post<any>(this.Url + 'Auth/ListUsuario', parameters, options);
+
+  }
+
+  AddUsuario(parameter: AddUsuarioRequest): Observable<AddUsuarioResponse> {
+    const parameters = new PostParameter()
+    parameters.PathOperation = this.Url + 'Auth/AddUsuario'
+    parameters.RequestParameter = parameter
+    return this.networkManager.post(parameters) as Observable<AddUsuarioResponse>;
+  }
+
+  UpdateUsuario(parameter: UpdateUsuarioRequest): Observable<AddUsuarioResponse> {
+    const parameters = new PostParameter()
+    parameters.PathOperation = this.Url + 'Auth/UpdateUsuario'
+    parameters.RequestParameter = parameter
+    return this.networkManager.post(parameters) as Observable<AddUsuarioResponse>;
+  }
+
+
+  login(parameter: GetTokenRequest): Observable<GetTokenResponse> {
+
+
+    console.log("Empezo login");
+    return new Observable<GetTokenResponse>(observer => {
+
+
+      const parameters = new PostParameter()
+      // parameters.PathOperation= this.ruta + this.Url+  'Login'
+      parameters.PathOperation = this.Url + 'Auth/Login'
+      parameters.RequestParameter = parameter
+      // return this.networkManager.post(parameters)  as Observable<GetTokenResponse>;
+      // console.log('Login :>> ', this.Url+ 'Login');
+      debugger
+      const getTokenCall = this.networkManager.post(parameters);
+      (getTokenCall as Observable<GetTokenResponse>).subscribe(getTokenResponse => {
         observer.next(getTokenResponse);
-    }, error => {
+      }, error => {
         observer.next(error);
+      });
+
+
+
     });
 
-    
-    
-  });
+  }
 
-}
 
- 
 
 }
