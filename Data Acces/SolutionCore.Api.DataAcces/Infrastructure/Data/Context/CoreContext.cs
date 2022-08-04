@@ -24,7 +24,8 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.Context
         public virtual DbSet<RolesUser> RolesUsers { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+    
+protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
 
@@ -108,6 +109,18 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.Context
             OnModelCreatingPartial(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
+        
+     
+//    if (!optionsBuilder.IsConfigured)
+//       {
+//       string conn = "Server=192.168.0.33;Database=Core;User ID=sa;Password=Password123;Encrypt=false";
+
+//        optionsBuilder.UseSqlServer(conn);
+//       }
+//}
+
+partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

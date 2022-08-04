@@ -4,17 +4,17 @@ services:
   configuration.gateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
-    hostname: configuration.gateway
+    #hostname: configuration.gateway
     links:
       - solutioncore
-    depends_on:
-      - solutioncore
+    #depends_on:
+    #  - solutioncore
     ports:
       - "80"
   solutioncore:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
-    hostname: solutioncore
+    #hostname: solutioncore
     ports:
       - "80"
     
@@ -24,11 +24,12 @@ services:
   web_core:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    depends_on:
-            - configuration.gateway
+    #depends_on:
+    #        - configuration.gateway
     ports:
       - "80"
 
   dbCore:
    ports:
       - "1433"
+  

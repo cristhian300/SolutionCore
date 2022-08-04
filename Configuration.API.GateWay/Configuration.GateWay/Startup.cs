@@ -44,9 +44,19 @@ namespace Configuration.GateWay
             services.AddCors(options =>
             {
                 options.AddPolicy("mi_politica",
-                    builder => builder.AllowAnyOrigin()
+                    builder => builder
+                        // .WithOrigins(
+                        //"http://localhost:4200/",
+                        //"http://localhost:44512/",
+                        //"http://127.0.0,1:44512/",
+
+                        //"http://localhost:5052/"
+                        //)
+                        .AllowAnyOrigin()
                         .AllowAnyMethod()
-                        .AllowAnyHeader());
+                        .AllowAnyHeader()
+                      
+                        );
             });
             //   services.AddCors(opt => opt.AddPolicy("mi_politica",
             //builder =>

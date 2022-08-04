@@ -6,7 +6,8 @@ services:
 
   configuration.gateway:
     image: ${DOCKER_REGISTRY-}configurationgateway
-    container_name: gateway
+    hostname: configuration.gateway
+    #container_name: gateway
     #expose:
     #  - 80
     ports:
@@ -14,10 +15,18 @@ services:
     build:
       context: .
       dockerfile: Configuration.API.GateWay/Configuration.GateWay/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+    
+    depends_on:
+      - solutioncore
+    networks:
+      - backend
 
   solutioncore:
     image: ${DOCKER_REGISTRY-}solutioncore
-    container_name: solutioncore_api
+    hostname: solutioncore
+    #container_name: solutioncore_api
     #expose:
     #  - 5053
     ports:
@@ -25,29 +34,45 @@ services:
     build:
       context: .
       dockerfile: SolutionCore/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
     depends_on:
       - dbCore
+    networks:
+      - backend
 
   web_core:
     image: ${DOCKER_REGISTRY-}webcore
-    container_name: web_core
+    hostname: web_core
+    #container_name: web_core
     ports:
       - 44512:80
     build:
       context: .
       dockerfile: web_core/Dockerfile
+    #environment:
+      #- ASPNETCORE_ENVIRONMENT=Docker
+    networks:
+      - backend
 
   dbCore:
-    image: "mcr.microsoft.com/mssql/server:2019-latest"
-    container_name: dbCore
-    environment: 
-     ACCEPT_EULA: "Y"
-     SA_PASSWORD: "Cris@cristhian"
-     #MSSQL_PID: Express
-     
+    #container_name: dbCore
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    hostname: dbCore
     ports:
-      - 1433:1433
+      - 1433:1433 
+      
+    environment:
+      - SA_PASSWORD=Password123
+      - ACCEPT_EULA=Y
     volumes:
-      - c:/BdSqlDocker/sqlserver-data:/var/opt/mssql/data
-      - c:/BdSqlDocker/sqlserver-data:/var/opt/mssql/log
-      - c:/BdSqlDocker/sqlserver-data:/var/opt/mssql/secrets 
+      - D:/Docker_volumenes/data:/var/opt/mssql/data  
+      - D:/Docker_volumenes/log:/var/opt/mssql/log 
+      - D:/Docker_volumenes/secrets:/var/opt/mssql/secrets
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: backend
+    driver: bridge

@@ -16,6 +16,7 @@ import { AppConfig, APP_CONFIG } from '../shared/appconfig/appconfig.module';
 import { StorageService } from './common/storage.service';
 import { ConfigurationResponse } from './configuration/configuration';
 import { debug } from 'console';
+import { ConfigurationService } from './configuration/configuration.service';
 
 
 
@@ -34,6 +35,7 @@ export class CoreService {
     @Inject(APP_CONFIG) public config: AppConfig
     , private networkManager: NetworkManager,
     private storageService: StorageService
+
   ) {
     console.log("BASE_URL " + this.config.apiEndpoint);
     this.Url = (this.storageService.retrieve("configuration") as ConfigurationResponse).coreUrl
@@ -93,32 +95,7 @@ export class CoreService {
   }
 
 
-  login(parameter: GetTokenRequest): Observable<GetTokenResponse> {
 
-
-    console.log("Empezo login");
-    return new Observable<GetTokenResponse>(observer => {
-
-
-      const parameters = new PostParameter()
-      // parameters.PathOperation= this.ruta + this.Url+  'Login'
-      parameters.PathOperation = this.Url + 'Auth/Login'
-      parameters.RequestParameter = parameter
-      // return this.networkManager.post(parameters)  as Observable<GetTokenResponse>;
-      // console.log('Login :>> ', this.Url+ 'Login');
-      debugger
-      const getTokenCall = this.networkManager.post(parameters);
-      (getTokenCall as Observable<GetTokenResponse>).subscribe(getTokenResponse => {
-        observer.next(getTokenResponse);
-      }, error => {
-        observer.next(error);
-      });
-
-
-
-    });
-
-  }
 
 
 

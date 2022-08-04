@@ -44,33 +44,42 @@
         [AllowAnonymous]
         public async Task<GetConfigurationResponse> GetConfiguration()
         {
-            var requestUrl = _configuration.GetValue<string>("ConfigurationService:Url");
-            //var jsonParameter = JsonConvert.SerializeObject(_remoteConfigurationRequest);
+            try
+            {
+                var requestUrl = _configuration.GetValue<string>("ConfigurationService:Url");
+                //var jsonParameter = JsonConvert.SerializeObject(_remoteConfigurationRequest);
 
-            HttpClientHandler clientHandler = new HttpClientHandler();
-            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+                HttpClientHandler clientHandler = new HttpClientHandler();
+                //clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
 
-            var httpClient = new HttpClient(clientHandler);
-            var httpRequestMessage =
-                new HttpRequestMessage
-                {
-                    RequestUri = new Uri(requestUrl),
-                    Method = HttpMethod.Post,
+                var httpClient = new HttpClient(clientHandler);
+                var httpRequestMessage =
+                    new HttpRequestMessage
+                    {
+                        RequestUri = new Uri(requestUrl),
+                        Method = HttpMethod.Post,
                     //Content = new StringContent(jsonParameter, Encoding.UTF8, "application/json")
                 };
 
-            using (var response = await httpClient.SendAsync(httpRequestMessage).ConfigureAwait(false))
-            {
-                if (response.StatusCode != HttpStatusCode.OK)
+                using (var response = await httpClient.SendAsync(httpRequestMessage).ConfigureAwait(false))
                 {
-                    if (response.StatusCode == HttpStatusCode.NotFound) return null;
-                    if (response.StatusCode >= HttpStatusCode.BadRequest) return null;
-                }
+                    if (response.StatusCode != HttpStatusCode.OK)
+                    {
+                        if (response.StatusCode == HttpStatusCode.NotFound) return null;
+                        if (response.StatusCode >= HttpStatusCode.BadRequest) return null;
+                    }
 
-                var stream = await response.Content.ReadAsStreamAsync();
-                using (var jsonReader = (JsonReader)new JsonTextReader(new StreamReader(stream)))
-                    return (GetConfigurationResponse)new JsonSerializer().Deserialize(jsonReader, typeof(GetConfigurationResponse));
+                    var stream = await response.Content.ReadAsStreamAsync();
+                    using (var jsonReader = (JsonReader)new JsonTextReader(new StreamReader(stream)))
+                        return (GetConfigurationResponse)new JsonSerializer().Deserialize(jsonReader, typeof(GetConfigurationResponse));
+                }
             }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+           
 
 
         }

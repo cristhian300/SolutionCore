@@ -31,9 +31,7 @@ alter table Category add constraint pk_category primary key (CategoryId)
  CREATE TABLE  dbo.Usuario (
 	UsuarioId int IDENTITY(1,1) NOT NULL,
 	NombreCompleto nvarchar(200) COLLATE Modern_Spanish_CI_AS NULL,
-	Credencial nvarchar(200) COLLATE Modern_Spanish_CI_AS NULL,
 	Clave nvarchar(200) COLLATE Modern_Spanish_CI_AS NULL,
-	Rol nvarchar(200) COLLATE Modern_Spanish_CI_AS NULL,
 	Deleted bit NOT NULL,
 	RoleID int NULL,
 	CONSTRAINT PK_Usuario PRIMARY KEY (UsuarioId)
@@ -60,4 +58,5 @@ CREATE TABLE  dbo.Product (
 	Deleted bit NOT NULL,
 	constraint PK_Product primary key (ProductId)
 );
+
 

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { GetTokenRequest } from 'src/app/agent/Authentication/request/GetTokenRequest';
+import { AuthenticateService } from 'src/app/services/authenticate/authenticate.service';
 import { StorageService } from 'src/app/services/common/storage.service';
 import { ConfigurationResponse } from 'src/app/services/configuration/configuration';
 import { ConfigurationService } from 'src/app/services/configuration/configuration.service';
@@ -20,14 +21,14 @@ export class LoginComponent implements OnInit {
 
 
   constructor(
-    private storageService: StorageService,
+
     private router: Router,
     private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
 
-    private loginService: CoreService,
+    // private loginService: CoreService,
     private configurationService: ConfigurationService,
-
+    private authenticate:AuthenticateService
   ) {
   }
 
@@ -58,37 +59,22 @@ export class LoginComponent implements OnInit {
     param.userName = this.loginForm.get('userName').value
     param.password = this.loginForm.get('password').value
 
-    this.configurationService.getConfiguration().subscribe(
-      (response: ConfigurationResponse) => {
-        if (response) {
-          // console.log('configuration',response);
-          this.storageService.store('configuration', response)
+    this.authenticate.login(param).subscribe(
+      response => {
+        const successLogin = response.token
+        if (successLogin) {
+          // console.log("Token " + response.token);
+          localStorage.setItem("User", JSON.stringify(response.token));
+          this.router.navigateByUrl("/usuarios").then();
+        } else {
 
-          this.loginService.login(param).subscribe(
-            response => {
-              const successLogin = response.token
-              if (successLogin) {
-                // console.log("Token " + response.token);
-                localStorage.setItem("User", JSON.stringify(response.token));
-                this.router.navigateByUrl("/usuarios").then();
-              } else {
-
-                this.snackBar.open(response.token, 'close', { duration: 3000 });
-              }
-              this.isLoading = false;
-            },
-            () => {
-
-            });
-
+          this.snackBar.open(response.token, 'close', { duration: 3000 });
         }
+        this.isLoading = false;
+      },
+      () => {
 
-      }
-    );
-
-
-
-
+      });
   }
 
 

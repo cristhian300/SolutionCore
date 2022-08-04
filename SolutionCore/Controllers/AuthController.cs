@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +13,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using SolutionCore.Contract;
 using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Parameter;
@@ -40,8 +44,9 @@ namespace SolutionCore.Controllers
 
         [AllowAnonymous]//No necesita Token
         [HttpPost]
-       
-        public IActionResult Login([FromBody] LoginRequest user ) {
+
+        public IActionResult Login([FromBody] LoginRequest user)
+        {
 
             if (user == null)
             {
@@ -56,14 +61,14 @@ namespace SolutionCore.Controllers
                 var tokenOption = new JwtSecurityToken(
                     issuer: "https://localhos:5001",
                     audience: "https://localhos:5001",
-                    claims : new List<Claim>(),
-                    expires:DateTime.Now.AddMinutes(5),
+                    claims: new List<Claim>(),
+                    expires: DateTime.Now.AddMinutes(5),
                     signingCredentials: signigCredencial
 
                     );
 
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOption);
-                return   Ok(new { token = tokenString });
+                return Ok(new { token = tokenString });
             }
             return Unauthorized();
         }
@@ -74,17 +79,17 @@ namespace SolutionCore.Controllers
             _IUsuarioContract = IUsuarioContract;
         }
 
-       
+
         [HttpPost]
-        public async Task<UsuarioResponse> GetUsuario([FromBody]  UsuarioRequest parameter)
+        public async Task<UsuarioResponse> GetUsuario([FromBody] UsuarioRequest parameter)
         {
-            return   await _IUsuarioContract.GetUsuario(parameter);
+            return await _IUsuarioContract.GetUsuario(parameter);
 
         }
 
-       
+
         [HttpPost]
-        public async Task<ListUsuarioResponse> ListUsuario([FromBody]  ListUsuarioRequest parameter)
+        public async Task<ListUsuarioResponse> ListUsuario([FromBody] ListUsuarioRequest parameter)
         {
             return await _IUsuarioContract.ListUsuario(parameter);
 
@@ -98,7 +103,7 @@ namespace SolutionCore.Controllers
 
         }
 
-       
+
 
 
         [HttpPost]
@@ -108,12 +113,15 @@ namespace SolutionCore.Controllers
 
         }
 
-        
+
         [HttpPost]
         public async Task<UpdateUsuarioResponse> UpdateUsuario(UpdateUsuarioRequest parameter)
         {
             return await _IUsuarioContract.UpdateUsuario(parameter);
 
         }
+
+
+
     }
 }

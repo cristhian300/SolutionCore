@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -11,6 +13,7 @@ namespace SolutionCore.Controllers
 {
     [Route("api/v1/[controller]/[action]")]
     [ApiController]
+     [EnableCors("mi_politica")]
     public class ConfigurationController : ControllerBase
     {
         private readonly IOptionsSnapshot<GetConfigurationResponse> _configurationOption;
@@ -21,6 +24,7 @@ namespace SolutionCore.Controllers
 
 
         [HttpPost]
+        [AllowAnonymous]//No necesita Token
         public GetConfigurationResponse GetConfiguration() => _configurationOption.Value;
 
 
