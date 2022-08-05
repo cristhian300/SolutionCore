@@ -6,7 +6,9 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["Configuration.API.GateWay/Configuration.GateWay/Configuration.GateWay.csproj", "Configuration.API.GateWay/Configuration.GateWay/"]
+COPY ["Configuration.API.GateWay/Configuration.GateWay/Configuration.GateWay.csproj",
+"Configuration.API.GateWay/Configuration.GateWay/"]
+
 RUN dotnet restore "Configuration.API.GateWay/Configuration.GateWay/Configuration.GateWay.csproj"
 COPY . .
 WORKDIR "/src/Configuration.API.GateWay/Configuration.GateWay"

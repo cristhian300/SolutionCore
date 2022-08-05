@@ -105,10 +105,10 @@ namespace SolutionCore
 
 
             // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
+            //services.AddSpaStaticFiles(configuration =>
+            //{
+            //    configuration.RootPath = "ClientApp/dist";
+            //});
 
             services.AddTransient<IUsuarioQuery, UsuarioQuery>();
             services.AddTransient<IUsuarioContract, UsuarioApplication>();
@@ -175,10 +175,10 @@ namespace SolutionCore
             });*/
 
 
-            if (!env.IsDevelopment())
-            {
-                app.UseSpaStaticFiles();
-            }
+            //if (!env.IsDevelopment())
+            //{
+            //    app.UseSpaStaticFiles();
+            //}
 
 
             //app.Run(async (context) =>
