@@ -12,7 +12,7 @@ COPY ["Configuration.API.GateWay/Configuration.GateWay/Configuration.GateWay.csp
 RUN dotnet restore "Configuration.API.GateWay/Configuration.GateWay/Configuration.GateWay.csproj"
 COPY . .
 WORKDIR "/api"
-RUN dotnet build "Configuration.GateWay.csproj" -c Release -o /app/build
+RUN dotnet build "Configuration.API.GateWay/Configuration.GateWay/Configuration.GateWay.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "Configuration.GateWay.csproj" -c Release -o /app/publish
