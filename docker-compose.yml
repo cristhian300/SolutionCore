@@ -1,9 +1,5 @@
 version: '3.4'
-
 services:
-
- 
-
   configuration.gateway:
     image: ${DOCKER_REGISTRY-}configurationgateway
     hostname: configuration.gateway
@@ -41,19 +37,16 @@ services:
     networks:
       - backend
 
-  web_core:
-    image: ${DOCKER_REGISTRY-}webcore
-    hostname: web_core
-    #container_name: web_core
-    ports:
-      - 44512:80
-    build:
-      context: .
-      dockerfile: web_core/Dockerfile
-    #environment:
-      #- ASPNETCORE_ENVIRONMENT=Docker
-    networks:
-      - backend
+  # web_core:
+  #   image: ${DOCKER_REGISTRY-}webcore
+  #   hostname: web_core
+  #   ports:
+  #     - 44512:80
+  #   build:
+  #     context: .
+  #     dockerfile: web_core/Dockerfile
+  #   networks:
+  #     - backend
 
   dbCore:
     #container_name: dbCore

@@ -21,13 +21,12 @@ services:
     #volumes:
      # - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
-  web_core:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    #depends_on:
-    #        - configuration.gateway
-    ports:
-      - "80"
+  # web_core:
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=Development
+   
+  #   ports:
+  #     - "80"
 
   dbCore:
    ports:

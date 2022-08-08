@@ -15,7 +15,7 @@ WORKDIR "/api"
 RUN dotnet build "Configuration.API.GateWay/Configuration.GateWay/Configuration.GateWay.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Configuration.GateWay.csproj" -c Release -o /app/publish
+RUN dotnet publish "Configuration.API.GateWay/Configuration.GateWay/Configuration.GateWay.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
