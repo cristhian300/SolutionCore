@@ -22,7 +22,7 @@ services:
   solutioncore:
     image: ${DOCKER_REGISTRY-}solutioncore
     hostname: solutioncore
-    #container_name: solutioncore_api
+    container_name:  ${ENV_PREFFIX}solutioncore
     #expose:
     #  - 5053
     ports:
@@ -32,6 +32,7 @@ services:
       dockerfile: SolutionCore/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
+      - DOCKER_ENV_VARIABLE="variable desde el docker-compose [${ENV_PREFFIX}]"
     depends_on:
       - dbCore
     networks:

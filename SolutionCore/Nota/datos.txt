@@ -96,3 +96,8 @@ Export-PfxCertificate -Cert $certpath -FilePath d:\weather.pfx -Password $pwd
 ---------------------------
 Conveyor by Keyoti
 https://marketplace.visualstudio.com/items?itemName=vs-publisher-1448185.ConveyorbyKeyoti
+
+
+--------------------------------------
+interesantes
+https://www.youtube.com/channel/UC1M2s7n8bzqZeJCrYDic2SA/videos
