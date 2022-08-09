@@ -15,7 +15,7 @@
       "launchBrowser": true,
       "environmentVariables": {
 
-        "ASPNETCORE_ENVIRONMENT": "Docker"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "SolutionCore": {

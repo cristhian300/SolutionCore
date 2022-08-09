@@ -36,6 +36,8 @@ services:
       - dbCore
     networks:
       - backend
+    env_file:
+      - "application_file.env"
 
   # web_core:
   #   image: ${DOCKER_REGISTRY-}webcore
