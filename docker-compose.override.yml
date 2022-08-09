@@ -12,8 +12,8 @@ services:
     ports:
       - "80"
   solutioncore:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Docker
+    #environment:
+    #  - ASPNETCORE_ENVIRONMENT=Docker
     #hostname: solutioncore
     ports:
       - "80"

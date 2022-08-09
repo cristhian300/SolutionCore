@@ -59,9 +59,15 @@ services:
       - SA_PASSWORD=Password123
       - ACCEPT_EULA=Y
     volumes:
-      - D:/Docker_volumenes/data:/var/opt/mssql/data  
-      - D:/Docker_volumenes/log:/var/opt/mssql/log 
-      - D:/Docker_volumenes/secrets:/var/opt/mssql/secrets
+      #- D:/Docker_volumenes/data:/var/opt/mssql/data  
+      #- D:/Docker_volumenes/log:/var/opt/mssql/log 
+      #- D:/Docker_volumenes/secrets:/var/opt/mssql/secrets
+      - type: volume
+        source: firstidsrvaspnetidentitydbsys
+        target: /var/opt/mssql
+      - type: volume
+        source: firstidsrvaspnetidentitydbusr
+        target: /var/opt/sqlserver
     networks:
       - backend
 
@@ -69,3 +75,7 @@ networks:
   backend:
     name: backend
     driver: bridge
+
+volumes:
+  firstidsrvaspnetidentitydbsys:
+  firstidsrvaspnetidentitydbusr:
