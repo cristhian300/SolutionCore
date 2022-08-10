@@ -1,34 +1,34 @@
 version: '3.4'
 
 services:
-  configuration.gateway:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Docker
-    #hostname: configuration.gateway
-    links:
-      - solutioncore
-    #depends_on:
-    #  - solutioncore
-    ports:
-      - "80"
-  solutioncore:
-    #environment:
-    #  - ASPNETCORE_ENVIRONMENT=Docker
-    #hostname: solutioncore
-    ports:
-      - "80"
-    
-    #volumes:
-     # - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-
-  # web_core:
+  # configuration.gateway:
   #   environment:
-  #     - ASPNETCORE_ENVIRONMENT=Development
-   
+  #     - ASPNETCORE_ENVIRONMENT=Docker
+  #   #hostname: configuration.gateway
+  #   links:
+  #     - solutioncore
+  #   #depends_on:
+  #   #  - solutioncore
   #   ports:
   #     - "80"
+  # solutioncore:
+  #   #environment:
+  #   #  - ASPNETCORE_ENVIRONMENT=Docker
+  #   #hostname: solutioncore
+  #   ports:
+  #     - "80"
+    
+  #   #volumes:
+  #    # - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
-  dbCore:
-   ports:
-      - "1433"
+  web_core:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+   
+    ports:
+      - "80"
+
+  # dbCore:
+  #  ports:
+  #     - "1433"
   
