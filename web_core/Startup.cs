@@ -100,7 +100,7 @@ namespace web_core
 
                 if (env.IsDevelopment())
                 {
-                    spa.Options.StartupTimeout = new TimeSpan(0, 10, 0);
+                    //spa.Options.StartupTimeout = new TimeSpan(0, 10, 0);
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
