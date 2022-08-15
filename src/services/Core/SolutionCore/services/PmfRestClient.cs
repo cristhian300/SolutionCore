@@ -287,7 +287,8 @@ namespace PmfBff.Services
         {
             _logger.LogInformation("REST Client request Method: {@Method} - Service: {@Service} - Endpoint: {@Endpoint}", Functions.SanitizeData(request.Method), Functions.SanitizeData(request.ServicePath), Functions.SanitizeData(request.Url));
 
-            RestClient client = new RestClient(_configuration["Services:" + request.ServicePath]);
+            //RestClient client = new RestClient(_configuration["Services:" + request.ServicePath]);
+            RestClient client = new RestClient(request.ServicePath);
             RestRequest requestsItems = new RestRequest(request.Url, request.Method);
 
             if (request.Params != null)
@@ -322,7 +323,9 @@ namespace PmfBff.Services
                     requestsItems.AddParameter("application/json; charset=utf-8", dby, ParameterType.RequestBody);
                 }
 
-                requestsItems.AddHeader("Authorization", $"Bearer {_configuration["TokenMS:token"]}");
+                //requestsItems.AddHeader("Authorization", $"Bearer {_configuration["TokenMS:token"]}");
+                requestsItems.AddHeader("Authorization", HttpContext.Request.Headers["Authorization"].ToString());
+                
                 requestsItems.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
             }
 

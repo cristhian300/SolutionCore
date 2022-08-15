@@ -1,3 +1,9 @@
 docker tag solutioncore:latest  cristhian300/solutioncore:v1
 
 docker push  cristhian300/solutioncore:v1
+
+---------------------------------------------
+
+https://stackoverflow.com/questions/63133630/is-it-possible-to-create-a-volume-with-microsoft-sql-server-docker-container
+Image SQL Server 2019
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Password123" -p 1433:1433 -v D:/Docker_volumenes/data:/var/opt/mssql/data -v D:/Docker_volumenes/log:/var/opt/mssql/log -v D:/Docker_volumenes/secrets:/var/opt/mssql/secrets  -d mcr.microsoft.com/mssql/server:2019-latest

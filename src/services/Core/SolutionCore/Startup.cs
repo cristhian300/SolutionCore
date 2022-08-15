@@ -11,6 +11,8 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using PmfBff.Interfaces;
+using PmfBff.Services;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query;
 using SolutionCore.Application.Application.Product;
@@ -96,7 +98,7 @@ namespace SolutionCore
 
             //services.AddSingleton<IHostedService, CronJobService>();
             //services.AddScoped<CronJobService>();
-
+            services.AddScoped<IPmfRestClient, PmfRestClient>();
 
             services.AddUnitOfWork<CoreContext>();
 
@@ -108,7 +110,7 @@ namespace SolutionCore
 
             //estrae informacion AppSetting
             services.Configure<GetConfigurationResponse>(Configuration.GetSection("Services"));
-
+            services.AddMvc().AddNewtonsoftJson();
 
             ////services.AddSingleton<IHostedService, CronJobService>();
             //services.AddScoped<CronJobService>();

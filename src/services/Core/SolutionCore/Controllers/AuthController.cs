@@ -73,7 +73,7 @@ namespace SolutionCore.Controllers
                 //new Claim(ClaimTypes.NameIdentifier, user.Id),
                 //new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Name, user.UserName),
-                //new Claim(ClaimTypes.Surname, user.LastName)
+                new Claim(ClaimTypes.Role, "Admin")
             };
 
                 var tokenOption = new JwtSecurityToken(
