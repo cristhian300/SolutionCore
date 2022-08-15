@@ -1,51 +1,64 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-ARG NODE_IMAGE=node:12.0
+
 FROM mcr.microsoft.com/dotnet/aspnet:3.1 AS base
-# FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
-# Instalar nodejs
-# RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-# RUN apt-get install -y nodejs
-# Install NodeJs
+
+# Setup NodeJs
+RUN apt-get -qq update && \
+    apt-get -qq install -y wget && \
+    apt-get -qq install -y gnupg2 && \
+    wget -qO- https://deb.nodesource.com/setup_14.x | bash - && \
+    apt-get -qq install -y build-essential nodejs && \
+    apt-get -qq install -y nginx
+# End setup
 
 WORKDIR /app
-# EXPOSE 5003
-
-# FROM ${NODE_IMAGE} as node-build
-FROM  node:12-alpine  as node-build
-WORKDIR /web/src
-COPY web_core/ClientApp/package.json .
-COPY web_core/ClientApp/package-lock.json .
-# RUN npm install -g npm@6
-RUN npm install
-COPY web_core/ClientApp .
-RUN npm run build:prod
+EXPOSE 80
 
 
-# FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster  AS build
-ENV ASPNETCORE_ENVIRONMENT=Production
+## docker angular ********************
+#FROM node:alpine AS builder
+#COPY web_core/ClientApp .
+#WORKDIR /app
+##ENV SERVER=52.160.67.118
+#RUN npm i
+#RUN npm run build --prod
+##RUN $(npm bin)/ng build --prod --build-optimizer=false --aot=false
+## docker angular ********************
+
+
+FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+
+# Setup NodeJs
+RUN apt-get -qq update && \
+    apt-get -qq install -y wget && \
+    apt-get -qq install -y gnupg2 && \
+    wget -qO- https://deb.nodesource.com/setup_14.x | bash - && \
+    apt-get -qq install -y build-essential nodejs && \
+    apt-get -qq install -y nginx
+# End setup
+
 WORKDIR /src
-# RUN curl -sL https://deb.nodesource.com/setup_10.x |  bash -
-# RUN apt-get install -y nodejs
 COPY ["web_core/web_core.csproj", "web_core/"]
 RUN dotnet restore "web_core/web_core.csproj"
-COPY . .
-# WORKDIR "/src/web_core/ClientApp"
-# RUN npm install 
-# WORKDIR "/src"
-RUN dotnet build "web_core/web_core.csproj" -c Release -o /app/build
+#an
+#COPY ["web_core/ClientApp/package.json", "web_core/ClientApp/"]
 
+#RUN cd web_core/ClientApp \
+  #  && npm i --silent
+#an
+
+COPY . .
+WORKDIR "/src/web_core"
+RUN dotnet build "web_core.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "web_core/web_core.csproj" -c Release -o /app/publish 
-# # ##################################################################
+RUN dotnet publish "web_core.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY --from=node-build /web/src /app/ClientApp/dist
+## docker angular ********************
+##FROM nginx:alpine
+#COPY --from=builder /app/dist /app/dist
+## docker angular ********************
 ENTRYPOINT ["dotnet", "web_core.dll"]
-
-# FROM base AS final
-# WORKDIR /app
-# COPY --from=node-build /web/src/dist .
