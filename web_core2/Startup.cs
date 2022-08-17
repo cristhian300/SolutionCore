@@ -98,11 +98,11 @@ namespace web_core
 
                 spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment())
-                {
+                //if (env.IsDevelopment())
+                //{
                     //spa.Options.StartupTimeout = new TimeSpan(0, 10, 0);
                     spa.UseAngularCliServer(npmScript: "start");
-                }
+                //}
             });
 
 

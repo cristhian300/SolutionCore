@@ -20,13 +20,13 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
-    <Compile Remove="bin\**" />
     <Content Remove="$(SpaRoot)**" />
-    <Content Remove="bin\**" />
-    <EmbeddedResource Remove="bin\**" />
     <None Remove="$(SpaRoot)**" />
-    <None Remove="bin\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="bin\Debug\netcoreapp3.1\" />
   </ItemGroup>
 
   <ItemGroup>
