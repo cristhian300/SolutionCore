@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 import { NetworkManager } from '../../agent/common/network-manager';
 import { PostParameter } from '../../agent/common/post-parameter';
 import { ConfigurationResponse } from './configuration';
@@ -10,10 +11,11 @@ import { ConfigurationResponse } from './configuration';
 export class ConfigurationService {
 
   configurationUrl: string;
+  url:string;
   constructor(private networkManager: NetworkManager) {
 
     this.configurationUrl = this.getBaseUrl();
-
+    this.url= environment.apiEndpoint
   }
 
   public getBaseUrl() {
@@ -24,7 +26,7 @@ export class ConfigurationService {
 
   public getConfiguration():Observable<ConfigurationResponse> {
     const request = new PostParameter();
-    request.PathOperation = this.configurationUrl + 'api/v1/Configuration/GetConfiguration'
+    request.PathOperation = this.url + 'api/v1/Configuration/GetConfiguration'
     request.RequestParameter = null
     return  this.networkManager.post(request);
   }

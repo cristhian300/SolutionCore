@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:5052"
+      "applicationUrl": "http://localhost:5062"
         //,
       //"sslPort": 5064
     }
@@ -14,7 +14,7 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Docker"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Configuration.GateWay": {

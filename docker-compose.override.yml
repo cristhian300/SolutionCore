@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  solutioncore:
+    ports:
+      - "80"
+  configuration.gateway:
+    ports:
+      - "80" 
+  web_core: 
+   ports:
+      - "80" 
+  #dbCore:
+  #  ports:
+  #    - 1433:1433 
