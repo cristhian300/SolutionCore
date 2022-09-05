@@ -20,9 +20,9 @@ services:
       - "application_file.env"
 
   solutioncore:
-    image: ${DOCKER_REGISTRY-}solutioncore
+    image: solutioncore:local.v1
     hostname: solutioncore
-    container_name: ${ENV_PREFFIX}solutioncore
+    container_name: solutioncore
 
     ports:
       - 5063:80
@@ -30,6 +30,7 @@ services:
       context: .
       dockerfile: SolutionCore/Dockerfile
     environment:
+      - ASPNETCORE_URLS=http://::80
       - ASPNETCORE_ENVIRONMENT=Docker
       - DOCKER_ENV_VARIABLE="variable desde el docker-compose [${ENV_PREFFIX}]"
       #- SpartacusContext="Server=dbCore;Database=Core;User ID=sa;Password=Password123;Encrypt=false"

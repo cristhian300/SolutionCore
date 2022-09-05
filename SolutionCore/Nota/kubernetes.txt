@@ -116,3 +116,70 @@ https://pomeroy.me/2020/09/solved-windows-10-forbidden-port-bind/
 -------------------------------------------
 
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 71220eb76462
+
+-------------------------------------
+kubectl api-resources
+kubectl logs pods
+
+*****replication set*******
+kubectl get rs
+---rutea el deploymen por defecto  de forma externa
+--usado solutionCore-api ejemplo
+kubectl port-forward deploy/local-solutioncore-api 4063:80
+-------------------------------------------------
+
+kubectl get pods  --namespace  local
+kubectl get pods -n local
+kubectl get pods --all-namespaces
+
+    kubectl get pods --all-namespaces
+
+    kubectl config get-contexts 
+    kubectl config current-context
+    kubectl config use-context my-cluster-name
+    kubectl config set-context --current --namespace=dev
+    kubectl config set-context --current --namespace=qa
+    kubectl config set-context --current --namespace=prd
+
+    --------------------------------------------------------
+
+kubectl get events
+
+---visualiza variables de entorno----------------------------------------
+printenv
+---para rendimiento solo nube---------------------------------------
+kubectl top nodes
+kubectl top pods
+kubectl top pods --containers
+ kubectl describe node minikube
+
+ ----------------------------------------
+image: mzegarra/lab06busctacte:0.0.2
+          imagePullPolicy: IfNotPresent #Always
+          readinessProbe:
+             httpGet:
+               path: /actuator/health
+               port: 8080
+             initialDelaySeconds: 20
+             periodSeconds: 10
+             timeoutSeconds: 10
+             successThreshold: 1
+             failureThreshold: 3        
+--Sensor cuando este lento reinicia----------------------------------------------
+livenessProbe:
+             httpGet:
+               path: /actuator/health
+               port: 8080
+             initialDelaySeconds: 30
+             periodSeconds: 10
+             timeoutSeconds: 10
+             successThreshold: 1
+             failureThreshold: 3    
+             --------------------------
+promeus y grafana --visualiza por interfaz las metricas
+----------------------------
+
+minikube addons list
+minikube addons enable ingress
+minikube addons enable metrics-server             
+

@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-local-solutioncore-api
+  namespace: local
+  annotations:
+   nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: minikubecore-example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: local-solutioncore-api
+            port:
+              number: 5064
+      # - path: /v2
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: hello-v2
+      #       port:
+      #         number: 8080
