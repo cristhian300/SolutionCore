@@ -183,3 +183,10 @@ minikube addons list
 minikube addons enable ingress
 minikube addons enable metrics-server             
 
+-config Virtual box-----------------------------------------
+$env:PATH = $env:PATH + ";C:\Program Files\Oracle\VirtualBox"
+--rutear en cmd la ruta del virtual box instalado  C:\Program Files\Oracle\VirtualBox
+--buscar la ruta de tu virtual C:\Users\perseo\VirtualBox VMs\Centos8
+
+* executar
+vboxmanage modifyhd "C:\Users\perseo\VirtualBox VMs\Centos8\Centos8-disk001.vdi" --resize 30000
