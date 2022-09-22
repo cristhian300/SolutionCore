@@ -1,0 +1,29 @@
+﻿
+--------------------------------------
+***node port
+minikube service <service-name> --url
+kubectl create deployment hello-minikube1 --image=k8s.gcr.io/echoserver:1.4
+kubectl expose deployment hello-minikube1 --type=NodePort --port=8080
+kubectl get svc
+minikube service hello-minikube1 --url
+
+
+
+---------------------------------------------------------------------------
+
+***load Balancer importante paso tunel
+minikube tunnel
+kubectl create deployment hello-minikube-load --image=k8s.gcr.io/echoserver:1.4
+kubectl expose deployment hello-minikube-load  --type=LoadBalancer --port=8080
+kubectl get svc
+http://REPLACE_WITH_EXTERNAL_IP:8080
+
+------------------------------------------------------------------------
+***ingress
+
+kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
+kubectl expose deployment web --type=NodePort --port=8080
+
+
+
+

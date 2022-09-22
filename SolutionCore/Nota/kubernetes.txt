@@ -190,3 +190,7 @@ $env:PATH = $env:PATH + ";C:\Program Files\Oracle\VirtualBox"
 
 * executar
 vboxmanage modifyhd "C:\Users\perseo\VirtualBox VMs\Centos8\Centos8-disk001.vdi" --resize 30000
+
+
+
+sudo nano /etc/hosts

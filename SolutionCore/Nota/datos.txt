@@ -101,3 +101,8 @@ https://marketplace.visualstudio.com/items?itemName=vs-publisher-1448185.Conveyo
 --------------------------------------
 interesantes
 https://www.youtube.com/channel/UC1M2s7n8bzqZeJCrYDic2SA/videos
+
+----------------------------------
+https://www.koskila.net/how-to-fix-cannot-start-service-edgehubdev-ports-are-not-available-listen-tcp-0-0-0-08883/
+net stop winnat
+net start winnat

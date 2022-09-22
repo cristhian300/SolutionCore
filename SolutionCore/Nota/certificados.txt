@@ -1,0 +1,27 @@
+﻿dotnet dev-certs  https --trust
+
+---------------------------
+$cert=New-SelfSignedCertificate -dns "www.contoso.com" -CertStoreLocation "cert:\LocalMachine\My"
+$cert
+$pwd = ConvertTo-SecureString -String "pa55w0rd!" -Force -AsPlainText
+
+$certpath ="Cert:\LocalMachine\My\$($cert.Thumbprint)"
+$certpath
+
+--------------------------------------------------------------------
+Export-PfxCertificate -Cert $certpath -FilePath d:\weather.pfx -Password $pwd 
+
+
+https://dev.to/iamthecarisma/managing-windows-pfx-certificates-through-powershell-3pj
+-------------------------------------------------------------
+en el cs proj
+<UserSecretsId>gerado_por_un_Gui</UserSecretsId>
+--------------------------------------------------
+
+dotnet user-secrets set "CertPassword" "pa55w0rd!"
+------------------------------------------------------
+revisar  se creara User Secret
+C:\Users\perseo\AppData\Roaming\Microsoft\UserSecrets
+
+----------------------------------------------------
+https://www.youtube.com/watch?v=96KHOaIe19w&t=2053s
