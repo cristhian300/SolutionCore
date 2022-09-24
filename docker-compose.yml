@@ -28,7 +28,7 @@ services:
       - 5063:80
     build:
       context: .
-      dockerfile: SolutionCore/Dockerfile
+      dockerfile: "Distributed services/SolutionCore.API/src/API/Dockerfile"
     environment:
       - ASPNETCORE_URLS=http://::80
       - ASPNETCORE_ENVIRONMENT=Docker

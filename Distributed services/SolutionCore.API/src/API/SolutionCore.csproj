@@ -155,6 +155,7 @@
     <ProjectReference Include="..\Application\SolutionCore.Application.Contracts\SolutionCore.Application.Contracts.csproj" />
     <ProjectReference Include="..\Application\SolutionCore.Application\SolutionCore.Application.csproj" />
     <ProjectReference Include="..\Data Acces\SolutionCore.Api.DataAcces\SolutionCore.Api.DataAcces.csproj" />
+    <ProjectReference Include="..\Infrastructure\Transport\SolutionCore.Infraestructura.Transport\SolutionCore.Infraestructura.Transport.csproj" />
   </ItemGroup>
 
   <ItemGroup>
