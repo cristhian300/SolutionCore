@@ -42,7 +42,7 @@ formGroup:FormGroup
 
 
   ngOnInit() {
-
+    this.paginator._intl.itemsPerPageLabel="Opciones por página";
     this.ListUsuarios();
     this.ListRoles()
 
