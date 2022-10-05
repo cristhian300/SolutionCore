@@ -54,9 +54,7 @@ export class ModalUsuariosComponent implements OnInit {
       clave: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
       rol: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
       isDeleted: [false]
-
     })
-
   }
 
   onSubmit() {
