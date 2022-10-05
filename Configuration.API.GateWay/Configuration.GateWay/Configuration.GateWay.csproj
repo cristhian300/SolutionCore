@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Distributed services\SolutionCore.API\src\Infrastructure\Transport\SolutionCore.Infraestructura.Transport\SolutionCore.Infraestructura.Transport.csproj" />
-    <ProjectReference Include="..\..\SolutionCore\Infrastructure\Transport\SolutionCore.Infraestructura.Transport\SolutionCore.Infraestructura.Transport.csproj" />
   </ItemGroup>
 
 
