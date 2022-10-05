@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 
- 
+
 import { AddUsuarioRequest } from '../../../../agent/User/request/AddUsuariosRequest';
 import { ListRolesRequest } from '../../../../agent/User/request/ListRolesRequest';
 import { UpdateUsuarioRequest } from '../../../../agent/User/request/UpdateUsuarioRequest';
@@ -50,7 +50,7 @@ export class ModalUsuariosComponent implements OnInit {
 
       codUsuario: [""],
       nombre: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
-      credencial: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
+      // credencial: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
       clave: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
       rol: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
       isDeleted: [false]
@@ -63,24 +63,14 @@ export class ModalUsuariosComponent implements OnInit {
 
 
     if (!this.formGroup.valid) {
-      this.snackBar.open('DEBE_INGRESAR_DATOS_OBLIGATORIOS', 'close', { duration: 3000, panelClass: ['error-snackbar'] });
+      this.snackBar.open('DEBE INGRESAR DATOS OBLIGATORIOS', 'close', { duration: 3000, panelClass: ['error-snackbar'] });
       return;
     } else {
-
-
       if (!this.formGroup.get('codUsuario').value) {
         this.AddUsuario(this.formGroup);
-
-
       } else {
-
         this.UpdateUsuario(this.formGroup)
-
-
       }
-
-
-
     }
 
   };
@@ -88,17 +78,15 @@ export class ModalUsuariosComponent implements OnInit {
 
 
   AddUsuario(formGroup: FormGroup) {
- 
+
     let params = new AddUsuarioRequest()
     params.nombreCompleto = this.formGroup.get("nombre").value
-    params.credencial = this.formGroup.get("credencial").value
     params.clave = this.formGroup.get("clave").value
     params.roleId = parseInt(this.formGroup.get("rol").value)
     params.deleted = this.formGroup.get("isDeleted").value
 
     this.coreService.AddUsuario(params).subscribe(
       response => {
-
         this.snackBar.open("Usuario Creado Exitosamente", 'close', { duration: 3000 })
         this.modalUsuario.close()
       },
@@ -106,9 +94,7 @@ export class ModalUsuariosComponent implements OnInit {
         this.snackBar.open(error.message, 'close', { duration: 5000, panelClass: ['error-snackbar'] });
         console.log(error)
       }
-
     )
-
   }
 
 
@@ -117,7 +103,7 @@ export class ModalUsuariosComponent implements OnInit {
     let params = new UpdateUsuarioRequest()
     params.usuarioId = this.formGroup.get('codUsuario').value
     params.nombreCompleto = this.formGroup.get("nombre").value
-    params.credencial = this.formGroup.get("credencial").value
+    // params.credencial = this.formGroup.get("credencial").value
     params.clave = this.formGroup.get("clave").value
     params.roleId = parseInt(this.formGroup.get("rol").value)
     params.deleted = this.formGroup.get("isDeleted").value
@@ -169,14 +155,14 @@ export class ModalUsuariosComponent implements OnInit {
 
     console.log(`model ${modal}`);
 
-      if (modal  != null) {
-          this.formGroup.get('nombre').setValue(modal.nombreCompleto);
-    this.formGroup.get('credencial').setValue(modal.credencial);
-    this.formGroup.get('rol').setValue(modal.roleId.toString());
-    this.formGroup.get('clave').setValue(modal.clave);
-    this.formGroup.get('codUsuario').setValue(modal.usuarioId);
-      }
-  
+    if (modal != null) {
+      this.formGroup.get('nombre').setValue(modal.nombreCompleto);
+      // this.formGroup.get('credencial').setValue(modal.credencial);
+      this.formGroup.get('rol').setValue(modal.roleId.toString());
+      this.formGroup.get('clave').setValue(modal.clave);
+      this.formGroup.get('codUsuario').setValue(modal.usuarioId);
+    }
+
   }
 
 }

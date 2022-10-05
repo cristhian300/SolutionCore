@@ -4,13 +4,8 @@
 
 
 <perfect-scrollbar style="width: 100%;height: 60vh">
-  <form [formGroup]="formGroup" (submit)="onSubmit()" style="width: 100%;">
-
-
-
+  <form [formGroup]="formGroup" style="width: 100%;">
     <div>
-
-
       <div>
         <mat-toolbar fxLayout fxLayoutAlign="space-between center">
           <h2>{{this.formGroup.get('codUsuario').value? "Actualizar Usuario" :"Nuevo Usuario" }}</h2>
@@ -41,10 +36,10 @@
             <input matInput formControlName="clave" type="password" required placeholder="clave">
           </mat-form-field>
 
-          <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+          <!-- <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
             <mat-label>Credencial</mat-label>
             <input matInput formControlName="credencial" type="text" required placeholder="credenciales">
-          </mat-form-field>
+          </mat-form-field> -->
 
           <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
             <mat-label>Select an option</mat-label>
@@ -66,7 +61,7 @@
           <div style="padding-top: 10px;" fxLayoutAlign="center">
 
             <p>
-              <button mat-raised-button color="primary" type="submit">Submit</button>
+              <button mat-raised-button color="primary"  (click)="onSubmit()" >Submit</button>
               <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
             </p>
           </div>

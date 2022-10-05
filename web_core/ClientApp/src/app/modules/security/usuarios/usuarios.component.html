@@ -2,121 +2,66 @@
 
 
 <div class="containerFiltro">
-    <!-- class="search-div" -->
-    <table id="tb_option">
-        <tr>
-            <td style="width: 100px;">
-                <button mat-raised-button (click)="onCreate()">
-                    <mat-icon>add</mat-icon>Create
-                </button></td>
-            <td>
-
-                <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
-                    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
-                </mat-form-field>
-
-            </td>
-
-            <!-- <td>
-        <mat-form-field>
-            <mat-label>Select an option</mat-label>
-
-            <mat-select (selectionChange)="OnChangeEstados($event)" [(ngModel)]="selectedCar" [(value)]="filtroEstado">
-                <mat-option value="1">Habilitado</mat-option>
-                <mat-option value="0">Desabilitado</mat-option>
-            </mat-select>
+  <table id="tb_option">
+    <tr>
+      <td style="width: 100px;">
+        <button mat-raised-button (click)="onCreate()">
+          <mat-icon>add</mat-icon>Create
+        </button>
+      </td>
+      <td>
+        <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+          <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
         </mat-form-field>
-    </td> -->
-        </tr>
-    </table>
+      </td>
+    </tr>
+  </table>
 </div>
 
 
 <div fxLayout="row wrap" fxLayoutAlign="center center">
-    <!-- <perfect-scrollbar style="height: calc(100vh - 300px)"> -->
-    <perfect-scrollbar style="width: 100%;height: 50vh">
-        <div class="containerMain">
+  <perfect-scrollbar style="width: 100%;height: 50vh">
+    <div class="containerMain">
+
+      <div class="mat-elevation-z8">
+        <table id="tbUsuarios" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+          <ng-container matColumnDef="usuarioId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuarioId}} </td>
+          </ng-container>
+          <ng-container matColumnDef="nombreCompleto">
+            <th mat-header-cell *matHeaderCellDef> Nombres <br> Apellidos </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreCompleto}} </td>
+          </ng-container>
+          <ng-container matColumnDef="rol">
+            <th mat-header-cell *matHeaderCellDef> Rol </th>
+            <td mat-cell *matCellDef="let element"> {{element.rol}} </td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button (click)="onEdit(element)">
+                <mat-icon>launch</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="onDelete(element.$key)">
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns;  sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </perfect-scrollbar>
+  <div class="containerPaginado">
+    <mat-paginator class="mat-paginator-sticky" [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
 
 
-
-
-
-
-
-
-
-
-            <!-- <div fxLayout="column"> -->
-
-
-            <!-- <div fxLayout="row">
-    <mat-form-field>
-      <mat-label>Select an option</mat-label>
-
-      <mat-select (selectionChange)="OnChangeEstados($event)" [(ngModel)]="selectedCar" [(value)]="filtroEstado">
-        <mat-option value="1">Habilitado</mat-option>
-        <mat-option value="0">Desabilitado</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div> -->
-            <!-- ------------------------------------------------------------------------- -->
-
-
-
-            <!-- ---------------------------------------------------------------------------------- -->
-
-            <div class="mat-elevation-z8">
-                <table id="tbUsuarios" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
-
-                    <ng-container matColumnDef="usuarioId">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                        <td mat-cell *matCellDef="let element"> {{element.usuarioId}} </td>
-                    </ng-container>
-
-
-                    <ng-container matColumnDef="nombreCompleto">
-                        <th mat-header-cell *matHeaderCellDef> Nombres <br> Apellidos </th>
-                        <td mat-cell *matCellDef="let element"> {{element.nombreCompleto}} </td>
-                    </ng-container>
-
-
-                    <ng-container matColumnDef="credencial">
-                        <th mat-header-cell *matHeaderCellDef> Credencial </th>
-                        <td mat-cell *matCellDef="let element"> {{element.credencial}} </td>
-                    </ng-container>
-
-
-                    <ng-container matColumnDef="rol">
-                        <th mat-header-cell *matHeaderCellDef> Rol </th>
-                        <td mat-cell *matCellDef="let element"> {{element.rol}} </td>
-                    </ng-container>
-
-
-                    <ng-container matColumnDef="actions">
-                        <th mat-header-cell *matHeaderCellDef> </th>
-                        <td mat-cell *matCellDef="let element">
-                            <button mat-icon-button (click)="onEdit(element)">
-                                <mat-icon>launch</mat-icon>
-                            </button>
-                            <button mat-icon-button color="warn" (click)="onDelete(element.$key)">
-                                <mat-icon>delete_outline</mat-icon>
-                            </button>
-                        </td>
-                    </ng-container>
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns;  sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                </table>
-
-
-
-            </div>
-
-
-
-
-            <!-- <div fxFlex="30" *ngIf="Panel != null">
+<!-- <div fxFlex="30" *ngIf="Panel != null">
         <mat-tab-group>
             <div *ngFor="let item of Panel">
                 <mat-tab label="{{item.Title}}">
@@ -140,18 +85,4 @@
         </mat-tab-group>
     </div> -->
 
-            <!-- </div> -->
-
-
-        </div>
-    </perfect-scrollbar>
-
-
-    <div class="containerPaginado">
-        <mat-paginator class="mat-paginator-sticky" [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
-
-    </div>
-
-    <!-- <hr> -->
-
-</div>
+<!-- </div> -->

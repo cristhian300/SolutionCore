@@ -25,7 +25,7 @@ export class UsuariosComponent implements OnInit {
 
 formGroup:FormGroup
 
-  displayedColumns: string[] = ["usuarioId", "nombreCompleto", "credencial", "rol", 'actions'];
+  displayedColumns: string[] = ["usuarioId", "nombreCompleto", "rol", 'actions'];
 
   dataSource: MatTableDataSource<ListUsuarioResult>;
 
@@ -47,13 +47,13 @@ formGroup:FormGroup
     this.ListRoles()
 
     // this.dataSource.paginator = this.paginator;
-  
+
   }
 
   UsuarioToShow: ListUsuarioResult[];
 
   ListUsuarios() {
- 
+
     let params = new ListUsuarioRequest()
     // params.Credencial = 'cristhian';
     this.coreService.ListUsuario(params).subscribe(
@@ -150,13 +150,13 @@ CreateForm() : FormGroup {
     clave: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
     rol: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
     isDeleted:[false]
-  
+
   })
 
 }
 
 
-searchKey: string;  
+searchKey: string;
 
 onSearchClear() {
   this.searchKey = "";
@@ -218,7 +218,7 @@ onEdit(elemento:ListUsuarioResult){
 
   console.log(`update ${ JSON.stringify(elemento) }`);
 
- 
+
 
   const dialogRef = this.dialog.open(ModalUsuariosComponent, {
     width: '60%',

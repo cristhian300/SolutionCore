@@ -44,26 +44,26 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.hostIP
-        #viene de la estructura secretos      
-        - name: SECRET_USERNAME
-          valueFrom:
-           secretKeyRef:
-            name: mysecret
-            key: username        
-        envFrom:
-        #configuración de una estructura configMap
-            - configMapRef:
-                name: ms-configurations
+        # #viene de la estructura secretos      
+        # - name: SECRET_USERNAME
+        #   valueFrom:
+        #    secretKeyRef:
+        #     name: mysecret
+        #     key: username        
+        # envFrom:
+        # #configuración de una estructura configMap
+        #     - configMapRef:
+        #         name: ms-configurations
            
-        volumeMounts:
-        - name: foo
-          mountPath: "/etc/foo" 
+      #   volumeMounts:
+      #   - name: foo
+      #     mountPath: "/etc/foo" 
 
-      volumes:
-      - name: foo
-        secret:
-         secretName: mysecret
-         defaultMode: 256           
+      # volumes:
+      # - name: foo
+      #   secret:
+      #    secretName: mysecret
+      #    defaultMode: 256           
 ---
 
 apiVersion: v1
@@ -81,4 +81,4 @@ spec:
     protocol: TCP
     port: 5064
     targetPort: 80
-  
+    nodePort: 30000
