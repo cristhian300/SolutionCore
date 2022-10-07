@@ -7,9 +7,7 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
 
     using Arch.EntityFrameworkCore.UnitOfWork;
     using Microsoft.AspNetCore.Hosting;
-    using SolutionCore.Infraestructura.Transport.Core.Product.QueryEntity;
-    using SolutionCore.Infraestructura.Transport.Core.Product.Request;
-    using SolutionCore.Infraestructura.Transport.Core.Product.Response;
+
     using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
     using System;
     using System.IO;
@@ -22,16 +20,20 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
     using Microsoft.AspNetCore.Mvc.Routing;
     using Microsoft.AspNetCore.Mvc;
 
-     
+
     using System.Net.Http;
     using System.Threading.Tasks;
- 
+    using SolutionCore.Infraestructura.Transport.Core.Product.Response;
+    using SolutionCore.Infraestructura.Transport.Core.Product.QueryEntity;
+    using SolutionCore.Infraestructura.Transport.Core.Product.Request;
+    using System.Collections.Generic;
 
-    public class ProductQuery: IProductQuery
+
+    public class ProductQuery : IProductQuery
     {
 
         private IHostingEnvironment hostingEnvironment;
-      
+
         //private  IHttpContextAccessor HttpContextAccessor;
 
 
@@ -40,70 +42,153 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
             //IHttpContextAccessor httpContextAccessor,
 
 
-            IHostingEnvironment env, IUnitOfWork<CoreContext>  CoreContext)
+            IHostingEnvironment env, IUnitOfWork<CoreContext> CoreContext)
         {
-       //HttpContextAccessor = httpContextAccessor;
+            //HttpContextAccessor = httpContextAccessor;
             hostingEnvironment = env;
             _CoreContext = CoreContext;
         }
 
 
-        public ListProductResponse ListProduct(ListProductRequest  parameter ) {
-
-
-
-            //if (System.IO.File.Exists(fileSavePath))
-            //{
-            //    System.IO.File.Delete(fileSavePath);
-            //}
-
-            //// Save the uploaded file to "UploadedFiles" folder
-            //file.SaveAs(fileSavePath);
-            //string scheme = HttpContextAccessor.HttpContext.Request.Scheme;
-
-            var a = parameter.MainUrl;
+        public ListProductResponse ListProduct(ListProductRequest parameter)
+        {
 
             try
             {
-              var listProduct = (from p in _CoreContext.DbContext.Products
-                               where p.Deleted == false
-                               select new ListProductQueryEntity {
-                               ProductId = p.ProductId,
-                               Name=p.Name,
-                               Description=p.Description,
-                               Price= p.Price,
-                               //Deleted=p.Deleted,
-                               Photo =a + p.Photo
-                                
-                               }
-                               ).ToList();
-            return  new ListProductResponse { ListProduct = listProduct }  ;
+                var listProduct = (from p in _CoreContext.DbContext.Products
+                                   where p.Deleted == false
+                                   orderby p.ProductId descending
+                                   select new ListProductQueryEntity
+                                   {
+                                       ProductId = p.ProductId,
+                                       Name = p.Name,
+                                       Description = p.Description,
+                                       Price = p.Price,
+                                       Photo = p.Photo,
+                                       PathUrlImage = $"{parameter.PathUrlImage}{p.Photo}" 
+                                   }
+                                 ).ToList();
+                return new ListProductResponse { ListProduct = listProduct };
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+
+        }
+
+
+
+        public AddProductResponse AddProduct(AddProductRequest parameter)
+        {
+
+            List<Product> lstProduct = new List<Product>();
+            try
+            {
+
+                var lstfileNames = ValidationFiles(parameter.files);
+               
+
+                foreach (var nameFiles in lstfileNames)
+                {
+                    Product product = new Product
+                    {
+                        Name = parameter.Name,
+                        Description = parameter.Description,
+                        Price = parameter.Price,
+                        Photo = nameFiles
+
+                    };
+                    lstProduct.Add(product);
+                }
+
+                _CoreContext.DbContext.Products.AddRange(lstProduct);
+                _CoreContext.SaveChanges();
+
+                return new AddProductResponse { };
             }
             catch (Exception e)
             {
 
-                throw;
+                throw new Exception(e.Message);
             }
-           
-        
+
         }
 
 
-
-        public AddProductResponse AddProduct(IFormFile files ,  AddProductRequest parameter)
+        public EditProductResponse EditProduct(EditProductRequest parameter)
         {
 
+            try
+            {
+                var Queryproduct = _CoreContext.DbContext.Products.FirstOrDefault(p =>
+                                                         p.ProductId == parameter.ProductId &&
+                                                         !p.Deleted);
+                if (Queryproduct != null)
+                {
+                    Queryproduct.Name = parameter.Name;
+                    Queryproduct.Description = parameter.Description;
+                    Queryproduct.Price = parameter.Price;
 
+                    if (parameter.files != null)
+                    {
+                        List<Product> lstProduct = new List<Product>();
+                        var lstfileNames = ValidationFiles(parameter.files);
+                        foreach (var nameFiles in lstfileNames)
+                        {
+                            Queryproduct.Photo = nameFiles;
+                        }
+                    }
+                    _CoreContext.DbContext.Products.UpdateRange(Queryproduct);
+                    _CoreContext.DbContext.SaveChanges();
+                }
 
-            Product product = new Product();
+                return new EditProductResponse { };
+            }
+            catch (Exception ex )
+            {
 
-
-            _CoreContext.DbContext.Products.Add(product);
-            _CoreContext.DbContext.SaveChanges();
-             
-            return new AddProductResponse {   };
-
+                throw;
+            }
+            
         }
 
+
+        public List<String> ValidationFiles(List<IFormFile> files)
+        {
+
+            List<String> lstFileNames = new List<String>();
+
+            if (files != null &&   files.Count >= 1)
+            {
+
+                if (!Directory.Exists(hostingEnvironment.WebRootPath + "\\images\\"))
+                {
+                    Directory.CreateDirectory(hostingEnvironment.WebRootPath + "\\images\\");
+                }
+
+                foreach (var file in files)
+                {
+                    var type = file.ContentType.Split('/');
+                    string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                    string extension = Path.GetExtension(file.FileName);
+                    if (type[0] != "image")
+                    {
+                        throw new Exception("Solo se acepta archivos tipo imagenes");
+                    }
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    var path = Path.Combine(hostingEnvironment.WebRootPath, "images", fileName);
+                    using (Stream Stream = System.IO.File.Create(path))
+                    {
+                        //crear el archiv
+                        file.CopyToAsync(Stream);
+                        Stream.Flush();
+                    }
+                    lstFileNames.Add(file.FileName);
+
+                }
+            }
+            return lstFileNames;
+        }
     }
 }

@@ -23,6 +23,9 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AppconfigModule } from './shared/appconfig/appconfig.module';
+import { AdministradorComponent } from './modules/web/administrador/administrador.component';
+import { ModalProductComponent } from './modules/web/administrador/modal-product/modal-product.component';
+import { ModalDeleteProductComponent } from './modules/web/administrador/modal-delete-product/modal-delete-product.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: false
@@ -38,7 +41,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FetchDataComponent,
     UsuariosComponent,
     ModalUsuariosComponent,
-    LoginComponent
+    LoginComponent,
+    AdministradorComponent,
+    ModalProductComponent,
+    ModalDeleteProductComponent
   ],
   imports: [
     NgxUiLoaderModule.forRoot({}),
@@ -59,7 +65,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         path: 'usuarios', component: UsuariosComponent
         , canActivate: [SecurityGuardGuard]
       },
-      { path: 'log', component: LoginComponent }
+      { path: 'log', component: LoginComponent },
+      { path: 'administrador', component: AdministradorComponent }
     ]),
     BrowserAnimationsModule
 
@@ -72,6 +79,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ModalUsuariosComponent]
+  entryComponents: [ModalUsuariosComponent
+    ,ModalProductComponent,ModalDeleteProductComponent
+  ]
 })
 export class AppModule { }

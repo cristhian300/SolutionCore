@@ -2,6 +2,7 @@ import { Observable } from "rxjs";
 import { HttpHeaders, HttpClient } from "@angular/common/http";
 import { PostParameter } from "./post-parameter";
 import { Injectable } from "@angular/core";
+import { MatSnackBar } from "@angular/material";
 
 @Injectable()
 export class NetworkManager {
@@ -10,7 +11,7 @@ export class NetworkManager {
     /**
      *
      */
-    constructor( private HttpClient:HttpClient) {
+    constructor( private HttpClient:HttpClient,private snackBar: MatSnackBar) {
 
 
     }
@@ -52,7 +53,56 @@ export class NetworkManager {
 
       }
 
+      postFile(parameter: PostParameter , data :FormData ): Observable<any> {
 
+        const headers = new HttpHeaders().set( 'Accept', 'application/json');
+        const options = { headers: headers };
+        // const parameters = parameter.RequestParameter
+        //create recive el valor del servicio llamado
+
+        var rpt = Observable.create(observer =>{
+          this.HttpClient.post<any>(`${parameter.PathOperation}`,data
+         ,options)
+         .subscribe(
+           response =>{
+
+            try {
+              observer.next(response)
+            } catch (e) {
+
+              this.snackBar.open('catch '+e.message, 'close', { duration: 5000, panelClass: ['error-snackbar'] });
+              observer.error(e);
+            }},
+
+            httpError => {
+              this.snackBar.open('Observable Ha ocurrido un error al tratar de procesar la acción requerida.', 'close', { duration: 5000, panelClass: ['error-snackbar'] });
+              observer.error(httpError);
+            }
+
+           );
+        })
+
+
+        return  rpt
+
+       /* Observable.create(observer => {
+          this.HttpClient.post<any>(`${parameter.PathOperation}`,JSON.stringify(parameters)
+            , options)
+            .subscribe(
+
+              response => {
+                try {
+                  observer.next(response)
+                } catch (error) {
+
+                  console.log("error post " + error)
+                  observer.error(error);
+                }
+
+              }
+            )
+        });*/
+      }
       // getTokenPost(postParameters: PostParameter): Observable<BaseResponse> {
 
 

@@ -17,6 +17,9 @@ import { StorageService } from './common/storage.service';
 import { ConfigurationResponse } from './configuration/configuration';
 import { debug } from 'console';
 import { ConfigurationService } from './configuration/configuration.service';
+import { AddProductRequest, EditProductRequest } from '../agent/Product copy/Request/AddProductRequest';
+import { ListProductResponse } from '../agent/Product copy/Response/ListProductResponse';
+import { AddProductResponse } from '../agent/Product copy/Response/AddProductResponse';
 
 
 
@@ -94,7 +97,48 @@ export class CoreService {
     return this.networkManager.post(parameters) as Observable<AddUsuarioResponse>;
   }
 
+/*Product*/
+public ListProduct(parameter:any = null){
 
+  const parameters = new PostParameter()
+  parameters.PathOperation= this.Url +  'Product/ListProduct'
+  parameters.RequestParameter=parameter
+  return this.networkManager.post(parameters)  as Observable<ListProductResponse>;
+
+}
+
+public AddProduct(parameter:AddProductRequest = null){
+
+  const parameters = new PostParameter()
+  parameters.PathOperation=  this.Url + 'Product/AddProduct'
+  parameters.RequestParameter=parameter
+
+  const formData = new FormData();
+  for (const key in parameter) {
+    if (parameter .hasOwnProperty(key)) {
+      formData.append(key, parameter[key]);
+    }
+  }
+
+  return this.networkManager.postFile(parameters,formData)  as Observable<AddProductResponse>;
+}
+
+
+public EditProduct(parameter:EditProductRequest = null){
+
+  const parameters = new PostParameter()
+  parameters.PathOperation= this.Url +  'Product/EditProduct'
+  parameters.RequestParameter=parameter
+
+  const formData = new FormData();
+  for (const key in parameter) {
+    if (parameter .hasOwnProperty(key)) {
+      formData.append(key, parameter[key]);
+    }
+  }
+
+  return this.networkManager.postFile(parameters,formData)  as Observable<AddProductResponse>;
+}
 
 
 

@@ -8,6 +8,7 @@ export class StorageService {
   private storage: any;
 
   constructor() {
+    //get Storage total
       this.storage = sessionStorage;
   }
 

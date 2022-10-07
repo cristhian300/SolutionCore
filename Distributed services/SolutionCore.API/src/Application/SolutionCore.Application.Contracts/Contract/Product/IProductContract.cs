@@ -1,4 +1,5 @@
-﻿using SolutionCore.Infraestructura.Transport.Core.Product.Request;
+﻿
+using SolutionCore.Infraestructura.Transport.Core.Product.Request;
 using SolutionCore.Infraestructura.Transport.Core.Product.Response;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,10 @@ namespace SolutionCore.Application.Contracts.Contract.Product
     {
 
         Task<ListProductResponse> ListProduct(ListProductRequest parameter);
+
+        Task<AddProductResponse> AddProduct(AddProductRequest parameter);
+
+
+        Task<EditProductResponse> EditProduct(EditProductRequest parameter);
     }
 }

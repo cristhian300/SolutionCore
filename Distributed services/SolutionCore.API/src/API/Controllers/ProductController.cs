@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Arch.EntityFrameworkCore.UnitOfWork;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.DotNet.PlatformAbstractions;
 using Microsoft.Extensions.Configuration;
+using PmfBff.Interfaces;
+using PmfBff.Models;
+using PmfBff.Models.Request;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Entities;
 using SolutionCore.Application.Contracts.Contract.Product;
 using SolutionCore.Infraestructura.Transport.Core.Product.Request;
 using SolutionCore.Infraestructura.Transport.Core.Product.Response;
-
 
 namespace SolutionCore.Controllers
 {
@@ -27,110 +32,90 @@ namespace SolutionCore.Controllers
        private IProductContract _IProductContract;
         private readonly IWebHostEnvironment _env;
         IUnitOfWork<CoreContext> _CoreContext;
-       // private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public IPmfRestClient _pmfRestClient { get; }
 
         public ProductController(
-           //  IHttpContextAccessor httpContextAccessor,
            IProductContract  IProductContract, 
-            IWebHostEnvironment env, IUnitOfWork<CoreContext>  CoreContext  )
+            IWebHostEnvironment env, IUnitOfWork<CoreContext>  CoreContext ,
+            IPmfRestClient pmfRestClient
+            )
         {
-             //_httpContextAccessor = httpContextAccessor;
           _IProductContract = IProductContract;
             _env = env;
             _CoreContext = CoreContext;
-            
-        
+            _pmfRestClient = pmfRestClient;
         }
 
         // POST: api/Product
         [HttpPost]
         public async Task<ListProductResponse> ListProduct()
         {
-            //[FromBody] ListProductRequest parameter
-            ListProductRequest parameter = new ListProductRequest() ;
-            parameter.MainUrl=   $"{Request.Scheme}:{Request.Host}/images/";
-
-            return await _IProductContract.ListProduct(parameter);
+                ListProductRequest parameter = new ListProductRequest();
+                parameter.PathUrlImage = $"{Request.Scheme}://{Request.Host}/images/";
+                return await _IProductContract.ListProduct(parameter);
         }
 
 
         [HttpPost]
-        //public async Task<ListProductResponse> AddProduct([FromForm] List<IFormFile> files, [FromBody] ListProductRequest parameter
-        public async Task<ActionResult> AddProduct([FromForm] AddProductRequest parameter )   
+        public async Task<AddProductResponse> AddProduct([FromForm] AddProductRequest parameter )   
+        {
+            return await _IProductContract.AddProduct(parameter);
+        }
+
+
+        [HttpPost]
+        
+        public async Task<EditProductResponse> EditProduct([FromForm] EditProductRequest parameter)
+        {
+            return await _IProductContract.EditProduct(parameter);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> TestProxy()
         {
 
-           
-
-            List<Product> lstProduct = new List<Product>();
             try
             {
-            if (parameter.files.Count >= 1) {
+                var request = new GenericRequest{
+                Method= RestSharp.Method.POST,
+                Url = $"api/Product/ListProduct",
+                ServicePath = "http://localhost:25782/"
+                //Body = request
+            };
 
-                if( !Directory.Exists(_env.WebRootPath + "\\images\\"))
-                {
-                    Directory.CreateDirectory(_env.WebRootPath + "\\images\\");
-                }
-
-                    foreach (var file in parameter.files)
-                {
-                     var type= file.ContentType.Split('/') ;
-
-                    if (type[0] != "image") {
-                        throw new Exception("Solo se acepta archivos tipo imagenes");
-                    }
-             
-                    var path = Path.Combine(_env.WebRootPath, "images", file.FileName );
-
-                    using (Stream Stream = System.IO.File.Create(path))
-                    {
-                        //crear el archivo
-                         await   file.CopyToAsync(Stream);
-                         Stream.Flush();
-                    }
-                        /* detalle del archivo
-                        var tamañobyte = file.Length;
-                        var tamañoMegas =    tamañobyte / 1000000;
-                        var extension = Path.GetExtension(file.FileName).Substring(1);
-                        var nombre =  Path.GetFileNameWithoutExtension( file.FileName ) ;
-                        */
-                        //var directoryFiles = Directory.GetFiles("wwwroot/images");
-
-                        //foreach (var item in directoryFiles)
-                        //{
-                        //}
-
-                       var imag = $"{Request.Scheme}:{Request.Host}/images/{file.FileName }";
-  
-                        Product product = new Product
-                    {
-                        Name = parameter.Name,
-                        Description = parameter.Description,
-                        Price=parameter.Price,
-                        Photo = file.FileName
-
-                        };
-
-                    lstProduct.Add(product);
-                
-                }
-                _CoreContext.DbContext.Products.AddRange(lstProduct);
-                _CoreContext.SaveChanges();
-
-            }
-
-            
-            //return await _IProductContract.ListProduct(parameter);
-            return Ok(lstProduct);
-
+            var response = await _pmfRestClient.ExecuteClientGenericRequest<object>(request);
+                //return GetResult( new PmfRestResponse(response.Code, response.Payload) );
+                return GetResult(new PmfRestResponse(response.Code, response.Payload)) ;
             }
             catch (Exception e)
             {
 
-                throw new Exception(e.Message);
+                throw;
             }
+
+          
+
         }
 
-        
-
+        protected ActionResult GetResult(PmfRestResponse response)
+        {
+            if (response != null)
+            {
+                return response.Status switch
+                {
+                    HttpStatusCode.OK => Ok(response.JSON),
+                    HttpStatusCode.Created => StatusCode(StatusCodes.Status201Created, response.JSON),
+                    HttpStatusCode.Conflict => StatusCode(StatusCodes.Status409Conflict, response.JSON),
+                    HttpStatusCode.NoContent => NoContent(),
+                    HttpStatusCode.BadRequest => StatusCode(StatusCodes.Status400BadRequest, response.JSON),
+                    HttpStatusCode.InternalServerError => StatusCode(StatusCodes.Status500InternalServerError, response.JSON),
+                    HttpStatusCode.Unauthorized => StatusCode(StatusCodes.Status401Unauthorized),
+                    _ => NotFound(),
+                };
+            }
+            return NotFound();
+        }
     }
 }

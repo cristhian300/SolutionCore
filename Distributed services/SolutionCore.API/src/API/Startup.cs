@@ -24,6 +24,8 @@ using SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using PmfBff.Interfaces;
+using PmfBff.Services;
 
 namespace SolutionCore
 {
@@ -116,7 +118,11 @@ namespace SolutionCore
             services.AddTransient<IProductQuery, ProductQuery>();
             services.AddTransient<IProductContract, ProductApplication>();
 
+      
 
+            //services.AddSingleton<IHostedService, CronJobService>();
+            //services.AddScoped<CronJobService>();
+            services.AddScoped<IPmfRestClient, PmfRestClient>();
             services.AddUnitOfWork<CoreContext>();
 
             //AddSwagger(services);

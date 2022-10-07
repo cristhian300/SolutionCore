@@ -7,6 +7,6 @@ namespace SolutionCore.Infraestructura.Transport.Core.Product.Request
    public class ListProductRequest
     {
 
-        public string MainUrl { get; set; }
+        public string PathUrlImage { get; set; }
     }
 }

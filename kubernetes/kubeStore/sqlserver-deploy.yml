@@ -2,21 +2,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mssql-deploy
-  labels:
-    name: mssql-deploy
-    app: microservice-seguridad
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: microservice-seguridad
-      name: mssql-pod
   template:
     metadata:
-      name: mssql-pod
+    
       labels:
         app: microservice-seguridad
-        name: mssql-pod
     spec:
       containers:
         - name: mssql

@@ -17,5 +17,6 @@ namespace SolutionCore.Infraestructura.Transport.Core.Product.QueryEntity
 
         public string  Photo { get; set; }
 
+        public string PathUrlImage { get; set; }
     }
 }
