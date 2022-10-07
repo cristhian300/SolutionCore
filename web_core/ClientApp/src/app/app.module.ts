@@ -6,26 +6,26 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './modules/web/home/home.component';
-import { CounterComponent } from './modules/web/counter/counter.component';
-import { FetchDataComponent } from './modules/web/fetch-data/fetch-data.component';
-import { UsuariosComponent } from './modules/security/usuarios/usuarios.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
 import { NetworkManager } from './agent/common/network-manager';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ModalUsuariosComponent } from './modules/security/usuarios/modal-usuarios/modal-usuarios.component';
+
 import { InterceptorService } from './agent/common/interceptor.service';
-import { LoginComponent } from './modules/security/authentication/login/login.component';
+import { LoginComponent } from './main/pages/login/login.component';
 import { SecurityGuardGuard } from './services/security/security-guard.guard';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AppconfigModule } from './shared/appconfig/appconfig.module';
-import { AdministradorComponent } from './modules/web/administrador/administrador.component';
-import { ModalProductComponent } from './modules/web/administrador/modal-product/modal-product.component';
-import { ModalDeleteProductComponent } from './modules/web/administrador/modal-delete-product/modal-delete-product.component';
+import { AdministradorComponent } from './main/pages/administrador/administrador.component';
+import { ModalProductComponent } from './main/pages/administrador/modal-product/modal-product.component';
+import { ModalDeleteProductComponent } from './main/pages/administrador/modal-delete-product/modal-delete-product.component';
+import { UsuariosComponent } from './main/pages/usuarios/usuarios.component';
+import { ModalUsuariosComponent } from './main/pages/usuarios/modal-usuarios/modal-usuarios.component';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: false
@@ -36,15 +36,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     UsuariosComponent,
-    ModalUsuariosComponent,
     LoginComponent,
     AdministradorComponent,
     ModalProductComponent,
-    ModalDeleteProductComponent
+    ModalDeleteProductComponent,
+    ModalUsuariosComponent
   ],
   imports: [
     NgxUiLoaderModule.forRoot({}),

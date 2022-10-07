@@ -4,8 +4,7 @@ import { CoreService } from '../../../services/core.service';
 import { ListUsuarioRequest } from '../../../agent/User/request/ListUsuariosRequest';
 import { MatTableDataSource, MatPaginator, MatSort, MatAutocompleteSelectedEvent, MatDialog } from '@angular/material';
 import { ListUsuarioResult } from '../../../agent/User/response/ListUsuarioResponse';
-import { SecurityViewModel } from '../SecurityViewModels/security-list-viewmodel';
-import { UserResultPanelViewModel } from '../SecurityViewModels/user-result-panel-view.model';
+
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
@@ -14,6 +13,8 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ListRolesRequest } from '../../../agent/User/request/ListRolesRequest';
 import { ListRoleResult } from '../../../agent/User/response/ListRolesResponse';
 import { AddUsuarioRequest } from '../../../agent/User/request/AddUsuariosRequest';
+import { SecurityViewModel } from 'src/app/modules/security/SecurityViewModels/security-list-viewmodel';
+import { UserResultPanelViewModel } from 'src/app/modules/security/SecurityViewModels/user-result-panel-view.model';
 
 
 @Component({
