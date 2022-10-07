@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { NetworkManager } from 'src/app/agent/common/network-manager';
+import { PostParameter } from 'src/app/agent/common/post-parameter';
 import { environment } from 'src/environments/environment.prod';
-import { NetworkManager } from '../../agent/common/network-manager';
-import { PostParameter } from '../../agent/common/post-parameter';
+
 import { ConfigurationResponse } from './configuration';
 
 @Injectable({

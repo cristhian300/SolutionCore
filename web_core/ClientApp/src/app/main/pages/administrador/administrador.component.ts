@@ -2,11 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, PageEvent } from '@angular/material';
-import { ListProductEntity, ListProductResponse } from 'src/app/agent/Product copy/Response/ListProductResponse';
-import { StorageService } from 'src/app/services/common/storage.service';
-import { ConfigurationResponse } from 'src/app/services/configuration/configuration';
+import { StorageService } from '../../providers/services/common/storage.service';
+import { ConfigurationResponse } from '../../providers/services/configuration/configuration';
+import { ListProductEntity, ListProductResponse } from '../../providers/services/Product/product.interface';
 
-import { CoreService } from 'src/app/services/core.service';
+
+
+import { ProductService } from '../../providers/services/Product/product.service';
 import { ModalDeleteProductComponent } from './modal-delete-product/modal-delete-product.component';
 import { ModalProductComponent } from './modal-product/modal-product.component';
 
@@ -23,7 +25,7 @@ export class AdministradorComponent implements OnInit {
   filtro: string = '';
   ListProductToShow: ListProductEntity[] = [];
   public pathImage:string ='';
-  constructor(private coreService: CoreService,
+  constructor(private productService: ProductService,
     public dialog: MatDialog,
     http: HttpClient, @Inject('BASE_URL') baseUrl: string,
     private storageService: StorageService
@@ -53,7 +55,7 @@ export class AdministradorComponent implements OnInit {
     //     MainUrl:"bb"
     //  };
     // parameters
-    this.coreService.ListProduct().subscribe(
+    this.productService.ListProduct().subscribe(
       response => {
 
         this.viewModel.listProduct = response.listProduct

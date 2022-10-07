@@ -1,20 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CoreService } from '../../../services/core.service';
-import { ListUsuarioRequest } from '../../../agent/User/request/ListUsuariosRequest';
+
+
 import { MatTableDataSource, MatPaginator, MatSort, MatAutocompleteSelectedEvent, MatDialog } from '@angular/material';
-import { ListUsuarioResult } from '../../../agent/User/response/ListUsuarioResponse';
 
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 import { ModalUsuariosComponent } from './modal-usuarios/modal-usuarios.component';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { ListRolesRequest } from '../../../agent/User/request/ListRolesRequest';
-import { ListRoleResult } from '../../../agent/User/response/ListRolesResponse';
-import { AddUsuarioRequest } from '../../../agent/User/request/AddUsuariosRequest';
+
 import { SecurityViewModel } from 'src/app/modules/security/SecurityViewModels/security-list-viewmodel';
 import { UserResultPanelViewModel } from 'src/app/modules/security/SecurityViewModels/user-result-panel-view.model';
+import { CoreService } from '../../providers/services/core.service';
+import { UsuariosService } from '../../providers/services/Usuarios/usuarios.service';
+import { AddUsuarioRequest, ListRoleResult, ListRolesRequest, ListUsuarioRequest, ListUsuarioResult } from '../../providers/services/Usuarios/usuarios.interfaces';
 
 
 @Component({
@@ -32,7 +32,8 @@ formGroup:FormGroup
 
   SecurityViewModel = new SecurityViewModel()
 
-  constructor( private ngxLoader: NgxUiLoaderService ,public dialog: MatDialog,private coreService: CoreService, private formbuilder:FormBuilder) {
+  constructor( private ngxLoader: NgxUiLoaderService ,public dialog: MatDialog,
+    private coreService: UsuariosService, private formbuilder:FormBuilder) {
     this.formGroup = this.CreateForm();
   }
 

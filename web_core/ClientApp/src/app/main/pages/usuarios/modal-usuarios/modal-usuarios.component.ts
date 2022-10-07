@@ -1,14 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import { CoreService } from 'src/app/main/providers/services/core.service';
+import { AddUsuarioRequest, ListRoleResult, ListRolesRequest, ListUsuarioResult, UpdateUsuarioRequest } from 'src/app/main/providers/services/Usuarios/usuarios.interfaces';
+import { UsuariosService } from 'src/app/main/providers/services/Usuarios/usuarios.service';
 
 
-import { AddUsuarioRequest } from '../../../../agent/User/request/AddUsuariosRequest';
-import { ListRolesRequest } from '../../../../agent/User/request/ListRolesRequest';
-import { UpdateUsuarioRequest } from '../../../../agent/User/request/UpdateUsuarioRequest';
-import { ListRoleResult } from '../../../../agent/User/response/ListRolesResponse';
-import { ListUsuarioResult } from '../../../../agent/User/response/ListUsuarioResponse';
-import { CoreService } from '../../../../services/core.service';
+
 
 @Component({
   selector: 'app-modal-usuarios',
@@ -20,7 +18,7 @@ export class ModalUsuariosComponent implements OnInit {
 
   constructor(private snackBar: MatSnackBar, @Inject(MAT_DIALOG_DATA) public data: ListUsuarioResult
     , private modalUsuario: MatDialogRef<ModalUsuariosComponent>,
-    private coreService: CoreService, private formbuilder: FormBuilder) {
+    private usuariosService:  UsuariosService, private formbuilder: FormBuilder) {
 
     this.formGroup = this.CreateForm();
   }
@@ -83,7 +81,7 @@ export class ModalUsuariosComponent implements OnInit {
     params.roleId = parseInt(this.formGroup.get("rol").value)
     params.deleted = this.formGroup.get("isDeleted").value
 
-    this.coreService.AddUsuario(params).subscribe(
+    this.usuariosService.AddUsuario(params).subscribe(
       response => {
         this.snackBar.open("Usuario Creado Exitosamente", 'close', { duration: 3000 })
         this.modalUsuario.close()
@@ -107,7 +105,7 @@ export class ModalUsuariosComponent implements OnInit {
     params.deleted = this.formGroup.get("isDeleted").value
 
 
-    this.coreService.UpdateUsuario(params).subscribe(
+    this.usuariosService.UpdateUsuario(params).subscribe(
       response => {
 
         this.snackBar.open("Usuario actualizado Exitosamente", 'close', { duration: 3000 })
@@ -136,7 +134,7 @@ export class ModalUsuariosComponent implements OnInit {
 
     let paramas = new ListRolesRequest()
 
-    this.coreService.ListRoles(paramas).subscribe(response => {
+    this.usuariosService.ListRoles(paramas).subscribe(response => {
       this.RolesList = response.listRoles
 
 

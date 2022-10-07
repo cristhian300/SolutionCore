@@ -1,4 +1,6 @@
-import { ListUsuarioResult } from "../../../agent/User/response/ListUsuarioResponse";
+import { ListUsuarioResult } from "src/app/main/providers/services/Usuarios/usuarios.interfaces";
+
+
 
 export class SecurityViewModel{
 
@@ -9,7 +11,7 @@ export class SecurityViewModel{
      */
     constructor() {
         this.listUsuarios =[]
-        
+
 
     }
 }

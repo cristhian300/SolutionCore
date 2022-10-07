@@ -2,10 +2,9 @@ import { stringify } from '@angular/compiler/src/util';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
-import { AddProductRequest, EditProductRequest } from 'src/app/agent/Product copy/Request/AddProductRequest';
-import { ListProductEntity } from 'src/app/agent/Product copy/Response/ListProductResponse';
-
-import { CoreService } from 'src/app/services/core.service';
+import { AddProductRequest, EditProductRequest, ListProductEntity } from 'src/app/main/providers/services/Product/product.interface';
+import { ProductService } from 'src/app/main/providers/services/Product/product.service';
+ 
 
 @Component({
   selector: 'app-modal-product',
@@ -22,7 +21,7 @@ export class ModalProductComponent implements OnInit   {
   title: string;
 
   constructor(private formbuilder: FormBuilder,
-    private coreService: CoreService,
+    private productService: ProductService,
     private modalProduct: MatDialogRef<ModalProductComponent>,
     private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) private data: ListProductEntity
@@ -122,7 +121,7 @@ export class ModalProductComponent implements OnInit   {
       return
     }
 
-    this.coreService.AddProduct(request).subscribe(
+    this.productService.AddProduct(request).subscribe(
       response => {
         this.modalProduct.close()
       },
@@ -143,7 +142,7 @@ export class ModalProductComponent implements OnInit   {
     request.Price = this.formGroupProduct.get("precio").value;
     request.Description = this.formGroupProduct.get("detalle").value;
 
-    this.coreService.EditProduct(request).subscribe(
+    this.productService.EditProduct(request).subscribe(
       response => {
         this.modalProduct.close()
       },

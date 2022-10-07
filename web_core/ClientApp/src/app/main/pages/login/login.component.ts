@@ -3,11 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { GetTokenRequest } from 'src/app/agent/Authentication/request/GetTokenRequest';
-import { AuthenticateService } from 'src/app/services/authenticate/authenticate.service';
-import { StorageService } from 'src/app/services/common/storage.service';
-import { ConfigurationResponse } from 'src/app/services/configuration/configuration';
-import { ConfigurationService } from 'src/app/services/configuration/configuration.service';
-import { CoreService } from 'src/app/services/core.service';
+import { AuthenticateService } from '../../providers/services/authenticate/authenticate.service';
+import { ConfigurationService } from '../../providers/services/configuration/configuration.service';
+
 
 @Component({
   selector: 'app-login',
