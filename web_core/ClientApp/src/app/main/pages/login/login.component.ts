@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
-import { GetTokenRequest } from 'src/app/agent/Authentication/request/GetTokenRequest';
-import { AuthenticateService } from '../../providers/services/authenticate/authenticate.service';
+ ;
 import { ConfigurationService } from '../../providers/services/configuration/configuration.service';
+import { GetTokenRequest } from '../../providers/services/login/login.interface';
+import { LoginService } from '../../providers/services/login/login.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
 
     // private loginService: CoreService,
     private configurationService: ConfigurationService,
-    private authenticate:AuthenticateService
+    private loginService:LoginService
   ) {
   }
 
@@ -57,7 +58,7 @@ export class LoginComponent implements OnInit {
     param.userName = this.loginForm.get('userName').value
     param.password = this.loginForm.get('password').value
 
-    this.authenticate.login(param).subscribe(
+    this.loginService.login(param).subscribe(
       response => {
         const successLogin = response.token
         if (successLogin) {

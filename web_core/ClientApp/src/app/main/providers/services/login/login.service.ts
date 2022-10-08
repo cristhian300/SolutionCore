@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GetTokenRequest } from 'src/app/agent/Authentication/request/GetTokenRequest';
-import { GetTokenResponse } from 'src/app/agent/Authentication/response/GetTokenResponse';
+
 import { NetworkManager } from 'src/app/agent/common/network-manager';
 import { PostParameter } from 'src/app/agent/common/post-parameter';
 import { StorageService } from '../common/storage.service';
 import { ConfigurationResponse } from '../configuration/configuration';
 import { ConfigurationService } from '../configuration/configuration.service';
+import { GetTokenRequest, GetTokenResponse } from './login.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticateService {
+export class LoginService {
 
   constructor(private configurationService: ConfigurationService,
     private storageService: StorageService,

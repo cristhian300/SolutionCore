@@ -43,7 +43,6 @@ public AddProduct(parameter:AddProductRequest = null){
       formData.append(key, parameter[key]);
     }
   }
-
   return this.networkManager.postFile(parameters,formData)  as Observable<ListProductResponse>;
 }
 

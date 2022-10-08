@@ -12,7 +12,7 @@ import { MaterialModule } from './shared/material/material.module';
 import { NetworkManager } from './agent/common/network-manager';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { InterceptorService } from './agent/common/interceptor.service';
+import { InterceptorService } from './main/providers/interceptor/interceptor.service';
 import { LoginComponent } from './main/pages/login/login.component';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -25,7 +25,7 @@ import { ModalProductComponent } from './main/pages/administrador/modal-product/
 import { ModalDeleteProductComponent } from './main/pages/administrador/modal-delete-product/modal-delete-product.component';
 import { UsuariosComponent } from './main/pages/usuarios/usuarios.component';
 import { ModalUsuariosComponent } from './main/pages/usuarios/modal-usuarios/modal-usuarios.component';
-import { SecurityGuardGuard } from './main/providers/services/security/security-guard.guard';
+import { SecurityGuardGuard } from './main/providers/guard/security-guard.guard';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
