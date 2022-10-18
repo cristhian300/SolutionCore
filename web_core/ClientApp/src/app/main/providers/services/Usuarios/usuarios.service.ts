@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NetworkManager } from 'src/app/agent/common/network-manager';
 import { PostParameter } from 'src/app/agent/common/post-parameter';
+import { environment } from 'src/environments/environment.prod';
 import { StorageService } from '../common/storage.service';
 import { ConfigurationResponse } from '../configuration/configuration';
 import { AddUsuarioRequest, AddUsuarioResponse, ListRoleResponse, ListRolesRequest, ListUsuarioRequest, ListUsuarioResponse, UpdateUsuarioRequest } from './usuarios.interfaces';
@@ -15,7 +16,8 @@ export class UsuariosService {
   constructor(private networkManager: NetworkManager,
     private storageService: StorageService) {
 
-    this.Url = (this.storageService.retrieve("configuration") as ConfigurationResponse).coreUrl
+    // this.Url = (this.storageService.retrieve("configuration") as ConfigurationResponse).coreUrl
+    this.Url = environment.apiEndpoint+'core/api/'
   }
 
 

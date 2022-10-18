@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
  ;
 import { ConfigurationService } from '../../providers/services/configuration/configuration.service';
-import { GetTokenRequest } from '../../providers/services/login/login.interface';
+import { LoginRequest } from '../../providers/services/login/login.interface';
 import { LoginService } from '../../providers/services/login/login.service';
 
 
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
     const _self = this;
 
 
-    const param = new GetTokenRequest();
+    const param = new LoginRequest();
     param.userName = this.loginForm.get('userName').value
     param.password = this.loginForm.get('password').value
 
@@ -62,7 +62,6 @@ export class LoginComponent implements OnInit {
       response => {
         const successLogin = response.token
         if (successLogin) {
-          // console.log("Token " + response.token);
           localStorage.setItem("User", JSON.stringify(response.token));
           this.router.navigateByUrl("/usuarios").then();
         } else {

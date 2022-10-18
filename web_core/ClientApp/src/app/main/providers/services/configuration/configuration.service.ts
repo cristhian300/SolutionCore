@@ -16,7 +16,7 @@ export class ConfigurationService {
   constructor(private networkManager: NetworkManager) {
 
     this.configurationUrl = this.getBaseUrl();
-    this.url= environment.apiEndpoint
+    this.url= environment.apiEndpoint + 'api/v1/Configuration/';
   }
 
   public getBaseUrl() {
@@ -27,7 +27,7 @@ export class ConfigurationService {
 
   public getConfiguration():Observable<ConfigurationResponse> {
     const request = new PostParameter();
-    request.PathOperation = this.url + 'api/v1/Configuration/GetConfiguration'
+    request.PathOperation = this.url + 'GetConfiguration'
     request.RequestParameter = null
     return  this.networkManager.post(request);
   }

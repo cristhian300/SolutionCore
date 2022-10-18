@@ -1,0 +1,10 @@
+﻿Spread syntax
+---------------------------------------------
+install story book
+
+npx -p @storybook/cli sb init --type angular 
+
+npx sb init
+
+npm run storybook
+

@@ -26,6 +26,7 @@ import { ModalDeleteProductComponent } from './main/pages/administrador/modal-de
 import { UsuariosComponent } from './main/pages/usuarios/usuarios.component';
 import { ModalUsuariosComponent } from './main/pages/usuarios/modal-usuarios/modal-usuarios.component';
 import { SecurityGuardGuard } from './main/providers/guard/security-guard.guard';
+import { ApiService } from 'src/core/shared/common/services/services/api/api.service';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -69,7 +70,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserAnimationsModule
 
   ],
-  providers: [NetworkManager,
+  providers: [NetworkManager,ApiService,
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
