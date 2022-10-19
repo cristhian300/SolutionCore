@@ -12,9 +12,9 @@ import { ProductService } from 'src/app/main/providers/services/Product/product.
   styleUrls: ['./modal-product.component.css']
 })
 export class ModalProductComponent implements OnInit   {
-  @ViewChild("foto", { static: false }) foto: ElementRef;
-  @ViewChild("image", { static: false }) image: ElementRef;
-  @ViewChild("imgProduct", { static: false }) imgProduct: ElementRef;
+  @ViewChild("foto") foto: ElementRef;
+  @ViewChild("image") image: ElementRef;
+  @ViewChild("imgProduct") imgProduct: ElementRef;
 
 
   formGroupProduct: FormGroup;
