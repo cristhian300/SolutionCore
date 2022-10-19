@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CoreService } from 'src/app/main/providers/services/core.service';
 import { AddUsuarioRequest, ListRoleResult, ListRolesRequest, ListUsuarioResult, UpdateUsuarioRequest } from 'src/app/main/providers/services/Usuarios/usuarios.interfaces';
 import { UsuariosService } from 'src/app/main/providers/services/Usuarios/usuarios.service';

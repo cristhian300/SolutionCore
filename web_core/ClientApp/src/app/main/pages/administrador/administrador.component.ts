@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, PageEvent } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { StorageService } from '../../providers/services/common/storage.service';
 import { ConfigurationResponse } from '../../providers/services/configuration/configuration';
 import { ListProductEntity, ListProductResponse } from '../../providers/services/Product/product.interface';
@@ -24,7 +25,7 @@ export class AdministradorComponent implements OnInit {
   viewModel = new ListProductResponse
   filtro: string = '';
   ListProductToShow: ListProductEntity[] = [];
-  public pathImage:string ='';
+  // public pathImage:string ='';
   constructor(private productService: ProductService,
     public dialog: MatDialog,
     http: HttpClient, @Inject('BASE_URL') baseUrl: string,
@@ -32,7 +33,7 @@ export class AdministradorComponent implements OnInit {
 
     ) {
 
-        this.pathImage  = (this.storageService.retrieve("configuration") as ConfigurationResponse).imageUrl
+        // this.pathImage  = (this.storageService.retrieve("configuration") as ConfigurationResponse).imageUrl
     }
 
 

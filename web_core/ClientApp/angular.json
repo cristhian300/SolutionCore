@@ -154,5 +154,8 @@
       }
     }
   },
-  "defaultProject": "SolutionCore"
+  "defaultProject": "SolutionCore",
+  "cli": {
+    "analytics": false
+  }
 }
