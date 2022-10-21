@@ -8,3 +8,8 @@ npx sb init
 
 npm run storybook
 
+-----------------------------------------------
+CSS3
+------------------------------------------------
+* flexbox Maqueta
+https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_media3

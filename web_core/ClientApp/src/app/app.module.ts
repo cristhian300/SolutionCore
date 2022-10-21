@@ -27,6 +27,7 @@ import { UsuariosComponent } from './main/pages/usuarios/usuarios.component';
 import { ModalUsuariosComponent } from './main/pages/usuarios/modal-usuarios/modal-usuarios.component';
 import { SecurityGuardGuard } from './main/providers/guard/security-guard.guard';
 import { ApiService } from 'src/core/shared/common/services/services/api/api.service';
+import { MoldePageComponent } from './main/pages/molde-page/molde-page.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -43,7 +44,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AdministradorComponent,
     ModalProductComponent,
     ModalDeleteProductComponent,
-    ModalUsuariosComponent
+    ModalUsuariosComponent,
+    MoldePageComponent
   ],
   imports: [
     NgxUiLoaderModule.forRoot({}),
@@ -64,7 +66,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         canActivate: [SecurityGuardGuard]
     },
     { path: 'log', component: LoginComponent },
-    { path: 'administrador', component: AdministradorComponent }
+    { path: 'administrador', component: AdministradorComponent },
+    { path: 'molde', component: MoldePageComponent }
 ], { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule
 

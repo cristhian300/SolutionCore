@@ -3,7 +3,7 @@
     padding: 15px 50px 21px 50px;
     border-bottom: 1px solid #b7bbc0;
   }
-  
+
   .title-options h2 {
     color: rgba(0, 0, 0, 0.87);
     font-size: 30px;
@@ -37,16 +37,16 @@
     transition: box-shadow 300ms;
     cursor: pointer;
   }
-  
+
   .elemento:hover {
     box-shadow: 0 2px 12px 0 rgba(136, 136, 136, 0.973);
   }
-  
+
   .elemento img {
     width: 100%;
-    
+
   }
-  
+
   .elemento__titulo {
     padding: 10px 12px 0 10px;
     color: rgba(0, 0, 0, 0.87);
@@ -56,7 +56,7 @@
     line-height: 22px;
     text-align: left;
   }
-  
+
   .elemento__fecha {
     padding: 0 12px 17px 10px;
     color: #000000;
@@ -65,23 +65,28 @@
     line-height: 16px;
     text-align: left;
   }
-  
+
   .elemento__notas {
     height: 100%;
     padding: 0 10px;
   }
-  
+
   .elemento__notas .estado {
     padding-left: 11px;
   }
 
   .containers {
     width: 100%;
-    padding: 20px 20px 21px 20px;  
-   
+    padding: 20px 20px 21px 20px;
+
   }
 
 
   .green-icon {
     color: blue;
 }
+
+
+
+
+
