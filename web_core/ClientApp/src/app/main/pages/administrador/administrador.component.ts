@@ -3,6 +3,7 @@ import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { StorageService } from '../../providers/services/common/storage.service';
 import { ConfigurationResponse } from '../../providers/services/configuration/configuration';
 import { ListProductEntity, ListProductResponse } from '../../providers/services/Product/product.interface';
@@ -29,17 +30,17 @@ export class AdministradorComponent implements OnInit {
   constructor(private productService: ProductService,
     public dialog: MatDialog,
     http: HttpClient, @Inject('BASE_URL') baseUrl: string,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private ngxLoader: NgxUiLoaderService,
+  ) {
 
-    ) {
-
-        // this.pathImage  = (this.storageService.retrieve("configuration") as ConfigurationResponse).imageUrl
-    }
+    // this.pathImage  = (this.storageService.retrieve("configuration") as ConfigurationResponse).imageUrl
+  }
 
 
-    public pageSize = 10;
-    public currentPage = 0;
-    public totalSize = 0;
+  public pageSize = 10;
+  public currentPage = 0;
+  public totalSize = 0;
 
 
   ngOnInit() {
@@ -52,29 +53,29 @@ export class AdministradorComponent implements OnInit {
 
   ListadoProducto() {
 
-    //   var parameters = {
-    //     MainUrl:"bb"
-    //  };
-    // parameters
+    this.ngxLoader.start();
     this.productService.ListProduct().subscribe(
       response => {
 
         this.viewModel.listProduct = response.listProduct
-        debugger
         this.ListProductToShow = this.viewModel.listProduct
-
         this.totalSize = this.viewModel.listProduct.length;
         this.iterator();
-
+        this.ngxLoader.stop();
+      }, error => {
+        this.ngxLoader.stop();
+      },
+      () => {
+        this.ngxLoader.stop();
       }
 
     )
   }
 
-  private setProduct( listProduct:ListProductEntity[]){
+  private setProduct(listProduct: ListProductEntity[]) {
     listProduct.forEach(element => {
 
-       });
+    });
 
 
   }
@@ -88,7 +89,7 @@ export class AdministradorComponent implements OnInit {
   private iterator() {
     const end = (this.currentPage + 1) * this.pageSize;
     const start = this.currentPage * this.pageSize;
-    this.ListProductToShow  = this.viewModel.listProduct.slice(start, end);
+    this.ListProductToShow = this.viewModel.listProduct.slice(start, end);
     // this.dataSource = part;
   }
 
@@ -110,34 +111,36 @@ export class AdministradorComponent implements OnInit {
 
   inputChange(value) {
 
-      this.ListProductToShow = this.viewModel.listProduct.filter(f =>  {
-        return f.name.includes(value)
-      });
-    }
+    this.ListProductToShow = this.viewModel.listProduct.filter(f => {
+      return f.name.includes(value)
+    });
+  }
 
 
-    update(product : ListProductEntity){
-      console.log(product)
+  update(product: ListProductEntity) {
+    console.log(product)
 
-      const modal = this.dialog.open(ModalProductComponent,
-        { width: '90%' ,
-          data:product
+    const modal = this.dialog.open(ModalProductComponent,
+      {
+        width: '90%',
+        data: product
       })
 
 
-      modal.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-        this.ListadoProducto();
-      });
+    modal.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.ListadoProducto();
+    });
 
-    }
+  }
 
-    delete(product : ListProductEntity){
-      const modal = this.dialog.open(ModalDeleteProductComponent,
-        { width: '90%' ,
-          data:product
+  delete(product: ListProductEntity) {
+    const modal = this.dialog.open(ModalDeleteProductComponent,
+      {
+        width: '90%',
+        data: product
       })
 
 
-    }
+  }
 }
