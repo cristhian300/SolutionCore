@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { SPINNER } from 'ngx-ui-loader';
 import { SystemStyleSheet } from './modules/enum/system-style-sheet';
 
@@ -11,4 +12,8 @@ export class AppComponent {
 
   public SystemStyleSheet = SystemStyleSheet;
   public SPINNER = SPINNER;
+
+
+
+
 }

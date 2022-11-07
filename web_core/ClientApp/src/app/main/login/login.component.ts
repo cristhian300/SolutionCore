@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
  ;
-import { ConfigurationService } from '../../providers/services/configuration/configuration.service';
-import { LoginRequest } from '../../providers/services/login/login.interface';
-import { LoginService } from '../../providers/services/login/login.service';
+import { ConfigurationService } from '../providers/services/configuration/configuration.service';
+import { LoginRequest } from '../providers/services/login/login.interface';
+import { LoginService } from '../providers/services/login/login.service';
 
 
 @Component({

@@ -5,7 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+// import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
@@ -13,21 +13,18 @@ import { NetworkManager } from './agent/common/network-manager';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { InterceptorService } from './main/providers/interceptor/interceptor.service';
-import { LoginComponent } from './main/pages/login/login.component';
+import { LoginComponent } from './main/login/login.component';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AppconfigModule } from './shared/appconfig/appconfig.module';
-import { AdministradorComponent } from './main/pages/administrador/administrador.component';
-import { ModalProductComponent } from './main/pages/administrador/modal-product/modal-product.component';
-import { ModalDeleteProductComponent } from './main/pages/administrador/modal-delete-product/modal-delete-product.component';
-import { UsuariosComponent } from './main/pages/usuarios/usuarios.component';
-import { ModalUsuariosComponent } from './main/pages/usuarios/modal-usuarios/modal-usuarios.component';
 import { SecurityGuardGuard } from './main/providers/guard/security-guard.guard';
 import { ApiService } from 'src/core/shared/common/services/services/api/api.service';
-import { MoldePageComponent } from './main/pages/molde-page/molde-page.component';
+import { AppRoutingModule } from './app.routing.module';
+import { MainLayoutModule } from './main/layouts/main-layout/main-layout.module';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -39,13 +36,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [
     AppComponent,
     NavMenuComponent,
-    UsuariosComponent,
-    LoginComponent,
-    AdministradorComponent,
-    ModalProductComponent,
-    ModalDeleteProductComponent,
-    ModalUsuariosComponent,
-    MoldePageComponent
   ],
   imports: [
     NgxUiLoaderModule.forRoot({}),
@@ -57,22 +47,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AppconfigModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-    { path: '', component: LoginComponent, pathMatch: 'full' },
-    // { path: 'counter', component: CounterComponent },
-    // { path: 'fetch-data', component: FetchDataComponent },
-    {
-        path: 'usuarios', component: UsuariosComponent,
-        canActivate: [SecurityGuardGuard]
-    },
-    { path: 'log', component: LoginComponent },
-    { path: 'administrador', component: AdministradorComponent },
-    { path: 'molde', component: MoldePageComponent }
-], { relativeLinkResolution: 'legacy' }),
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MainLayoutModule,
   ],
-  providers: [NetworkManager,ApiService,
+  providers: [NetworkManager, ApiService,
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
@@ -80,8 +59,5 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ModalUsuariosComponent
-    ,ModalProductComponent,ModalDeleteProductComponent
-  ]
 })
 export class AppModule { }
