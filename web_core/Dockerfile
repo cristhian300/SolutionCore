@@ -10,6 +10,7 @@ RUN npm run build  --prod
 
 
 FROM nginx:1.17.1-alpine as prodStage
+COPY web_core/nginx.conf /etc/nginx/nginx.conf
 COPY --from=clientBuild /ClientApp/dist  usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx","-g","daemon off;"]

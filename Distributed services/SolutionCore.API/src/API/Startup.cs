@@ -70,7 +70,12 @@ namespace SolutionCore
             services.AddCors(options =>
             {
                 options.AddPolicy("mi_politica",
-                    builder => builder.AllowAnyOrigin()
+                    builder => builder
+                          // .AllowAnyOrigin()
+                       .WithOrigins(
+                        "http://localhost:4200",
+                        "http://localhost:44512"
+                        )
                         .AllowAnyMethod()
                         .AllowAnyHeader());
             });

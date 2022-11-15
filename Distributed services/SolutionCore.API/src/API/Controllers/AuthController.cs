@@ -50,6 +50,7 @@ namespace SolutionCore.Controllers
 
             if (user == null)
             {
+
                 return BadRequest("Algo Salio Mal");
             }
 

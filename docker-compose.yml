@@ -40,6 +40,8 @@ services:
       - backend
     env_file:
       - "application_file.env"
+    volumes:
+      - photos:/Distributed services/SolutionCore.API/src/API/wwwroot/images 
 
   web_core:
     image: ${DOCKER_REGISTRY-}webcore
@@ -82,3 +84,4 @@ networks:
 volumes:
   firstidsrvaspnetidentitydbsys:
   firstidsrvaspnetidentitydbusr:
+  photos:

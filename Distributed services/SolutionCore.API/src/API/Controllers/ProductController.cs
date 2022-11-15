@@ -32,19 +32,22 @@ namespace SolutionCore.Controllers
        private IProductContract _IProductContract;
         private readonly IWebHostEnvironment _env;
         IUnitOfWork<CoreContext> _CoreContext;
+        private IConfiguration _Configuration;
 
         public IPmfRestClient _pmfRestClient { get; }
 
         public ProductController(
            IProductContract  IProductContract, 
             IWebHostEnvironment env, IUnitOfWork<CoreContext>  CoreContext ,
-            IPmfRestClient pmfRestClient
+            IPmfRestClient pmfRestClient,
+            IConfiguration configuration
             )
         {
           _IProductContract = IProductContract;
             _env = env;
             _CoreContext = CoreContext;
             _pmfRestClient = pmfRestClient;
+            _Configuration = configuration;
         }
 
         // POST: api/Product
@@ -52,8 +55,10 @@ namespace SolutionCore.Controllers
         public async Task<ListProductResponse> ListProduct()
         {
                 ListProductRequest parameter = new ListProductRequest();
-                parameter.PathUrlImage = $"{Request.Scheme}://{Request.Host}/images/";
-                return await _IProductContract.ListProduct(parameter);
+            //  parameter.PathUrlImage = $"{Request.Scheme}://{Request.Host}/images/";
+            //parameter.PathUrlImage = $"http://localhost:44342/images/";
+            parameter.PathUrlImage = $"{ _Configuration["Services:CoreUrl"]}/images/";
+            return await _IProductContract.ListProduct(parameter);
         }
 
 

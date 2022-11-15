@@ -14,6 +14,9 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AlternativeComponent } from './alternative/alternative.component';
+import { HeaderComponent } from '../layouts/header/header.component';
+import { SidebarComponent } from '../layouts/sidebar/sidebar.component';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ModalProductComponent,
     ModalDeleteProductComponent,
     ModalUsuariosComponent,
-    MoldePageComponent
+    MoldePageComponent,
+    AlternativeComponent,
+    HeaderComponent,
+    SidebarComponent
 
   ],
   imports: [

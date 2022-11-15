@@ -45,14 +45,11 @@ namespace Configuration.GateWay
             {
                 options.AddPolicy("mi_politica",
                     builder => builder
-                        // .WithOrigins(
-                        //"http://localhost:4200/",
-                        //"http://localhost:44512/",
-                        //"http://127.0.0,1:44512/",
-
-                        //"http://localhost:5052/"
-                        //)
-                        .AllowAnyOrigin()
+                          //.AllowAnyOrigin()
+                          .WithOrigins(
+                        "http://localhost:4200",
+                        "http://localhost:44512"
+                        )
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                       

@@ -25,6 +25,8 @@ import { ApiService } from 'src/core/shared/common/services/services/api/api.ser
 import { AppRoutingModule } from './app.routing.module';
 import { MainLayoutModule } from './main/layouts/main-layout/main-layout.module';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { HeaderComponent } from './main/layouts/header/header.component';
+
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -36,6 +38,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [
     AppComponent,
     NavMenuComponent,
+    // HeaderComponent,
   ],
   imports: [
     NgxUiLoaderModule.forRoot({}),
@@ -50,6 +53,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserAnimationsModule,
     AppRoutingModule,
     MainLayoutModule,
+
   ],
   providers: [NetworkManager, ApiService,
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
