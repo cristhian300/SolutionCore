@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SecurityGuardGuard } from '../providers/guard/security-guard.guard';
 import { AdministradorComponent } from './administrador/administrador.component';
 import { LoginComponent } from '../login/login.component';
-import { MoldePageComponent } from './molde-page/molde-page.component';
+import { MoldePageComponent } from '../molde/molde-page/molde-page.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { MainLayoutComponent } from '../layouts/main-layout/main-layout.component';
 import { AlternativeComponent } from './alternative/alternative.component';
@@ -22,13 +22,8 @@ const routes: Routes = [
         canActivate: [SecurityGuardGuard] , data: { breadCrumb: 'User' }
       },
       { path: 'administrador', component: AdministradorComponent , data: { breadCrumb: 'Admin' }},
-      { path: 'molde', component: MoldePageComponent, data: { breadCrumb: 'Molde Maestro' },
-
-      //  ,children:[{
-
-      //   path:'menu', component:MainLayoutComponent,data: { breadCrumb: 'Molde Menu' }
-      //  }]
-       },
+      // { path: 'molde', component: MoldePageComponent, data: { breadCrumb: 'Molde Maestro' },
+      //  },
        { path: 'alterno', component: AlternativeComponent }
 
     ]

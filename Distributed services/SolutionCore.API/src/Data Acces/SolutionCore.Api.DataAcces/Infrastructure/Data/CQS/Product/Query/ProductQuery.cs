@@ -154,7 +154,7 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
         }
 
 
-        public List<String> ValidationFiles(List<IFormFile> files)
+        public  List<String> ValidationFiles(List<IFormFile> files)
         {
 
             List<String> lstFileNames = new List<String>();
@@ -181,14 +181,30 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
                     using (Stream Stream = System.IO.File.Create(path))
                     {
                         //crear el archiv
-                        file.CopyToAsync(Stream);
+                      file.CopyTo(Stream);
                         Stream.Flush();
                     }
-                    lstFileNames.Add(file.FileName);
+                    lstFileNames.Add(fileName);
 
                 }
             }
             return lstFileNames;
+        }
+
+        public DeleteProductResponse DeleteProduct(DeleteProductRequest parameter)
+        {
+
+            var product = _CoreContext.DbContext.Products.Where(x => x.ProductId == parameter.ProductId 
+               && x.Deleted == false)
+                .FirstOrDefault();
+
+            if (product != null)
+            {
+                product.Deleted = true;
+                _CoreContext.DbContext.Products.Update(product);
+                _CoreContext.DbContext.SaveChanges();
+            }
+            return new  DeleteProductResponse { };
         }
     }
 }

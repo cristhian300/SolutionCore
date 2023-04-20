@@ -17,5 +17,8 @@ namespace SolutionCore.Application.Contracts.Contract.Product
 
 
         Task<EditProductResponse> EditProduct(EditProductRequest parameter);
+
+        Task<DeleteProductResponse> DeleteProduct(DeleteProductRequest parameter);
+        
     }
 }

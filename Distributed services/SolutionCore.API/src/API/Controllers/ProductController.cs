@@ -65,15 +65,21 @@ namespace SolutionCore.Controllers
         [HttpPost]
         public async Task<AddProductResponse> AddProduct([FromForm] AddProductRequest parameter )   
         {
+            
             return await _IProductContract.AddProduct(parameter);
         }
 
 
         [HttpPost]
-        
         public async Task<EditProductResponse> EditProduct([FromForm] EditProductRequest parameter)
         {
             return await _IProductContract.EditProduct(parameter);
+        }
+
+        [HttpPost]
+        public async Task<DeleteProductResponse> DeleteProduct([FromForm] DeleteProductRequest parameter)
+        {
+            return await _IProductContract.DeleteProduct(parameter);
         }
 
 

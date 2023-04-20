@@ -22,6 +22,10 @@ const routes: Routes = [
         component: MainLayoutComponent,
         loadChildren:
           () => import('./main/pages/pages.module').then((m) => m.PagesModule)
+      },
+      {
+       path:'',
+       loadChildren:()=> import('././main/molde/molde.module') .then(m => m.MoldeModule)
       }
 
     ]

@@ -1,0 +1,49 @@
+/* https://boxicons.com/?query=menu */
+
+
+
+.nav{
+  background: #293241;
+  height: 80px;
+  color: #fff;
+}
+
+.nav_logo{
+
+  font-size: 1.5em;;
+  font-weight: 900;
+}
+
+.nav_container{
+  display: flex;
+  height: 100%;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav_label, .nav_input{
+  display: none;
+}
+
+ .nav_menu{
+  display: grid;
+  grid-auto-flow: column;
+  gap: 3em;
+ }
+
+ .nav_item{
+  color: #fff;
+  text-decoration: none;
+ }
+
+ .nav_item::after{
+
+  content: "";
+  display: block;
+  background: #fff;
+  width: 90%;
+  margin-top: 3px;
+  height: 3px;
+ }

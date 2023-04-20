@@ -4,6 +4,7 @@ using SolutionCore.Infraestructura.Transport.Core.Product.Response;
 using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,12 +26,19 @@ namespace SolutionCore.Application.Application.Product
 
         public Task<AddProductResponse> AddProduct(AddProductRequest parameter)
         {
+            
+
             return Task.FromResult(_IProductQuery.AddProduct(parameter));
         }
 
         public Task<EditProductResponse> EditProduct(EditProductRequest parameter)
         {
             return Task.FromResult(_IProductQuery.EditProduct(parameter));
+        }
+
+        public Task<DeleteProductResponse> DeleteProduct(DeleteProductRequest parameter)
+        {
+            return Task.FromResult(_IProductQuery.DeleteProduct(parameter));
         }
     }
 }
