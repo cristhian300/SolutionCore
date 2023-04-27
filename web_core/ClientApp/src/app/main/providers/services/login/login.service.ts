@@ -30,7 +30,7 @@ export class LoginService {
   login(parameter: LoginRequest): Observable<GetTokenResponse> {
 
     console.log("Empezo login");
-    return     this.apiService.post(this.urlLogin + 'Auth/Login', parameter);
+    return     this.apiService.get(this.urlLogin + `Auth/Login`, {params: parameter} );
     // new Observable<GetTokenResponse>(observer => {
 
     //   this.configurationService.getConfiguration().subscribe(

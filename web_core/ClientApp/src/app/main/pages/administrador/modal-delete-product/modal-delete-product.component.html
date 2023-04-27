@@ -1,4 +1,3 @@
-<p>Desea eliminar este producto</p>
+<p>Desea eliminar este producto {{productDetails.name}}</p>
 <button>Cancelar</button>
-<button>Aceptar</button>
-
+<button (click)="DeleteProduct(productDetails.productId)">Aceptar</button>

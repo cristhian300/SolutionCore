@@ -15,6 +15,9 @@ export class ApiService {
 
     return (this.httpClient.get<T>(parseApiUrl, parseReqOptions as any) as any).pipe(
       ...this.getDefaultOperators(parseReqOptions),
+
+      //catchError(x => this.onCatchError2(x))
+
     );
   }
 
@@ -130,4 +133,27 @@ export class ApiService {
       reqOptions,
     };
   }
+
+
+  onCatchError2(error: HttpErrorResponse): Observable<any> {
+    if (error.error instanceof Error) {
+      console.warn('Client-Side error occured -> FRONTEND');
+    } else {
+      console.warn('Server-Side error occured -> BACKEND');
+    }
+    this.handleError2(error);
+
+    return throwError(error);
+  }
+
+  handleError2(error: HttpErrorResponse): void {
+    // eslint-disable-next-line no-console
+    console.info(false, error);
+  }
+
+  getDefaultOperators2(): any[] {
+
+    return []
+  }
+
 }

@@ -43,10 +43,16 @@ namespace SolutionCore.Controllers
 
 
         [AllowAnonymous]//No necesita Token
-        [HttpPost]
+        [HttpGet ]
 
-        public IActionResult Login([FromBody] LoginRequest user)
+        public IActionResult Login([FromQuery]  string userName , [FromQuery] string password)
         {
+            var user = new LoginRequest
+                { 
+              UserName = userName,
+             Password= password
+             };
+
 
             if (user == null)
             {

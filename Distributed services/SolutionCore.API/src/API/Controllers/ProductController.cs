@@ -29,7 +29,7 @@ namespace SolutionCore.Controllers
     public class ProductController : ControllerBase
     {
         // GET: api/Product
-       private IProductContract _IProductContract;
+        private IProductContract _IProductContract;
         private readonly IWebHostEnvironment _env;
         IUnitOfWork<CoreContext> _CoreContext;
         private IConfiguration _Configuration;
@@ -37,13 +37,13 @@ namespace SolutionCore.Controllers
         public IPmfRestClient _pmfRestClient { get; }
 
         public ProductController(
-           IProductContract  IProductContract, 
-            IWebHostEnvironment env, IUnitOfWork<CoreContext>  CoreContext ,
+           IProductContract IProductContract,
+            IWebHostEnvironment env, IUnitOfWork<CoreContext> CoreContext,
             IPmfRestClient pmfRestClient,
             IConfiguration configuration
             )
         {
-          _IProductContract = IProductContract;
+            _IProductContract = IProductContract;
             _env = env;
             _CoreContext = CoreContext;
             _pmfRestClient = pmfRestClient;
@@ -54,7 +54,7 @@ namespace SolutionCore.Controllers
         [HttpPost]
         public async Task<ListProductResponse> ListProduct()
         {
-                ListProductRequest parameter = new ListProductRequest();
+            ListProductRequest parameter = new ListProductRequest();
             //  parameter.PathUrlImage = $"{Request.Scheme}://{Request.Host}/images/";
             //parameter.PathUrlImage = $"http://localhost:44342/images/";
             parameter.PathUrlImage = $"{ _Configuration["Services:CoreUrl"]}/images/";
@@ -63,9 +63,9 @@ namespace SolutionCore.Controllers
 
 
         [HttpPost]
-        public async Task<AddProductResponse> AddProduct([FromForm] AddProductRequest parameter )   
+        public async Task<AddProductResponse> AddProduct([FromForm] AddProductRequest parameter)
         {
-            
+
             return await _IProductContract.AddProduct(parameter);
         }
 
@@ -76,8 +76,8 @@ namespace SolutionCore.Controllers
             return await _IProductContract.EditProduct(parameter);
         }
 
-        [HttpPost]
-        public async Task<DeleteProductResponse> DeleteProduct([FromForm] DeleteProductRequest parameter)
+        [HttpDelete("{productId}")]
+        public async Task<DeleteProductResponse> DeleteProduct([FromRoute] int productId  , [FromBody] DeleteProductRequest parameter)
         {
             return await _IProductContract.DeleteProduct(parameter);
         }

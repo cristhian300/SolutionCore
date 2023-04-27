@@ -1,0 +1,90 @@
+<!-- fxlayout="row" coloca los div hijos  en fila -->
+<!-- fxLayout.xs="column" si es un tamaño xs se pone en columna     -->
+<!-- fxLayoutGap ="25px" espacio de separacion entre div hijos-->
+
+
+<form [formGroup]="registerForm" autocomplete="off" (ngSubmit)="crearUsuario()" style="width: 100%;">
+
+  <div>
+    <mat-toolbar fxLayout fxLayoutAlign="space-between center">
+      <!-- <h2>{{this.formGroup.get('codUsuario').value? "Actualizar Usuario" :"Nuevo Usuario" }}</h2> -->
+
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>close</mat-icon>
+      </button>
+
+    </mat-toolbar>
+  </div>
+
+
+  <perfect-scrollbar style="width: 100%;height: 100vh">
+    <div>
+      <mat-card>
+
+
+        <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" type="text" required placeholder="Nombre Completo">
+        </mat-form-field>
+        <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required placeholder="Email">
+        </mat-form-field>
+        <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password" required placeholder="password">
+        </mat-form-field>
+        <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password2" type="password" required placeholder="Confirm password">
+        </mat-form-field>
+
+        <div style="padding-top: 5px;">
+          <p>
+            <mat-checkbox formControlName="terminos">I agree all terms</mat-checkbox>
+          </p>
+
+        </div>
+
+        <div class="row">
+          <div class="col text-danger">
+            <p *ngIf="campoNoValido('nombre')">El nombre es obligatorio</p>
+            <p *ngIf="campoNoValido('email')">El email es obligatorio y valido</p>
+            <p *ngIf="aceptaTerminos('terminos')">Debe Aceptar los terminos de Uso</p>
+
+          </div>
+        </div>
+
+        <!-- <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+          <mat-label>Select an option</mat-label>
+
+          <mat-select formControlName="rol">
+            <div *ngFor="let item of RolesList">
+              <mat-option value="{{item.value}}">{{item.description}} </mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field> -->
+
+
+
+        <div fxLayoutAlign="center">
+
+          <p>
+            <button mat-raised-button color="primary" type="submit">Submit</button>
+            <!-- <button mat-raised-button color="warn" >Clear</button> -->
+          </p>
+        </div>
+
+
+
+        <div class="form-group m-b-0">
+          <div class="col-sm-12 text-center" >
+            Already have an acccount <a routerLink="/nlogin" class="text-primary m-l-5"><b>Sign In</b></a>
+          </div>
+      </div>
+
+      </mat-card>
+    </div>
+
+  </perfect-scrollbar>
+</form>

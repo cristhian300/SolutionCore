@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './main/layouts/main-layout/main-layout.component';
 import { LoginComponent } from './main/login/login.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { AuthRoutingModule } from './node/auth/auth-routing.module';
 
 const routes: Routes = [
 
@@ -26,7 +27,11 @@ const routes: Routes = [
       {
        path:'',
        loadChildren:()=> import('././main/molde/molde.module') .then(m => m.MoldeModule)
-      }
+      },
+      {
+        path:'',
+        loadChildren:()=> import('././node/auth/auth.module') .then(m => m.AuthModule)
+       }
 
     ]
   },
@@ -34,7 +39,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+     ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
