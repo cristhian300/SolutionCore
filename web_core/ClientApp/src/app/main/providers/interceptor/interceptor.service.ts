@@ -11,14 +11,14 @@ export class InterceptorService implements HttpInterceptor {
 
   constructor(private router: Router,) { }
   intercept(
-    
+
     req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
 
 
     // throw new Error('Method not implemented.');
 
-    console.log("Se llamo el servicio ");
+    console.log("*Se llamo el servicio ");
 
     req = req.clone({
       setHeaders: {
@@ -39,7 +39,7 @@ export class InterceptorService implements HttpInterceptor {
           }
       )
   );
-  
+
 
   }
 }

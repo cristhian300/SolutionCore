@@ -19,7 +19,8 @@ const routes: Routes = [
       {
         // path: 'pages',
         path: 'usuarios', component: UsuariosComponent,
-        canActivate: [SecurityGuardGuard] , data: { breadCrumb: 'User' }
+        // canActivate: [SecurityGuardGuard] ,
+         data: { breadCrumb: 'User' }
       },
       { path: 'administrador', component: AdministradorComponent , data: { breadCrumb: 'Admin' }},
       // { path: 'molde', component: MoldePageComponent, data: { breadCrumb: 'Molde Maestro' },

@@ -1,3 +1,6 @@
 *Extensiones
 -Devuelve interface
 Paste Json as Code
+-----------------------
+alert SweetAler2
+npm install sweetalert2

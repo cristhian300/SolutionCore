@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from 'src/app/shared/material/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
     ReactiveFormsModule,
     PerfectScrollbarModule,
     FlexLayoutModule,
+    HttpClientModule
   ]
 })
 export class AuthModule { }

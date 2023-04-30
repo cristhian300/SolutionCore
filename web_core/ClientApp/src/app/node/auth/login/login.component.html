@@ -21,13 +21,15 @@
   <div class="login" fxFlex="30%" fxFlex.lt-md="100%" fxLayout fxLayoutAlign="center center">
 
 
-    <form fxLayout="column" [formGroup]="loginForm">
-      <h2>LA <strong>PAMPLONERA</strong> </h2>
+    <form autocomplete="off" fxLayout="column" [formGroup]="loginForm" (ngSubmit)="login()">
+      <h2> <strong>Login</strong> </h2>
 
       <mat-form-field class="login">
-        <input type="text" matInput required formControlName="userName" name="userName" />
-        <mat-placeholder class="placeholder">Usuario</mat-placeholder>
-        <mat-error>El usuario es requerido</mat-error>
+        <input
+
+        type="email" matInput required formControlName="email" name="userName" />
+        <mat-placeholder class="placeholder">Email</mat-placeholder>
+        <mat-error>El Email es requerido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="login">
@@ -35,14 +37,28 @@
         <mat-placeholder class="placeholder">Contraseña</mat-placeholder>
         <mat-error>La contraseña es requerida</mat-error>
       </mat-form-field>
+
+      <div style="padding-top: 5px;">
+        <p style="color: beige;" >
+          <mat-checkbox color="primary"   formControlName="remember">remember me</mat-checkbox>
+        </p>
+
+      </div>
+
       <div class="actions">
-        <button mat-raised-button color="primary"   class="login-form-field">
+        <button mat-raised-button color="primary" class="login-form-field">
           <span class="label-white">VAMOS</span>
         </button>
       </div>
       <div class="form-group m-b-0">
         <div class="col-sm-12 text-center" style="color: white;">
-            Don't have an account? <a routerLink="/nregister" class="text-primary m-l-5"><b>Sign Up</b></a>
+          Don't have an account? <a routerLink="/nregister" class="text-primary m-l-5"><b>Sign Up</b></a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+          <div #googleBtn id="buttonDiv"></div>
         </div>
     </div>
     </form>

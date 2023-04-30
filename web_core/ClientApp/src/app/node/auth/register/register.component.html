@@ -32,11 +32,11 @@
         </mat-form-field>
         <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput formControlName="password" type="password" required placeholder="password">
+          <input matInput formControlName="password" type="password"  placeholder="password">
         </mat-form-field>
         <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput formControlName="password2" type="password" required placeholder="Confirm password">
+          <mat-label>Password Confirm</mat-label>
+          <input matInput formControlName="password2" type="password"  placeholder="Confirm password">
         </mat-form-field>
 
         <div style="padding-top: 5px;">
@@ -48,9 +48,11 @@
 
         <div class="row">
           <div class="col text-danger">
-            <p *ngIf="campoNoValido('nombre')">El nombre es obligatorio</p>
-            <p *ngIf="campoNoValido('email')">El email es obligatorio y valido</p>
-            <p *ngIf="aceptaTerminos('terminos')">Debe Aceptar los terminos de Uso</p>
+            <p *ngIf="campoNoValido('nombre')">*El nombre es obligatorio</p>
+            <p *ngIf="campoNoValido('email')">*El email es obligatorio y valido</p>
+            <p *ngIf="contrasenasNoValidas()">*Las contraseñas no son iguales</p>
+
+            <p *ngIf="aceptaTerminos('terminos')">*Debe Aceptar los terminos de Uso</p>
 
           </div>
         </div>
@@ -78,10 +80,10 @@
 
 
         <div class="form-group m-b-0">
-          <div class="col-sm-12 text-center" >
+          <div class="col-sm-12 text-center">
             Already have an acccount <a routerLink="/nlogin" class="text-primary m-l-5"><b>Sign In</b></a>
           </div>
-      </div>
+        </div>
 
       </mat-card>
     </div>
