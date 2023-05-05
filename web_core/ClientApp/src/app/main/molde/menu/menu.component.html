@@ -1,7 +1,7 @@
 <!-- <p>menu works!</p> -->
 
 
-<nav class="nav">
+<!-- <nav class="nav">
 
   <div class="nav_container">
     <h1 class="nav_logo">CristhianCH.</h1>
@@ -17,13 +17,39 @@
       <a href="" class="nav_item">Contacto</a>
 
       <div>
-        <button mat-raised-button color="primary" class="login-form-field"
-         (click)="logOut()">
+        <button mat-raised-button color="primary" class="login-form-field" (click)="logOut()">
           <span class="label-white">LogOut</span>
         </button>
       </div>
     </div>
-
-
   </div>
-</nav>
+</nav> -->
+
+
+
+<header>
+  <nav class="menu">
+    <label class="logo">My Brand</label>
+    <ul class="menu_items" [ngClass]="{'show':toggle}">
+      <li class="active"><a href="/menu">Presentacion</a></li>
+      <li><a href="#">Nosotros</a></li>
+      <li><a href="/molde">Cobertura</a></li>
+    </ul>
+    <!-- viene de fontAwesome -->
+    <span class="btnMenu" (click)="darkMode()">
+      <i class="fa-solid fa-bars"></i>
+    </span>
+
+  </nav>
+</header>
+<router-outlet></router-outlet>
+
+
+<!--
+<div>
+  <ul class="lista">
+    <li><a href="https://www.google.com.pe/">Inicio</a></li>
+    <li><a href="https://www.youtube.com/">Nuestra Historia</a></li>
+    <li><a href="https://www.facebook.com/">Cobertura</a></li>
+  </ul>
+</div> -->
