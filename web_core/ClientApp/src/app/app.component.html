@@ -1,10 +1,10 @@
 <style>
   .ContenedorPrincipal {
-    width: 100%;
+    width: 100vw;
     height: 100%;
   }
 
-  @media (max-width: 1370px) {
+  /* @media (max-width: 1370px) {
     .ContenedorPrincipal {
       padding: 20px 10px 18px 10px;
     }
@@ -14,7 +14,7 @@
     .ContenedorPrincipal {
       padding: 20px 10px 21px 10px;
     }
-  }
+  } */
 
   .contain {
     border: 1px solid #b7bbc0;
@@ -42,16 +42,13 @@
 
 
 <body>
-  <!-- <app-nav-menu></app-nav-menu> -->
 
   <mat-sidenav-container>
     <mat-sidenav-content #mainContent>
-      <div  class="ContenedorPrincipal" fxLayout fxLayoutAlign="center center">
+      <div    class="ContenedorPrincipal" fxLayout fxLayoutAlign="center center">
         <div class="contain" fxLayout="column" fxLayoutAlign="start center">
 
-          <div class="contenedorCampana">
-
-
+          <div class="contenedorCampana" >
 
             <router-outlet></router-outlet>
           </div>

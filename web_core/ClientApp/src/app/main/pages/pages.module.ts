@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages-routing.module';
-// import { NavMenuComponent } from 'src/app/nav-menu/nav-menu.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 
 import { AdministradorComponent } from './administrador/administrador.component';
@@ -21,7 +20,6 @@ import { SidebarComponent } from '../layouts/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
-    // NavMenuComponent,
     UsuariosComponent,
 
     AdministradorComponent,

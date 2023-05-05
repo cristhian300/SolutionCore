@@ -14,10 +14,11 @@ const routes: Routes = [
 
     // ]
 
-    path: 'menu',
+    path: '',
     component: MenuComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: 'menu', data: { titulo: 'menu' } },
       { path: 'molde', component: MoldePageComponent, data: { titulo: 'molde' } }
 
     ]

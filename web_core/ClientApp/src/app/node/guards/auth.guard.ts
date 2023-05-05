@@ -20,13 +20,14 @@ export class AuthGuard implements CanActivate {
     console.log('paso por el canActivate del Guard Auth');
 
 
-
-    return this.usuarioService.validaToken()
-      .pipe(tap(isAutenticate => {
-        if (!isAutenticate) {
-            this.router.navigateByUrl('/nlogin')
-        }
-      }));
+    return true;
+    //valida si el token enviado es correcto
+    // return this.usuarioService.validaToken()
+    //   .pipe(tap(isAutenticate => {
+    //     if (!isAutenticate) {
+    //         this.router.navigateByUrl('/nlogin')
+    //     }
+    //   }));
   }
 
 }
