@@ -28,18 +28,27 @@
 
 
 <header>
+
+  <div class="logo">
+    <img src="../../../../assets/imagesMain/dexter.png" alt="Enterprise">
+    <label class="logo-nombre">My Brand</label>
+        <!-- viene de fontAwesome -->
+    <span class="btnMenu" (click)="darkMode()">
+      <i class="fa-solid fa-bars"></i>
+    </span>
+  </div>
+
   <nav class="menu">
-    <label class="logo">My Brand</label>
     <ul class="menu_items" [ngClass]="{'show':toggle}">
       <li class="active"><a href="/menu">Presentacion</a></li>
       <li><a href="#">Nosotros</a></li>
       <li><a href="/molde">Cobertura</a></li>
+      <li><a href="/molde">Cobertura</a></li>
+      <li><a href="/molde">Cobertura</a></li>
+      <li><a href="/molde">Cobertura</a></li>
+      <li><a href="/molde">Cobertura</a></li>
+      <li><a href="/molde">Cobertura</a></li>
     </ul>
-    <!-- viene de fontAwesome -->
-    <span class="btnMenu" (click)="darkMode()">
-      <i class="fa-solid fa-bars"></i>
-    </span>
-
   </nav>
 </header>
 <router-outlet></router-outlet>

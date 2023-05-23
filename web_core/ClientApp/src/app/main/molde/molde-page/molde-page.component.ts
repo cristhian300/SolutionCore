@@ -17,8 +17,8 @@ export class MoldePageComponent implements OnInit {
       )
       .subscribe((x) => {
 
-        console.log(x)
-        console.log(this.activateReoute.children)
+        // console.log(x)
+        // console.log(this.activateReoute.children)
 
         // const root = this.router.routerState.snapshot.root;
         // console.log(root)

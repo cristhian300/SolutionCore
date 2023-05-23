@@ -90,25 +90,48 @@
   box-sizing: border-box;
 }
 
-.menu {
+
+
+
+
+
+
+
+header {
   display: flex;
   justify-content: space-between;
-  /* background: #293241; */
+  align-items: center;
   background: black;
+  padding: 10px;
   height: 75px;
   width: 100%;
-  align-items: center;
   border-bottom: 1px solid #fff;
   box-shadow: 5px 0 10px rgba(7, 2, 2, 0.914);
 }
 
-
 .logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 60px;
+}
+
+.logo-nombre {
   font-size: 35px;
   color: #fff;
-  padding: 0 80px;
+  padding: 0 20px;
   font-weight: bold;
+
 }
+
+
+.menu {
+  display: flex;
+  justify-content: center;
+}
+
 
 /* tag ul */
 .menu_items {
@@ -120,6 +143,7 @@
 .menu_items li {
   border-radius: 3px;
   margin: 0 5px;
+
 }
 
 .menu_items li a {
@@ -128,7 +152,9 @@
   font-size: 18px;
   display: block;
   color: #fff;
+
 }
+
 .menu_items li:hover,
 li.active {
   background-color: rgb(140, 149, 151);
@@ -147,13 +173,17 @@ li.active {
 }
 
 ul.show {
-  top: 65px
+  top: 75px;
+  /* padding: 0;
+  margin: 0; */
+
+
 }
 
 
 @media screen and (max-width:952px) {
 
-  .logo {
+  .logo-nombre {
     font-size: 30px;
     padding-left: 35px;
   }
@@ -170,12 +200,23 @@ ul.show {
 @media screen and (max-width:858px) {
 
   .menu {
-    height: 65px;
-    width: 100vw;
+    /* height: 75px; */
+    width: 100%;
   }
 
   .btnMenu {
     display: inline-flex
+  }
+
+  header {
+    flex-direction: column;
+    /* height: 65px; */
+    width: 100vw;
+  }
+
+  .logo {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .menu_items {
@@ -185,11 +226,10 @@ ul.show {
     text-align: center;
     flex-direction: column;
     width: 100%;
-    height: calc(100% - 65px);
+    height: calc(100% - 75px);
     padding: 0;
     margin: 0;
     transition: all .4s;
-
   }
 
   .menu_items li {
@@ -216,9 +256,18 @@ ul.show {
 
   }
 
-  .logo {
+  .logo-nombre {
     font-size: 25px;
     padding-left: 35px;
+  }
+
+  /* solo modifica componenete actual */
+  /* :host(.contenedorCampana){
+    background-color: white;
+  } */
+/* :host_context() */
+  ::ng-deep app-root .contain {
+    width: 100% !important;
   }
 }
 
@@ -229,6 +278,6 @@ ul.show {
 
   .menu_items li {
     overflow: scroll;
-    height: calc(100% - 65px);
+    height: calc(100% - 75px);
   }
 }

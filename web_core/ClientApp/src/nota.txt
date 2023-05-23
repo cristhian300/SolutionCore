@@ -4,3 +4,53 @@ Paste Json as Code
 -----------------------
 alert SweetAler2
 npm install sweetalert2
+
+
+**********Menus*******************************
+https://www.youtube.com/watch?v=Xs3cC8-5QDI
+
+https://www.youtube.com/watch?v=sRaVhp96jxM
+
+https://www.youtube.com/watch?v=2n5_9boyGWw
+********************************************
+
+
+-youtube-----------------------------------------
+elementRef  ViewChild
+https://www.youtube.com/watch?v=m7XPoQ-RikI
+
+--------------------------------------------------------
+
+https://medium.com/claritydesignsystem/four-ways-of-listening-to-dom-events-in-angular-part-3-renderer2-listen-14c6fe052b59
+
+
+****host Listener Pro
+https://www.youtube.com/watch?v=zGzmSoaQnsY
+
+***uso on Destroy
+https://www.youtube.com/watch?v=9-HE-UvejYU
+
+****ciclos Angular******
+https://www.youtube.com/watch?v=oKEuL0eAoIU
+
+****consejos Listener JS*****
+https://www.youtube.com/watch?v=GUTt0qKUDyU
+
+
+https://stackoverflow.com/questions/53343747/javascript-removeeventlistener-ondestroy-not-working-in-angular-6
+
+
+https://www.youtube.com/watch?v=iP63fDXk-W8
+
+
+******flext Item*************
+https://www.youtube.com/watch?v=4GM6dLQsHAQ
+
+
+
+despliegue angular
+https://www.youtube.com/watch?v=SB3sxOJybRQ
+
+
+--Imagenes gratuitas-----------------------
+https://www.pexels.com/es-es/

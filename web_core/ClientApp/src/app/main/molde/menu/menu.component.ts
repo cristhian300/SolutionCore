@@ -11,7 +11,7 @@ export class MenuComponent implements OnInit {
 
   // @ViewChild('menu_items', { static: false }) menuMobile: ElementRef;
 
-  toggle:boolean =true
+  toggle:boolean =false
 
   constructor(private usuarioService: UsuarioService,
     private router: Router
