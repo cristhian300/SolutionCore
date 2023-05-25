@@ -54,3 +54,23 @@ https://www.youtube.com/watch?v=SB3sxOJybRQ
 
 --Imagenes gratuitas-----------------------
 https://www.pexels.com/es-es/
+
+-------------------------------------------------------------------------------
+install font Awesome
+
+npm install --save @fortawesome/fontawesome-free
+ "styles": [
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+            ],
+            "scripts": [
+              "node_modules/@fortawesome/fontawesome-free/js/all.min.js"
+            ],
+----------------------------------------------------------------------------
+grid
+
+https://www.youtube.com/watch?v=clHz6QLotwE
+
+
+ejemplo
+---------------------------------------------
+https://codepen.io/JyGProyectosWeb/pen/WNowqqx
