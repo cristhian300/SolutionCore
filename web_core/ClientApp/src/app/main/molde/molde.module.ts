@@ -9,6 +9,7 @@ import { MenuSideComponent } from './menu-side/menu-side.component';
 import { PicturePortadaComponent } from './picture-portada/picture-portada.component';
 import { HomePortadaComponent } from './home-portada/home-portada.component';
 import { ListProductHomeComponent } from './list-product-home/list-product-home.component';
+import { FooterModelComponent } from './footer-model/footer-model.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ListProductHomeComponent } from './list-product-home/list-product-home.
      MenuSideComponent,
      PicturePortadaComponent,
      HomePortadaComponent,
-     ListProductHomeComponent
+     ListProductHomeComponent,
+     FooterModelComponent
   ],
   imports: [
     CommonModule,
