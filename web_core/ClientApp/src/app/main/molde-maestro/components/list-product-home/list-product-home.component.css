@@ -46,10 +46,7 @@ img {
   color: #FF4E00
 }
 
-.product__icons {
-  /* display: block; */
-  margin-top: 10px;
-}
+
 
 .product__img {
   width: 100%;
@@ -72,6 +69,13 @@ img {
 .product__details:hover{
   background: #FF4E00;
   cursor: pointer;
+}
+
+.product__icon_call{
+  color: #25D366;
+  font-size: 30px;
+  text-decoration: none;
+  margin-top: 10px;
 }
 
 

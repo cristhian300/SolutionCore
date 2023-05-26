@@ -8,7 +8,6 @@ import { AdministradorComponent } from './administrador/administrador.component'
 import { ModalProductComponent } from './administrador/modal-product/modal-product.component';
 import { ModalDeleteProductComponent } from './administrador/modal-delete-product/modal-delete-product.component';
 import { ModalUsuariosComponent } from './usuarios/modal-usuarios/modal-usuarios.component';
-import { MoldePageComponent } from '../molde/molde-page/molde-page.component';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';

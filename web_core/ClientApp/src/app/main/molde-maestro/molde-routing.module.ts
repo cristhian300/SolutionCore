@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MenuComponent } from './menu/menu.component';
-import { MoldePageComponent } from './molde-page/molde-page.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { MoldePageComponent } from './pages/molde-page/molde-page.component';
 import { AuthGuard } from 'src/app/node/guards/auth.guard';
-import { MenuSideComponent } from './menu-side/menu-side.component';
-import { PicturePortadaComponent } from './picture-portada/picture-portada.component';
-import { HomePortadaComponent } from './home-portada/home-portada.component';
+import { MenuSideComponent } from './components/menu-side/menu-side.component';
+import { PicturePortadaComponent } from './components/picture-portada/picture-portada.component';
+import { HomePortadaComponent } from './pages/home-portada/home-portada.component';
 
 const routes: Routes = [
   {
@@ -18,12 +18,14 @@ const routes: Routes = [
       { path: 'molde', component: MoldePageComponent, data: { titulo: 'molde' } },
     ]
   },
+
   { path: '', component: MenuSideComponent ,
   children:[
     { path: 'side', data: { titulo: 'side' } },
     { path: 'sombra', component: MoldePageComponent, data: { titulo: 'molde' } },
-    { path: 'homep', component: HomePortadaComponent, data: { titulo: 'homeP' } },
+    { path: 'home', component: HomePortadaComponent, data: { titulo: 'home' } },
   ]},
+
   {
     path:'picture',component:PicturePortadaComponent
   }

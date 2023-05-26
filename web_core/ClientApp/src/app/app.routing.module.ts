@@ -26,7 +26,7 @@ const routes: Routes = [
       },
       {
        path:'',
-       loadChildren:()=> import('././main/molde/molde.module') .then(m => m.MoldeModule)
+       loadChildren:()=> import('././main/molde-maestro/molde.module') .then(m => m.MoldeModule)
       },
       {
         path:'',
