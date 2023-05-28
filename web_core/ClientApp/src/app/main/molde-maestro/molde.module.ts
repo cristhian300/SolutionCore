@@ -10,6 +10,7 @@ import { PicturePortadaComponent } from './components/picture-portada/picture-po
 import { HomePortadaComponent } from './pages/home-portada/home-portada.component';
 import { ListProductHomeComponent } from './components/list-product-home/list-product-home.component';
 import { FooterModelComponent } from './components/footer-model/footer-model.component';
+import { AcordionMotionComponent } from './components/acordion-motion/acordion-motion.component';
 import { PortadaMotionComponent } from './components/portada-motion/portada-motion.component';
 
 
@@ -23,7 +24,8 @@ import { PortadaMotionComponent } from './components/portada-motion/portada-moti
      HomePortadaComponent,
      ListProductHomeComponent,
      FooterModelComponent,
-     PortadaMotionComponent
+      AcordionMotionComponent,
+      PortadaMotionComponent
   ],
   imports: [
     CommonModule,

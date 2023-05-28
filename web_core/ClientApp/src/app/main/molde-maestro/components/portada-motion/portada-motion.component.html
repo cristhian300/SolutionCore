@@ -1,37 +1,26 @@
+<div class="container-carousel">
+  <div class="carousel" #carousel>
+    <div class="slider-section fase" #sliderSection>
+      <img [src]="imagenes[0]" alt="">
+    </div>
 
-<h1>Hola</h1>
-<body>
-  <div class="wrapper">
-    <i id="left" class="fa-solid fa-angle-left"></i>
-    <ul class="carousel"   #carousel>
-      <li class="card">
-        <div class="img"><img [src]="imagenes[0]" alt="img" draggable="false"></div>
-        <h2>Blanche Pearson</h2>
-        <span>Sales Manager</span>
-      </li>
-      <li class="card">
-        <div class="img"><img [src]="imagenes[1]" alt="img" draggable="false"></div>
-        <h2>Joenas Brauers</h2>
-        <span>Web Developer</span>
-      </li>
-      <li class="card">
-        <div class="img"><img  [src]="imagenes[2]" alt="img" draggable="false"></div>
-        <h2>Lariach French</h2>
-        <span>Online Teacher</span>
-      </li>
-      <li class="card">
-        <div class="img"><img [src]="imagenes[3]" alt="img" draggable="false"></div>
-        <h2>James Khosravi</h2>
-        <span>Freelancer</span>
-      </li>
-      <li class="card">
-        <div class="img"><img  [src]="imagenes[4]" alt="img" draggable="false"></div>
-        <h2>Kristina Zasiadko</h2>
-        <span>Bank Manager</span>
-      </li>
+    <div class="slider-section fase" #sliderSection>
+      <img [src]="imagenes[1]" alt="">
+    </div>
 
-    </ul>
-    <i id="right" class="fa-solid fa-angle-right"></i>
+    <div class="slider-section fase" #sliderSection>
+      <img [src]="imagenes[3]" alt="">
+    </div>
   </div>
+  <a class="btn-left"  >
+    &#9001; </a>
+  <a class="btn-righ"  >
+    &#9002;
+  </a>
 
-</body>
+  <div class="elements">
+    <span #quadrate class="quadrate active"></span>
+    <span #quadrate class="quadrate"></span>
+    <span #quadrate class="quadrate"></span>
+  </div>
+</div>
