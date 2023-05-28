@@ -10,6 +10,7 @@ import { PicturePortadaComponent } from './components/picture-portada/picture-po
 import { HomePortadaComponent } from './pages/home-portada/home-portada.component';
 import { ListProductHomeComponent } from './components/list-product-home/list-product-home.component';
 import { FooterModelComponent } from './components/footer-model/footer-model.component';
+import { PortadaMotionComponent } from './components/portada-motion/portada-motion.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { FooterModelComponent } from './components/footer-model/footer-model.com
      PicturePortadaComponent,
      HomePortadaComponent,
      ListProductHomeComponent,
-     FooterModelComponent
+     FooterModelComponent,
+     PortadaMotionComponent
   ],
   imports: [
     CommonModule,

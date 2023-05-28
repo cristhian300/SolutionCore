@@ -6,6 +6,7 @@ import { AuthGuard } from 'src/app/node/guards/auth.guard';
 import { MenuSideComponent } from './components/menu-side/menu-side.component';
 import { PicturePortadaComponent } from './components/picture-portada/picture-portada.component';
 import { HomePortadaComponent } from './pages/home-portada/home-portada.component';
+import { PortadaMotionComponent } from './components/portada-motion/portada-motion.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
     { path: 'side', data: { titulo: 'side' } },
     { path: 'sombra', component: MoldePageComponent, data: { titulo: 'molde' } },
     { path: 'home', component: HomePortadaComponent, data: { titulo: 'home' } },
+    { path: 'motion', component: PortadaMotionComponent, data: { titulo: 'portada' } },
   ]},
 
   {
