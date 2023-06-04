@@ -170,4 +170,6 @@ export class PicturePortadaComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
 
+
+
 }
