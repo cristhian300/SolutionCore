@@ -85,6 +85,8 @@ export class PortadaMotionComponent implements OnInit, AfterViewInit {
 
         if (!isDragging) return;
         this.moveCarousel.scrollLeft = startScrollLeft - (e.pageX - startX)
+        const numTouch = Math.round(this.moveCarousel.scrollLeft / widthPerSlider.offsetWidth) -1
+        this.focusQuadrate(numTouch)
 
         this.unListenerMouseUp = this.renderer.listen(document, 'mouseup', (e: MouseEvent) => {
           isDragging = false
