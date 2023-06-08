@@ -4,6 +4,7 @@
 html,
 body {
   height: 100%;
+  width: 100%;
 }
 
 body {
@@ -11,4 +12,9 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 
   /* font-family: 'Inconsolata'; */
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }

@@ -76,16 +76,21 @@ export class PortadaMotionComponent implements OnInit, AfterViewInit {
     this.moveCarousel = this.carousel.nativeElement
 
     this.unListenerMouseDown = this.renderer.listen(this.moveCarousel, 'mousedown', (e: MouseEvent) => {
+      console.log('mousedown');
       isDragging = true
+      console.log('mousedown isDragging', isDragging);
       this.moveCarousel.classList.add('dragging')
       startX = e.pageX
       startScrollLeft = this.moveCarousel.scrollLeft
 
       this.unListenerMouseMove = this.renderer.listen(this.moveCarousel, 'mousemove', (e: MouseEvent) => {
-
+        console.log('mousemove before');
+        console.log('mousemove isDragging', isDragging);
         if (!isDragging) return;
         this.moveCarousel.scrollLeft = startScrollLeft - (e.pageX - startX)
-        const numTouch = Math.round(this.moveCarousel.scrollLeft / widthPerSlider.offsetWidth) -1
+        console.log('mousemove');
+
+        const numTouch = Math.round(this.moveCarousel.scrollLeft / widthPerSlider.offsetWidth) - 1
         this.focusQuadrate(numTouch)
 
         this.unListenerMouseUp = this.renderer.listen(document, 'mouseup', (e: MouseEvent) => {
@@ -102,7 +107,7 @@ export class PortadaMotionComponent implements OnInit, AfterViewInit {
     this.renderer.listen(this.moveCarousel, 'scroll', (e => {
 
       if (this.moveCarousel.scrollLeft == 0) {
-        console.log('scroll');
+        // console.log('scroll');
 
         this.renderer.addClass(this.moveCarousel, "no-transition")
         this.moveCarousel.scrollLeft = this.moveCarousel.scrollWidth - (2 * this.moveCarousel.offsetWidth)
@@ -185,45 +190,40 @@ export class PortadaMotionComponent implements OnInit, AfterViewInit {
 
 
   counter = 0
-  moveToRight() {
+  // moveToRight() {
+  //   if (this.counter >= this.sliderSection.length - 1) {
+  //     this.operacion = 0
+  //     this.counter = 0
+  //     this.renderer.setStyle(this.carruselMove,
+  //       'transform', `translate(-${this.operacion}%)`)
+  //     this.focusQuadrate(this.counter)
 
-    if (this.counter >= this.sliderSection.length - 1) {
-      this.operacion = 0
-      this.counter = 0
-      this.renderer.setStyle(this.carruselMove,
-        'transform', `translate(-${this.operacion}%)`)
-      this.focusQuadrate(this.counter)
+  //     return null
+  //   }
+  //   this.counter++
+  //   this.operacion = this.operacion + this.withImg
+  //   this.renderer.setStyle(this.carruselMove,
+  //     'transform', `translate(-${this.operacion}%)`)
+  //   this.renderer.setStyle(this.carruselMove,
+  //     'transition', `all ease .6s`)
+  //   this.focusQuadrate(this.counter)
+  // }
 
-      return null
-    }
-    this.counter++
-
-    this.operacion = this.operacion + this.withImg
-    this.renderer.setStyle(this.carruselMove,
-      'transform', `translate(-${this.operacion}%)`)
-    this.renderer.setStyle(this.carruselMove,
-      'transition', `all ease .6s`)
-
-    this.focusQuadrate(this.counter)
-
-
-  }
-
-  moveToLeft() {
-    --this.counter
-    if (this.counter < 0) {
-      this.counter = this.sliderSection.length - 1
-      this.operacion = (this.sliderSection.length - 1) * this.withImg
-      // carruselMove.style.transform=`translate(-${this.operacion}%)`
-      this.renderer.setStyle(this.carruselMove, 'transform', `translate(-${this.operacion}%)`)
-      this.focusQuadrate(this.counter)
-      return null
-    }
-    this.operacion = this.operacion - this.withImg
-    this.renderer.setStyle(this.carruselMove, 'transform', `translate(-${this.operacion}%)`)
-    this.renderer.setStyle(this.carruselMove, 'transition', `all ease .6s`)
-    this.focusQuadrate(this.counter)
-  }
+  // moveToLeft() {
+  //   --this.counter
+  //   if (this.counter < 0) {
+  //     this.counter = this.sliderSection.length - 1
+  //     this.operacion = (this.sliderSection.length - 1) * this.withImg
+  //     // carruselMove.style.transform=`translate(-${this.operacion}%)`
+  //     this.renderer.setStyle(this.carruselMove, 'transform', `translate(-${this.operacion}%)`)
+  //     this.focusQuadrate(this.counter)
+  //     return null
+  //   }
+  //   this.operacion = this.operacion - this.withImg
+  //   this.renderer.setStyle(this.carruselMove, 'transform', `translate(-${this.operacion}%)`)
+  //   this.renderer.setStyle(this.carruselMove, 'transition', `all ease .6s`)
+  //   this.focusQuadrate(this.counter)
+  // }
 
 
 
@@ -250,6 +250,9 @@ export class PortadaMotionComponent implements OnInit, AfterViewInit {
 
 
   focusQuadrate(counter: number) {
+
+    console.log('focusQuadrate counter',counter );
+
     this.quadrate.forEach((item, index) => {
       this.renderer.removeClass(item.nativeElement, 'active')
     })

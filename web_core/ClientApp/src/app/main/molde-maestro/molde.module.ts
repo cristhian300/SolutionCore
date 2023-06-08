@@ -12,6 +12,8 @@ import { ListProductHomeComponent } from './components/list-product-home/list-pr
 import { FooterModelComponent } from './components/footer-model/footer-model.component';
 import { AcordionMotionComponent } from './components/acordion-motion/acordion-motion.component';
 import { PortadaMotionComponent } from './components/portada-motion/portada-motion.component';
+import { PortadaBetaMotionComponent } from './components/portada-beta-motion/portada-beta-motion.component';
+import { PortadaAlfaComponent } from './components/portada-alfa/portada-alfa.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { PortadaMotionComponent } from './components/portada-motion/portada-moti
      ListProductHomeComponent,
      FooterModelComponent,
       AcordionMotionComponent,
-      PortadaMotionComponent
+      PortadaMotionComponent,
+      PortadaBetaMotionComponent,
+      PortadaAlfaComponent
   ],
   imports: [
     CommonModule,

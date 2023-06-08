@@ -8,6 +8,8 @@ import { PicturePortadaComponent } from './components/picture-portada/picture-po
 import { HomePortadaComponent } from './pages/home-portada/home-portada.component';
 import { AcordionMotionComponent } from './components/acordion-motion/acordion-motion.component';
 import { PortadaMotionComponent } from './components/portada-motion/portada-motion.component';
+import { PortadaBetaMotionComponent } from './components/portada-beta-motion/portada-beta-motion.component';
+import { PortadaAlfaComponent } from './components/portada-alfa/portada-alfa.component';
 
 const routes: Routes = [
   {
@@ -38,9 +40,14 @@ const routes: Routes = [
   },
   {
     path: 'motion', component: PortadaMotionComponent, data: { titulo: 'motion' }
+  },
+  {
+    path: 'beta', component:  PortadaBetaMotionComponent, data: { titulo: 'motion' }
   }
-
-
+  ,
+  {
+    path: 'alfa', component:  PortadaAlfaComponent, data: { titulo: 'motion' }
+  }
 
 ];
 
