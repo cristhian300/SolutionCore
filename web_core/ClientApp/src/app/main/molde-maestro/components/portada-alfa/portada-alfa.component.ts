@@ -28,8 +28,17 @@ export class PortadaAlfaComponent implements OnInit, AfterViewInit {
   allowShift: boolean = true;
 
   slidesItems: HTMLElement
-
+  pointElement: any
   dragging: boolean = false
+  censor: boolean = false
+
+  imagenes = [
+    'assets/imagesMain/portada/oficina1.jpg',
+    'assets/imagesMain/portada/oficina2.jpg',
+    'assets/imagesMain/portada/oficina3.jpg',
+    'assets/imagesMain/portada/oficina4.jpg',
+    'assets/imagesMain/portada/programa8.jpg',
+  ]
   constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
@@ -54,10 +63,12 @@ export class PortadaAlfaComponent implements OnInit, AfterViewInit {
     // Mouse events
     // items.onmousedown = dragStart;
     // this.slidesItems.onmousedown = this.dragStart
+
+
     this.renderer.listen(this.slidesItems, 'mousedown', this.dragStart)
     this.renderer.listen(this.slidesItems, 'mousemove', this.dragAction)
     this.renderer.listen(this.slidesItems, 'mouseup', this.dragEnd)
-    this.renderer.listen(this.slidesItems, 'mouseleave', this.dragEnd)
+    this.renderer.listen(this.slidesItems, 'mouseleave', this.dragLeave)
 
     // Touch events
     this.slidesItems.addEventListener('touchstart', this.dragStart);
@@ -65,90 +76,168 @@ export class PortadaAlfaComponent implements OnInit, AfterViewInit {
     this.slidesItems.addEventListener('touchend', this.dragEnd);
 
 
-    this.slidesItems.addEventListener('transitionend', this.checkIndex);
+    // this.slidesItems.addEventListener('transitionend', this.checkIndex);
 
     // Click events
-    this.prev.nativeElement.addEventListener('click', () => { this.shiftSlide(-1) });
-    this.next.nativeElement.addEventListener('click', () => { this.shiftSlide(1) });
+    this.prev.nativeElement.addEventListener('click', () => { this.moveLeft() });
+    this.next.nativeElement.addEventListener('click', () => { this.moveRight() });
+  }
+
+
+  dragLeave = () => {
+
+    if (!this.censor) {
+      this.slidesItems.style.left = (this.posInitial) + "px";
+    }
+    this.dragging = false
   }
 
 
   dragStart = (e) => {
-    e = e || window.event;
+    //navegador compatibiliad
+    // e = e || window.event;
     e.preventDefault();
     this.posInitial = this.slidesItems.offsetLeft;
     this.posX1 = this.getPosicionX(e)
     this.dragging = true
+    this.pointElement = document.elementFromPoint(this.getPosicionX(e), this.getPosicionY(e));
   }
-
-
   dragAction = (e) => {
     if (this.dragging) {
-      e = e || window.event;
+      this.censor = false
+      // e = e || window.event;
       this.posX2 = this.posX1 - this.getPosicionX(e)
       this.posX1 = this.getPosicionX(e)
       this.slidesItems.style.left =
         (this.slidesItems.offsetLeft - this.posX2) + "px";
     }
 
+    if (this.pointElement !== document.elementFromPoint(this.getPosicionX(e), this.getPosicionY(e))) {
+      console.log('salio del bloque');
+      if (e.type.includes('touch')) {
+        this.slidesItems.style.left = (this.posInitial) + "px";
+      }
+    }
+  }
+  dragEnd = (e) => {
+    // e = e || window.event;
+    this.dragging = false
+    this.posFinal = this.slidesItems.offsetLeft;
+    if (this.posFinal - this.posInitial < -100) {
+      this.moveRight('drag')
+    } else if (this.posFinal - this.posInitial > 100) {
+      this.moveLeft('drag')
+    } else {
+      this.slidesItems.style.left = (this.posInitial) + "px";
+    }
+  }
+
+
+
+
+  moveRight(action = null) {
+    this.slidesItems.classList.add('shifting');
+    if (!action) {
+      this.posInitial = this.slidesItems.offsetLeft;
+    }
+
+    this.index++;
+    if (this.index == this.slidesLenght) {
+      this.renderer.setStyle(this.slidesItems,'left',-(1 * this.slideSize) + "px");
+      // this.slidesItems.style.left = -(1 * this.slideSize) + "px";
+      this.index = 0;
+    }
+    else {
+      this.slidesItems.style.left = (this.posInitial - this.slideSize) + "px";
+    }
+    this.slidesItems.classList.remove('shifting');
+    this.censor = true;
+  }
+
+
+
+  moveLeft(action = null) {
+    if (!action) {
+      this.posInitial = this.slidesItems.offsetLeft;
+    }
+    this.index--;
+    if (this.index == -1) {
+      this.slidesItems.style.left = -(this.slidesLenght * this.slideSize) + "px";
+      this.index = this.slidesLenght - 1;
+    }
+    else {
+      this.slidesItems.style.left = (this.posInitial + this.slideSize) + "px";
+    }
+    this.slidesItems.classList.remove('shifting');
+    this.censor = true;
+  }
+
+
+  getPosicionY = (e: any) => {
+    return e.type.includes('mouse') ? e.clientY : e.touches[0].clientY
   }
 
   getPosicionX = (e: any) => {
     return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX
   }
 
-  dragEnd = (e) => {
-    this.posFinal = this.slidesItems.offsetLeft;
-
-    if (this.posFinal - this.posInitial < -this.threshold) {
-      this.shiftSlide(1, 'drag');
-    } else if (this.posFinal - this.posInitial > this.threshold) {
-      this.shiftSlide(-1, 'drag');
-    } else {
-      this.slidesItems.style.left = (this.posInitial) + "px";
-    }
-
-    // document.onmouseup = null;
-    // document.onmousemove = null;
-
-    this.dragging=false
-  }
-
-  shiftSlide(dir, action = null) {
-    this.slidesItems.classList.add('shifting');
-
-    if (this.allowShift) {
-      if (!action) { this.posInitial = this.slidesItems.offsetLeft; }
-
-      if (dir == 1) {
-        this.slidesItems.style.left = (this.posInitial - this.slideSize) + "px";
-        this.index++;
-      } else if (dir == -1) {
-        this.slidesItems.style.left = (this.posInitial + this.slideSize) + "px";
-        this.index--;
-      }
-    };
-
-    this.allowShift = false;
-  }
-
   checkIndex = () => {
-    this.slidesItems.classList.remove('shifting');
+    // this.slidesItems.classList.remove('shifting');
 
-    if (this.index == -1) {
-      console.log('this.slidesLenght', this.slidesLenght);
+    // if (this.index == -1) {
+    //   console.log('this.slidesLenght', this.slidesLenght);
 
-      this.slidesItems.style.left = -(this.slidesLenght * this.slideSize) + "px";
-      this.index = this.slidesLenght - 1;
-    }
+    //   this.slidesItems.style.left = -(this.slidesLenght * this.slideSize) + "px";
+    //   this.index = this.slidesLenght - 1;
+    // }
 
-    if (this.index == this.slidesLenght) {
+    // if (this.index == this.slidesLenght) {
 
-      this.slidesItems.style.left = -(1 * this.slideSize) + "px";
-      this.index = 0;
-    }
+    //   this.slidesItems.style.left = -(1 * this.slideSize) + "px";
+    //   this.index = 0;
+    // }
 
-    this.allowShift = true;
+    // this.allowShift = true;
   }
+
+  // shiftSlide(dir, action = null) {
+  //   this.slidesItems.classList.add('shifting');
+
+  //   // if (this.allowShift) {
+  //   if (!action) {
+  //     this.posInitial = this.slidesItems.offsetLeft;
+  //   }
+
+  //   if (dir == 1) {
+  //     this.index++;
+  //     if (this.index == this.slidesLenght) {
+  //       this.slidesItems.style.left = -(1 * this.slideSize) + "px";
+  //       this.index = 0;
+  //       this.slidesItems.classList.remove('shifting');
+  //       return
+  //     }
+  //     this.slidesItems.style.left = (this.posInitial - this.slideSize) + "px";
+
+
+  //   } else if (dir == -1) {
+  //     this.index--;
+  //     if (this.index == -1) {
+  //       this.slidesItems.style.left = -(this.slidesLenght * this.slideSize) + "px";
+  //       this.index = this.slidesLenght - 1;
+  //       this.slidesItems.classList.remove('shifting');
+  //       return;
+  //     }
+
+  //     this.slidesItems.style.left = (this.posInitial + this.slideSize) + "px";
+
+
+  //   }
+  //   // };
+
+  //   // this.allowShift = false;
+  //   this.slidesItems.classList.remove('shifting');
+  // }
 
 }
+
+
