@@ -111,9 +111,9 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
     // e = e || window.event;
     this.dragging = false
     this.posFinal = this.carousel.offsetLeft;
-    if (this.posFinal - this.posInitial < -100) {
+    if (this.posFinal - this.posInitial < -95) {
       this.moveRight('drag')
-    } else if (this.posFinal - this.posInitial > 100) {
+    } else if (this.posFinal - this.posInitial > 95) {
       this.moveLeft('drag')
     } else {
       // this.carousel.style.left = (this.posInitial) + "px";
