@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'app-carousel-portada',
@@ -27,7 +27,13 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
   slideSize: number;
   itemPerPertage: number
   carouselChildCount: number;
-  constructor() { }
+
+  posX1 = 0
+  dragging: boolean;
+  pointElement: Element;
+  posX2: number;
+  posFinal: number;
+  constructor(private renderer: Renderer2) { }
 
   ngAfterViewInit(): void {
 
@@ -45,22 +51,83 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
 
     this.carouselChildCount = this.carousel.childElementCount
 
-    // make responsive to viewport changes
-    // window.addEventListener('resize', this.setPositionByIndex)
+
+    this.renderer.listen(this.carousel, 'mousedown', this.dragStart)
+    this.renderer.listen(this.carousel, 'mousemove', this.dragAction)
+    this.renderer.listen(this.carousel, 'mouseup', this.dragEnd)
+    this.renderer.listen(this.carousel, 'mouseleave', this.dragLeave)
+
+
+    // Touch events
+    this.carousel.addEventListener('touchstart', this.dragStart);
+    this.carousel.addEventListener('touchmove', this.dragAction);
+    this.carousel.addEventListener('touchend', this.dragEnd);
+
   }
 
   ngOnInit(): void {
 
   }
 
+  dragStart = (e) => {
+    e.preventDefault();
+    this.posInitial = this.carousel.offsetLeft;
+    this.posX1 = this.getPosicionX(e)
+    this.dragging = true
+    this.pointElement = document.elementFromPoint(this.getPosicionX(e),
+      this.getPosicionY(e));
+  }
 
-  moveRight(action =null) {
+  getPosicionX = (e: any) => {
+    return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX
+  }
+  getPosicionY = (e: any) => {
+    return e.type.includes('mouse') ? e.clientY : e.touches[0].clientY
+  }
+
+  dragAction = (e) => {
+    if (this.dragging) {
+      this.censor = false
+      // e = e || window.event;
+      this.posX2 = this.posX1 - this.getPosicionX(e)
+      this.posX1 = this.getPosicionX(e)
+      // this.carousel.style.left =
+      //   (this.carousel.offsetLeft - this.posX2) + "px";
+      this.carousel.style.left =
+        this.converPerPercentaje(this.carousel.offsetLeft - this.posX2) + "%";
+
+    }
+
+    if (this.pointElement !== document.elementFromPoint(this.getPosicionX(e), this.getPosicionY(e))) {
+      console.log('salio del bloque');
+      if (e.type.includes('touch')) {
+        // this.carousel.style.left = (this.posInitial) + "px";
+        this.carousel.style.left = this.converPerPercentaje(this.posInitial) + "%";
+      }
+    }
+  }
+
+  dragEnd = (e) => {
+    // e = e || window.event;
+    this.dragging = false
+    this.posFinal = this.carousel.offsetLeft;
+    if (this.posFinal - this.posInitial < -100) {
+      this.moveRight('drag')
+    } else if (this.posFinal - this.posInitial > 100) {
+      this.moveLeft('drag')
+    } else {
+      // this.carousel.style.left = (this.posInitial) + "px";
+      this.carousel.style.left = this.converPerPercentaje(this.posInitial) + "%";
+    }
+  }
+
+
+  moveRight(action = null) {
     this.carousel.classList.add('shifting');
     //condicion para touch
     if (!action) {
       this.posInitial = this.carousel.offsetLeft;
     }
-
     this.index++;
     if (this.index == this.slidesLenght) {
       // this.carousel.style.left = -(1 * this.slideSize) + "px";
@@ -69,15 +136,41 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
     }
     else {
       // this.carousel.style.left = (this.posInitial - this.slideSize) + "px";
-      this.carousel.style.left = (this.converPerPercentaje(this.posInitial) - (100 )) + "%";
-
-      console.log('');
-
+      this.carousel.style.left = (this.converPerPercentaje(this.posInitial) - (100)) + "%";
     }
     this.carousel.classList.remove('shifting');
     this.censor = true;
   }
 
+  dragLeave = () => {
+
+    if (!this.censor) {
+      // this.carousel.style.left = (this.posInitial) + "px";
+      this.carousel.style.left = this.converPerPercentaje(this.posInitial) + "%";
+
+    }
+    this.dragging = false
+  }
+
+
+  moveLeft(action = null) {
+    this.carousel.classList.add('shifting');
+    if (!action) {
+      this.posInitial = this.carousel.offsetLeft;
+    }
+    this.index--;
+    if (this.index == -1) {
+      // this.carousel.style.left = -(this.slidesLenght * this.slideSize) + "px";
+      this.carousel.style.left = -(this.slidesLenght * 100) + "%";
+      this.index = this.slidesLenght - 1;
+    }
+    else {
+      // this.carousel.style.left = (this.posInitial + this.slideSize) + "px";
+      this.carousel.style.left = (this.converPerPercentaje(this.posInitial) + 100) + "%";
+    }
+    this.carousel.classList.remove('shifting');
+    this.censor = true;
+  }
 
   converPerPercentaje(slideAdvanced: number) {
     // slideAdvanced : this.carousel.offsetLeft
