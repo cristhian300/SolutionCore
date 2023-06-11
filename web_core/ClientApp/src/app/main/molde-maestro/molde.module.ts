@@ -14,6 +14,7 @@ import { AcordionMotionComponent } from './components/acordion-motion/acordion-m
 import { PortadaMotionComponent } from './components/portada-motion/portada-motion.component';
 import { PortadaBetaMotionComponent } from './components/portada-beta-motion/portada-beta-motion.component';
 import { PortadaAlfaComponent } from './components/portada-alfa/portada-alfa.component';
+import { CarouselPortadaComponent } from './components/carousel-portada/carousel-portada.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { PortadaAlfaComponent } from './components/portada-alfa/portada-alfa.com
       AcordionMotionComponent,
       PortadaMotionComponent,
       PortadaBetaMotionComponent,
-      PortadaAlfaComponent
+      PortadaAlfaComponent,
+      CarouselPortadaComponent
   ],
   imports: [
     CommonModule,

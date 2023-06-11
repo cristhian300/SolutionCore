@@ -1,0 +1,123 @@
+/* *********************************** */
+
+
+.container-carousel {
+
+  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.66);
+
+}
+
+.carousel {
+  /* display: inline-flex;
+  width: 100%;
+  height: 17em; */
+
+  /* border: solid thin red; */
+  display: flex;
+  width: 500%;
+  height: 17em;
+}
+
+
+.slider-section {
+  /* min-width: 100%;
+  width: 100%;
+  display: flex;
+
+  justify-content: center;
+  flex-wrap: wrap; */
+  width: calc(100%/5);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-size: cover;
+}
+
+.slider-section img {
+  width: 100%;
+  /* imagenes del mismo tamaño */
+  height: 100%;
+  /* imagen no pierda la calidad  */
+  object-fit: cover;
+}
+
+.btn-left,
+.btn-righ {
+  display: flex;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6 ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  border: solid #fff 2px
+}
+
+
+.btn-righ {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.btn-left:hover,
+.btn-righ:hover {
+  background-color: black;
+}
+
+.elements {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin: 1em 0 0; */
+  padding: 0.4em;
+}
+
+.quadrate {
+  cursor: pointer;
+  height: 4px;
+  width: 50px;
+  margin: 0 2px;
+  background-color: #717171;
+  /* display: inline-block; */
+  transition: background-color 0.6 ease;
+  border-radius: 2px;
+}
+
+.active,
+.quadrate:hover {
+  background-color: orange;
+}
+
+.carousel.shifting {
+  transition: left .2s ease-out;
+}
+
+
+/* @media screen and (min-width:768px  ) {
+  .carousel {
+    height: 25em;
+  }
+} */
+
+
+@media screen and (min-width:960px) {
+  .carousel {
+    height: 35em;
+  }
+}
+
+/* @media screen and (min-width:1600px  ) {
+  .carousel {
+    height: 35em;
+  }
+} */

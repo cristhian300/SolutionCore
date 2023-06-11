@@ -10,6 +10,7 @@ import { AcordionMotionComponent } from './components/acordion-motion/acordion-m
 import { PortadaMotionComponent } from './components/portada-motion/portada-motion.component';
 import { PortadaBetaMotionComponent } from './components/portada-beta-motion/portada-beta-motion.component';
 import { PortadaAlfaComponent } from './components/portada-alfa/portada-alfa.component';
+import { CarouselPortadaComponent } from './components/carousel-portada/carousel-portada.component';
 
 const routes: Routes = [
   {
@@ -48,7 +49,10 @@ const routes: Routes = [
   {
     path: 'alfa', component:  PortadaAlfaComponent, data: { titulo: 'motion' }
   }
-
+  ,
+  {
+    path: 'carrusel', component:  CarouselPortadaComponent, data: { titulo: 'motion' }
+  }
 ];
 
 @NgModule({

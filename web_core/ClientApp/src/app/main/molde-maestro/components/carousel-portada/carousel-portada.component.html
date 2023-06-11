@@ -1,22 +1,23 @@
-<div class="container-carousel" #containerCarousel>
+
+
+<div class="container-carousel"
+   >
   <div class="carousel" #carousel>
     <div class="slider-section fase" #sliderSection>
-      <img [src]="imagenes[0]" alt="" draggable="false">
+      <img [src]="imagenes[0]" alt="">
     </div>
 
     <div class="slider-section fase" #sliderSection>
-      <img [src]="imagenes[1]" alt="" draggable="false">
+      <img [src]="imagenes[1]" alt="">
     </div>
 
     <div class="slider-section fase" #sliderSection>
-      <img [src]="imagenes[3]" alt="" draggable="false">
+      <img [src]="imagenes[3]" alt="">
     </div>
-
-
   </div>
-  <a class="btn-left" (click)="positionCarousel($event.target)"    #moveDirection>
+  <a class="btn-left"  >
     &#9001; </a>
-  <a class="btn-righ"  (click)="positionCarousel($event.target)"  #moveDirection>
+  <a class="btn-righ" (click)="moveRight()" >
     &#9002;
   </a>
 

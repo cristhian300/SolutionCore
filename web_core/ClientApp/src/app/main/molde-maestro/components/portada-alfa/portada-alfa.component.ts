@@ -7,14 +7,15 @@ import { AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, Vie
 })
 export class PortadaAlfaComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('slider') slider: ElementRef
+
   @ViewChild('slides') slides: ElementRef
+  @ViewChildren('slide') slide: QueryList<ElementRef>
   @ViewChild('prev') prev: ElementRef
   @ViewChild('next') next: ElementRef
 
-  @ViewChildren('slide') slide: QueryList<ElementRef>
 
-  public posX1 = 0
+
+  posX1 = 0
   posX2 = 0
   posInitial
   posFinal
@@ -47,7 +48,7 @@ export class PortadaAlfaComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.slidesLenght = this.slide.length
-    this.slideSize = (<HTMLElement>this.slide.first.nativeElement).offsetWidth
+    this.slideSize = (this.slide.first.nativeElement as HTMLElement).offsetWidth
 
     this.slidesItems = this.slides.nativeElement
 
@@ -137,14 +138,15 @@ export class PortadaAlfaComponent implements OnInit, AfterViewInit {
 
   moveRight(action = null) {
     this.slidesItems.classList.add('shifting');
+    //condicion para click
     if (!action) {
+      'entro al alfa'
       this.posInitial = this.slidesItems.offsetLeft;
     }
 
     this.index++;
     if (this.index == this.slidesLenght) {
-      this.renderer.setStyle(this.slidesItems,'left',-(1 * this.slideSize) + "px");
-      // this.slidesItems.style.left = -(1 * this.slideSize) + "px";
+      this.slidesItems.style.left = -(1 * this.slideSize) + "px";
       this.index = 0;
     }
     else {

@@ -149,10 +149,7 @@ export class PortadaBetaMotionComponent implements OnInit, AfterViewInit {
 
     this.currentTranslate = this.currentIndex * -     this.widthSlide.offsetWidth
     // this.currentTranslate = this.currentIndex * -  this.widthSlide.offsetWidth
-    console.log(' this.currentIndex', this.currentIndex);
-    console.log('this.widthSlide.offsetWidth', this.widthSlide.offsetWidth);
-    console.log('this.currentTranslate', this.currentTranslate);
-    console.log('window.innerWidth', window.innerWidth);
+
     // console.log('window.innerWidth', window.innerWidth);
 
 
