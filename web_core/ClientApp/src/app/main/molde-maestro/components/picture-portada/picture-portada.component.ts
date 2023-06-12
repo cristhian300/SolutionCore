@@ -166,7 +166,6 @@ export class PicturePortadaComponent implements OnInit, OnDestroy, AfterViewInit
       this.renderer.removeClass(item.nativeElement, 'active')
     })
     this.renderer.addClass(this.quadrate.get(counter).nativeElement, 'active')
-
   }
 
 
