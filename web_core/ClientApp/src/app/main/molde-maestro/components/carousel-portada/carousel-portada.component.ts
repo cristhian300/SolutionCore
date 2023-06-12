@@ -93,12 +93,16 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
 
 
   dragStart = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     this.posInitial = this.carousel.offsetLeft;
     this.posX1 = this.getPosicionX(e)
     this.dragging = true
     this.pointElement = document.elementFromPoint(this.getPosicionX(e),
       this.getPosicionY(e));
+
+
+
+
   }
 
   getPosicionX = (e: any) => {
@@ -121,13 +125,13 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
 
     }
 
-    if (this.pointElement !== document.elementFromPoint(this.getPosicionX(e), this.getPosicionY(e))) {
-      console.log('salio del bloque');
-      if (e.type.includes('touch')) {
-        // this.carousel.style.left = (this.posInitial) + "px";
-        this.carousel.style.left = this.converPerPercentage(this.posInitial) + "%";
-      }
-    }
+    // if (e.type.includes('touch')) {
+    // if (this.pointElement !== document.elementFromPoint(this.getPosicionX(e), this.getPosicionY(e))) {
+    //   console.log('salio del bloque');
+
+    //     this.carousel.style.left = this.converPerPercentage(this.posInitial) + "%";
+    //   }
+    // }
   }
 
   dragEnd = (e) => {
@@ -136,14 +140,13 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
     this.posFinal = this.carousel.offsetLeft;
 
     // if (this.posFinal - this.posInitial < -100)
-    if (this.touchMovePerPercetage(this.posFinal - this.posInitial)< -5)
-     {
+    if (this.touchMovePerPercetage(this.posFinal - this.posInitial) < -5) {
       // console.log('advance', this.touchMovePerPercetage(this.posFinal - this.posInitial));
 
       this.moveRight('drag')
-    // } else if (this.posFinal - this.posInitial > 100) {
-    } else if (this.touchMovePerPercetage(this.posFinal - this.posInitial)> 5) {
-    //  console.log('preview', this.touchMovePerPercetage(this.posFinal - this.posInitial));
+      // } else if (this.posFinal - this.posInitial > 100) {
+    } else if (this.touchMovePerPercetage(this.posFinal - this.posInitial) > 5) {
+      //  console.log('preview', this.touchMovePerPercetage(this.posFinal - this.posInitial));
 
 
       this.moveLeft('drag')
