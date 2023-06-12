@@ -136,13 +136,13 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
     this.posFinal = this.carousel.offsetLeft;
 
     // if (this.posFinal - this.posInitial < -100)
-    if (this.touchMovePerPercetage(this.posFinal - this.posInitial)< -8)
+    if (this.touchMovePerPercetage(this.posFinal - this.posInitial)< -5)
      {
       // console.log('advance', this.touchMovePerPercetage(this.posFinal - this.posInitial));
 
       this.moveRight('drag')
     // } else if (this.posFinal - this.posInitial > 100) {
-    } else if (this.touchMovePerPercetage(this.posFinal - this.posInitial)> 8) {
+    } else if (this.touchMovePerPercetage(this.posFinal - this.posInitial)> 5) {
     //  console.log('preview', this.touchMovePerPercetage(this.posFinal - this.posInitial));
 
 
