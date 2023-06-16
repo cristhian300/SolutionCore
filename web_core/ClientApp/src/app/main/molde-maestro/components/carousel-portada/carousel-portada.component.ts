@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'app-carousel-portada',
@@ -10,7 +10,8 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
   @ViewChild('carousel') carouselMain: ElementRef
   @ViewChildren('sliderSection') slideItems: QueryList<ElementRef>
   @ViewChildren('quadrate') quadrate: QueryList<ElementRef>
-
+  @ViewChild('btnLeft') btnLeft: ElementRef
+  @ViewChild('containerCarousel') containerCarousel: ElementRef
 
   imagenes = [
     'assets/imagesMain/portada/oficina1.jpg',
@@ -34,6 +35,8 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
   posX2: number;
   posFinal: number;
   operacion: number;
+  constainerMain: HTMLElement
+  interval: NodeJS.Timeout;
   constructor(private renderer: Renderer2) { }
 
   ngAfterViewInit(): void {
@@ -52,48 +55,48 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
     this.carousel.insertBefore(clonelast, this.slideItems.first.nativeElement)
 
     this.carouselChildCount = this.carousel.childElementCount
-
+    this.constainerMain = this.containerCarousel.nativeElement
 
     this.renderer.listen(this.carousel, 'mousedown', this.dragStart)
     this.renderer.listen(this.carousel, 'mousemove', this.dragAction)
     this.renderer.listen(this.carousel, 'mouseup', this.dragEnd)
-    this.renderer.listen(this.carousel, 'mouseleave', this.dragLeave)
-
+    this.renderer.listen(this.constainerMain, 'mouseleave', this.dragLeave)
+    this.renderer.listen(this.constainerMain, 'mouseenter', this.deleteInterval)
 
     // Touch events
-    this.carousel.addEventListener('touchstart', this.dragStart);
-    this.carousel.addEventListener('touchmove', this.dragAction);
-    this.carousel.addEventListener('touchend', this.dragEnd);
+    this.renderer.listen(this.carousel, 'touchstart', this.dragStart)
+    this.renderer.listen(this.carousel, 'touchmove', this.dragAction)
+    this.renderer.listen(this.carousel, 'touchend', this.dragEnd)
     this.sliderSelected()
   }
 
+
+  // @HostListener('mousedown', ['$event']) onMouseDown(e: any) {
+  //   this.dragStart(e)
+  // }
+
+  // @HostListener('mousemove', ['$event']) onMouseMove(e: any) {
+  //   this.dragAction(e)
+  // }
+
+  // @HostListener('touchstart', ['$event']) onTouchStart(e: any) {
+  //   this.dragStart(e)
+  // }
+
   ngOnInit(): void {
-
+    this.startInterval()
   }
 
-  sliderSelected() {
 
-    this.quadrate.forEach((item, index) => {
-      this.renderer.listen(item.nativeElement, 'click', () => {
-        this.operacion = (index + 1) * 100
-
-
-        this.carousel.style.left = -this.operacion + "%";
-        this.index = index
-
-        this.quadrate.forEach((item, index) => {
-          this.renderer.removeClass(item.nativeElement, 'active')
-        })
-
-        this.renderer.addClass(item.nativeElement, 'active')
-
-      })
-    })
-  }
 
 
   dragStart = (e) => {
-    // e.preventDefault();
+    if (e.type.includes('mouse')) {
+      e.preventDefault();
+    }
+    if (e.type.includes('touch')) {
+      this.deleteInterval()
+    }
     this.posInitial = this.carousel.offsetLeft;
     this.posX1 = this.getPosicionX(e)
     this.dragging = true
@@ -101,7 +104,7 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
       this.getPosicionY(e));
 
 
-
+      console.log('test Evento start',e.target);
 
   }
 
@@ -114,24 +117,27 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
 
   dragAction = (e) => {
     if (this.dragging) {
+
       this.censor = false
       // e = e || window.event;
       this.posX2 = this.posX1 - this.getPosicionX(e)
       this.posX1 = this.getPosicionX(e)
-      // this.carousel.style.left =
-      //   (this.carousel.offsetLeft - this.posX2) + "px";
       this.carousel.style.left =
         this.converPerPercentage(this.carousel.offsetLeft - this.posX2) + "%";
 
+      // const coordenadas = this.constainerMain.getBoundingClientRect()
+
+      // if (e.type.includes('touch')) {
+      //   if (e.touches[0].clientY > coordenadas.bottom) {
+      //     // console.log('salio');
+      //     this.startInterval()
+      //   }
+      // }
+
+
+
     }
 
-    // if (e.type.includes('touch')) {
-    // if (this.pointElement !== document.elementFromPoint(this.getPosicionX(e), this.getPosicionY(e))) {
-    //   console.log('salio del bloque');
-
-    //     this.carousel.style.left = this.converPerPercentage(this.posInitial) + "%";
-    //   }
-    // }
   }
 
   dragEnd = (e) => {
@@ -154,10 +160,13 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
       // this.carousel.style.left = (this.posInitial) + "px";
       this.carousel.style.left = this.converPerPercentage(this.posInitial) + "%";
     }
+
+
   }
 
 
-  moveRight(action = null) {
+  public moveRight(action = null) {
+    // console.log('click')
     this.carousel.classList.add('shifting');
     //condicion para touch
     if (!action) {
@@ -179,13 +188,15 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
     this.censor = true;
   }
 
-  dragLeave = () => {
+  dragLeave = (e) => {
+  console.log('SALIO');
 
     if (!this.censor) {
       // this.carousel.style.left = (this.posInitial) + "px";
       this.carousel.style.left = this.converPerPercentage(this.posInitial) + "%";
     }
     this.dragging = false
+    this.startInterval()
   }
 
 
@@ -222,8 +233,39 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
     this.renderer.addClass(this.quadrate.get(counter).nativeElement, 'active')
   }
 
+  sliderSelected() {
+
+    this.quadrate.forEach((item, index) => {
+      this.renderer.listen(item.nativeElement, 'click', (e) => {
+        this.operacion = (index + 1) * 100
+
+        this.carousel.style.left = -this.operacion + "%";
+        this.index = index
+        this.censor = true;
+        this.quadrate.forEach((item, index) => {
+          this.renderer.removeClass(item.nativeElement, 'active')
+        })
+
+        this.renderer.addClass(item.nativeElement, 'active')
+
+      })
+    })
+  }
 
   touchMovePerPercetage(touchMove: number) {
     return (touchMove / this.slideSize) * 100
+  }
+
+
+  startInterval = () => {
+    this.interval = setInterval(() => { this.moveRight() }, 5000)
+  }
+
+  deleteInterval = () => {
+    console.log('deleteInterval');
+
+    if (this.interval) {
+      clearInterval(this.interval)
+    }
   }
 }
