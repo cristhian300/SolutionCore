@@ -25,6 +25,7 @@ const routes: Routes = [
           () => import('./main/pages/pages.module').then((m) => m.PagesModule)
       },
       {
+        //aqui se esta trabajando
        path:'',
        loadChildren:()=> import('././main/molde-maestro/molde.module') .then(m => m.MoldeModule)
       },

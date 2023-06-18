@@ -15,6 +15,7 @@ import { PortadaMotionComponent } from './components/portada-motion/portada-moti
 import { PortadaBetaMotionComponent } from './components/portada-beta-motion/portada-beta-motion.component';
 import { PortadaAlfaComponent } from './components/portada-alfa/portada-alfa.component';
 import { CarouselPortadaComponent } from './components/carousel-portada/carousel-portada.component';
+import { ProductsHomeComponent } from './pages/home-portada/products-home/products-home.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { CarouselPortadaComponent } from './components/carousel-portada/carousel
       PortadaMotionComponent,
       PortadaBetaMotionComponent,
       PortadaAlfaComponent,
-      CarouselPortadaComponent
+      CarouselPortadaComponent,
+      ProductsHomeComponent
   ],
   imports: [
     CommonModule,

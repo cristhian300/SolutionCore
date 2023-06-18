@@ -74,3 +74,18 @@ https://www.youtube.com/watch?v=clHz6QLotwE
 ejemplo
 ---------------------------------------------
 https://codepen.io/JyGProyectosWeb/pen/WNowqqx
+
+
+------------------------------------------------
+curso AWS Gratis
+previa
+https://codigoencasa.com/aws-basico-para-programadores-web-curso-2022/
+
+https://app.codigoencasa.com/courses/aws-curso-basico-para-desarrolladores-web
+
+
+------------------------------------------------------
+
+
+****depliegue********
+firebase deploy
