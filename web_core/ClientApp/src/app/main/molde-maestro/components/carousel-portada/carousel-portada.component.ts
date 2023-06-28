@@ -106,7 +106,7 @@ export class CarouselPortadaComponent implements OnInit, OnDestroy, AfterViewIni
   // }
 
   ngOnInit(): void {
-    this.startInterval()
+    // this.startInterval()
   }
 
   ngOnDestroy() {
@@ -134,7 +134,7 @@ export class CarouselPortadaComponent implements OnInit, OnDestroy, AfterViewIni
     }
     else {
       if (e.type.includes('touch')) {
-        this.startInterval()
+        // this.startInterval()
       }
     }
   }
@@ -200,7 +200,7 @@ export class CarouselPortadaComponent implements OnInit, OnDestroy, AfterViewIni
       this.carousel.style.left = this.converPerPercentage(this.posInitial) + "%";
     }
     this.dragging = false
-    this.startInterval()
+    // this.startInterval()
   }
 
 
@@ -261,9 +261,9 @@ export class CarouselPortadaComponent implements OnInit, OnDestroy, AfterViewIni
   }
 
 
-  startInterval = () => {
-    this.interval = setInterval(() => { this.moveRight() }, 5000)
-  }
+  // startInterval = () => {
+  //   this.interval = setInterval(() => { this.moveRight() }, 5000)
+  // }
 
   deleteInterval = () => {
     console.log('enter');
