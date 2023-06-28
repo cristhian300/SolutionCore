@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { Console } from 'console';
 
 @Component({
@@ -6,7 +6,7 @@ import { Console } from 'console';
   templateUrl: './carousel-portada.component.html',
   styleUrls: ['./carousel-portada.component.scss']
 })
-export class CarouselPortadaComponent implements OnInit, AfterViewInit {
+export class CarouselPortadaComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('carousel') carouselMain: ElementRef
   @ViewChildren('sliderSection') slideItems: QueryList<ElementRef>
@@ -38,6 +38,12 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
   operacion: number;
   constainerMain: HTMLElement
   interval: NodeJS.Timeout;
+
+
+  listenerFnTouchStart = () => { };
+  listenerFnTouchMove = () => { };
+  listenerFnTouchEnd = () => { };
+
   constructor(private renderer: Renderer2) { }
 
   ngAfterViewInit(): void {
@@ -66,15 +72,29 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
     this.renderer.listen(this.constainerMain, 'mouseenter', this.deleteInterval)
 
     // Touch events
-    this.renderer.listen(this.constainerMain, 'touchstart', this.dragStart)
-    this.renderer.listen(this.constainerMain, 'touchmove', this.dragAction)
-    this.renderer.listen(this.constainerMain, 'touchend', this.dragEnd)
+    this.listenerFnTouchStart = this.renderer.listen(this.constainerMain, 'touchstart', this.dragStart)
+    this.listenerFnTouchMove = this.renderer.listen(this.constainerMain, 'touchmove', this.dragAction)
+    this.listenerFnTouchEnd = this.renderer.listen(this.constainerMain, 'touchend', this.dragEnd)
     this.sliderSelected()
   }
 
 
+  // @HostListener('touchstart', ['$event.taget'])
+  // onTouchStart(event: HTMLElement) {
+  //   // if (event.classList.contains('container-carousel')) {
+  //       // }
+  // }
+
+
+
   // @HostListener('mousedown', ['$event']) onMouseDown(e: any) {
   //   this.dragStart(e)
+  //   if ($event.classList.contains('quadrate')) {
+
+  //     console.log('cuadrate');
+
+  //     // this.cerrarSideBar()
+  //   }
   // }
 
   // @HostListener('mousemove', ['$event']) onMouseMove(e: any) {
@@ -89,6 +109,15 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
     this.startInterval()
   }
 
+  ngOnDestroy() {
+    if (this.interval) {
+      clearInterval(this.interval)
+    }
+
+    this.listenerFnTouchStart()
+    this.listenerFnTouchMove()
+    this.listenerFnTouchEnd()
+  }
 
 
 
@@ -108,8 +137,6 @@ export class CarouselPortadaComponent implements OnInit, AfterViewInit {
         this.startInterval()
       }
     }
-
-
   }
 
   getPosicionX = (e: any) => {

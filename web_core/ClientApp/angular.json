@@ -135,6 +135,14 @@
             }
           },
           "defaultConfiguration": ""
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2,
+            "browserTarget": "SolutionCore:build:production",
+            "serverTarget": "SolutionCore:server:production"
+          }
         }
       }
     },

@@ -87,5 +87,11 @@ https://app.codigoencasa.com/courses/aws-curso-basico-para-desarrolladores-web
 ------------------------------------------------------
 
 
-****depliegue********
-firebase deploy
+para cargara archivos
+
+https://academind.com/tutorials/angular-image-upload-made-easy/
+
+https://www.pluralsight.com/guides/how-to-display-validation-messages-using-angular
+
+file para node
+https://netbasal.com/how-to-implement-file-uploading-in-angular-reactive-forms-89a3fffa1a03

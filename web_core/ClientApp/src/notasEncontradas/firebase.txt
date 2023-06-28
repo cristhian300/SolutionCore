@@ -1,0 +1,22 @@
+1 hosting
+***se muestra cuando crear el hosting***********************
+npm install -g firabase-tools
+
+****logear*************************************
+firebase login
+
+**if you want to log out***************************************
+firebase logout
+
+
+**Enlaza codigo local con codigo en la nube*****************************************
+firebase init
+elegir opcion Hosting: configure files for firebase hosting and (optionally)
+****depliegue********
+firebase deploy
+
+*****************************
+2 ****para storage************
+ ng add @angular/fire
+
+https://www.youtube.com/watch?v=qS5R6Mjq36U

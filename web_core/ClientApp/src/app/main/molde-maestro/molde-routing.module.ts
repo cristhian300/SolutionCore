@@ -23,13 +23,20 @@ const routes: Routes = [
       { path: 'molde', component: MoldePageComponent, data: { titulo: 'molde' } },
     ]
   },
-
+  //aqui se esta construyendo
   {
-    path: '', component: MenuSideComponent,
+    path: '',
+    component: MenuSideComponent,
     children: [
+      {
+        path: 'home',
+        loadChildren: () => import('./../molde-maestro/pages/home-portada/home-portada.module').then((m) => m.HomePortadaModule),
+        data: { titulo: 'home' }
+      },
+
+
       { path: 'side', data: { titulo: 'side' } },
       { path: 'sombra', component: MoldePageComponent, data: { titulo: 'molde' } },
-      { path: 'home', component: HomePortadaComponent, data: { titulo: 'home' } },
       { path: 'acordion', component: AcordionMotionComponent, data: { titulo: 'acordion' } },
 
     ]
@@ -43,15 +50,15 @@ const routes: Routes = [
     path: 'motion', component: PortadaMotionComponent, data: { titulo: 'motion' }
   },
   {
-    path: 'beta', component:  PortadaBetaMotionComponent, data: { titulo: 'motion' }
+    path: 'beta', component: PortadaBetaMotionComponent, data: { titulo: 'motion' }
   }
   ,
   {
-    path: 'alfa', component:  PortadaAlfaComponent, data: { titulo: 'motion' }
+    path: 'alfa', component: PortadaAlfaComponent, data: { titulo: 'motion' }
   }
   ,
   {
-    path: 'carrusel', component:  CarouselPortadaComponent, data: { titulo: 'motion' }
+    path: 'carrusel', component: CarouselPortadaComponent, data: { titulo: 'motion' }
   }
 ];
 

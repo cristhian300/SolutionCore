@@ -1,0 +1,119 @@
+https://www.youtube.com/watch?v=4Ik1OcQR2BE
+-----------------------------
+se puede contratar este servicio
+Lightsail
+
+---------------------------------
+opciones antiguas
+
+cpanel
+hosting cpanel
+-------------------------------------
+
+EC2
+crear ip privada (en aws ip elastica)
+
+---lanzar comando en consola git-------------------------------------------
+*se utiliza la ip privada creada
+*el usuario para conectarse
+*se utiliza la peerKey ruta D:node - llave pem
+
+ssh -i test_llave_for_node.pem  ubuntu@34.194.168.80
+
+--------------------------------------------------------------------------
+buscar en home/cristhian
+ls -a
+la llave pem se guarda en .ssh/authorized_keys
+---------------------------------------------------------------------------
+***revisar en caso se pierda la llave .pem
+https://codigoencasa.com/aws-recuperar-llave-pem-curso-aws/
+
+---------------------------------------------------------------------------
+montar un volumen
+ls /dev   # aqui se guardan los volumenes
+fdisk  dev/sda # revisar la particiones
+p  #para imprimir
+q  #para salir
+
+para montar se debe crear un carpeta
+
+ls /dev/sda1
+----------------------------------------------------------------------------
+
+ssh -i test_llave_for_node.pem  ubuntu@34.194.168.80
+***Consulta las librerias internas que tiene***********
+sudo apt-get update
+
+***Actualiza las que necesita***********
+sudo apt-get upgrade
+
+***instal nginx ***********
+sudo apt-get install nginx
+
+revisar ruta  /var/www/html  =>  index.nginx-debian.html
+
+
+cd ~
+curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+nano nodesource_setup.sh
+sudo bash nodesource_setup.sh
+
+sudo apt-get install -y nodejs
+
+node -v  #para verificar
+
+npm -v
+
+git remote -v
+dentro del EC2 del usuario ubuntu
+git clone https://github.com/cristhian300/admin-pro-backend-node
+npm i
+
+----------------------------------------------------------
+
+
+nameCheap -- proveedor de dominios
+
+DNSChecker para ver si funciona el dominio
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------
+datos codigos ubuntu
+--------------------------------------------------------------------
+sudo parted -l
+mkdir carpeta #Crear una carpeta nueva en el directorio actual
+
+touch archivo.txt #Crear un archivo llamado archivo.txt
+
+nano archivo.txt #Entrar a un editor por terminal, para modificar el archivo.txt
+
+mv archivo.txt ../archivo2.txt #Mueve el fichero "archivo.txt" un directorio arriba y lo renombra a archivo2.txt
+
+cat archivo.txt #Mostar el contenido de archivo.txt por terminal
+
+cd carpeta #Entrar al directorio con nombre "carpeta"
+
+ls #muestra el contenido del directorio
+
+ls -a #Muesra el contenido del directorio incluyendo archivos ocultos
+
+ls -lt #muestra el contenido del directorio con detalles y ordenado por última fecha de modificación
+
+rm archivo.txt #Eliminar el fichero "archivo.txt"
+
+rm -R carpeta #Eliminar el directorio llamado "carpeta"
+
+free #Mostar la memoria en uso y disponible en el sistema
+
+df #Mostrar el espacio disponible en las diferentes particiones
+
+ifconfig #Ver las IPs y direcciones MAC asociadas a las interfaces de red

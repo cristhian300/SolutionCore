@@ -57,7 +57,7 @@ export class AdministradorComponent implements OnInit {
     this.productService.ListProduct().subscribe(
       response => {
 
-        this.viewModel.listProduct = response.listProduct
+       this.viewModel.listProduct = response.listProduct
         this.ListProductToShow = this.viewModel.listProduct
         this.totalSize = this.viewModel.listProduct.length;
         this.iterator();
@@ -72,13 +72,13 @@ export class AdministradorComponent implements OnInit {
     )
   }
 
-  private setProduct(listProduct: ListProductEntity[]) {
-    listProduct.forEach(element => {
+  // private setProduct(listProduct: ListProductEntity[]) {
+  //   listProduct.forEach(element => {
 
-    });
+  //   });
 
 
-  }
+  // }
 
   public handlePage(e: PageEvent) {
     this.currentPage = e.pageIndex;
@@ -90,7 +90,7 @@ export class AdministradorComponent implements OnInit {
     const end = (this.currentPage + 1) * this.pageSize;
     const start = this.currentPage * this.pageSize;
     this.ListProductToShow = this.viewModel.listProduct.slice(start, end);
-    // this.dataSource = part;
+
   }
 
 
@@ -98,7 +98,7 @@ export class AdministradorComponent implements OnInit {
 
     const modal = this.dialog.open(ModalProductComponent, {
       width: '90%',
-
+      height:'95%',
     })
 
 

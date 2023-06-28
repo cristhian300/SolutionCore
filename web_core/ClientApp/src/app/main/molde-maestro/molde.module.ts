@@ -16,29 +16,32 @@ import { PortadaBetaMotionComponent } from './components/portada-beta-motion/por
 import { PortadaAlfaComponent } from './components/portada-alfa/portada-alfa.component';
 import { CarouselPortadaComponent } from './components/carousel-portada/carousel-portada.component';
 import { ProductsHomeComponent } from './pages/home-portada/products-home/products-home.component';
+import { HomePortadaModule } from './pages/home-portada/home-portada.module';
 
 
 @NgModule({
   declarations: [
 
     MoldePageComponent,
-     MenuComponent,
-     MenuSideComponent,
-     PicturePortadaComponent,
-     HomePortadaComponent,
-     ListProductHomeComponent,
-     FooterModelComponent,
-      AcordionMotionComponent,
-      PortadaMotionComponent,
-      PortadaBetaMotionComponent,
-      PortadaAlfaComponent,
-      CarouselPortadaComponent,
-      ProductsHomeComponent
+    MenuComponent,
+    MenuSideComponent,
+    PicturePortadaComponent,
+    //  HomePortadaComponent,
+
+
+
+    AcordionMotionComponent,
+    PortadaMotionComponent,
+    PortadaBetaMotionComponent,
+    PortadaAlfaComponent,
+
+    // ProductsHomeComponent
   ],
   imports: [
     CommonModule,
     MoldeRoutingModule,
-    MaterialModule
+    MaterialModule,
+    // HomePortadaModule
   ]
 })
 export class MoldeModule { }

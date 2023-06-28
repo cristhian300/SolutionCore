@@ -1,84 +1,115 @@
-
-
-
 <div class="container" style=" text-align: end;">
-    <mat-icon (click)="closeModal()"  style="cursor: pointer;font-size: 36px;">close</mat-icon>
+  <mat-icon (click)="closeModal()" style="cursor: pointer;font-size: 36px;">close</mat-icon>
 
-    <h1 style=" text-align: start;">{{title}}</h1>
+  <h1 style=" text-align: center;">{{title}}</h1>
 </div>
 
 
-<form [formGroup]="formGroupProduct">
+
+<form [formGroup]="formParent" (submit)="CargarProduct()">
 
 
-    <perfect-scrollbar style="width: 100%;height: 60vh">
-        <div class="container">
+  <perfect-scrollbar style="width: 100%;height: 60vh">
+    <div class="container">
 
+      <div class="row">
+        <div class="col">
+          <div class="mainData">
             <div class="row">
-                <div class="col" style=" display: flex;justify-content: center;align-items: center;">
-                    <img #imgProduct style="width: 300px;height: 300px;" [src]="imagen" alt="">
-                </div>
+
+              <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name" type="text" placeholder="Nombre Completo">
+              </mat-form-field>
+              <mat-error *ngIf="validationErrores('name')">
+                <p *ngFor="let messageError of listOfErrors('name')">
+                  {{messageError}}
+                </p>
+              </mat-error>
+
 
 
             </div>
 
             <div class="row">
-                <div class="col">
 
+              <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+                <mat-label>Precio</mat-label>
+                <input matInput formControlName="precio" type="number" min="0" placeholder="Precio">
+              </mat-form-field>
 
-                    <label id="fichero" class="subir" for="file-upload" style="width: 100%;">
-                        Subir archivo
-                        <div style="display: inline;padding-left: 10px;">
-                            <img #image style="width: 20px;height: 20px;" src="../../../../../assets/images/save.png" alt="">
-                        </div>
-                    <input #foto required  id="file-upload" (change)="CargaImagen($event)" type="file" style='display: none;' />
-                    <!-- <input type="hidden" name="fileHidden" formControlName="imageInput"/> Validation Field -->
-                    </label>
+              <mat-error *ngIf="validationErrores('precio')">
+                <p *ngFor="let messageError of listOfErrors('precio')">
+                  {{messageError}}
+                </p>
+              </mat-error>
 
-
-                </div>
             </div>
 
             <div class="row">
-                <div class="col">
-                    <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
-                        <mat-label>Nombre</mat-label>
-                        <input matInput formControlName="name" type="text" required placeholder="Nombre Completo">
-                    </mat-form-field>
 
 
-                </div>
-                <div class="col">
+              <mat-form-field style="width: 100%;" floatLabel="always" appearance="outline">
+                <mat-label>Descripción</mat-label>
+                <textarea formControlName="detalle" matInput placeholder="Descripción"></textarea>
+              </mat-form-field>
 
-                    <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
-                        <mat-label>Precio</mat-label>
-                        <input matInput formControlName="precio" type="number" required min="0" placeholder="Precio">
-                    </mat-form-field>
+              <mat-error *ngIf="validationErrores('detalle')">
+                <p *ngFor="let messageError of listOfErrors('detalle')">
+                  {{messageError}}
+                </p>
+              </mat-error>
 
-                </div>
             </div>
 
 
 
-            <div class="row">
-                <div class="col">
+          </div>
 
-                    <mat-form-field style="width: 100%;" floatLabel="always" appearance="outline">
-                        <mat-label>Descripción</mat-label>
-                        <textarea  formControlName="detalle" matInput placeholder="Descripción"></textarea>
-                    </mat-form-field>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col" style="display: flex;justify-content: center;align-items: center;">
-                    <button (click)="CargarProduct()" style="width: 300px;" mat-raised-button color="primary">Submit</button>
-                </div>
-            </div>
         </div>
 
+        <div class="col">
+          <div class="mainLoadImage">
+            <div class="row" style="display: flex; justify-content: center;">
+              <img #imgProduct style="width: 300px;height: 300px;" [src]="imagen" alt="">
+            </div>
+
+            <div class="row" style="display: flex; justify-content: center;flex-direction: column;">
+              <p style="margin: auto;" >
+                <input formControlName="imageLoad" style='display: none;' #image id="file-upload"
+                  (change)="CargaImagen($event)" type="file" />
+                <button type="button" (click)="image.click()" mat-raised-button>
+                  Cargar Imagen
+                </button>
+              </p>
+              <p style="margin: auto;">
+                <label #nameFile></label>
+              </p>
+              <mat-error style="margin: auto;"  *ngIf="validationErrores('imageLoad')">
+                <p *ngFor="let messageError of listOfErrors('imageLoad')">
+                  {{messageError}}
+                </p>
+              </mat-error>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </perfect-scrollbar>
 
 
-    </perfect-scrollbar>
+  <div class="row" style="display: flex;justify-content: center;align-items: center;">
+    <button type="submit" style="width: 300px;" mat-raised-button color="primary">Submit</button>
+  </div>
+
+
+
+  <!-- <p>Form value: {{ formParent.value | json }}</p>
+  <p>Form status: {{ formParent.status | json }}</p> -->
+
+  <!-- <p>name {{formParent.get('name').errors | json}} </p>
+  <p>image {{formParent.get('imageLoad').errors | json}} </p> -->
+
 </form>
