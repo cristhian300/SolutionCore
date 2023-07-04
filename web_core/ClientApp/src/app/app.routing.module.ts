@@ -29,6 +29,13 @@ const routes: Routes = [
        path:'',
        loadChildren:()=> import('././main/molde-maestro/molde.module') .then(m => m.MoldeModule)
       },
+
+      {
+        //****aqui se esta dashboard
+       path:'',
+       loadChildren:()=> import('././main/molde-maestro/config-dashboard/administrador/administrador.module') .then(m => m.AdministradorModule)
+      },
+
       {
         path:'',
         loadChildren:()=> import('././node/auth/auth.module') .then(m => m.AuthModule)

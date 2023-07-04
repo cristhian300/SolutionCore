@@ -40,6 +40,9 @@ para montar se debe crear un carpeta
 ls /dev/sda1
 ----------------------------------------------------------------------------
 
+***cambiar usuario con todos los privilegios
+ sudo su
+
 ssh -i test_llave_for_node.pem  ubuntu@34.194.168.80
 ***Consulta las librerias internas que tiene***********
 sudo apt-get update
@@ -50,9 +53,32 @@ sudo apt-get upgrade
 ***instal nginx ***********
 sudo apt-get install nginx
 
-revisar ruta  /var/www/html  =>  index.nginx-debian.html
+***revisar ruta donde esta configurado en Nginx
+/var/www/html  =>  index.nginx-debian.html
+**revisas si la instance esta arriba por comando service
+service nginx status
+
+***cambiar el virtual host nginx*******************************
+cd  /etc/nginx/
+*ver los virtual host
+cd /sites-available
+* editar el archivo default con sudo o root
+sudo nano default
+*buscar la linea root /var/www/html  y cambiar html por la carpeta
+ejemplo: angular-spotify
+ctro + o luego enter y ctr + x
+* para reiniciar
+*reiniciar servicio de nginx para que funcionen los cambios
+/etc/init.d/nginx restart
+*para asegurar todo bien con nginx
+service nginx status
 
 
+
+
+
+**PASO Intalacion Node***********************************************************
+****instalacion de node **************************************
 cd ~
 curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
 nano nodesource_setup.sh

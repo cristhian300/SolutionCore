@@ -86,11 +86,13 @@ export class ApiService {
         formData.append(key, body[key]);
       }
     }
+
     if (files.length) {
       files.forEach((file) => {
         formData.append(file.name, file.native, encodeURIComponent(file.native.name));
       });
     }
+
     return (this.httpClient.post(parseApiUrl, formData, parseReqOptions as any) as any).pipe(
       ...this.getDefaultOperators(parseReqOptions),
     );
@@ -114,6 +116,7 @@ export class ApiService {
     if (params) {
       Object.keys(params).forEach((paramKey: string) => {
         if (this.isParameterInPath(apiUrl, paramKey)) {
+          //revisar paramatros entre {}
           apiUrl = apiUrl.replace(`{${paramKey}}`, params[paramKey]);
         } else {
           if (params[paramKey]) {

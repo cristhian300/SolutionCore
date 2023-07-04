@@ -23,7 +23,7 @@ const routes: Routes = [
       { path: 'molde', component: MoldePageComponent, data: { titulo: 'molde' } },
     ]
   },
-  //aqui se esta construyendo
+  //aqui se esta construyendo la web
   {
     path: '',
     component: MenuSideComponent,
@@ -34,9 +34,13 @@ const routes: Routes = [
         data: { titulo: 'home' }
       },
 
+      { path: 'sombra', component: MoldePageComponent, data: { titulo: 'molde' } },
+
+
+
 
       { path: 'side', data: { titulo: 'side' } },
-      { path: 'sombra', component: MoldePageComponent, data: { titulo: 'molde' } },
+
       { path: 'acordion', component: AcordionMotionComponent, data: { titulo: 'acordion' } },
 
     ]
