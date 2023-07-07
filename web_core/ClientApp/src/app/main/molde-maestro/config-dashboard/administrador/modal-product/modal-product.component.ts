@@ -4,7 +4,9 @@ import { AbstractControl, AbstractControlDirective, FormBuilder, FormGroup, Vali
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddProductRequest, EditProductRequest, ListProductEntity } from 'src/app/main/providers/services/Product/product.interface';
-import { ProductService } from 'src/app/main/providers/services/Product/product.service';
+// import { ProductService } from 'src/app/main/providers/services/Product/product.service';
+import { IProduct, IProductRequest, IProductResponse, IUpdateProductRequest } from '../../../interfaces/product/product';
+import { ProductService } from '../../../services/product/product.service';
 
 
 @Component({
@@ -24,11 +26,12 @@ export class ModalProductComponent implements OnInit {
   messageError: string = 'existe un error'
   currentControl: AbstractControlDirective | AbstractControl;
   isSummit: boolean = false
+  files: Array<{ name: string; native: File }> = [];
   constructor(private formbuilder: FormBuilder,
     private productService: ProductService,
     private modalProduct: MatDialogRef<ModalProductComponent>,
     private snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) private data: ListProductEntity
+    @Inject(MAT_DIALOG_DATA) private data: IProduct
 
   ) {
 
@@ -44,9 +47,12 @@ export class ModalProductComponent implements OnInit {
     if (this.data) {
       this.title = "Editar Productos"
       this.formParent.get('name').setValue(this.data.name)
-      this.formParent.get('precio').setValue(this.data.price);
-      this.formParent.get('detalle').setValue(this.data.description);
-      this.imagen = this.data.pathUrlImage;
+      this.formParent.get('price').setValue(this.data.price);
+      this.formParent.get('details').setValue(this.data.details);
+      //preview as path
+      this.previewImg = this.data.pathImage;
+
+
     }
     else {
       this.title = "Registrar Productos"
@@ -61,11 +67,11 @@ export class ModalProductComponent implements OnInit {
     this.formParent = this.formbuilder.group({
       name: ["",
         [Validators.required, Validators.minLength(0), Validators.maxLength(10),
-        Validators.pattern(`^[a-zA-Z'ñÑáéíóúÁÉÍÓÚ][a-zA-Z 'ñÑáéíóúÁÉÍÓÚ]*$`),]
+        Validators.pattern(`^[0-9a-zA-Z'ñÑáéíóúÁÉÍÓÚ][0-9a-zA-Z 'ñÑáéíóúÁÉÍÓÚ]*$`),]
       ],
-      precio: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
-      detalle: ["", [Validators.required]],
-      imageLoad: ["", [Validators.required]]
+      price: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
+      details: ["", [Validators.required]],
+      image: ["", [Validators.required]]
     })
 
   }
@@ -129,15 +135,16 @@ export class ModalProductComponent implements OnInit {
 
 
   fileData: File = null;
-  imagen: string = ''
+  previewImg: string = ''
 
   CargaImagen(event) {
 
+    this.files = []
     if (event.target.files) {
 
       this.fileData = <File>event.target.files[0];
 
-
+      this.files.push({ name: 'image', native: this.fileData });
       // this.formParent.patchValue({
       //   imageLoad: this.fileData
       // })
@@ -146,7 +153,8 @@ export class ModalProductComponent implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(this.fileData);
       reader.onload = (event: any) => {
-        this.imagen = reader.result as string;
+        //preview Base 64
+        this.previewImg = reader.result as string;
         (this.nameFileLoad.nativeElement as HTMLElement).innerText = this.fileData.name
       }
       reader.readAsDataURL(this.fileData)
@@ -156,29 +164,31 @@ export class ModalProductComponent implements OnInit {
 
   CargarProduct() {
     this.isSummit = true
+
+    this.formParent.controls.image.setValidators(this.files.length > 0 || this.previewImg ? null : [Validators.required]);
+    this.formParent.controls.image.updateValueAndValidity();
+
     if (this.formParent.valid) {
+
       if (!this.data) {
         this.insertar();
       } else {
         this.update();
       }
+
     }
   };
 
   insertar() {
-    let request = new AddProductRequest()
 
-    request.files = this.fileData;
-    request.Name = this.formParent.get("name").value;
-    request.Price = this.formParent.get("precio").value;
-    request.Description = this.formParent.get("detalle").value;
 
-    if (!request.files) {
+
+    if (!this.files) {
       this.snackBar.open('No existe archivo cargado', 'close', { duration: 5000, panelClass: ['error-snackbar'] });
       return
     }
 
-    this.productService.AddProduct(request).subscribe(
+    this.productService.insertProduct(this.formParent.value, this.files).subscribe(
       response => {
         this.modalProduct.close()
       },
@@ -192,15 +202,21 @@ export class ModalProductComponent implements OnInit {
 
   update() {
 
-    let request = new EditProductRequest()
-    request.ProductId = this.data.productId;
-    // request.files = this.fileData;
-    request.files = this.formParent.get("imageLoad").value;
-    request.Name = this.formParent.get("name").value;
-    request.Price = this.formParent.get("precio").value;
-    request.Description = this.formParent.get("detalle").value;
+    // let request = new EditProductRequest()
+    // // request.ProductId = this.data.uid;
+    // // request.files = this.fileData;
+    // request.files = this.formParent.get("imageLoad").value;
+    // request.Name = this.formParent.get("name").value;
+    // request.Price = this.formParent.get("price").value;
+    // request.Description = this.formParent.get("details").value;
 
-    this.productService.EditProduct(request).subscribe(
+    const request: IUpdateProductRequest = {
+      ...this.formParent.value,
+      uid: this.data.uid,
+      image: this.data.image
+    }
+
+    this.productService.updateProduct(request, this.files).subscribe(
       response => {
         this.modalProduct.close()
       },

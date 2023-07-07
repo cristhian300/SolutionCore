@@ -35,11 +35,11 @@
 
               <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
                 <mat-label>Precio</mat-label>
-                <input matInput formControlName="precio" type="number" min="0" placeholder="Precio">
+                <input matInput formControlName="price" type="number" min="0" placeholder="Precio">
               </mat-form-field>
 
-              <mat-error *ngIf="validationErrores('precio')">
-                <p *ngFor="let messageError of listOfErrors('precio')">
+              <mat-error *ngIf="validationErrores('price')">
+                <p *ngFor="let messageError of listOfErrors('price')">
                   {{messageError}}
                 </p>
               </mat-error>
@@ -51,11 +51,11 @@
 
               <mat-form-field style="width: 100%;" floatLabel="always" appearance="outline">
                 <mat-label>Descripción</mat-label>
-                <textarea formControlName="detalle" matInput placeholder="Descripción"></textarea>
+                <textarea formControlName="details" matInput placeholder="Descripción"></textarea>
               </mat-form-field>
 
-              <mat-error *ngIf="validationErrores('detalle')">
-                <p *ngFor="let messageError of listOfErrors('detalle')">
+              <mat-error *ngIf="validationErrores('details')">
+                <p *ngFor="let messageError of listOfErrors('details')">
                   {{messageError}}
                 </p>
               </mat-error>
@@ -71,12 +71,12 @@
         <div class="col">
           <div class="mainLoadImage">
             <div class="row" style="display: flex; justify-content: center;">
-              <img #imgProduct style="width: 300px;height: 300px;" [src]="imagen" alt="">
+              <img #imgProduct style="width: 300px;height: 300px;" [src]="previewImg" alt="">
             </div>
 
             <div class="row" style="display: flex; justify-content: center;flex-direction: column;">
               <p style="margin: auto;" >
-                <input formControlName="imageLoad" style='display: none;' #image id="file-upload"
+                <input formControlName="image" style='display: none;' #image id="file-upload"
                   (change)="CargaImagen($event)" type="file" />
                 <button type="button" (click)="image.click()" mat-raised-button>
                   Cargar Imagen
@@ -85,8 +85,8 @@
               <p style="margin: auto;">
                 <label #nameFile></label>
               </p>
-              <mat-error style="margin: auto;"  *ngIf="validationErrores('imageLoad')">
-                <p *ngFor="let messageError of listOfErrors('imageLoad')">
+              <mat-error style="margin: auto;"  *ngIf="validationErrores('image')">
+                <p *ngFor="let messageError of listOfErrors('image')">
                   {{messageError}}
                 </p>
               </mat-error>

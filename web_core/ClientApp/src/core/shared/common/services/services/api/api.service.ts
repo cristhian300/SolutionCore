@@ -80,8 +80,8 @@ export class ApiService {
   ): Observable<any> {
     const { apiUrl: parseApiUrl, reqOptions: parseReqOptions } = this.parseApiUrlAndReqOptions(apiUrl, reqOptions);
     const formData = new FormData();
+
     for (const key in body) {
-      // eslint-disable-next-line no-prototype-builtins
       if (body.hasOwnProperty(key)) {
         formData.append(key, body[key]);
       }
@@ -89,14 +89,45 @@ export class ApiService {
 
     if (files.length) {
       files.forEach((file) => {
+        console.log('files load', file);
         formData.append(file.name, file.native, encodeURIComponent(file.native.name));
       });
     }
+
 
     return (this.httpClient.post(parseApiUrl, formData, parseReqOptions as any) as any).pipe(
       ...this.getDefaultOperators(parseReqOptions),
     );
   }
+
+  putDataAndFile(
+    apiUrl: string,
+    body: any,
+    files: Array<{ name: string; native: File }>,
+    reqOptions: { showError?: boolean; params?: { [key: string]: any } },
+  ): Observable<any> {
+    const { apiUrl: parseApiUrl, reqOptions: parseReqOptions } = this.parseApiUrlAndReqOptions(apiUrl, reqOptions);
+    const formData = new FormData();
+
+    for (const key in body) {
+      if (body.hasOwnProperty(key)) {
+        formData.append(key, body[key]);
+      }
+    }
+
+    if (files.length) {
+      files.forEach((file) => {
+        console.log('files load', file);
+        formData.append(file.name, file.native, encodeURIComponent(file.native.name));
+      });
+    }
+
+
+    return (this.httpClient.put(parseApiUrl, formData, parseReqOptions as any) as any).pipe(
+      ...this.getDefaultOperators(parseReqOptions),
+    );
+  }
+
 
   private getDefaultOperators(reqOptions: IRequestOptions): any[] {
     return [catchError(this.onCatchError.bind(this, !!reqOptions.showError))];

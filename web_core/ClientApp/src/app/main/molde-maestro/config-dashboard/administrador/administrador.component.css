@@ -25,7 +25,7 @@
 
   .elemento {
     width: 300px;
-    height: 335px;
+    height: 310px;
     color: black;
     border: 1px solid #e7e1e1;
     border-radius: 4px;
@@ -36,6 +36,7 @@
     -ms-transition: box-shadow 300ms;
     transition: box-shadow 300ms;
     cursor: pointer;
+    margin-left: 10px;
   }
 
   .elemento:hover {

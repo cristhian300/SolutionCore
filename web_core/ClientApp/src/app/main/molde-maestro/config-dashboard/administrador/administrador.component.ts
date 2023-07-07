@@ -4,13 +4,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-// import { ListProductEntity, ListProductResponse } from '../../providers/services/Product/product.interface';
-// import { ProductService } from '../../providers/services/Product/product.service';
 import { ModalDeleteProductComponent } from './modal-delete-product/modal-delete-product.component';
 import { ModalProductComponent } from './modal-product/modal-product.component';
 import { ListProductEntity, ListProductResponse } from 'src/app/main/providers/services/Product/product.interface';
 import { ProductService } from '../../services/product/product.service';
-import { Product, ProductResponse } from '../../interfaces/product/product';
+import { IProduct, IProductResponse } from '../../interfaces/product/product';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -20,14 +18,12 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./administrador.component.css']
 })
 export class AdministradorComponent implements OnInit {
-  /*find permite encontrar algun valor en el array */
 
   pageEvent: PageEvent;
-  // viewModel = new ListProductResponse
   filtro: string = '';
-  ListProductToShow: Array<Product>;
-  hola: string = 'hola a todos '
-  // public pathImage:string ='';
+  ListProductToShow: Array<IProduct>;
+  ListProduct: Array<IProduct>;
+
   constructor(
 
     private productService: ProductService,
@@ -55,10 +51,8 @@ export class AdministradorComponent implements OnInit {
 
     this.ngxLoader.start();
     this.productService.listProduct()
-
       .subscribe(
-        (response: ProductResponse) => {
-
+        (response: IProductResponse) => {
           this.ListProductToShow = (response.products || [])
             .map((result) =>
             ({
@@ -67,14 +61,14 @@ export class AdministradorComponent implements OnInit {
               price: result.price,
               enable: result.enable,
               uid: result.uid,
-              image: this.formatImage(result.image),
+              image: result.image,
+              pathImage: this.formatImage(result.image),
             })
             )
-          //   response.products
 
-          console.log(this.ListProductToShow);
+          this.ListProduct = this.ListProductToShow
           this.totalSize = response.products.length;
-          // this.iterator();
+
           this.ngxLoader.stop();
         }, error => {
           this.ngxLoader.stop();
@@ -107,8 +101,8 @@ export class AdministradorComponent implements OnInit {
   private iterator() {
     const end = (this.currentPage + 1) * this.pageSize;
     const start = this.currentPage * this.pageSize;
-    this.ListProductToShow = this.ListProductToShow.slice(start, end);
-
+    this.ListProduct = this.ListProductToShow.slice(start, end);
+    this.totalSize = this.ListProduct.length
   }
 
 
@@ -128,14 +122,16 @@ export class AdministradorComponent implements OnInit {
 
 
   inputChange(value) {
+    console.log('value', value);
 
-    this.ListProductToShow = this.ListProductToShow.filter(f => {
+    this.ListProduct = this.ListProductToShow.filter(f => {
       return f.name.includes(value)
     });
+    this.totalSize = this.ListProduct.length
   }
 
 
-  update(product: ListProductEntity) {
+  update(product: IProduct) {
     console.log(product)
 
     const modal = this.dialog.open(ModalProductComponent,
