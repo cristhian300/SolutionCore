@@ -38,8 +38,10 @@ q  #para salir
 para montar se debe crear un carpeta
 
 ls /dev/sda1
-----------------------------------------------------------------------------
 
+----------------------------------------------------------------------------
+STEPS FOR INSTALL INSIDE EC2
+-----------------------------------------------------------------------------
 ***cambiar usuario con todos los privilegios
  sudo su
 
@@ -66,6 +68,9 @@ cd /sites-available
 sudo nano default
 *buscar la linea root /var/www/html  y cambiar html por la carpeta
 ejemplo: angular-spotify
+* permisos carpeta creada mkdir  angular-spotify
+chmod 777 angular-spotify/
+
 ctro + o luego enter y ctr + x
 * para reiniciar
 *reiniciar servicio de nginx para que funcionen los cambios
@@ -73,8 +78,31 @@ ctro + o luego enter y ctr + x
 *para asegurar todo bien con nginx
 service nginx status
 
+-----------------------------------
+visualizando disco duro - aumentar volumen
+-----------------------------------
+df -h
 
-
+*detalle del particionamiento
+lsblk
+* extender el sistemas de archivos a la particio asignada
+sudo growpart /dev/xvda 1
+* redimensionar la particion
+sudo resize2fs /dev/xvda1
+---------------------------------------------
+----------------------------------------------
+crear un ssh para git
+*generar un par de llave
+ssh-keygen
+* asignar la ruta a guardar por defecto
+.ssh/id_rsa
+* situal en la carpeta ssh
+cd ./.ssh
+* ls -la para ver los archivos
+id_rsa
+id_rsa.pub
+*ver el keygen
+cat  id_rsa.pub
 
 
 **PASO Intalacion Node***********************************************************
