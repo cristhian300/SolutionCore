@@ -1,0 +1,97 @@
+*Extensiones
+-Devuelve interface
+Paste Json as Code
+-----------------------
+alert SweetAler2
+npm install sweetalert2
+
+
+**********Menus*******************************
+https://www.youtube.com/watch?v=Xs3cC8-5QDI
+
+https://www.youtube.com/watch?v=sRaVhp96jxM
+
+https://www.youtube.com/watch?v=2n5_9boyGWw
+********************************************
+
+
+-youtube-----------------------------------------
+elementRef  ViewChild
+https://www.youtube.com/watch?v=m7XPoQ-RikI
+
+--------------------------------------------------------
+
+https://medium.com/claritydesignsystem/four-ways-of-listening-to-dom-events-in-angular-part-3-renderer2-listen-14c6fe052b59
+
+
+****host Listener Pro
+https://www.youtube.com/watch?v=zGzmSoaQnsY
+
+***uso on Destroy
+https://www.youtube.com/watch?v=9-HE-UvejYU
+
+****ciclos Angular******
+https://www.youtube.com/watch?v=oKEuL0eAoIU
+
+****consejos Listener JS*****
+https://www.youtube.com/watch?v=GUTt0qKUDyU
+
+
+https://stackoverflow.com/questions/53343747/javascript-removeeventlistener-ondestroy-not-working-in-angular-6
+
+
+https://www.youtube.com/watch?v=iP63fDXk-W8
+
+
+******flext Item*************
+https://www.youtube.com/watch?v=4GM6dLQsHAQ
+
+
+
+despliegue angular
+https://www.youtube.com/watch?v=SB3sxOJybRQ
+
+
+--Imagenes gratuitas-----------------------
+https://www.pexels.com/es-es/
+
+-------------------------------------------------------------------------------
+install font Awesome
+
+npm install --save @fortawesome/fontawesome-free
+ "styles": [
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+            ],
+            "scripts": [
+              "node_modules/@fortawesome/fontawesome-free/js/all.min.js"
+            ],
+----------------------------------------------------------------------------
+grid
+
+https://www.youtube.com/watch?v=clHz6QLotwE
+
+
+ejemplo
+---------------------------------------------
+https://codepen.io/JyGProyectosWeb/pen/WNowqqx
+
+
+------------------------------------------------
+curso AWS Gratis
+previa
+https://codigoencasa.com/aws-basico-para-programadores-web-curso-2022/
+
+https://app.codigoencasa.com/courses/aws-curso-basico-para-desarrolladores-web
+
+
+------------------------------------------------------
+
+
+para cargara archivos
+
+https://academind.com/tutorials/angular-image-upload-made-easy/
+
+https://www.pluralsight.com/guides/how-to-display-validation-messages-using-angular
+
+file para node
+https://netbasal.com/how-to-implement-file-uploading-in-angular-reactive-forms-89a3fffa1a03

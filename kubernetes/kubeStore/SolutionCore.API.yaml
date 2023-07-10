@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: local
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: local-solutioncore-api
+  namespace: local
+spec:
+  strategy:
+    type: Recreate 
+  selector:
+    matchLabels:
+      app: local-solutioncore-api
+  replicas: 2    
+  template:
+    metadata:
+      labels:
+        app: local-solutioncore-api
+    spec:
+      containers:
+      - name: local-solutioncore-api
+        image: cristhian300/solutioncore:local.v1
+        resources:
+        #cuando este mas saturado
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
+        #cuando inicia el pod    
+          requests:
+              cpu: 100m
+              memory: 128Mi
+        ports:
+        - containerPort: 80
+        env:
+        #configuracion de variables y 
+        - name: MI_VARIABLE
+          value: "pelado"
+        - name: DD_AGENT_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        #viene de la estructura secretos      
+        - name: SECRET_USERNAME
+          valueFrom:
+           secretKeyRef:
+            name: mysecret
+            key: username        
+        envFrom:
+        #configuración de una estructura configMap
+            - configMapRef:
+                name: ms-configurations
+           
+        volumeMounts:
+        - name: foo
+          mountPath: "/etc/foo" 
+
+      volumes:
+      - name: foo
+        secret:
+         secretName: mysecret
+         defaultMode: 256           
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name:  local-solutioncore-api
+  namespace: local
+spec:
+  selector:
+      app: local-solutioncore-api
+  type: ClusterIP
+ 
+  ports:
+  - name: tcp-api
+    protocol: TCP
+    port: 5064
+    targetPort: 80
+  

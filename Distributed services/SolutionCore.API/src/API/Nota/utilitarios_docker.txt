@@ -1,0 +1,30 @@
+﻿su -
+----------
+apk  update
+apk add curl
+
+---curl predefinido----------
+curl --version
+
+----------------------------
+
+curl -X POST \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -H "Content-Type: application/json" \
+   -d '{"campaigns": [{"name": "Cool Campaign", "ad_account_id": "3b0fbace-04b4-4f04-a425-33b5e0af1d0d", "status": "PAUSED", "start_time": "2016-08-11T22:03:58.869Z"}]}' \
+   "https://adsapi.snapchat.com/v1/adaccounts/{ad_acount_id}/campaigns"
+
+   ----------------------------------
+
+   curl -X POST \ -H "Content-Type: application/json" \"http://configuration:5062/core/api/Product/ListProduct"
+
+   --------------------------------------
+ ```bash
+    curl -vvv --request POST \
+    --url http://configuration:5062/core/api/Product/ListProduct \
+    --header 'content-type: application/json' \
+    --header 'user-agent: vscode-restclient' \
+    --header 'x-api-force-sync: false' \
+    --data '{}'
+    ```
+   

@@ -1,0 +1,64 @@
+<!-- <p>menu works!</p> -->
+
+
+<!-- <nav class="nav">
+
+  <div class="nav_container">
+    <h1 class="nav_logo">CristhianCH.</h1>
+
+    <label for="menu" class="nav_label">
+      <img src="../../../../assets/imagesSvg/menu.svg" class="nav_img" alt="">
+    </label>
+    <input type="checkbox" id="menu" class="nav_input">
+
+    <div class="nav_menu">
+      <a href="" class="nav_item"> Inicio</a>
+      <a href="" class="nav_item">Acerca de</a>
+      <a href="" class="nav_item">Contacto</a>
+
+      <div>
+        <button mat-raised-button color="primary" class="login-form-field" (click)="logOut()">
+          <span class="label-white">LogOut</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav> -->
+
+
+
+<header>
+
+  <div class="logo">
+    <img src="../../../../assets/imagesMain/dexter.png" alt="Enterprise">
+    <label class="logo-nombre">My Brand</label>
+        <!-- viene de fontAwesome -->
+    <span class="btnMenu" (click)="darkMode()">
+      <i class="fa-solid fa-bars"></i>
+    </span>
+  </div>
+
+  <nav class="menu">
+    <ul class="menu_items" [ngClass]="{'show':toggle}">
+      <li class="active"><a href="/menu">Presentacion</a></li>
+      <li><a href="#">Nosotros</a></li>
+      <li><a href="/molde">Cobertura</a></li>
+      <li><a href="/molde">Cobertura</a></li>
+      <li><a href="/molde">Cobertura</a></li>
+      <li><a href="/molde">Cobertura</a></li>
+      <li><a href="/molde">Cobertura</a></li>
+      <li><a href="/molde">Cobertura</a></li>
+    </ul>
+  </nav>
+</header>
+<router-outlet></router-outlet>
+
+
+<!--
+<div>
+  <ul class="lista">
+    <li><a href="https://www.google.com.pe/">Inicio</a></li>
+    <li><a href="https://www.youtube.com/">Nuestra Historia</a></li>
+    <li><a href="https://www.facebook.com/">Cobertura</a></li>
+  </ul>
+</div> -->

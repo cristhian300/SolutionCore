@@ -1,0 +1,25 @@
+<header>
+  <img class="logo" src="../../../../assets/imagesMain/dexter.png" alt="">
+  <button  (click)="openSideBar()" class="abrir-menu">
+    <i id="toogle" class="bi bi-list"></i>
+  </button>
+
+  <nav id="navMain" class="nav" #nav>
+    <!-- <div class="closex"> -->
+    <button (click)="cerrarSideBar()" class="cerrar-menu">
+      <i class="bi bi-x"></i>
+    </button>
+  <!-- </div> -->
+    <ul id="ulMain" class="nav-list">
+      <li><a [routerLinkActive]="'active'" [routerLink]="'/home'">Inicio</a></li>
+      <li><a [routerLinkActive]="'active'" [routerLink]="'/sombra'">Quiene Somos</a></li>
+      <li><a [routerLinkActive]="'active'" href="javascript:void(0);">Servicios</a></li>
+      <!-- <li><a [routerLinkActive]="'active'" href="javascript:void(0);">Que hacemos</a></li> -->
+      <li><a [routerLinkActive]="'active'" href="javascript:void(0);">Contacto</a></li>
+      <li><a [routerLinkActive]="'active'" [routerLink]="'/dash'">DashBoard</a></li>
+    </ul>
+  </nav>
+
+</header>
+
+<router-outlet></router-outlet>

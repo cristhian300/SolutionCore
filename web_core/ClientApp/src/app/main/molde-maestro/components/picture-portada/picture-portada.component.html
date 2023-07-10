@@ -1,0 +1,51 @@
+<!-- <div class="containerPortada">
+
+  <img  [src]  ="imagenes[0]" alt="" #portada>
+
+</div> -->
+
+
+
+<!-- <div class="containerSlide">
+  <div class="slide">
+
+    <img [src]="imagenes[0]" alt="Imagen1">
+    <img [src]="imagenes[1]" alt="Imagen2">
+    <img [src]="imagenes[2]" alt="Imagen3">
+  </div>
+
+  <ul class="puntos">
+    <li class="punto"></li>
+    <li></li>
+  </ul>
+
+</div> -->
+
+
+<div class="container-carousel" (mouseenter)="onMouseEnterCarousel($event.target)"
+  (mouseleave)="onMouseLeaveCarousel($event.target)">
+  <div class="carousel" #carousel>
+    <div class="slider-section fase" #sliderSection>
+      <img [src]="imagenes[0]" alt="">
+    </div>
+
+    <div class="slider-section fase" #sliderSection>
+      <img [src]="imagenes[1]" alt="">
+    </div>
+
+    <div class="slider-section fase" #sliderSection>
+      <img [src]="imagenes[3]" alt="">
+    </div>
+  </div>
+  <a class="btn-left" (click)="moveToLeft()">
+    &#9001; </a>
+  <a class="btn-righ" (click)="moveToRight()">
+    &#9002;
+  </a>
+
+  <div class="elements">
+    <span #quadrate class="quadrate active"></span>
+    <span #quadrate class="quadrate"></span>
+    <span #quadrate class="quadrate"></span>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "firestore-grafica-demo"
+  },
+  "targets": {
+    "firestore-grafica-demo": {
+      "hosting": {
+        "SolutionCore": [
+          "firestore-grafica-demo"
+        ]
+      }
+    }
+  }
+}

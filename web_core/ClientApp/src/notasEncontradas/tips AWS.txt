@@ -1,0 +1,206 @@
+https://www.youtube.com/watch?v=4Ik1OcQR2BE
+-----------------------------
+se puede contratar este servicio
+Lightsail
+
+---------------------------------
+opciones antiguas
+
+cpanel
+hosting cpanel
+-------------------------------------
+
+EC2
+crear ip privada (en aws ip elastica)
+
+---lanzar comando en consola git-------------------------------------------
+*se utiliza la ip privada creada
+*el usuario para conectarse
+*se utiliza la peerKey ruta D:node - llave pem
+
+ssh -i test_llave_for_node.pem  ubuntu@34.194.168.80
+
+--------------------------------------------------------------------------
+buscar en home/cristhian
+ls -a
+la llave pem se guarda en .ssh/authorized_keys
+---------------------------------------------------------------------------
+***revisar en caso se pierda la llave .pem
+https://codigoencasa.com/aws-recuperar-llave-pem-curso-aws/
+
+---------------------------------------------------------------------------
+montar un volumen
+ls /dev   # aqui se guardan los volumenes
+fdisk  dev/sda # revisar la particiones
+p  #para imprimir
+q  #para salir
+
+para montar se debe crear un carpeta
+
+ls /dev/sda1
+
+----------------------------------------------------------------------------
+STEPS FOR INSTALL INSIDE EC2
+-----------------------------------------------------------------------------
+ssh -i test_llave_for_node.pem  ubuntu@34.194.168.80
+
+***cambiar usuario con todos los privilegios
+ sudo su
+------------------
+ssh -i test_llave_for_node.pem  ubuntu@34.194.168.80
+***Consulta las librerias internas que tiene***********
+sudo apt-get update
+
+***Actualiza las que necesita***********
+sudo apt-get upgrade
+
+***instal nginx ***-> configuración FrondEnd********
+sudo apt-get install nginx
+-------------------
+***revisar ruta donde esta publicado  la pagina  Nginx
+/var/www/html  =>  index.nginx-debian.html
+**revisas si la instance esta arriba por comando service
+service nginx status
+**agregar nueva carpeta de publicado
+ejm for angular : /var/www/angular-spotify
+----------------------------------------------------------
+
+***cambiar el virtual host nginx*********/etc/nginx/**********************
+cd  /etc/nginx/
+*ver los virtual host
+cd /sites-available
+* editar el archivo default con sudo o root
+sudo nano default
+nano  /etc/nginx/sites-available/default
+-----
+***buscar la linea root /var/www/html
+ y cambiar html por la carpeta
+ejemplo: angular-spotify
+
+----------------------------------------
+* permisos carpeta creada mkdir  angular-spotify
+chmod 777 angular-spotify/
+
+ctro + o luego enter y ctr + x
+* para reiniciar
+*reiniciar servicio de nginx para que funcionen los cambios
+/etc/init.d/nginx restart
+*para asegurar todo bien con nginx
+service nginx status
+
+-----------------------------------------
+visualizando disco duro - aumentar volumen
+------------------------------------------
+df -h
+
+*detalle del particionamiento
+lsblk
+* extender el sistemas de archivos a la particio asignada
+sudo growpart /dev/xvda 1
+* redimensionar la particion
+sudo resize2fs /dev/xvda1
+---------------------------------------------
+----------------------------------------------
+crear un ssh para git
+
+*generar un par de llave
+ssh-keygen
+* asignar la ruta a guardar por defecto
+.ssh/id_rsa
+
+* situar en la carpeta ssh
+cd ./.ssh
+* ls -la para ver los archivos creados
+id_rsa
+id_rsa.pub
+*ver el arcgivo keygen
+cat  id_rsa.pub
+
+ssh -T git@github.com
+git config --global --list
+git config --global user.name "Crishian Curiñaupa"
+git config --global user.email "cristhian_666win@hotmail.com"
+
+* elminar carpeta
+rm -r
+*cambiar de usuario
+su ubuntu
+
+
+----------------------------------------------------------------
+instalacion de node
+----------------------------------------------------------------
+https://www.knowledgehut.com/blog/web-development/install-nodejs-on-ubuntu
+https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04-es
+**PASO Intalacion Node***********************************************************
+****instalacion de node **************************************
+cd ~
+curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+**inspecciona contenido descargado
+nano nodesource_setup.sh
+
+sudo bash nodesource_setup.sh
+
+sudo apt-get install -y nodejs
+
+node -v  #para verificar
+
+npm -v
+
+npm i @angular/cli -g
+
+
+git remote -v
+dentro del EC2 del usuario ubuntu
+git clone https://github.com/cristhian300/admin-pro-backend-node
+npm i
+
+npm install @angular/cli -g
+----------------------------------------------------------
+
+
+nameCheap -- proveedor de dominios
+
+DNSChecker para ver si funciona el dominio
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------
+datos codigos ubuntu
+--------------------------------------------------------------------
+sudo parted -l
+mkdir carpeta #Crear una carpeta nueva en el directorio actual
+
+touch archivo.txt #Crear un archivo llamado archivo.txt
+
+nano archivo.txt #Entrar a un editor por terminal, para modificar el archivo.txt
+
+mv archivo.txt ../archivo2.txt #Mueve el fichero "archivo.txt" un directorio arriba y lo renombra a archivo2.txt
+
+cat archivo.txt #Mostar el contenido de archivo.txt por terminal
+
+cd carpeta #Entrar al directorio con nombre "carpeta"
+
+ls #muestra el contenido del directorio
+
+ls -a #Muesra el contenido del directorio incluyendo archivos ocultos
+
+ls -lt #muestra el contenido del directorio con detalles y ordenado por última fecha de modificación
+
+rm archivo.txt #Eliminar el fichero "archivo.txt"
+
+rm -R carpeta #Eliminar el directorio llamado "carpeta"
+
+free #Mostar la memoria en uso y disponible en el sistema
+
+df #Mostrar el espacio disponible en las diferentes particiones
+
+ifconfig #Ver las IPs y direcciones MAC asociadas a las interfaces de red

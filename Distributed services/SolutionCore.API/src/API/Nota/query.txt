@@ -1,0 +1,62 @@
+﻿
+select @@SERVERNAME
+
+create dataBase Core
+go
+use Core
+go
+
+Create table Category(
+CategoryId int identity(1,1) not null,
+Name Varchar(200),
+Description varchar(200)
+)
+
+alter table Category add constraint pk_category primary key (CategoryId)
+
+ 
+
+
+ CREATE TABLE  dbo.RolesUsers (
+	RoleID int IDENTITY(1,1) NOT NULL,
+	RoleCode varchar(200) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	Description varchar(200) COLLATE Modern_Spanish_CI_AS NULL,
+	Deleted bit NOT NULL,
+	CONSTRAINT pkRolesUsers PRIMARY KEY (RoleID)
+); 
+ 
+
+ 
+
+ CREATE TABLE  dbo.Usuario (
+	UsuarioId int IDENTITY(1,1) NOT NULL,
+	NombreCompleto nvarchar(200) COLLATE Modern_Spanish_CI_AS NULL,
+	Clave nvarchar(200) COLLATE Modern_Spanish_CI_AS NULL,
+	Deleted bit NOT NULL,
+	RoleID int NULL,
+	CONSTRAINT PK_Usuario PRIMARY KEY (UsuarioId)
+);  
+
+ALTER TABLE  dbo.Usuario ADD CONSTRAINT fk_Usuario_RolesUsers FOREIGN KEY (RoleID) REFERENCES  dbo.RolesUsers(RoleID);  
+
+
+
+
+INSERT INTO  dbo.RolesUsers (RoleCode,Description,Deleted) VALUES 
+('ADM','Administrador',0)
+,('USE','Usuario',0)
+;
+ 
+CREATE TABLE  dbo.Product (
+	ProductId int IDENTITY(1,1) NOT NULL,
+	Name varchar(200)  ,
+	Description varchar(200) NULL,
+	Price decimal(10,2) ,
+	CreateDate datetime default CURRENT_TIMESTAMP,
+	UpdatedDate datetime default CURRENT_TIMESTAMP,
+	Photo varchar(200),
+	Deleted bit NOT NULL,
+	constraint PK_Product primary key (ProductId)
+);
+
+

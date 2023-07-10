@@ -1,0 +1,283 @@
+/* https://boxicons.com/?query=menu */
+
+
+
+/* .nav {
+  background: #293241;
+
+  height: 80px;
+  color: #fff;
+}
+
+.nav_logo {
+
+  font-size: 1.5em;
+  ;
+  font-weight: 900;
+}
+
+.nav_container {
+  display: flex;
+  height: 100%;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav_label,
+.nav_input {
+  display: none;
+}
+
+.nav_menu {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 3em;
+}
+
+.nav_item {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav_item::after {
+
+  content: "";
+  display: block;
+  background: #fff;
+  width: 90%;
+  margin-top: 3px;
+  height: 3px;
+} */
+
+
+
+
+/*menu lineal*/
+
+/* .lista {
+
+  background-color: black;
+}
+
+
+.lista li a {
+  display: block;
+  text-decoration: none;
+  color: red;
+}
+
+.lista li {
+  display: inline-block;
+  padding: 10px;
+}
+
+
+.lista li:hover {
+  background-color: white;
+} */
+
+
+
+/*menu lineal*/
+
+
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: black;
+  padding: 10px;
+  height: 75px;
+  width: 100%;
+  border-bottom: 1px solid #fff;
+  box-shadow: 5px 0 10px rgba(7, 2, 2, 0.914);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 60px;
+}
+
+.logo-nombre {
+  font-size: 35px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: bold;
+
+}
+
+
+.menu {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* tag ul */
+.menu_items {
+  display: flex;
+  list-style: none;
+  margin-right: 30px;
+}
+
+.menu_items li {
+  border-radius: 3px;
+  margin: 0 5px;
+
+}
+
+.menu_items li a {
+  padding: 7px 13px;
+  text-decoration: none;
+  font-size: 18px;
+  display: block;
+  color: #fff;
+
+}
+
+.menu_items li:hover,
+li.active {
+  background-color: rgb(140, 149, 151);
+  transition: .4s;
+}
+
+
+
+
+.btnMenu {
+  margin-right: 30px;
+  font-size: 25px;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+}
+
+ul.show {
+  top: 75px;
+  /* padding: 0;
+  margin: 0; */
+
+
+}
+
+
+@media screen and (max-width:952px) {
+
+  .logo-nombre {
+    font-size: 30px;
+    padding-left: 35px;
+  }
+
+  .menu_items li a {
+
+    font-size: 16px;
+
+  }
+
+}
+
+
+@media screen and (max-width:858px) {
+
+  .menu {
+    /* height: 75px; */
+    width: 100%;
+  }
+
+  .btnMenu {
+    display: inline-flex
+  }
+
+  header {
+    flex-direction: column;
+    /* height: 65px; */
+    width: 100vw;
+  }
+
+  .logo {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .menu_items {
+    background: rgb(198, 164, 102);
+    position: fixed;
+    top: -100%;
+    text-align: center;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100% - 75px);
+    padding: 0;
+    margin: 0;
+    transition: all .4s;
+  }
+
+  .menu_items li {
+
+    margin: 30px 0 0 0;
+    line-height: 30px;
+  }
+
+  .menu_items li:hover {
+
+    background: none;
+  }
+
+  .menu_items li a {
+
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+  }
+
+
+  .menu_items li a :hover {
+    color: red;
+
+  }
+
+  .logo-nombre {
+    font-size: 25px;
+    padding-left: 35px;
+  }
+
+  /* solo modifica componenete actual */
+  /* :host(.contenedorCampana){
+    background-color: white;
+  } */
+/* :host_context() */
+  ::ng-deep app-root .contain {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width:858px) and (orientation:landscape) {
+  .menu_items li {
+    margin: 5px 0 0 0;
+  }
+
+  .menu_items li {
+    overflow: scroll;
+    height: calc(100% - 75px);
+  }
+}

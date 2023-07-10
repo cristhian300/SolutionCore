@@ -1,0 +1,5 @@
+1 crear module y routing
+ng g m nameModule --routing
+
+2 probar
+ng g m rutas --routing --flat

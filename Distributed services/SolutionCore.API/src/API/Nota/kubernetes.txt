@@ -1,0 +1,196 @@
+﻿kubectl version
+*first
+se debe crear un cluster en la nube a elegir
+*get credencial
+obtener las credenciales del cluster a la maquina
+*creas el deployment
+se asigna un nombre e imagen respectiva(se crean los pods)
+*crear el servicio basado en el deployment
+(se define nodeport ó loadBalancer )
+
+-----------------------------
+****configuracion
+https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
+configurar la variable de entorno donse de guarda
+* asi como el del git
+*kubectl.exe
+*minikube.exe
+
+https://www.youtube.com/watch?v=TAM-DLPX9XA
+
+
+https://github.com/kubernetes/minikube/releases
+--minikube-windows-amd64.exe
+------------------------------------------------
+****comandos
+kubectl get nodes 
+
+kubectl version --client=true
+
+kubectl get nodes
+(name spaces)
+kubectl get ns
+**salio del ns ->kube-system
+kubectl -n kube-system get pods
+kubectl -n kube-system get pods -o wide
+
+----elimina pods
+kubectl -n kube-system delete pod kube-proxy-t6t8d
+------------------------------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine
+ **************************
+kubectl apply -f .\01-pod.yaml
+kubectl get pod
+**entra contenedor mediante kubernetes ***************************
+kubectl exec -it nginx -- sh
+ps fax
+******************************
+kubectl delete pod nginx
+******************************
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine
+    env:
+    - name: MI_VARIABLE
+      value: "pelado"
+    - name: MI_OTRA_VARIABLE
+      value: "pelade"
+    - name: DD_AGENT_HOST
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "200m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    readinessProbe:
+      httpGet:
+        path: /
+        port: 80
+      initialDelaySeconds: 5
+      periodSeconds: 10
+    livenessProbe:
+      tcpSocket:
+        port: 80
+      initialDelaySeconds: 15
+      periodSeconds: 20
+    ports:
+    - containerPort: 80
+
+*************************************************************
+*detalle pod yamel******
+kubectl get pod  nginx -o yaml
+**Eliminar el deployment******************************************************
+kubectl delete -f .\04-deployment.yaml
+kubectl get pods -o wide 
+
+-----------------------------------
+
+minikube dashboard --url
+-----------------------------------
+
+kubectl describe pod my-csi-app-set-0
+
+
+------------------------
+
+mofcomp.exe "C:\Program Files (x86)\Microsoft SQL Server\140\Shared\sqlmgmproviderxpsp2up.mof"
+
+https://pomeroy.me/2020/09/solved-windows-10-forbidden-port-bind/
+
+-------------------------------------------
+
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 71220eb76462
+
+-------------------------------------
+kubectl api-resources
+kubectl logs pods
+
+*****replication set*******
+kubectl get rs
+---rutea el deploymen por defecto  de forma externa
+--usado solutionCore-api ejemplo
+kubectl port-forward deploy/local-solutioncore-api 4063:80
+-------------------------------------------------
+
+kubectl get pods  --namespace  local
+kubectl get pods -n local
+kubectl get pods --all-namespaces
+
+    kubectl get pods --all-namespaces
+
+    kubectl config get-contexts 
+    kubectl config current-context
+    kubectl config use-context my-cluster-name
+    kubectl config set-context --current --namespace=dev
+    kubectl config set-context --current --namespace=qa
+    kubectl config set-context --current --namespace=prd
+
+    --------------------------------------------------------
+
+kubectl get events
+
+---visualiza variables de entorno----------------------------------------
+printenv
+---para rendimiento solo nube---------------------------------------
+kubectl top nodes
+kubectl top pods
+kubectl top pods --containers
+ kubectl describe node minikube
+
+ ----------------------------------------
+image: mzegarra/lab06busctacte:0.0.2
+          imagePullPolicy: IfNotPresent #Always
+          readinessProbe:
+             httpGet:
+               path: /actuator/health
+               port: 8080
+             initialDelaySeconds: 20
+             periodSeconds: 10
+             timeoutSeconds: 10
+             successThreshold: 1
+             failureThreshold: 3        
+--Sensor cuando este lento reinicia----------------------------------------------
+livenessProbe:
+             httpGet:
+               path: /actuator/health
+               port: 8080
+             initialDelaySeconds: 30
+             periodSeconds: 10
+             timeoutSeconds: 10
+             successThreshold: 1
+             failureThreshold: 3    
+             --------------------------
+promeus y grafana --visualiza por interfaz las metricas
+----------------------------
+
+minikube addons list
+minikube addons enable ingress
+minikube addons enable metrics-server             
+
+-config Virtual box-----------------------------------------
+$env:PATH = $env:PATH + ";C:\Program Files\Oracle\VirtualBox"
+--rutear en cmd la ruta del virtual box instalado  C:\Program Files\Oracle\VirtualBox
+--buscar la ruta de tu virtual C:\Users\perseo\VirtualBox VMs\Centos8
+
+* executar
+vboxmanage modifyhd "C:\Users\perseo\VirtualBox VMs\Centos8\Centos8-disk001.vdi" --resize 30000
+
+
+
+sudo nano /etc/hosts

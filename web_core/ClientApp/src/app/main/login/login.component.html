@@ -1,0 +1,46 @@
+<style>
+  .ContenedoX {
+    /* display: flex; */
+    /* background-color: goldenrod; */
+    width: 100%;
+    height: 100%;
+    -webkit-box-shadow: -9px 7px 26px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -9px 7px 26px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: -9px 7px 26px 0px rgba(0, 0, 0, 0.75);
+  }
+
+  /* .ContenedoX>div {
+        margin: 10px;
+        padding: 20px;
+        background-color: black;
+        width: 30%;
+    } */
+</style>
+<div class="ContenedoX" fxLayout>
+  <div class="login" fxFlex="25%" fxFlex.lt-md="100%" fxLayout fxLayoutAlign="center center">
+
+
+    <form fxLayout="column" [formGroup]="loginForm">
+      <h2>LA <strong>PAMPLONERA</strong> </h2>
+
+      <mat-form-field class="login">
+        <input type="text" matInput required formControlName="userName" name="userName" />
+        <mat-placeholder class="placeholder">Usuario</mat-placeholder>
+        <mat-error>El usuario es requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="login">
+        <input type="password" matInput required formControlName="password" name="password" />
+        <mat-placeholder class="placeholder">Contraseña</mat-placeholder>
+        <mat-error>La contraseña es requerida</mat-error>
+      </mat-form-field>
+      <div class="actions">
+        <button mat-raised-button color="primary" (click)="login()" class="login-form-field">
+          <span class="label-white">VAMOS</span>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="photo"  fxLayout="wrap"  fxFlex="75%" fxHide.lt-md="true" >
+  </div>
+</div>

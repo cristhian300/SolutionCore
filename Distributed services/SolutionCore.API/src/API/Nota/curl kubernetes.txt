@@ -1,0 +1,28 @@
+﻿--Kubernetes---------------------------------------------------------------
+curl  http://127.0.0.1/api/Auth/MetAuth  
+--------------------------------------------------------------------------
+Cluste ip
+curl  http://local-solutioncore-api:5064/api/Auth/MetAuth  
+curl  http://Cluste_IP:Puerto/api/Auth/MetAuth
+
+kubectl port-forward deploy/local-solutioncore-api 5484:80
+
+-------------------------------------------------------------------------
+ **NodePort
+
+ gcloud compute firewall-rules create test-node-port   --allow tcp:30000
+
+curl  http://IPExternaNodo:puertoNode/api/Auth/MetAuth 
+
+curl  http://35.192.59.114:30000/api/Auth/MetAuth 
+---------------------------------------------------------------------------
+
+
+
+
+----------------------------------------------------------------------------
+https://www.kubecost.com/kubernetes-autoscaling/kubernetes-hpa/
+
+https://github.com/marcel-dempers/docker-development-youtube-series/blob/master/kubernetes/autoscaling/readme.md
+https://www.youtube.com/watch?v=jM36M39MA3I
+----------------------------------------------------------------------------------

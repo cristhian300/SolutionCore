@@ -1,0 +1,115 @@
+<div class="container" style=" text-align: end;">
+  <mat-icon (click)="closeModal()" style="cursor: pointer;font-size: 36px;">close</mat-icon>
+
+  <h1 style=" text-align: center;">{{title}}</h1>
+</div>
+
+
+
+<form [formGroup]="formParent" (submit)="CargarProduct()">
+
+
+  <perfect-scrollbar style="width: 100%;height: 60vh">
+    <div class="container">
+
+      <div class="row">
+        <div class="col">
+          <div class="mainData">
+            <div class="row">
+
+              <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name" type="text" placeholder="Nombre Completo">
+              </mat-form-field>
+              <mat-error *ngIf="validationErrores('name')">
+                <p *ngFor="let messageError of listOfErrors('name')">
+                  {{messageError}}
+                </p>
+              </mat-error>
+
+
+
+            </div>
+
+            <div class="row">
+
+              <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+                <mat-label>Precio</mat-label>
+                <input matInput formControlName="price" type="number" min="0" placeholder="Precio">
+              </mat-form-field>
+
+              <mat-error *ngIf="validationErrores('price')">
+                <p *ngFor="let messageError of listOfErrors('price')">
+                  {{messageError}}
+                </p>
+              </mat-error>
+
+            </div>
+
+            <div class="row">
+
+
+              <mat-form-field style="width: 100%;" floatLabel="always" appearance="outline">
+                <mat-label>Descripción</mat-label>
+                <textarea formControlName="details" matInput placeholder="Descripción"></textarea>
+              </mat-form-field>
+
+              <mat-error *ngIf="validationErrores('details')">
+                <p *ngFor="let messageError of listOfErrors('details')">
+                  {{messageError}}
+                </p>
+              </mat-error>
+
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+        <div class="col">
+          <div class="mainLoadImage">
+            <div class="row" style="display: flex; justify-content: center;">
+              <img #imgProduct style="width: 300px;height: 300px;" [src]="previewImg" alt="">
+            </div>
+
+            <div class="row" style="display: flex; justify-content: center;flex-direction: column;">
+              <p style="margin: auto;" >
+                <input formControlName="image" style='display: none;' #image id="file-upload"
+                  (change)="CargaImagen($event)" type="file" />
+                <button type="button" (click)="image.click()" mat-raised-button>
+                  Cargar Imagen
+                </button>
+              </p>
+              <p style="margin: auto;">
+                <label #nameFile></label>
+              </p>
+              <mat-error style="margin: auto;"  *ngIf="validationErrores('image')">
+                <p *ngFor="let messageError of listOfErrors('image')">
+                  {{messageError}}
+                </p>
+              </mat-error>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </perfect-scrollbar>
+
+
+  <div class="row" style="display: flex;justify-content: center;align-items: center;">
+    <button type="submit" style="width: 300px;" mat-raised-button color="primary">Submit</button>
+  </div>
+
+
+
+  <!-- <p>Form value: {{ formParent.value | json }}</p>
+  <p>Form status: {{ formParent.status | json }}</p> -->
+
+  <!-- <p>name {{formParent.get('name').errors | json}} </p>
+  <p>image {{formParent.get('imageLoad').errors | json}} </p> -->
+
+</form>

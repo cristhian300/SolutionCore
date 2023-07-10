@@ -1,0 +1,26 @@
+<div class="container-carousel" #containerCarousel>
+  <div class="carousel" #carousel>
+    <div class="slider-section fase" #sliderSection>
+      <img [src]="imagenes[0]" alt="">
+    </div>
+
+    <div class="slider-section fase" #sliderSection>
+      <img [src]="imagenes[1]" alt="">
+    </div>
+
+    <div class="slider-section fase" #sliderSection>
+      <img [src]="imagenes[3]" alt="">
+    </div>
+  </div>
+  <a class="btn-left" (click)="moveLeft()" #btnLeft>
+    &#9001; </a>
+  <a class="btn-righ" (click)="moveRight()">
+    &#9002;
+  </a>
+
+  <div class="elements">
+    <span #quadrate class="quadrate active"></span>
+    <span #quadrate class="quadrate"></span>
+    <span #quadrate class="quadrate"></span>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+/* para el body */
+
+@font-face {
+  font-family:'Inconsolata' ;
+  src: url('../../../assets/font/gf/Inconsolata_Condensed-ExtraLight.ttf');
+}
+
+/* para el titulo General */
+@font-face {
+  font-family:'Poppins' ;
+  src: url('../../../assets/font/gf/Poppins-Bold.ttf');
+}
+
+/* titulos secundarios */
+@font-face {
+  font-family:'Roboto' ;
+  src: url('../../../assets/font/gf/Roboto-Regular.ttf');
+}

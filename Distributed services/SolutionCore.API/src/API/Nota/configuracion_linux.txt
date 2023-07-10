@@ -1,0 +1,7 @@
+﻿sudo su -
+ls -lrt
+
+cd /mnt
+ls
+----luego mostrara las particiones del disco 
+cd disco

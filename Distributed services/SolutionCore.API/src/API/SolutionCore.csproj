@@ -1,0 +1,170 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+
+    <!-- Set this to true if you enable server-side prerendering -->
+    <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <UserSecretsId>66dd5089-89ae-46ad-be44-b5c59d7e9da3</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp" Version="5.12.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.27" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.UnitOfWork" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.27" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="RestSharp" Version="106.10.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="5.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\**" />
+    <Compile Remove="Distributed_Processes\**" />
+    <Compile Remove="Infrastructure\**" />
+    <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\**" />
+    <Content Remove="Distributed_Processes\**" />
+    <Content Remove="Infrastructure\**" />
+    <EmbeddedResource Remove="ClientApp\**" />
+    <EmbeddedResource Remove="Distributed_Processes\**" />
+    <EmbeddedResource Remove="Infrastructure\**" />
+    <None Remove="$(SpaRoot)**" />
+    <None Remove="ClientApp\**" />
+    <None Remove="Distributed_Processes\**" />
+    <None Remove="Infrastructure\**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\.editorconfig" />
+    <None Remove="ClientApp\.gitignore" />
+    <None Remove="ClientApp\.vscode\launch.json" />
+    <None Remove="ClientApp\angular.json" />
+    <None Remove="ClientApp\browserslist" />
+    <None Remove="ClientApp\debug.log" />
+    <None Remove="ClientApp\dist\3rdpartylicenses.txt" />
+    <None Remove="ClientApp\dist\assets\images\photo-login.png" />
+    <None Remove="ClientApp\dist\assets\images\presentacion_inicial.jpg" />
+    <None Remove="ClientApp\dist\index.html" />
+    <None Remove="ClientApp\dist\main-es2015.0c8e08d96b39673bdfa0.js" />
+    <None Remove="ClientApp\dist\main-es2015.0c8e08d96b39673bdfa0.js.LICENSE.txt" />
+    <None Remove="ClientApp\dist\main-es5.0c8e08d96b39673bdfa0.js" />
+    <None Remove="ClientApp\dist\polyfills-es2015.ffa9bb4e015925544f91.js" />
+    <None Remove="ClientApp\dist\polyfills-es2015.ffa9bb4e015925544f91.js.LICENSE.txt" />
+    <None Remove="ClientApp\dist\polyfills-es5-es2015.026233df937cbf728097.js.LICENSE.txt" />
+    <None Remove="ClientApp\dist\polyfills-es5.026233df937cbf728097.js" />
+    <None Remove="ClientApp\dist\presentacion_inicial.8367db04ffb40dd6659f.jpg" />
+    <None Remove="ClientApp\dist\runtime-es2015.cdfb0ddb511f65fdc0a0.js" />
+    <None Remove="ClientApp\dist\runtime-es5.cdfb0ddb511f65fdc0a0.js" />
+    <None Remove="ClientApp\dist\styles.f14518180aa7abb3a4f0.css" />
+    <None Remove="ClientApp\e2e\protractor.conf.js" />
+    <None Remove="ClientApp\e2e\src\app.e2e-spec.ts" />
+    <None Remove="ClientApp\e2e\src\app.po.ts" />
+    <None Remove="ClientApp\e2e\tsconfig.e2e.json" />
+    <None Remove="ClientApp\package-lock.json" />
+    <None Remove="ClientApp\package.json" />
+    <None Remove="ClientApp\README.md" />
+    <None Remove="ClientApp\src\.vscode\launch.json" />
+    <None Remove="ClientApp\src\app\agent\Authentication\request\GetTokenRequest.ts" />
+    <None Remove="ClientApp\src\app\agent\Authentication\response\GetTokenResponse.ts" />
+    <None Remove="ClientApp\src\app\agent\common\interceptor.service.spec.ts" />
+    <None Remove="ClientApp\src\app\agent\common\interceptor.service.ts" />
+    <None Remove="ClientApp\src\app\agent\common\network-manager.ts" />
+    <None Remove="ClientApp\src\app\agent\common\post-parameter.ts" />
+    <None Remove="ClientApp\src\app\agent\User\request\AddUsuariosRequest.ts" />
+    <None Remove="ClientApp\src\app\agent\User\request\ListRolesRequest.ts" />
+    <None Remove="ClientApp\src\app\agent\User\request\ListUsuariosRequest.ts" />
+    <None Remove="ClientApp\src\app\agent\User\request\UpdateUsuarioRequest.ts" />
+    <None Remove="ClientApp\src\app\agent\User\response\AddUsuarioResponse.ts" />
+    <None Remove="ClientApp\src\app\agent\User\response\ListRolesResponse.ts" />
+    <None Remove="ClientApp\src\app\agent\User\response\ListUsuarioResponse.ts" />
+    <None Remove="ClientApp\src\app\agent\User\response\UpdateUsuarioResponse.ts" />
+    <None Remove="ClientApp\src\app\app.component.html" />
+    <None Remove="ClientApp\src\app\app.component.ts" />
+    <None Remove="ClientApp\src\app\app.module.ts" />
+    <None Remove="ClientApp\src\app\app.server.module.ts" />
+    <None Remove="ClientApp\src\app\modules\enum\system-style-sheet.ts" />
+    <None Remove="ClientApp\src\app\modules\security\authentication\authentication-routing.module.ts" />
+    <None Remove="ClientApp\src\app\modules\security\authentication\authentication.module.ts" />
+    <None Remove="ClientApp\src\app\modules\security\authentication\login\login.component.css" />
+    <None Remove="ClientApp\src\app\modules\security\authentication\login\login.component.html" />
+    <None Remove="ClientApp\src\app\modules\security\authentication\login\login.component.ts" />
+    <None Remove="ClientApp\src\app\modules\security\SecurityViewModels\security-list-viewmodel.ts" />
+    <None Remove="ClientApp\src\app\modules\security\SecurityViewModels\user-result-panel-view.model.ts" />
+    <None Remove="ClientApp\src\app\modules\security\usuarios\modal-usuarios\modal-usuarios.component.css" />
+    <None Remove="ClientApp\src\app\modules\security\usuarios\modal-usuarios\modal-usuarios.component.html" />
+    <None Remove="ClientApp\src\app\modules\security\usuarios\modal-usuarios\modal-usuarios.component.ts" />
+    <None Remove="ClientApp\src\app\modules\security\usuarios\usuarios.component.css" />
+    <None Remove="ClientApp\src\app\modules\security\usuarios\usuarios.component.html" />
+    <None Remove="ClientApp\src\app\modules\security\usuarios\usuarios.component.ts" />
+    <None Remove="ClientApp\src\app\modules\web\counter\counter.component.html" />
+    <None Remove="ClientApp\src\app\modules\web\counter\counter.component.spec.ts" />
+    <None Remove="ClientApp\src\app\modules\web\counter\counter.component.ts" />
+    <None Remove="ClientApp\src\app\modules\web\fetch-data\fetch-data.component.html" />
+    <None Remove="ClientApp\src\app\modules\web\fetch-data\fetch-data.component.ts" />
+    <None Remove="ClientApp\src\app\modules\web\home\home.component.html" />
+    <None Remove="ClientApp\src\app\modules\web\home\home.component.ts" />
+    <None Remove="ClientApp\src\app\nav-menu\nav-menu.component.css" />
+    <None Remove="ClientApp\src\app\nav-menu\nav-menu.component.html" />
+    <None Remove="ClientApp\src\app\nav-menu\nav-menu.component.ts" />
+    <None Remove="ClientApp\src\app\services\core.service.ts" />
+    <None Remove="ClientApp\src\app\services\security\security-guard.guard.spec.ts" />
+    <None Remove="ClientApp\src\app\services\security\security-guard.guard.ts" />
+    <None Remove="ClientApp\src\app\shared\material\material.module.ts" />
+    <None Remove="ClientApp\src\assets\.gitkeep" />
+    <None Remove="ClientApp\src\assets\images\photo-login.png" />
+    <None Remove="ClientApp\src\assets\images\presentacion_inicial.jpg" />
+    <None Remove="ClientApp\src\environments\environment.prod.ts" />
+    <None Remove="ClientApp\src\environments\environment.ts" />
+    <None Remove="ClientApp\src\index.html" />
+    <None Remove="ClientApp\src\karma.conf.js" />
+    <None Remove="ClientApp\src\main.ts" />
+    <None Remove="ClientApp\src\polyfills.ts" />
+    <None Remove="ClientApp\src\styles.css" />
+    <None Remove="ClientApp\src\test.ts" />
+    <None Remove="ClientApp\src\tsconfig.app.json" />
+    <None Remove="ClientApp\src\tsconfig.server.json" />
+    <None Remove="ClientApp\src\tsconfig.spec.json" />
+    <None Remove="ClientApp\src\tslint.json" />
+    <None Remove="ClientApp\tsconfig.json" />
+    <None Remove="ClientApp\tslint.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\SolutionCore.Application.Contracts\SolutionCore.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Application\SolutionCore.Application\SolutionCore.Application.csproj" />
+    <ProjectReference Include="..\Data Acces\SolutionCore.Api.DataAcces\SolutionCore.Api.DataAcces.csproj" />
+    <ProjectReference Include="..\Infrastructure\Transport\SolutionCore.Infraestructura.Transport\SolutionCore.Infraestructura.Transport.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\defaul_pamplonera.jpg" />
+  </ItemGroup>
+
+ 
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>

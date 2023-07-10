@@ -1,8 +1,87 @@
 version: '3.4'
-
 services:
-  solutioncore:
-    image: ${DOCKER_REGISTRY-}solutioncore
+  configuration.gateway:
+    image: ${DOCKER_REGISTRY-}configurationgateway
+    hostname: configuration.gateway
+
+    ports:
+      - 5062:80
     build:
       context: .
-      dockerfile: SolutionCore2/Dockerfile
+      dockerfile: Configuration.API.GateWay/Configuration.GateWay/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+
+    depends_on:
+      - solutioncore
+    networks:
+      - backend
+    env_file:
+      - "application_file.env"
+
+  solutioncore:
+    image: solutioncore:local.v1
+    hostname: solutioncore
+    container_name: solutioncore
+
+    ports:
+      - 5063:80
+    build:
+      context: .
+      dockerfile: "Distributed services/SolutionCore.API/src/API/Dockerfile"
+    environment:
+      - ASPNETCORE_URLS=http://::80
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - DOCKER_ENV_VARIABLE="variable desde el docker-compose [${ENV_PREFFIX}]"
+      #- SpartacusContext="Server=dbCore;Database=Core;User ID=sa;Password=Password123;Encrypt=false"
+    #depends_on:
+    #  - dbCore
+    networks:
+      - backend
+    env_file:
+      - "application_file.env"
+    volumes:
+      - photos:/Distributed services/SolutionCore.API/src/API/wwwroot/images 
+
+  web_core:
+    image: ${DOCKER_REGISTRY-}webcore
+    hostname: web_core
+    ports:
+      - 44512:80
+    build:
+      context: .
+      dockerfile: web_core/Dockerfile
+    networks:
+      - backend
+
+  #dbCore:
+  #  image: mcr.microsoft.com/mssql/server:2019-latest
+  #  hostname: dbCore
+  #  ports:
+  #    - 1433:1433
+
+  #  environment:
+  #    - SA_PASSWORD=Password123
+  #    - ACCEPT_EULA=Y
+  #  volumes:
+  #    #- D:/Docker_volumenes/data:/var/opt/mssql/data  
+  #    #- D:/Docker_volumenes/log:/var/opt/mssql/log 
+  #    #- D:/Docker_volumenes/secrets:/var/opt/mssql/secrets
+  #    - type: volume
+  #      source: firstidsrvaspnetidentitydbsys
+  #      target: /var/opt/mssql
+  #    - type: volume
+  #      source: firstidsrvaspnetidentitydbusr
+  #      target: /var/opt/sqlserver
+  #  networks:
+  #    - backend
+
+networks:
+  backend:
+    name: backend
+    driver: bridge
+
+volumes:
+  firstidsrvaspnetidentitydbsys:
+  firstidsrvaspnetidentitydbusr:
+  photos:
