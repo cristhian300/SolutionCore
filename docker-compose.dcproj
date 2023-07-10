@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>98e76b28-ce92-4f32-a2b9-45b594e9b28b</ProjectGuid>
+    <ProjectGuid>d0cedf5c-afed-45f0-898e-925f26c0ff6a</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
     <DockerServiceName>solutioncore</DockerServiceName>
