@@ -1,0 +1,32 @@
+sudo su  ó sudo -s
+--------------------
+***agrgear usuario***
+adduser cristhian
+
+cat ./etc/passwd
+--------------------
+**agregar grupo**
+addgroup developer
+
+cat ./etc/group
+----------------------
+*cambiar de usuario*
+su flor
+--------------------
+*eliminar solo usuarios -> pero perfil y directorio continua
+userdel cristhian
+*eliminar usuario completamente
+userdel -r cristhian
+----------------------
+* eliminar grupos
+groupdel  developer
+------------------------
+* agregar usuarios a grupos
+usermod -a -G developer flor
+---------------------------
+
+
+
+
+
+
