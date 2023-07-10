@@ -1,0 +1,150 @@
+<!-- fxlayout="row" coloca los div hijos  en fila -->
+<!-- fxLayout.xs="column" si es un tamaño xs se pone en columna     -->
+<!-- fxLayoutGap ="25px" espacio de separacion entre div hijos-->
+
+
+<perfect-scrollbar style="width: 100%;height: 60vh">
+  <form [formGroup]="formGroup" (submit)="onSubmit()" style="width: 100%;">
+
+
+
+    <div>
+
+
+      <div>
+        <mat-toolbar fxLayout fxLayoutAlign="space-between center">
+          <h2>{{this.formGroup.get('codUsuario').value? "Actualizar Usuario" :"Nuevo Usuario" }}</h2>
+
+          <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+                  (click)="CloseModal()">
+            <mat-icon>close</mat-icon>
+          </button>
+
+        </mat-toolbar>
+      </div>
+
+
+      <div>
+        <mat-card>
+
+          <mat-form-field style="width: 100%;" appearance="outline">
+            <mat-label>Codigo de Usuario</mat-label>
+            <input matInput formControlName="codUsuario" type="text" placeholder="Codigo de Usuario"
+                   readonly>
+          </mat-form-field>
+          <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" type="text" required placeholder="Nombre Completo">
+          </mat-form-field>
+          <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+            <mat-label>Clave</mat-label>
+            <input matInput formControlName="clave" type="password" required placeholder="clave">
+          </mat-form-field>
+
+          <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+            <mat-label>Credencial</mat-label>
+            <input matInput formControlName="credencial" type="text" required placeholder="credenciales">
+          </mat-form-field>
+
+          <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
+            <mat-label>Select an option</mat-label>
+
+            <mat-select formControlName="rol">
+              <div *ngFor="let item of RolesList">
+                <mat-option value="{{item.value}}">{{item.description}} </mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+
+          <div style="padding-top: 20px;" fxLayoutAlign="center">
+            <p>
+              <mat-checkbox formControlName="isDeleted">Desabilitar Usuario</mat-checkbox>
+            </p>
+
+          </div>
+
+          <div style="padding-top: 10px;" fxLayoutAlign="center">
+
+            <p>
+              <button mat-raised-button color="primary" type="submit">Submit</button>
+              <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+            </p>
+          </div>
+        </mat-card>
+      </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+  </form>
+</perfect-scrollbar>
+
+<!-- <div fxLayout="row wrap">
+    <form [formGroup]="formGroup" (submit)="onSubmit()" style="width: 100%;">
+        <table id="tbl_modal">
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <mat-form-field floatLabel="always" appearance="fill" floatLabel="none">
+                        <mat-label>Codigo de Usuario</mat-label>
+                        <input matInput formControlName="codUsuario" type="text" placeholder="Codigo de Usuario" readonly>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="nombre" type="text" required placeholder="Nombre Completo">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Credencial</mat-label>
+                        <input matInput formControlName="credencial" type="text" required placeholder="">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Clave</mat-label>
+                        <input matInput formControlName="clave" type="password" required placeholder="clave">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Select an option</mat-label>
+                        <mat-select formControlName="rol">
+                            <div *ngFor="let item of RolesList">
+                                <mat-option value="{{item.value}}">{{item.description}} </mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="add-bottom-padding">
+                        <mat-checkbox formControlName="isDeleted">Desabilitar</mat-checkbox>
+                    </div>
+                </td>
+                <td>
+                    <div class="button-row">
+                        <button mat-raised-button color="primary" type="submit">Submit</button>
+                        <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div> -->
