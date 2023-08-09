@@ -1,0 +1,10 @@
+opcional Resuleve error de common
+npm config set legacy-peer-deps true
+--------------------------------------------
+
+https://www.npmjs.com/package/angular-oauth2-oidc
+
+*instalar la version segun angular
+npm i angular-oauth2-oidc
+npm i angular-oauth2-oidc@13.0.1
+

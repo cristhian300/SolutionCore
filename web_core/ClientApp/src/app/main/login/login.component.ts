@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
       response => {
         const successLogin = response.token
         if (successLogin) {
-          localStorage.setItem("User", JSON.stringify(response.token));
+          localStorage.setItem("TokenUserN", JSON.stringify(response.token));
           this.router.navigateByUrl("/usuarios").then();
         } else {
 

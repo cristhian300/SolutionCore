@@ -26,8 +26,6 @@ namespace SolutionCore.Application.Application.Product
 
         public Task<AddProductResponse> AddProduct(AddProductRequest parameter)
         {
-            
-
             return Task.FromResult(_IProductQuery.AddProduct(parameter));
         }
 

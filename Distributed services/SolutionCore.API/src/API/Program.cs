@@ -20,7 +20,7 @@ namespace SolutionCore
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build()
-                .MigrateDatabase()
+                //.MigrateDatabase()
                 .Run();
 
 
@@ -34,8 +34,8 @@ namespace SolutionCore
              {
                  config
                      .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-                     .AddJsonFile("appsettings.json", true, true)
-                     .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true,
+                     .AddJsonFile("appsettings.json", false, true)
+                     .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", false,
                          true)
                      
                      .AddEnvironmentVariables();

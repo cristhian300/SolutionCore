@@ -22,7 +22,7 @@ export class InterceptorService implements HttpInterceptor {
 
     req = req.clone({
       setHeaders: {
-          Authorization: `Bearer ${JSON.parse(localStorage.getItem("User"))}`
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("TokenUserN"))}`
       }
   });
   return next.handle(req)
@@ -32,8 +32,8 @@ export class InterceptorService implements HttpInterceptor {
           (err: any) => {
               if (err instanceof HttpErrorResponse && err.status === 401) {
                   // this.loginService.logOut();
-                  localStorage.removeItem("User");
-                  this.router.navigate(["/log"]);
+                  localStorage.removeItem("TokenUserN");
+                  this.router.navigate(["/loginnet"]);
                   console.warn(err)
               }
           }

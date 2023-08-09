@@ -44,8 +44,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
       client_id: "631666904158-chd1jhu72d4s4vb38rcdr7uvosj8uiam.apps.googleusercontent.com",
       callback: (response: any) => this.handleCredentialResponse(response)
     });
+
     google.accounts.id.renderButton(
-      // document.getElementById("buttonDiv"),
       this.googleBtn.nativeElement,
       { theme: "outline", size: "large" }  // customization attributes
     );
@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
     this.usuarioService.loginGoogle(response.credential).subscribe(
       resp => {
+        //aqui devuelve los datos de usuario logueado
         this.zone.run(() => {
           this.router.navigate(['/menu'])
         });

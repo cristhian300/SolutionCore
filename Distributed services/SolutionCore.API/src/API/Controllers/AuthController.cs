@@ -94,14 +94,14 @@ namespace SolutionCore.Controllers
 
         }
 
-
+        [AllowAnonymous]//No necesita Token
         [HttpPost]
         public async Task<ListUsuarioResponse> ListUsuario([FromBody] ListUsuarioRequest parameter)
         {
             return await _IUsuarioContract.ListUsuario(parameter);
 
         }
-
+        [AllowAnonymous]//No necesita Token
         //[AllowAnonymous]
         [HttpPost]
         public async Task<ListRolesResponse> ListRoles(ListRolesRequest parameter)

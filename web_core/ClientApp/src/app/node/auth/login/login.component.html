@@ -25,9 +25,7 @@
       <h2> <strong>Login</strong> </h2>
 
       <mat-form-field class="login">
-        <input
-
-        type="email" matInput required formControlName="email" name="userName" />
+        <input type="email" matInput required formControlName="email" name="userName" />
         <mat-placeholder class="placeholder">Email</mat-placeholder>
         <mat-error>El Email es requerido</mat-error>
       </mat-form-field>
@@ -39,20 +37,24 @@
       </mat-form-field>
 
       <div style="padding-top: 5px;">
-        <p style="color: beige;" >
-          <mat-checkbox color="primary"   formControlName="remember">remember me</mat-checkbox>
+        <p style="color: beige;">
+          <mat-checkbox color="primary" formControlName="remember">remember me</mat-checkbox>
         </p>
 
       </div>
 
       <div class="actions">
         <button mat-raised-button color="primary" class="login-form-field">
-          <span class="label-white">VAMOS</span>
+          <span class="label-white">INGRESAR</span>
         </button>
       </div>
+
       <div class="form-group m-b-0">
         <div class="col-sm-12 text-center" style="color: white;">
-          Don't have an account? <a routerLink="/nregister" class="text-primary m-l-5"><b>Sign Up</b></a>
+          Don't have an account?
+          <a routerLink="/nregister" class="text-primary m-l-5">
+            <b>Sign Up</b>
+          </a>
         </div>
       </div>
 
@@ -60,7 +62,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
           <div #googleBtn id="buttonDiv"></div>
         </div>
-    </div>
+      </div>
     </form>
 
   </div>

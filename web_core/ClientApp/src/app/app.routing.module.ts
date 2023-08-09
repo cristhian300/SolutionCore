@@ -4,6 +4,7 @@ import { MainLayoutComponent } from './main/layouts/main-layout/main-layout.comp
 import { LoginComponent } from './main/login/login.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AuthRoutingModule } from './node/auth/auth-routing.module';
+import { BlankLayoutComponent } from './main/layouts/blank-layout/blank-layout.component';
 
 const routes: Routes = [
 
@@ -13,10 +14,20 @@ const routes: Routes = [
     path: '',
     children: [
       {
+        //flujo Net core
+        path: '',
+        component: BlankLayoutComponent,
+
+      }
+      ,
+
+      {
+        //flujo Net core
         path: '',
         loadChildren:
           () => import('./main/login/login.module').then((m) => m.LoginModule)
       }
+
       ,
       {
         path: '',
@@ -25,21 +36,22 @@ const routes: Routes = [
           () => import('./main/pages/pages.module').then((m) => m.PagesModule)
       },
       {
-        //****aqui se esta armando
-       path:'',
-       loadChildren:()=> import('././main/molde-maestro/molde.module') .then(m => m.MoldeModule)
+        //****flujo home WEB_ME
+        path: '',
+        loadChildren: () => import('././main/molde-maestro/molde.module').then(m => m.MoldeModule)
       },
 
       {
         //****aqui se esta dashboard
-       path:'',
-       loadChildren:()=> import('././main/molde-maestro/config-dashboard/administrador/administrador.module') .then(m => m.AdministradorModule)
+        path: '',
+        loadChildren: () => import('././main/molde-maestro/config-dashboard/administrador/administrador.module').then(m => m.AdministradorModule)
       },
 
       {
-        path:'',
-        loadChildren:()=> import('././node/auth/auth.module') .then(m => m.AuthModule)
-       }
+        //ruta node_UD
+        path: '',
+        loadChildren: () => import('././node/auth/auth.module').then(m => m.AuthModule)
+      }
 
     ]
   },
@@ -48,7 +60,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes),
-     ],
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

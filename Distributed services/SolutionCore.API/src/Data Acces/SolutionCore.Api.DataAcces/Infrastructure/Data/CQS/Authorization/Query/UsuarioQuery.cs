@@ -15,6 +15,7 @@ using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Request;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Entities;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
 {
@@ -54,7 +55,10 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
 
         public ListUsuarioResponse ListUsuario(ListUsuarioRequest parameter)
         {
-            var _usuario = (from u in _CoreContext.DbContext.Usuarios
+
+            try
+            {
+                 var _usuario = (from u in _CoreContext.DbContext.Usuarios
                             join r in _CoreContext.DbContext.RolesUsers
                             on u.RoleId equals r.RoleId
                             orderby r.RoleId
@@ -72,8 +76,16 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
                                 Clave = u.Clave
                             }
                                           ).ToList();
+                return new ListUsuarioResponse { ListUsuarios = _usuario };
+            }
+            catch( Exception ex ) 
+            {
+               
+                return null;
+            }
+          
 
-            return new ListUsuarioResponse { ListUsuarios = _usuario };
+            
         }
 
         public ListRolesResponse ListRoles(ListRolesRequest parameter)

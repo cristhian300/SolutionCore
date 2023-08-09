@@ -24,6 +24,8 @@ import { AppRoutingModule } from './app.routing.module';
 import { MainLayoutModule } from './main/layouts/main-layout/main-layout.module';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HeaderComponent } from './main/layouts/header/header.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { BlankLayoutModule } from './main/layouts/blank-layout/blank-layout.module';
 
 
 
@@ -45,18 +47,21 @@ import { HeaderComponent } from './main/layouts/header/header.component';
     MaterialModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    OAuthModule.forRoot(),
     AppconfigModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MainLayoutModule,
-
+    BlankLayoutModule
   ],
   providers: [NetworkManager, ApiService,
     { provide: HTTP_INTERCEPTORS,
        useClass: InterceptorService,
         multi: true },
+
+
     // {
     //   provide: PERFECT_SCROLLBAR_CONFIG,
     //   useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

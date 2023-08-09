@@ -24,11 +24,11 @@ constructor( private router:Router) {
 
      console.log("ENtro al guard "+state.url);
 
-  if (!localStorage.getItem("User")) {
+  if (!localStorage.getItem("TokenUserN")) {
 
-    console.log("ENtro al if guard "+localStorage.getItem("User"));
+    console.log("ENtro al if guard "+localStorage.getItem("TokenUserN"));
 
-    this.router.navigate(["/log"]);
+    this.router.navigate(["/loginnet"]);
     return false
   }
 
