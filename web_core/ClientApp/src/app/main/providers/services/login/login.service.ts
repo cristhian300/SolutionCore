@@ -24,11 +24,9 @@ export class LoginService {
     private apiService: ApiService
   ) {
        this.urlLogin = environment.apiEndpoint+'core/api/'
-
     }
 
   login(parameter: LoginRequest): Observable<GetTokenResponse> {
-
     console.log("Empezo login");
     return     this.apiService.get(this.urlLogin + `Auth/Login`, {params: parameter} );
     // new Observable<GetTokenResponse>(observer => {

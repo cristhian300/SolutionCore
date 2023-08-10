@@ -36,15 +36,15 @@ const routes: Routes = [
           () => import('./main/pages/pages.module').then((m) => m.PagesModule)
       },
       {
-        //****flujo home WEB_ME
+        //****flujo home WEB_ME -->home
         path: '',
-        loadChildren: () => import('././main/molde-maestro/molde.module').then(m => m.MoldeModule)
+        loadChildren: () => import('././molde-maestro/molde.module').then(m => m.MoldeModule)
       },
 
       {
-        //****aqui se esta dashboard
+        //**** //flujo home WEB_ME aqui se esta dashboard
         path: '',
-        loadChildren: () => import('././main/molde-maestro/config-dashboard/administrador/administrador.module').then(m => m.AdministradorModule)
+        loadChildren: () => import('././molde-maestro/config-dashboard/administrador/administrador.module').then(m => m.AdministradorModule)
       },
 
       {
