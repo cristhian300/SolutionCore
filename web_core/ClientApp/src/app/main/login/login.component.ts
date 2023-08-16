@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { ConfigurationService } from '../providers/services/configuration/configuration.service';
 import { ITokenResponse, LoginRequest } from '../providers/services/login/login.interface';
 import { LoginService } from '../providers/services/login/login.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -27,7 +29,8 @@ export class LoginComponent implements OnInit {
 
     // private loginService: CoreService,
     private configurationService: ConfigurationService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private ngxLoader: NgxUiLoaderService
   ) {
   }
 
@@ -51,26 +54,24 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.isLoading = true;
-    const _self = this;
 
-
+    this.ngxLoader.start();
     this.loginService.login(this.loginForm.value).subscribe(
       (response: ITokenResponse) => {
 
         if (response.payload) {
           localStorage.setItem("TokenUserN", JSON.stringify(response.payload.token))
-
           this.snackBar.open("Logeo exitoso", 'close', { duration: 3000 });
           this.router.navigateByUrl("/usuarios").then();
         } else {
           this.snackBar.open("Revise su usuario o contraseña", 'close', { duration: 3000 });
         }
-        this.isLoading = false;
+        this.ngxLoader.stop();
       },
-      (error) => {
-        console.log("login", error);
-
+      (error ) => {
+        // console.log("login error", error);
+        // this.snackBar.open(error.message, 'close', { duration: 3000 });
+        this.ngxLoader.stop();
       });
   }
 

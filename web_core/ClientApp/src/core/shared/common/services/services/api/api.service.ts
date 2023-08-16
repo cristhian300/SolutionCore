@@ -3,10 +3,12 @@ import { HttpClient, HttpErrorResponse, HttpParams, HttpRequest } from '@angular
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IRequestOptions } from './api.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class ApiService {
-  constructor(public httpClient: HttpClient) {
+  constructor(public httpClient: HttpClient,
+    private snackBar: MatSnackBar) {
     // ApiService
   }
 
@@ -69,6 +71,7 @@ export class ApiService {
 
   handleError(showError: boolean, error: HttpErrorResponse): void {
     // eslint-disable-next-line no-console
+    this.snackBar.open('Ha ocurrido un error al tratar de procesar la acción requerida.', 'close', { duration: 5000, panelClass: ['error-snackbar'] });
     console.info(showError, error);
   }
 

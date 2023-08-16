@@ -54,13 +54,11 @@ namespace SolutionCore
                {
                    option.TokenValidationParameters = new TokenValidationParameters
                    {
+                       ValidateIssuerSigningKey = true,
+                       IssuerSigningKey = new SymmetricSecurityKey(secret),
                        ValidateIssuer = false,
                        ValidateAudience = false,
-                       ValidateLifetime = true,
-                       ValidateIssuerSigningKey = true,
-                       ValidIssuer = "https://localhos:5001",
-                       ValidAudience = "https://localhos:5001",
-                       IssuerSigningKey = new SymmetricSecurityKey(secret)
+                       //ValidateLifetime = true,
                    };
                });
 

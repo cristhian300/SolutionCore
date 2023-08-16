@@ -51,9 +51,7 @@ formGroup:FormGroup
     this.paginator._intl.itemsPerPageLabel="Opciones por página";
     this.ListUsuarios();
     this.ListRoles()
-
     // this.dataSource.paginator = this.paginator;
-
   }
 
   UsuarioToShow: ListUsuarioResult[];
