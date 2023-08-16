@@ -42,43 +42,42 @@ namespace SolutionCore.Controllers
         }
 
 
-        [AllowAnonymous]//No necesita Token
-        [HttpGet ]
+        //[AllowAnonymous]//No necesita Token
+        //[HttpGet ]
+        //public IActionResult Login([FromQuery]  string userName , [FromQuery] string password)
+        //{
+        //    var user = new LoginRequest
+        //        { 
+        //      UserName = userName,
+        //     Password= password
+        //     };
 
-        public IActionResult Login([FromQuery]  string userName , [FromQuery] string password)
-        {
-            var user = new LoginRequest
-                { 
-              UserName = userName,
-             Password= password
-             };
 
+        //    if (user == null)
+        //    {
 
-            if (user == null)
-            {
+        //        return BadRequest("Algo Salio Mal");
+        //    }
 
-                return BadRequest("Algo Salio Mal");
-            }
+        //    if (user.UserName == "cristhian" && user.Password == "cristhian")
+        //    {
+        //        var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"));
+        //        var signigCredencial = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
-            if (user.UserName == "cristhian" && user.Password == "cristhian")
-            {
-                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretaKey@345"));
-                var signigCredencial = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+        //        var tokenOption = new JwtSecurityToken(
+        //            issuer: "https://localhos:5001",
+        //            audience: "https://localhos:5001",
+        //            claims: new List<Claim>(),
+        //            expires: DateTime.Now.AddMinutes(5),
+        //            signingCredentials: signigCredencial
 
-                var tokenOption = new JwtSecurityToken(
-                    issuer: "https://localhos:5001",
-                    audience: "https://localhos:5001",
-                    claims: new List<Claim>(),
-                    expires: DateTime.Now.AddMinutes(5),
-                    signingCredentials: signigCredencial
+        //            );
 
-                    );
-
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOption);
-                return Ok(new { token = tokenString });
-            }
-            return Unauthorized();
-        }
+        //        var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOption);
+        //        return Ok(new { token = tokenString });
+        //    }
+        //    return Unauthorized();
+        //}
 
         public AuthController(IUsuarioContract IUsuarioContract)
         {

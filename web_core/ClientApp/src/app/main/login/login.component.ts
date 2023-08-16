@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
- ;
+;
 import { ConfigurationService } from '../providers/services/configuration/configuration.service';
-import { LoginRequest } from '../providers/services/login/login.interface';
+import { ITokenResponse, LoginRequest } from '../providers/services/login/login.interface';
 import { LoginService } from '../providers/services/login/login.service';
 
 
@@ -27,12 +27,13 @@ export class LoginComponent implements OnInit {
 
     // private loginService: CoreService,
     private configurationService: ConfigurationService,
-    private loginService:LoginService
+    private loginService: LoginService
   ) {
   }
 
   ngOnInit() {
     this.isLoading = false;
+
     this.loginForm = this.formBuilder.group({
       userName: ['', [Validators.required]],
       password: ['', [Validators.required]]
@@ -54,23 +55,21 @@ export class LoginComponent implements OnInit {
     const _self = this;
 
 
-    const param = new LoginRequest();
-    param.userName = this.loginForm.get('userName').value
-    param.password = this.loginForm.get('password').value
+    this.loginService.login(this.loginForm.value).subscribe(
+      (response: ITokenResponse) => {
 
-    this.loginService.login(param).subscribe(
-      response => {
-        const successLogin = response.token
-        if (successLogin) {
-          localStorage.setItem("TokenUserN", JSON.stringify(response.token));
+        if (response.payload) {
+          localStorage.setItem("TokenUserN", JSON.stringify(response.payload.token))
+
+          this.snackBar.open("Logeo exitoso", 'close', { duration: 3000 });
           this.router.navigateByUrl("/usuarios").then();
         } else {
-
-          this.snackBar.open(response.token, 'close', { duration: 3000 });
+          this.snackBar.open("Revise su usuario o contraseña", 'close', { duration: 3000 });
         }
         this.isLoading = false;
       },
-      () => {
+      (error) => {
+        console.log("login", error);
 
       });
   }

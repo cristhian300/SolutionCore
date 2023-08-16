@@ -52,19 +52,8 @@ namespace Configuration.GateWay
                         )
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                      
                         );
             });
-            //   services.AddCors(opt => opt.AddPolicy("mi_politica",
-            //builder =>
-            //{
-            //    builder
-            //        .AllowAnyHeader()
-            //        .AllowAnyMethod()
-            //        .AllowCredentials()
-            //        .AllowAnyOrigin();
-            //        //.WithOrigins(ruta);
-            //}));
 
 
             services
@@ -86,7 +75,7 @@ namespace Configuration.GateWay
 
             app.UseCors("mi_politica");
             app.UseAuthentication();
-            //app.UseAuthorization();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

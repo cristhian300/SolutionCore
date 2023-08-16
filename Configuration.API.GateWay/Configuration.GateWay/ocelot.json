@@ -7,14 +7,22 @@
         {
           "Host": "localhost",
           "Port": 44342
-
-          //"Host": "solutioncore",
-          //"Port": 80
         }
       ],
       "UpstreamPathTemplate": "/core/api/{everything}",
-        
+
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 3327
+        }
+      ],
+      "UpstreamPathTemplate": "/identity/api/{catchAll}"
     }
   ],
   "GlobalConfiguration": {

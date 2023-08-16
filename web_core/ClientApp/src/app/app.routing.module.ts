@@ -13,17 +13,18 @@ const routes: Routes = [
   {
     path: '',
     children: [
+
+      // {
+      //   //flujo inicio
+      //   path: '',
+      //   component: BlankLayoutComponent,
+      // },
+
+
       {
         //flujo Net core
         path: '',
         component: BlankLayoutComponent,
-
-      }
-      ,
-
-      {
-        //flujo Net core
-        path: '',
         loadChildren:
           () => import('./main/login/login.module').then((m) => m.LoginModule)
       }

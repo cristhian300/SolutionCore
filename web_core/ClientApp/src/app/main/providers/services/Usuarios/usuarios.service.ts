@@ -17,7 +17,7 @@ export class UsuariosService {
     private storageService: StorageService) {
 
     // this.Url = (this.storageService.retrieve("configuration") as ConfigurationResponse).coreUrl
-    this.Url = environment.apiEndpoint+'core/api/'
+    this.Url = environment.apiEndpoint+'/core/api/'
   }
 
 

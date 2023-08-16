@@ -16,7 +16,7 @@ export class ConfigurationService {
   constructor(private networkManager: NetworkManager) {
 
     this.configurationUrl = this.getBaseUrl();
-    this.url= environment.apiEndpoint + 'api/v1/Configuration/';
+    this.url= environment.apiEndpoint + '/api/v1/Configuration/';
   }
 
   public getBaseUrl() {
