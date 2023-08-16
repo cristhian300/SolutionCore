@@ -42,8 +42,8 @@ namespace SolutionCore
         public void ConfigureServices(IServiceCollection services)
         {
 
-
-
+            var secret =  Encoding.UTF8.GetBytes(Configuration.GetValue<string>("SecretKey"));
+           
             /*Autenticacion para WEBTOKEN*/
             services.AddAuthentication(opt =>
             {
@@ -60,7 +60,7 @@ namespace SolutionCore
                        ValidateIssuerSigningKey = true,
                        ValidIssuer = "https://localhos:5001",
                        ValidAudience = "https://localhos:5001",
-                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ByYM000OLlMQG6VVVp1OH7Xzyr7gHuw1qvUC5dcGt3SNM"))
+                       IssuerSigningKey = new SymmetricSecurityKey(secret)
                    };
                });
 

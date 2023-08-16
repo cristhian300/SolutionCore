@@ -78,10 +78,7 @@ namespace YtMovieApis.Controllers
         [HttpPost]
         public async Task<ActionResult<RestResponse>> Login([FromBody] LoginModel model)
         {
-
             return   GetResult(await _autorizationService.Login(model))  ;
-
-
         }
 
         [HttpPost]
