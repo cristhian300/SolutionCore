@@ -48,17 +48,14 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
     if (!this.loginForm.valid) {
       this.snackBar.open('Complete los datos requeridos.', 'close', { duration: 3000, panelClass: ['error-snackbar'] });
       return;
     }
 
-
     this.ngxLoader.start();
     this.loginService.login(this.loginForm.value).subscribe(
       (response: ITokenResponse) => {
-
         if (response.payload) {
           localStorage.setItem("TokenUserN", JSON.stringify(response.payload.token))
           this.snackBar.open("Logeo exitoso", 'close', { duration: 3000 });
@@ -68,9 +65,7 @@ export class LoginComponent implements OnInit {
         }
         this.ngxLoader.stop();
       },
-      (error ) => {
-        // console.log("login error", error);
-        // this.snackBar.open(error.message, 'close', { duration: 3000 });
+      (error) => {
         this.ngxLoader.stop();
       });
   }

@@ -19,6 +19,7 @@ import { UserResultPanelViewModel } from 'src/app/modules/security/SecurityViewM
 import { CoreService } from '../../providers/services/core.service';
 import { UsuariosService } from '../../providers/services/Usuarios/usuarios.service';
 import { AddUsuarioRequest, ListRoleResult, ListRolesRequest, ListUsuarioRequest, ListUsuarioResult } from '../../providers/services/Usuarios/usuarios.interfaces';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -28,16 +29,23 @@ import { AddUsuarioRequest, ListRoleResult, ListRolesRequest, ListUsuarioRequest
 })
 export class UsuariosComponent implements OnInit {
 
-formGroup:FormGroup
+  formGroup: FormGroup
 
   displayedColumns: string[] = ["usuarioId", "nombreCompleto", "rol", 'actions'];
 
   dataSource: MatTableDataSource<ListUsuarioResult>;
 
   SecurityViewModel = new SecurityViewModel()
+  selectedFile: File = null;
+  files: Array<{ name: string, native: File }> = [];
 
-  constructor( private ngxLoader: NgxUiLoaderService ,public dialog: MatDialog,
-    private coreService: UsuariosService, private formbuilder:FormBuilder) {
+
+  constructor(private ngxLoader: NgxUiLoaderService,
+    public dialog: MatDialog,
+    private coreService: UsuariosService,
+    private formbuilder: FormBuilder,
+    private snackBar: MatSnackBar
+  ) {
     this.formGroup = this.CreateForm();
   }
 
@@ -48,7 +56,7 @@ formGroup:FormGroup
 
 
   ngOnInit() {
-    this.paginator._intl.itemsPerPageLabel="Opciones por página";
+    this.paginator._intl.itemsPerPageLabel = "Opciones por página";
     this.ListUsuarios();
     this.ListRoles()
     // this.dataSource.paginator = this.paginator;
@@ -80,17 +88,17 @@ formGroup:FormGroup
   }
 
 
-RolesList:ListRoleResult[]
-ListRoles(){
+  RolesList: ListRoleResult[]
+  ListRoles() {
 
-  this.ngxLoader.start();
-  let paramas = new ListRolesRequest()
-  this.coreService.ListRoles(paramas ).subscribe( response =>{
-   this.RolesList = response.listRoles
+    this.ngxLoader.start();
+    let paramas = new ListRolesRequest()
+    this.coreService.ListRoles(paramas).subscribe(response => {
+      this.RolesList = response.listRoles
       this.ngxLoader.stop();
 
-  })
-}
+    })
+  }
 
   OnChangeEstados(event) {
     // let target = event.source.selected._element.nativeElement;
@@ -147,95 +155,134 @@ ListRoles(){
 
   }
 
-CreateForm() : FormGroup {
-  return this.formbuilder.group({
-    nombre: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
-    credencial: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
-    clave: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
-    rol: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
-    isDeleted:[false]
+  CreateForm(): FormGroup {
+    return this.formbuilder.group({
+      nombre: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
+      credencial: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
+      clave: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
+      rol: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
+      isDeleted: [false]
 
-  })
+    })
+
+  }
+
+
+  searchKey: string;
+
+  onSearchClear() {
+    this.searchKey = "";
+    this.applyFilter();
+  }
+
+  applyFilter() {
+    this.dataSource.filter = this.searchKey.trim().toLowerCase();
+  }
+
+  onCreate() {
+
+    const dialogRef = this.dialog.open(ModalUsuariosComponent, {
+      width: '60%',
+      // disableClose: true
+      // data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.ListUsuarios();
+
+
+    });
+
+  }
+
+
+  onClear() { }
+
+
+
+  onSubmit() {
+
+    let params = new AddUsuarioRequest()
+    params.nombreCompleto = this.formGroup.get("nombre").value
+    params.credencial = this.formGroup.get("credencial").value
+    params.clave = this.formGroup.get("clave").value
+    params.roleId = parseInt(this.formGroup.get("rol").value)
+    params.deleted = this.formGroup.get("isDeleted").value
+
+    this.coreService.AddUsuario(params).subscribe(
+      response => { },
+      error => {
+
+        console.log(error)
+      }
+
+
+    )
+
+
+    console.log(this.formGroup.value);
+    // console.log(`parametros ${ JSON.stringify( params)}`);
+  }
+
+
+  onEdit(elemento: ListUsuarioResult) {
+
+    console.log(`update ${JSON.stringify(elemento)}`);
+
+
+
+    const dialogRef = this.dialog.open(ModalUsuariosComponent, {
+      width: '60%',
+      // disableClose: true
+      data: elemento
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.ListUsuarios();
+
+
+    });
+  }
+
+
+  loadFile(event: Event) {
+
+    const target = event.target as HTMLInputElement;
+    const files = target.files as FileList;
+    this.selectedFile = files[0];
+
+    const extension = this.selectedFile.name.split('.')[1];
+    const uploadFileName = this.selectedFile.name;
+    //validación del archivo
+    this.validateFile(target, extension);
+
+    const reader: FileReader = new FileReader();
+    reader.readAsDataURL(this.selectedFile);
+    reader.onload = () => {
+      this.files.push({ name: 'Document', native: this.selectedFile });
+    }
+  }
+
+
+  validateFile(target: HTMLInputElement, extension: string) {
+    if (extension == null || extension.toLowerCase() !== 'xlsx') {
+      target.value = null;
+      this.snackBar.open("Debe cargar un archivo en formato excel", 'close', { duration: 3000 });
+      return;
+    }
+
+    // if (maxSize < this.selectedFile.size) {
+    //   event.srcElement.value = null;
+    //   this.notificationService.error(
+    //     appConstants.titleModal.errorFile,
+    //     appConstants.messageModal.errorMessageFileSize,
+    //   );
+    //   return;
+  }
+
 
 }
 
 
-searchKey: string;
-
-onSearchClear() {
-  this.searchKey = "";
-  this.applyFilter();
-}
-
-applyFilter() {
-  this.dataSource.filter = this.searchKey.trim().toLowerCase();
-}
-
-onCreate(){
-
-  const dialogRef = this.dialog.open(ModalUsuariosComponent, {
-    width: '60%',
-    // disableClose: true
-    // data: {name: this.name, animal: this.animal}
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    this.ListUsuarios();
-
-
-  });
-
-}
-
-
-onClear(){}
-
-
-
-onSubmit(){
-
-  let params = new AddUsuarioRequest()
-  params.nombreCompleto = this.formGroup.get("nombre").value
-  params.credencial = this.formGroup.get("credencial").value
-  params.clave= this.formGroup.get("clave").value
-  params.roleId=  parseInt( this.formGroup.get("rol").value)
-  params.deleted = this.formGroup.get("isDeleted").value
-
-this.coreService.AddUsuario(params).subscribe(
-response =>{},
-error =>{
-
-  console.log(error)
-}
-
-
-)
-
-
-console.log(this.formGroup.value);
-// console.log(`parametros ${ JSON.stringify( params)}`);
-}
-
-
-onEdit(elemento:ListUsuarioResult){
-
-  console.log(`update ${ JSON.stringify(elemento) }`);
-
-
-
-  const dialogRef = this.dialog.open(ModalUsuariosComponent, {
-    width: '60%',
-    // disableClose: true
-    data: elemento
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    this.ListUsuarios();
-
-
-  });
-}
-
-}

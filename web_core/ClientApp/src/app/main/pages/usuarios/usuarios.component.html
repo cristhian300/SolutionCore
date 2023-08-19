@@ -1,7 +1,6 @@
-
-
-
-<div style="text-align: center"><h1>Listado de Usuarios</h1></div>
+<div style="text-align: center">
+  <h1>Listado de Usuarios</h1>
+</div>
 
 <div class="containerFiltro">
   <table id="tb_option">
@@ -20,6 +19,17 @@
   </table>
 </div>
 
+<div class="containerFiltro">
+  <div class="row">
+    <div class="col">
+      <input formControlName="image" style='display: none;' #image id="file-upload" (change)="loadFile($event )"
+        type="file" />
+      <button type="button" (click)="image.click()" mat-raised-button>
+        Cargar Archivo Excel
+      </button>
+    </div>
+  </div>
+</div>
 
 <div fxLayout="row wrap" fxLayoutAlign="center center">
   <perfect-scrollbar style="width: 100%;height: 50vh">
