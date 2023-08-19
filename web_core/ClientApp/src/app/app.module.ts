@@ -23,7 +23,7 @@ import { ApiService } from 'src/core/shared/common/services/services/api/api.ser
 import { AppRoutingModule } from './app.routing.module';
 import { MainLayoutModule } from './main/layouts/main-layout/main-layout.module';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HeaderComponent } from './main/layouts/header/header.component';
+// import { HeaderComponent } from './main/layouts/header/header.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { BlankLayoutModule } from './main/layouts/blank-layout/blank-layout.module';
 
@@ -38,7 +38,7 @@ import { BlankLayoutModule } from './main/layouts/blank-layout/blank-layout.modu
   declarations: [
     AppComponent,
     NavMenuComponent,
-    // HeaderComponent,
+
   ],
   imports: [
     NgxUiLoaderModule.forRoot({}),
@@ -57,9 +57,11 @@ import { BlankLayoutModule } from './main/layouts/blank-layout/blank-layout.modu
     BlankLayoutModule
   ],
   providers: [NetworkManager, ApiService,
-    { provide: HTTP_INTERCEPTORS,
-       useClass: InterceptorService,
-        multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    },
 
 
     // {

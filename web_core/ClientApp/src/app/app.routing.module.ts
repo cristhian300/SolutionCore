@@ -22,7 +22,7 @@ const routes: Routes = [
 
 
       {
-        //flujo Net core
+        //flujo Net core login
         path: '',
         component: BlankLayoutComponent,
         loadChildren:
@@ -31,6 +31,7 @@ const routes: Routes = [
 
       ,
       {
+        //flujo Net core pages
         path: '',
         component: MainLayoutComponent,
         loadChildren:
