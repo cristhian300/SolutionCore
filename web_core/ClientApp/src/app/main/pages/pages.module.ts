@@ -15,6 +15,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AlternativeComponent } from './alternative/alternative.component';
 import { HeaderComponent } from '../layouts/header/header.component';
 import { SidebarComponent } from '../layouts/sidebar/sidebar.component';
+import { ClientContactComponent } from './task/client-contact/client-contact.component';
+import { MatDatepickerModule } from '@angular/material;
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { SidebarComponent } from '../layouts/sidebar/sidebar.component';
     // MoldePageComponent,
     AlternativeComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    ClientContactComponent
 
   ],
   imports: [
@@ -39,9 +42,13 @@ import { SidebarComponent } from '../layouts/sidebar/sidebar.component';
     ReactiveFormsModule,
     PerfectScrollbarModule,
     FlexLayoutModule,
+    // MatDatepickerModule, MatNativeDateModule
+
   ],
-  entryComponents: [ModalUsuariosComponent
-    , ModalProductComponent, ModalDeleteProductComponent
+  entryComponents: [
+    ModalUsuariosComponent
+    , ModalProductComponent,
+    ModalDeleteProductComponent
   ]
 })
 export class PagesModule { }

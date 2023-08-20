@@ -54,7 +54,8 @@ import { BlankLayoutModule } from './main/layouts/blank-layout/blank-layout.modu
     BrowserAnimationsModule,
     AppRoutingModule,
     MainLayoutModule,
-    BlankLayoutModule
+    BlankLayoutModule,
+
   ],
   providers: [NetworkManager, ApiService,
     {
