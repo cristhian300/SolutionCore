@@ -8,7 +8,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatNativeDateModule, MatRippleModule, MatOptionModule } from '@angular/material/core';
+import {
+   MatNativeDateModule,
+   MatRippleModule, MatOptionModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -34,7 +36,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
-
+// import { MatMomentDateModule } from '@angular/material-moment-adapter';
 @NgModule({
   declarations: [],
   imports: [
@@ -49,6 +51,7 @@ import { MatTreeModule } from '@angular/material/tree';
     MatCardModule,
     MatChipsModule,
     MatDatepickerModule,
+    // MatMomentDateModule,
     MatDialogModule,
     MatExpansionModule,
     MatFormFieldModule,
@@ -57,7 +60,7 @@ import { MatTreeModule } from '@angular/material/tree';
     MatInputModule,
     MatListModule,
     MatMenuModule,
-    MatNativeDateModule,
+      MatNativeDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
@@ -94,7 +97,7 @@ import { MatTreeModule } from '@angular/material/tree';
     MatInputModule,
     MatListModule,
     MatMenuModule,
-    MatNativeDateModule,
+      MatNativeDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
@@ -110,7 +113,8 @@ import { MatTreeModule } from '@angular/material/tree';
     MatTabsModule,
     MatStepperModule,
     MatOptionModule,
-    MatTreeModule
+    MatTreeModule,
+    // MatMomentDateModule
   ]
 
 })

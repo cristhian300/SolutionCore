@@ -16,7 +16,8 @@ import { AlternativeComponent } from './alternative/alternative.component';
 import { HeaderComponent } from '../layouts/header/header.component';
 import { SidebarComponent } from '../layouts/sidebar/sidebar.component';
 import { ClientContactComponent } from './task/client-contact/client-contact.component';
-import { MatDatepickerModule } from '@angular/material;
+import { IntegracionDocumentosComponent } from './task/integracion-documentos/integracion-documentos.component';
+// import { MatDatepickerModule } from '@angular/material;
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MatDatepickerModule } from '@angular/material;
     AlternativeComponent,
     HeaderComponent,
     SidebarComponent,
-    ClientContactComponent
+    ClientContactComponent,
+    IntegracionDocumentosComponent
 
   ],
   imports: [

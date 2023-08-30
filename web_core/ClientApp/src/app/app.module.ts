@@ -44,7 +44,7 @@ import { BlankLayoutModule } from './main/layouts/blank-layout/blank-layout.modu
     NgxUiLoaderModule.forRoot({}),
     PerfectScrollbarModule,
     FlexLayoutModule,
-    MaterialModule,
+
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     OAuthModule.forRoot(),
@@ -55,6 +55,8 @@ import { BlankLayoutModule } from './main/layouts/blank-layout/blank-layout.modu
     AppRoutingModule,
     MainLayoutModule,
     BlankLayoutModule,
+    MaterialModule,
+    // MatMomentDateModule
 
   ],
   providers: [NetworkManager, ApiService,
@@ -69,6 +71,8 @@ import { BlankLayoutModule } from './main/layouts/blank-layout/blank-layout.modu
     //   provide: PERFECT_SCROLLBAR_CONFIG,
     //   useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     // }
+
+
   ],
   bootstrap: [AppComponent],
 })

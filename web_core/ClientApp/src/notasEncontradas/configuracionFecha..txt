@@ -1,0 +1,6 @@
+--instalar segun la version
+npm i @angular/material-moment-adapter@13.3.9
+npm instal --save moment
+
+
+https://stackoverflow.com/questions/72314726/how-to-change-mat-datepicker-date-format-to-dd-mm-yyyy-using-user-input
