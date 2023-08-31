@@ -119,7 +119,9 @@ export class CarouselPortadaComponent implements OnInit, OnDestroy, AfterViewIni
     this.listenerFnTouchEnd()
   }
 
+  ngOnCheck(){
 
+  }
 
   dragStart = (e) => {
 
