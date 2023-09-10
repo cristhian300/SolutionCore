@@ -1,0 +1,17 @@
+*Demo carrusel
+
+https://ng-bootstrap.github.io/#/components/carousel/examples
+
+ng add @ng-bootstrap/ng-bootstrap
+
+------------------------------------------------
+ng add @ng-bootstrap/ng-bootstrap@13.0.0
+
+* en caso de error '@schematics/angular/utility'
+npm uninstall @schematics/angular
+npm uninstall ngx-bootstrap
+
+npm install @schematics/angular@13.0.0
+
+npm config set legacy-peer-deps true
+------------------------------------------------------
