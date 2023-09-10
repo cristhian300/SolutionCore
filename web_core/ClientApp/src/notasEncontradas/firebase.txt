@@ -20,3 +20,10 @@ firebase deploy
  ng add @angular/fire
 
 https://www.youtube.com/watch?v=qS5R6Mjq36U
+
+--------------------------------------
+
+https://stackoverflow.com/questions/55402751/angular-app-has-to-clear-cache-after-new-deployment
+ng build --prod --aot --output-hashing=all
+ng build  --aot --output-hashing=all
+

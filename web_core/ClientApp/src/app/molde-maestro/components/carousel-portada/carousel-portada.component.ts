@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, ElementRef, HostListener, OnDestroy, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { Console } from 'console';
 
 @Component({
@@ -6,7 +6,7 @@ import { Console } from 'console';
   templateUrl: './carousel-portada.component.html',
   styleUrls: ['./carousel-portada.component.scss']
 })
-export class CarouselPortadaComponent implements OnInit, OnDestroy, AfterViewInit {
+export class CarouselPortadaComponent implements OnInit, OnDestroy, AfterViewInit,DoCheck {
 
   @ViewChild('carousel') carouselMain: ElementRef
   @ViewChildren('sliderSection') slideItems: QueryList<ElementRef>
@@ -45,6 +45,9 @@ export class CarouselPortadaComponent implements OnInit, OnDestroy, AfterViewIni
   listenerFnTouchEnd = () => { };
 
   constructor(private renderer: Renderer2) { }
+  ngDoCheck(): void {
+          console.log('ngDoCheck Hook called');
+  }
 
   ngAfterViewInit(): void {
 
@@ -119,9 +122,6 @@ export class CarouselPortadaComponent implements OnInit, OnDestroy, AfterViewIni
     this.listenerFnTouchEnd()
   }
 
-  ngOnCheck(){
-
-  }
 
   dragStart = (e) => {
 
