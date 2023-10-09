@@ -26,6 +26,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 // import { HeaderComponent } from './main/layouts/header/header.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { BlankLayoutModule } from './main/layouts/blank-layout/blank-layout.module';
+import { NgbModule,NgbCarouselModule  } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -56,7 +57,8 @@ import { BlankLayoutModule } from './main/layouts/blank-layout/blank-layout.modu
     MainLayoutModule,
     BlankLayoutModule,
     MaterialModule,
-    // MatMomentDateModule
+    NgbModule,
+    NgbCarouselModule
 
   ],
   providers: [NetworkManager, ApiService,

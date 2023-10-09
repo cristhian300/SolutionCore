@@ -7,6 +7,7 @@ import { ProductsHomeComponent } from './products-home/products-home.component';
 import { ListProductHomeComponent } from '../../components/list-product-home/list-product-home.component';
 import { CarouselPortadaComponent } from '../../components/carousel-portada/carousel-portada.component';
 import { FooterModelComponent } from '../../components/footer-model/footer-model.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { FooterModelComponent } from '../../components/footer-model/footer-model
   imports: [
     CommonModule,
     HomePortadaRoutingModule,
+    NgbModule
   ]
 })
 export class HomePortadaModule { }
