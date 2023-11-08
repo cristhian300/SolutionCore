@@ -79,7 +79,6 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
                 entity.Property(e => e.Description)
                     .HasMaxLength(200)
                     .IsUnicode(false);
-
                 entity.Property(e => e.RoleCode)
                     .IsRequired()
                     .HasMaxLength(200)
@@ -89,15 +88,8 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.ToTable("Usuario");
-
                 entity.Property(e => e.Clave).HasMaxLength(200);
-
-                //entity.Property(e => e.Credencial).HasMaxLength(200);
-
                 entity.Property(e => e.NombreCompleto).HasMaxLength(200);
-
-                //entity.Property(e => e.Rol).HasMaxLength(200);
-
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
 
                 entity.HasOne(d => d.Role)
@@ -105,22 +97,11 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
                     .HasForeignKey(d => d.RoleId)
                     .HasConstraintName("fk_Usuario_RolesUsers");
             });
-
             OnModelCreatingPartial(modelBuilder);
         }
 
 
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
-        
-     
-//    if (!optionsBuilder.IsConfigured)
-//       {
-//       string conn = "Server=192.168.0.33;Database=Core;User ID=sa;Password=Password123;Encrypt=false";
 
-//        optionsBuilder.UseSqlServer(conn);
-//       }
-//}
-
-partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+      partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

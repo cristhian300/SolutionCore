@@ -18,6 +18,6 @@ namespace SolutionCore.Infrastructure.Transport.Core.Authorization.QueryEntity
 
         public int? RoleId { get; set; }
 
-        public string Clave { get; set; }
+        //public string Clave { get; set; }
     }
 }

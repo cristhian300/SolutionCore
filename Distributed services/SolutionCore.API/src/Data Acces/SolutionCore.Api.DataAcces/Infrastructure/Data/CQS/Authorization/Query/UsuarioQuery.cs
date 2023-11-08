@@ -73,7 +73,7 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
                                 //Credencial=u.Credencial,
                                 RoleId = u.RoleId,
                                 Deleted = u.Deleted,
-                                Clave = u.Clave
+                                //Clave = u.Clave
                             }
                                           ).ToList();
                 return new ListUsuarioResponse { ListUsuarios = _usuario };

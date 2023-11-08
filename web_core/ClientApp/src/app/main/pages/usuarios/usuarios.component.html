@@ -12,14 +12,14 @@
       </td>
       <td>
         <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
-          <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+          <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter($event.target.value)">
         </mat-form-field>
       </td>
     </tr>
   </table>
 </div>
 
-<div class="containerFiltro">
+<!-- <div class="containerFiltro">
   <div class="row">
     <div class="col">
       <input formControlName="image" style='display: none;' #image id="file-upload" (change)="loadFile($event )"
@@ -29,17 +29,17 @@
       </button>
     </div>
   </div>
-</div>
+</div> -->
 
 <div fxLayout="row wrap" fxLayoutAlign="center center">
   <perfect-scrollbar style="width: 100%;height: 50vh">
     <div class="containerMain">
 
       <div class="mat-elevation-z8">
-        <table id="tbUsuarios" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <table id="tbUsuarios" mat-table [dataSource]="dataSource" matSort >
           <ng-container matColumnDef="usuarioId">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-            <td mat-cell *matCellDef="let element"> {{element.usuarioId}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.usuarioId }} </td>
           </ng-container>
           <ng-container matColumnDef="nombreCompleto">
             <th mat-header-cell *matHeaderCellDef> Nombres <br> Apellidos </th>
@@ -49,7 +49,7 @@
             <th mat-header-cell *matHeaderCellDef> Rol </th>
             <td mat-cell *matCellDef="let element"> {{element.rol}} </td>
           </ng-container>
-          <ng-container matColumnDef="actions">
+          <ng-container matColumnDef="update">
             <th mat-header-cell *matHeaderCellDef> </th>
             <td mat-cell *matCellDef="let element">
               <button mat-icon-button (click)="onEdit(element)">
@@ -68,7 +68,7 @@
     </div>
   </perfect-scrollbar>
   <div class="containerPaginado">
-    <mat-paginator class="mat-paginator-sticky" [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
+    <mat-paginator class="mat-paginator-sticky" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
 </div>
 

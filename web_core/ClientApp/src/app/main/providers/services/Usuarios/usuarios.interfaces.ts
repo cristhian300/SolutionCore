@@ -25,32 +25,31 @@ export class UpdateUsuarioRequest{
   roleId?: number
 }
 
-export class AddUsuarioResponse {
+export interface AddUsuarioResponse {
 
   usuarioId: number
 }
 
-export class ListRoleResponse {
+export interface ListRoleResponse {
   listRoles: ListRoleResult[];
 }
 
-export class ListRoleResult {
+export interface ListRoleResult {
   value: number;
   description: string;
 }
 
-export class ListUsuarioResponse {
+export interface ListUsuarioResponse {
   listUsuarios: ListUsuarioResult[];
 }
 
-export class  ListUsuarioResult {
+export interface  ListUsuarioResult {
   usuarioId: number;
   nombreCompleto: string;
-  credencial: string;
-  rol?: any;
-  deleted  :boolean
-  roleId?: number;
   clave: string;
+  // deleted  :boolean;
+  roleId?: number;
+  cc: string;
 }
 
 export class UpdateUsuarioResponse{

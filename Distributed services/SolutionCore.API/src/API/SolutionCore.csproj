@@ -163,6 +163,10 @@
     <None Include="wwwroot\images\defaul_pamplonera.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ExtractDestinyZip\" />
+  </ItemGroup>
+
  
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

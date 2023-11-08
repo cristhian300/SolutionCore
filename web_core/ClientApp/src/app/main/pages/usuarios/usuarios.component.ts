@@ -18,7 +18,7 @@ import { SecurityViewModel } from 'src/app/modules/security/SecurityViewModels/s
 import { UserResultPanelViewModel } from 'src/app/modules/security/SecurityViewModels/user-result-panel-view.model';
 import { CoreService } from '../../providers/services/core.service';
 import { UsuariosService } from '../../providers/services/Usuarios/usuarios.service';
-import { AddUsuarioRequest, ListRoleResult, ListRolesRequest, ListUsuarioRequest, ListUsuarioResult } from '../../providers/services/Usuarios/usuarios.interfaces';
+import { AddUsuarioRequest, ListRoleResult, ListRolesRequest, ListUsuarioRequest, ListUsuarioResponse, ListUsuarioResult } from '../../providers/services/Usuarios/usuarios.interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
@@ -32,7 +32,6 @@ export class UsuariosComponent implements OnInit {
   formGroup: FormGroup
 
   displayedColumns: string[] = ["usuarioId", "nombreCompleto", "rol", 'actions'];
-
   dataSource: MatTableDataSource<ListUsuarioResult>;
 
   SecurityViewModel = new SecurityViewModel()
@@ -46,7 +45,7 @@ export class UsuariosComponent implements OnInit {
     private formbuilder: FormBuilder,
     private snackBar: MatSnackBar
   ) {
-    this.formGroup = this.CreateForm();
+    // this.formGroup = this.CreateForm();
   }
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -66,21 +65,21 @@ export class UsuariosComponent implements OnInit {
 
   ListUsuarios() {
 
-    let params = new ListUsuarioRequest()
-    // params.Credencial = 'cristhian';
-    this.coreService.ListUsuario(params).subscribe(
-      response => {
+    let request: ListUsuarioRequest={
+      Credencial:'0'
+    }
 
-        this.SecurityViewModel.listUsuarios = response.listUsuarios
-        this.UsuarioToShow = this.SecurityViewModel.listUsuarios
-        this.dataSource = new MatTableDataSource<ListUsuarioResult>(this.UsuarioToShow)
+    this.coreService.ListUsuario(request).subscribe(
+     (response:ListUsuarioResponse ) => {
+        // this.SecurityViewModel.listUsuarios = response.listUsuarios
+        // this.UsuarioToShow = this.SecurityViewModel.listUsuarios
 
+        console.log('this.UsuarioToShow',response.listUsuarios);
 
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        console.log(this.SecurityViewModel.listUsuarios)
-
-        this.ListUsuarioGrupoDetail(this.SecurityViewModel.listUsuarios)
+        // this.dataSource = new MatTableDataSource<ListUsuarioResult>(response.listUsuarios)
+        // this.dataSource.paginator = this.paginator;
+        // this.dataSource.sort = this.sort;
+        // this.ListUsuarioGrupoDetail(this.SecurityViewModel.listUsuarios)
 
       },
       error => { console.log(error) })
@@ -109,13 +108,13 @@ export class UsuariosComponent implements OnInit {
     //   text: target.innerText.trim()
     // };
     // console.log(selectedData);
-    console.log(this.SecurityViewModel.listUsuarios)
+    // console.log(this.SecurityViewModel.listUsuarios)
 
-    this.UsuarioToShow = this.SecurityViewModel.listUsuarios.filter(f => f.deleted == event.value)
+    // this.UsuarioToShow = this.SecurityViewModel.listUsuarios.filter(f => f.deleted == event.value)
 
-    this.dataSource = new MatTableDataSource<ListUsuarioResult>(this.UsuarioToShow)
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    // this.dataSource = new MatTableDataSource<ListUsuarioResult>(this.UsuarioToShow)
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
   }
 
 
@@ -123,37 +122,37 @@ export class UsuariosComponent implements OnInit {
 
 
   Panel: UserResultPanelViewModel[] = []
-  ListUsuarioGrupoDetail(ListUsuarioGrupo: ListUsuarioResult[]) {
+  // ListUsuarioGrupoDetail(ListUsuarioGrupo: ListUsuarioResult[]) {
 
-    let columns: string[] = ['Codigo', 'Nombre', 'Credencial', 'Rol']
-    let cabecera: string[] = []
-    let row = []
-    let rows = []
-    let rolId = 0
-    let title
+  //   let columns: string[] = ['Codigo', 'Nombre', 'Credencial', 'Rol']
+  //   let cabecera: string[] = []
+  //   let row = []
+  //   let rows = []
+  //   let rolId = 0
+  //   let title
 
-    ListUsuarioGrupo.forEach(r => {
+  //   ListUsuarioGrupo.forEach(r => {
 
-      if (r.roleId != rolId) {
-        if (rolId != 0) {
-          rows.push(row)
-          this.Panel.push(new UserResultPanelViewModel(title, columns, rows))
-        }
-        title = r.rol
-        row = []
-        rows = []
-        rolId = r.roleId
-      }
-      row.push(r.usuarioId.toString(), r.nombreCompleto, r.credencial, r.rol)
-      rows.push(row)
-      row = []
-    });
-    rows.push(row)
-    this.Panel.push(new UserResultPanelViewModel(title, columns, rows))
-    console.log(this.Panel)
-    return this.Panel
+  //     if (r.roleId != rolId) {
+  //       if (rolId != 0) {
+  //         rows.push(row)
+  //         this.Panel.push(new UserResultPanelViewModel(title, columns, rows))
+  //       }
+  //       // title = r.rol
+  //       row = []
+  //       rows = []
+  //       rolId = r.roleId
+  //     }
+  //     row.push(r.usuarioId.toString(), r.nombreCompleto, )
+  //     rows.push(row)
+  //     row = []
+  //   });
+  //   rows.push(row)
+  //   this.Panel.push(new UserResultPanelViewModel(title, columns, rows))
+  //   console.log(this.Panel)
+  //   return this.Panel
 
-  }
+  // }
 
   CreateForm(): FormGroup {
     return this.formbuilder.group({
@@ -170,13 +169,10 @@ export class UsuariosComponent implements OnInit {
 
   searchKey: string;
 
-  onSearchClear() {
-    this.searchKey = "";
-    this.applyFilter();
-  }
 
-  applyFilter() {
-    this.dataSource.filter = this.searchKey.trim().toLowerCase();
+
+  applyFilter(value: string) {
+    this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
 
   onCreate() {
@@ -228,22 +224,18 @@ export class UsuariosComponent implements OnInit {
 
   onEdit(elemento: ListUsuarioResult) {
 
-    console.log(`update ${JSON.stringify(elemento)}`);
+    console.log( 'update' , elemento);
 
+    // const dialogRef = this.dialog.open(ModalUsuariosComponent, {
+    //   width: '60%',
+    //   // disableClose: true
+    //   data: elemento
+    // });
 
-
-    const dialogRef = this.dialog.open(ModalUsuariosComponent, {
-      width: '60%',
-      // disableClose: true
-      data: elemento
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.ListUsuarios();
-
-
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    //   this.ListUsuarios();
+    // });
   }
 
 
