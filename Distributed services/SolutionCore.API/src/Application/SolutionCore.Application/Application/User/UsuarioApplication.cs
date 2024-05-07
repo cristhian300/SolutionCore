@@ -1,8 +1,8 @@
 ﻿
 using SolutionCore.Contract;
-using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Request;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
+using SolutionCore.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

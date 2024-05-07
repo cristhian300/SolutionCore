@@ -102,9 +102,9 @@
       justify-content: center;
   }
 
-  /* .mat-header-cell {
+  .mat-header-cell {
       text-align: center;
-  } */
+  }
   /*
 
   .mat-cell {

@@ -8,24 +8,23 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SolutionCore.Contract;
-using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
 using Microsoft.OpenApi.Models;
 using System;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using SolutionCore.Distributed_Processes.Dominio.Infrastructure.Data;
+
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 using SolutionCore.Distributed_Processes.Dominio.Application;
 using SolutionCore.Application.Contracts.Contract.Product;
 using SolutionCore.Application.Application.Product;
-using SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using PmfBff.Interfaces;
 using PmfBff.Services;
+using SolutionCore.Repositories;
 
 namespace SolutionCore
 {
@@ -82,7 +81,7 @@ namespace SolutionCore
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyTestService", Version = "v1", });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Master.Core", Version = "v1", });
                 c.AddSecurityDefinition("Bearer",new OpenApiSecurityScheme
                 {
                  In = ParameterLocation.Header,

@@ -2,7 +2,7 @@
   <h1>Listado de Usuarios</h1>
 </div>
 
-<div class="containerFiltro">
+<!-- <div class="containerFiltro">
   <table id="tb_option">
     <tr>
       <td style="width: 100px;">
@@ -12,12 +12,28 @@
       </td>
       <td>
         <mat-form-field style="width: 100%;" appearance="fill" floatLabel="always" appearance="outline">
-          <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter($event.target.value)">
+          <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off"
+            (keyup)="applyFilter($event.target.value)">
         </mat-form-field>
       </td>
     </tr>
   </table>
-</div>
+</div> -->
+
+<!-- <div fxLayout="row wrap" fxLayoutAlign="center center">
+
+  <div class="containerMain">
+
+    <app-boton-generic [messageInput]="'Dato input'"
+    (regresoVariable)="this.retornoHijo =$event "
+
+    ></app-boton-generic>
+<p>
+ {{retornoHijo}}
+</p>
+
+  </div>
+</div> -->
 
 <!-- <div class="containerFiltro">
   <div class="row">
@@ -36,20 +52,20 @@
     <div class="containerMain">
 
       <div class="mat-elevation-z8">
-        <table id="tbUsuarios" mat-table [dataSource]="dataSource" matSort >
+        <table id="tbUsuarios" mat-table [dataSource]="dataSource" matSort>
           <ng-container matColumnDef="usuarioId">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
             <td mat-cell *matCellDef="let element"> {{element.usuarioId }} </td>
           </ng-container>
           <ng-container matColumnDef="nombreCompleto">
-            <th mat-header-cell *matHeaderCellDef> Nombres <br> Apellidos </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombres <br> Apellidos </th>
             <td mat-cell *matCellDef="let element"> {{element.nombreCompleto}} </td>
           </ng-container>
           <ng-container matColumnDef="rol">
             <th mat-header-cell *matHeaderCellDef> Rol </th>
             <td mat-cell *matCellDef="let element"> {{element.rol}} </td>
           </ng-container>
-          <ng-container matColumnDef="update">
+          <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef> </th>
             <td mat-cell *matCellDef="let element">
               <button mat-icon-button (click)="onEdit(element)">

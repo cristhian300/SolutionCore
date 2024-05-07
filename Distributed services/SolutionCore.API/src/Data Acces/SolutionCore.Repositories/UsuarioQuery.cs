@@ -17,9 +17,9 @@ using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Entities;
 using System.Runtime.InteropServices.WindowsRuntime;
 
-namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
+namespace SolutionCore.Repositories
 {
-    public class UsuarioQuery: IUsuarioQuery
+    public class UsuarioQuery : IUsuarioQuery
     {
 
         private readonly IUnitOfWork<CoreContext> _CoreContext;
@@ -32,10 +32,10 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
             _CoreContext = CoreContext;
         }
 
-      
 
 
-      public  UsuarioResponse GetUsuario(UsuarioRequest parameter)
+
+        public UsuarioResponse GetUsuario(UsuarioRequest parameter)
         {
             var _usuario = (from u in _CoreContext.DbContext.Usuarios
                                 //var _usuario = (from u in _CoreContext .Usuarios
@@ -58,48 +58,48 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
 
             try
             {
-                 var _usuario = (from u in _CoreContext.DbContext.Usuarios
-                            join r in _CoreContext.DbContext.RolesUsers
-                            on u.RoleId equals r.RoleId
-                            orderby r.RoleId
-                            where r.Deleted == false
-                            //&& u.Credencial == parameter.Credencial
+                var _usuario = (from u in _CoreContext.DbContext.Usuarios
+                                join r in _CoreContext.DbContext.RolesUsers
+                                on u.RoleId equals r.RoleId
+                                orderby r.RoleId
+                                where r.Deleted == false
+                                //&& u.Credencial == parameter.Credencial
 
-                            select new ListUsuarioQueryEntity
-                            {
-                                UsuarioId = u.UsuarioId,
-                                NombreCompleto = u.NombreCompleto,
-                                Rol = r.Description,
-                                //Credencial=u.Credencial,
-                                RoleId = u.RoleId,
-                                Deleted = u.Deleted,
-                                //Clave = u.Clave
-                            }
-                                          ).ToList();
+                                select new ListUsuarioQueryEntity
+                                {
+                                    UsuarioId = u.UsuarioId,
+                                    NombreCompleto = u.NombreCompleto,
+                                    Rol = r.Description,
+                                    //Credencial=u.Credencial,
+                                    RoleId = u.RoleId,
+                                    Deleted = u.Deleted,
+                                    //Clave = u.Clave
+                                }
+                                         ).ToList();
                 return new ListUsuarioResponse { ListUsuarios = _usuario };
             }
-            catch( Exception ex ) 
+            catch (Exception ex)
             {
-               
+
                 return null;
             }
-          
 
-            
+
+
         }
 
         public ListRolesResponse ListRoles(ListRolesRequest parameter)
         {
-            var roles = ( 
+            var roles = (
                             from r in _CoreContext.DbContext.RolesUsers
-                           
+
                             where r.Deleted == false
-                           
+
 
                             select new RolesQueryEntity
                             {
-                                Value =r.RoleId,
-                                Description=r.Description
+                                Value = r.RoleId,
+                                Description = r.Description
                             }).ToList();
 
             return new ListRolesResponse { ListRoles = roles };
@@ -115,18 +115,19 @@ namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
             {
                 NombreCompleto = parameter.NombreCompleto,
                 //Credencial = parameter.Credencial,
-                Clave=parameter.Clave,
-                RoleId=parameter.RoleId,
-                Deleted=false
+                Clave = parameter.Clave,
+                RoleId = parameter.RoleId,
+                Deleted = false
 
 
-             };
+            };
 
             _CoreContext.DbContext.Usuarios.Add(usuario);
             _CoreContext.DbContext.SaveChanges();
 
-            return new AddUsuarioResponse {
-            UsuarioId = usuario.UsuarioId
+            return new AddUsuarioResponse
+            {
+                UsuarioId = usuario.UsuarioId
             };
         }
 

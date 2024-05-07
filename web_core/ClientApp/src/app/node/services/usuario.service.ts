@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 
 declare const google: any;
 
-const baseUrl = environment.apiEndpointNode
+const baseUrl = environment.apiEndpointNode+'/api'
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +31,7 @@ export class UsuarioService {
 
     google.accounts.id.revoke('cristhian8730@gmail.com', () => {
 
-      this.router.navigateByUrl('/nlogin')
+      this.router.navigateByUrl('/node')
     })
   }
 

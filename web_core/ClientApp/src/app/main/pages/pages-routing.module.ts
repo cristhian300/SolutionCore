@@ -17,6 +17,7 @@ const routes: Routes = [
   {
     path: '',
     data: { breadCrumb: 'Ruta Principal' },
+    // canActivate:[SecurityGuardGuard],
     children: [
       {
         // path: 'pages',

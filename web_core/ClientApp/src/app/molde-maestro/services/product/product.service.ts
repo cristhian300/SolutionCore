@@ -5,7 +5,7 @@ import { ApiService } from 'src/core/shared/common/services/services/api/api.ser
 import { IProductRequest, IProductResponse, IUpdateProductRequest } from '../../interfaces/product/product';
 import { environment } from 'src/environments/environment';
 
-const base_url = `${environment.apiEndpointNode}/products`
+const base_url = `${environment.apiEndpointNode}/api/products`
 
 @Injectable({
   providedIn: 'root'

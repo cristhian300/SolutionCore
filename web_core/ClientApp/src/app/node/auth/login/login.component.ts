@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       resp => {
         //aqui devuelve los datos de usuario logueado
         this.zone.run(() => {
-          this.router.navigate(['/menu'])
+          this.router.navigate(['/home'])
         });
 
       },

@@ -86,6 +86,8 @@ export class AdministradorComponent implements OnInit {
       path = 'assets/web/products/carrito_gris.jpg'
     }
     else {
+      console.log(`${environment.apiEndpointNode}/upload/products/${image}`);
+
       path = `${environment.apiEndpointNode}/upload/products/${image}`
     }
     return path

@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
+namespace SolutionCore.Repositories
 {
-  public  interface IProductQuery
+    public interface IProductQuery
     {
         ListProductResponse ListProduct(ListProductRequest parameter);
         AddProductResponse AddProduct(AddProductRequest parameter);

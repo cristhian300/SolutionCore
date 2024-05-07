@@ -1,7 +1,7 @@
 ﻿using SolutionCore.Application.Contracts.Contract.Product;
 using SolutionCore.Infraestructura.Transport.Core.Product.Request;
 using SolutionCore.Infraestructura.Transport.Core.Product.Response;
-using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
+using SolutionCore.Repositories;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +26,7 @@ namespace SolutionCore.Application.Application.Product
 
         public Task<AddProductResponse> AddProduct(AddProductRequest parameter)
         {
+
             return Task.FromResult(_IProductQuery.AddProduct(parameter));
         }
 

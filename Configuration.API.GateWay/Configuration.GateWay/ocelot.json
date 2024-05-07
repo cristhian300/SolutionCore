@@ -19,7 +19,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 3327
+          "Port": 3329
         }
       ],
       "UpstreamPathTemplate": "/identity/api/{catchAll}"

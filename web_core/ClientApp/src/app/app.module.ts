@@ -45,7 +45,6 @@ import { NgbModule,NgbCarouselModule  } from '@ng-bootstrap/ng-bootstrap';
     NgxUiLoaderModule.forRoot({}),
     PerfectScrollbarModule,
     FlexLayoutModule,
-
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     OAuthModule.forRoot(),
@@ -59,7 +58,6 @@ import { NgbModule,NgbCarouselModule  } from '@ng-bootstrap/ng-bootstrap';
     MaterialModule,
     NgbModule,
     NgbCarouselModule
-
   ],
   providers: [NetworkManager, ApiService,
     {

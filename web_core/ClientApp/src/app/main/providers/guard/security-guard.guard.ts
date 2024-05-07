@@ -9,28 +9,23 @@ import { environment } from 'src/environments/environment.prod';
 export class SecurityGuardGuard implements CanActivate, CanActivateChild, CanLoad {
 
 
-/**
- *
- */
-constructor( private router:Router) {
-
-
-}
+  /**
+   *
+   */
+  constructor(private router: Router) {
+  }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    console.log("ENtro al guard " + state.url);
+    if (!localStorage.getItem("TokenUserN")) {
 
+      console.log("ENtro al if guard " + localStorage.getItem("TokenUserN"));
 
-     console.log("ENtro al guard "+state.url);
-
-  if (!localStorage.getItem("TokenUserN")) {
-
-    console.log("ENtro al if guard "+localStorage.getItem("TokenUserN"));
-
-    this.router.navigate(["/loginnet"]);
-    return false
-  }
+      this.router.navigate(["/loginnet"]);
+      return false
+    }
 
 
     return true;

@@ -30,6 +30,7 @@ using System.IO.Compression;
 using Microsoft.AspNetCore.StaticFiles;
 using System.IO.Pipes;
 using System.Xml.XPath;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace SolutionCore.Controllers
 {
@@ -64,8 +65,7 @@ namespace SolutionCore.Controllers
         public async Task<ListProductResponse> ListProduct()
         {
             ListProductRequest parameter = new ListProductRequest();
-            //  parameter.PathUrlImage = $"{Request.Scheme}://{Request.Host}/images/";
-            //parameter.PathUrlImage = $"http://localhost:44342/images/";
+ 
             parameter.PathUrlImage = $"{ _Configuration["Services:CoreUrl"]}/images/";
             return await _IProductContract.ListProduct(parameter);
         }
@@ -279,45 +279,66 @@ namespace SolutionCore.Controllers
         
         public async Task<IActionResult> ExtraerZip()
         {
-            string zipPath = Path.Combine("ZipProgress", "ZipArchiveFull.zip");
 
-            //Console.WriteLine("Provide path where to extract the zip file:");
-            string extractPath = "ExtractDestinyZip";
-
-            // Normalizes the path.
-            extractPath = Path.GetFullPath(extractPath);
-
-            // Ensures that the last character on the extraction path
-            // is the directory separator char.
-            // Without this, a malicious zip file could try to traverse outside of the expected
-            // extraction path.
-            //if (!extractPath.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal))
-            //    extractPath += Path.DirectorySeparatorChar;
-            FileStream fs = null;
-            using (fs = new FileStream(zipPath, FileMode.Open, FileAccess.ReadWrite))
+            string zipPathTemplate = Path.Combine("ZipProgressTemplate", "ZipArchiveFull.zip");
+            string extractPathDestiny = "ExtractDestinyZip";
+            extractPathDestiny = Path.GetFullPath(extractPathDestiny);
+ 
+            try
             {
-                //await fs.CopyToAsync(mstreamFirst);
-
-                using (var archive = new ZipArchive(fs, ZipArchiveMode.Read))
-                //using (ZipArchive archive = ZipFile.OpenRead(zipPath))
+                if (!extractPathDestiny.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal))
+                    extractPathDestiny += Path.DirectorySeparatorChar;
+                FileStream fs = null;
+                using (fs = new FileStream(zipPathTemplate, FileMode.Open, FileAccess.ReadWrite))
                 {
-                    foreach (ZipArchiveEntry entry in archive.Entries)
-                    {
-                        if (entry.FullName.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
-                        {
-                            // Gets the full path to ensure that relative segments are removed.
-                            string destinationPath = Path.GetFullPath(Path.Combine(extractPath, entry.FullName));
+                    //await fs.CopyToAsync(mstreamFirst);
 
-                            // Ordinal match is safest, case-sensitive volumes can be mounted within volumes that
-                            // are case-insensitive.
-                            if (destinationPath.StartsWith(extractPath, StringComparison.Ordinal))
-                                entry.ExtractToFile(destinationPath);
+                    using (var archive = new ZipArchive(fs, ZipArchiveMode.Read))
+                    //using (ZipArchive archive = ZipFile.OpenRead(zipPath))
+                    {
+                        foreach (ZipArchiveEntry entry in archive.Entries)
+                        {
+                            if (entry.FullName.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+                            {
+                                string destinationPath = Path.GetFullPath(Path.Combine(extractPathDestiny, entry.FullName));
+                                if (destinationPath.StartsWith(extractPathDestiny, StringComparison.Ordinal))
+                                {
+                                     if (System.IO.File.Exists(destinationPath))
+                                    {
+                                        System.IO.File.Delete(destinationPath);
+                                        entry.ExtractToFile(destinationPath);
+                                    }
+                                       
+                                    else  {
+                                        entry.ExtractToFile(destinationPath);
+                                    }
+                                }
+                               
+                            }
                         }
                     }
                 }
+
+                //string PathTxtFileName = string.Empty;
+                //PathTxtFileName = Path.Combine("Areas", "FirstProcess", "Files", archivoError);
+
+                var fs2 = System.IO.File.OpenRead(extractPathDestiny );
+                MemoryStream memory = new MemoryStream();
+                await fs.CopyToAsync(memory);
+                memory.Position = 0;
+                string contentType = GetContentType(extractPathDestiny);
+                return File(memory, contentType, extractPathDestiny);
+                 
+
+            //    var stream = new FileStream(extractPathDestiny2, FileMode.Open, FileAccess.Read);
+            //    return File(stream, "application/zip", "my.zip");
+             }
+            catch (Exception ex )
+            {
+
+                return BadRequest();
             }
-            var stream = new FileStream(extractPath, FileMode.Open);
-            return File(stream, "application/zip", "my.zip");
+            
         }
 
 

@@ -1,14 +1,8 @@
-﻿
-
-
-
-namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
+﻿namespace SolutionCore.Repositories
 {
 
     using Arch.EntityFrameworkCore.UnitOfWork;
     using Microsoft.AspNetCore.Hosting;
-
-    using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
     using System;
     using System.IO;
     using System.Linq;
@@ -27,7 +21,6 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
     using SolutionCore.Infraestructura.Transport.Core.Product.QueryEntity;
     using SolutionCore.Infraestructura.Transport.Core.Product.Request;
     using System.Collections.Generic;
-
 
     public class ProductQuery : IProductQuery
     {
@@ -65,7 +58,7 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
                                        Description = p.Description,
                                        Price = p.Price,
                                        Photo = p.Photo,
-                                       PathUrlImage = $"{parameter.PathUrlImage}{p.Photo}" 
+                                       PathUrlImage = $"{parameter.PathUrlImage}{p.Photo}"
                                    }
                                  ).ToList();
                 return new ListProductResponse { ListProduct = listProduct };
@@ -87,7 +80,7 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
             {
 
                 var lstfileNames = ValidationFiles(parameter.files);
-               
+
 
                 foreach (var nameFiles in lstfileNames)
                 {
@@ -145,21 +138,21 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
 
                 return new EditProductResponse { };
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
                 throw;
             }
-            
+
         }
 
 
-        public  List<String> ValidationFiles(List<IFormFile> files)
+        public List<string> ValidationFiles(List<IFormFile> files)
         {
 
-            List<String> lstFileNames = new List<String>();
+            List<string> lstFileNames = new List<string>();
 
-            if (files != null &&   files.Count >= 1)
+            if (files != null && files.Count >= 1)
             {
 
                 if (!Directory.Exists(hostingEnvironment.WebRootPath + "\\images\\"))
@@ -178,10 +171,10 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
                     }
                     fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
                     var path = Path.Combine(hostingEnvironment.WebRootPath, "images", fileName);
-                    using (Stream Stream = System.IO.File.Create(path))
+                    using (Stream Stream = File.Create(path))
                     {
                         //crear el archiv
-                      file.CopyTo(Stream);
+                        file.CopyTo(Stream);
                         Stream.Flush();
                     }
                     lstFileNames.Add(fileName);
@@ -194,7 +187,7 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
         public DeleteProductResponse DeleteProduct(DeleteProductRequest parameter)
         {
 
-            var product = _CoreContext.DbContext.Products.Where(x => x.ProductId == parameter.ProductId 
+            var product = _CoreContext.DbContext.Products.Where(x => x.ProductId == parameter.ProductId
                && x.Deleted == false)
                 .FirstOrDefault();
 
@@ -204,7 +197,7 @@ namespace SolutionCore.Api.DataAcces.Infrastructure.Data.CQS.Product.Query
                 _CoreContext.DbContext.Products.Update(product);
                 _CoreContext.DbContext.SaveChanges();
             }
-            return new  DeleteProductResponse { };
+            return new DeleteProductResponse { };
         }
     }
 }

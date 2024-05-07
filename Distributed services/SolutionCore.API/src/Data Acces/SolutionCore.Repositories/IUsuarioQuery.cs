@@ -7,14 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SolutionCore.Infrastructure.Data.CQS.Authorization.Query
+namespace SolutionCore.Repositories
 {
-  public  interface IUsuarioQuery
+    public interface IUsuarioQuery
     {
-         UsuarioResponse GetUsuario(UsuarioRequest parameter);
-         ListUsuarioResponse ListUsuario(ListUsuarioRequest parameter);
+        UsuarioResponse GetUsuario(UsuarioRequest parameter);
+        ListUsuarioResponse ListUsuario(ListUsuarioRequest parameter);
 
-          ListRolesResponse ListRoles(ListRolesRequest parameter);
+        ListRolesResponse ListRoles(ListRolesRequest parameter);
 
         AddUsuarioResponse AddUsuario(AddUsuarioRequest parameter);
 

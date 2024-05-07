@@ -37,7 +37,7 @@ export class UsuariosComponent implements OnInit {
   SecurityViewModel = new SecurityViewModel()
   selectedFile: File = null;
   files: Array<{ name: string, native: File }> = [];
-
+  retornoHijo:string;
 
   constructor(private ngxLoader: NgxUiLoaderService,
     public dialog: MatDialog,
@@ -57,7 +57,7 @@ export class UsuariosComponent implements OnInit {
   ngOnInit() {
     this.paginator._intl.itemsPerPageLabel = "Opciones por página";
     this.ListUsuarios();
-    this.ListRoles()
+    // this.ListRoles()
     // this.dataSource.paginator = this.paginator;
   }
 
@@ -76,9 +76,9 @@ export class UsuariosComponent implements OnInit {
 
         console.log('this.UsuarioToShow',response.listUsuarios);
 
-        // this.dataSource = new MatTableDataSource<ListUsuarioResult>(response.listUsuarios)
-        // this.dataSource.paginator = this.paginator;
-        // this.dataSource.sort = this.sort;
+        this.dataSource = new MatTableDataSource<ListUsuarioResult>(response.listUsuarios)
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         // this.ListUsuarioGrupoDetail(this.SecurityViewModel.listUsuarios)
 
       },
@@ -175,20 +175,21 @@ export class UsuariosComponent implements OnInit {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
 
-  onCreate() {
+  onCreate(testInput:string) {
 
-    const dialogRef = this.dialog.open(ModalUsuariosComponent, {
-      width: '60%',
-      // disableClose: true
-      // data: {name: this.name, animal: this.animal}
-    });
+    console.log(testInput,'detalle input' );
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.ListUsuarios();
+    // const dialogRef = this.dialog.open(ModalUsuariosComponent, {
+    //   width: '60%',
+
+    // });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    //   this.ListUsuarios();
 
 
-    });
+    // });
 
   }
 
@@ -274,6 +275,9 @@ export class UsuariosComponent implements OnInit {
     //   return;
   }
 
+  DevuelveValor(event:any){
+    this.retornoHijo = event
+  }
 
 }
 

@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using SolutionCore.Contract;
-using SolutionCore.Infrastructure.Data.CQS.Authorization.Query;
+ 
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Parameter;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Result;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.Request;
@@ -31,7 +31,8 @@ namespace SolutionCore.Controllers
     public class AuthController : ControllerBase
     {
         // GET: api/Auth
-
+        //eduard100
+        //Pass@123456
         private IUsuarioContract _IUsuarioContract;
         [AllowAnonymous]
         [HttpGet]

@@ -17,6 +17,7 @@ import { HeaderComponent } from '../layouts/header/header.component';
 import { SidebarComponent } from '../layouts/sidebar/sidebar.component';
 import { ClientContactComponent } from './task/client-contact/client-contact.component';
 import { IntegracionDocumentosComponent } from './task/integracion-documentos/integracion-documentos.component';
+import { BotonGenericComponent } from './usuarios/boton-generic/boton-generic.component';
 // import { MatDatepickerModule } from '@angular/material;
 
 
@@ -33,7 +34,8 @@ import { IntegracionDocumentosComponent } from './task/integracion-documentos/in
     HeaderComponent,
     SidebarComponent,
     ClientContactComponent,
-    IntegracionDocumentosComponent
+    IntegracionDocumentosComponent,
+    BotonGenericComponent
 
   ],
   imports: [
