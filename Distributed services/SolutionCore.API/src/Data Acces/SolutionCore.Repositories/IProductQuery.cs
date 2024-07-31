@@ -1,4 +1,5 @@
-﻿using SolutionCore.Infraestructura.Transport.Core.Product.Request;
+﻿using SolutionCore.Api.DataAcces.Infrastructure.Data.Entities;
+using SolutionCore.Infraestructura.Transport.Core.Product.Request;
 using SolutionCore.Infraestructura.Transport.Core.Product.Response;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Parameter;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Result;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SolutionCore.Repositories
 {
-    public interface IProductQuery
+    public interface IProductQuery: IRepositoryBase<Product>
     {
         ListProductResponse ListProduct(ListProductRequest parameter);
         AddProductResponse AddProduct(AddProductRequest parameter);

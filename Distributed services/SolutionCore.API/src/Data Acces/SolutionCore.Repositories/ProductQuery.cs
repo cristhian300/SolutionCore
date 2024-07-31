@@ -22,7 +22,7 @@
     using SolutionCore.Infraestructura.Transport.Core.Product.Request;
     using System.Collections.Generic;
 
-    public class ProductQuery : IProductQuery
+    public class ProductQuery : RespositoryBase<Product> ,IProductQuery
     {
 
         private IHostingEnvironment hostingEnvironment;
@@ -31,13 +31,8 @@
 
 
         IUnitOfWork<CoreContext> _CoreContext;
-        public ProductQuery(
-            //IHttpContextAccessor httpContextAccessor,
-
-
-            IHostingEnvironment env, IUnitOfWork<CoreContext> CoreContext)
+        public ProductQuery(IHostingEnvironment env, IUnitOfWork<CoreContext> CoreContext) : base(CoreContext.DbContext)
         {
-            //HttpContextAccessor = httpContextAccessor;
             hostingEnvironment = env;
             _CoreContext = CoreContext;
         }
@@ -45,6 +40,8 @@
 
         public ListProductResponse ListProduct(ListProductRequest parameter)
         {
+
+           var x = GetAsync(2009);
 
             try
             {
