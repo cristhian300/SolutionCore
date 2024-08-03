@@ -1,0 +1,4 @@
+﻿
+-se debe migrar donde esta el archivo de migracion
+add-migration init2 -Context CoreContext
+ 

@@ -37,7 +37,7 @@ alter table Category add constraint pk_category primary key (CategoryId)
 	CONSTRAINT PK_Usuario PRIMARY KEY (UsuarioId)
 );  
 
-ALTER TABLE  dbo.Usuario ADD CONSTRAINT fk_Usuario_RolesUsers FOREIGN KEY (RoleID) REFERENCES  dbo.RolesUsers(RoleID);  
+--ALTER TABLE  dbo.Usuario ADD CONSTRAINT fk_Usuario_RolesUsers FOREIGN KEY (RoleID) REFERENCES  dbo.RolesUsers(RoleID);  
 
 
 
