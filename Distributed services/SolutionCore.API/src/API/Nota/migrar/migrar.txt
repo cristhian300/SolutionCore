@@ -1,4 +1,15 @@
 ﻿
 -se debe migrar donde esta el archivo de migracion
+ó configurar el ensamblado
+-------------------------------------------------
 add-migration init2 -Context CoreContext
+
+add-migration init2 -Context ApplicationDbContext
+
+Update-Database
  
+ add-migration init2 -Context ApplicationDbContext
+ 
+-------------------------------------------------
+
+https://stackoverflow.com/questions/38173404/the-term-add-migration-is-not-recognized

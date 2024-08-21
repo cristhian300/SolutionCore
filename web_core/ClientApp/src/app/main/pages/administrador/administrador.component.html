@@ -31,7 +31,7 @@
   <div fxLayout="row wrap" fxLayoutAlign="center center">
 
     <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"
-      [length]="totalSize" [pageIndex]="currentPage" (page)="handlePage($event)">
+      [length]="totalSize" [pageIndex]="pageIndex" (page)="handlePage($event)">
     </mat-paginator>
 
     <perfect-scrollbar style="height: calc(100vh - 360px)">

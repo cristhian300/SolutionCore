@@ -1,12 +1,8 @@
 ﻿
+using SolutionCore.Application.DTO.Authorization.Request;
+using SolutionCore.Application.DTO.Authorization.Response;
 using SolutionCore.Contract;
-using SolutionCore.Infrastructure.Transport.Core.Authorization.Request;
-using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
 using SolutionCore.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SolutionCore.Distributed_Processes.Dominio.Application
 {
@@ -14,8 +10,8 @@ namespace SolutionCore.Distributed_Processes.Dominio.Application
     {
 
 
-        private IUsuarioQuery _IUsuarioQuery;
-        public UsuarioApplication(IUsuarioQuery  IUsuarioQuery)
+        private IUsuarioRepository _IUsuarioQuery;
+        public UsuarioApplication(IUsuarioRepository  IUsuarioQuery)
         {
             _IUsuarioQuery = IUsuarioQuery;
         }

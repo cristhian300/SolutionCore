@@ -5,7 +5,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ModalDeleteProductComponent } from './modal-delete-product/modal-delete-product.component';
 import { ModalProductComponent } from './modal-product/modal-product.component';
-import { ListProductEntity, ListProductResponse } from 'src/app/main/providers/services/Product/product.interface';
+import { ListProductEntity,   } from 'src/app/main/providers/services/Product/product.interface';
 import { ProductService } from '../../services/product/product.service';
 import { IProduct, IProductResponse } from '../../interfaces/product/product';
 import { map } from 'rxjs/operators';

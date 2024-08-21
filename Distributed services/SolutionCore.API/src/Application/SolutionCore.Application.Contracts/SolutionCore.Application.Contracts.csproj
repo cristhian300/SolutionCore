@@ -1,11 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Transport\SolutionCore.Infraestructura.Transport\SolutionCore.Infraestructura.Transport.csproj" />
+    <ProjectReference Include="..\..\Transversal.Common\Transversal.Common.csproj" />
+    <ProjectReference Include="..\SolutionCore.Application.DTO\SolutionCore.Application.DTO.csproj" />
   </ItemGroup>
 
 </Project>

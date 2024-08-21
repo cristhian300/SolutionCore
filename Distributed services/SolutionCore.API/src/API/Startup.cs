@@ -1,30 +1,25 @@
 using Arch.EntityFrameworkCore.UnitOfWork;
+using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SolutionCore.Contract;
-using Microsoft.OpenApi.Models;
-using System;
-using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-
-using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
-using SolutionCore.Distributed_Processes.Dominio.Application;
-using SolutionCore.Application.Contracts.Contract.Product;
-using SolutionCore.Application.Application.Product;
-using Microsoft.Extensions.FileProviders;
-using System.IO;
-using Microsoft.AspNetCore.Http;
+using Microsoft.OpenApi.Models;
 using PmfBff.Interfaces;
 using PmfBff.Services;
+using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
+using SolutionCore.Application;
+using SolutionCore.Application.Application.Product;
+using SolutionCore.Application.Contracts.Contract.Product;
+using SolutionCore.Contract;
+using SolutionCore.Distributed_Processes.Dominio.Application;
 using SolutionCore.Repositories;
+using System.Text;
+using Transversal.Mapper;
 
 namespace SolutionCore
 {
@@ -41,6 +36,21 @@ namespace SolutionCore
         public void ConfigureServices(IServiceCollection services)
         {
 
+
+            services.AddServicePersistence( Configuration);
+            services.AddApplicationServices(Configuration);
+            
+            //Configurar mapper de Clase creada
+            //services.AddAutoMapper(x => x.AddProfile(new MappingProfile()  ));
+            var mappingConfig = new MapperConfiguration(
+                mc => {
+                    mc.AddProfile(new MappingProfile());
+                       });
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+            //------------------------------------------------------
+
+ 
             var secret =  Encoding.UTF8.GetBytes(Configuration.GetValue<string>("SecretKey"));
            
             /*Autenticacion para WEBTOKEN*/
@@ -113,32 +123,14 @@ namespace SolutionCore
             //{
             //    configuration.RootPath = "ClientApp/dist";
             //});
-
-            services.AddTransient<IUsuarioQuery, UsuarioQuery>();
-            services.AddTransient<IUsuarioContract, UsuarioApplication>();
-
-            services.AddTransient<IProductQuery, ProductQuery>();
-            services.AddTransient<IProductContract, ProductApplication>();
-
       
-
             //services.AddSingleton<IHostedService, CronJobService>();
             //services.AddScoped<CronJobService>();
             services.AddScoped<IPmfRestClient, PmfRestClient>();
-            services.AddUnitOfWork<CoreContext>();
+           
 
             //AddSwagger(services);
 
-            //Cadena de Conexion de base de datos SQL Server
-            //services.AddDbContext<CoreContext>(option => option.UseSqlServer(Configuration["ConnectionStrings:SpartacusContext"]));
-            //services.AddDataServicesSQL(Configuration);
-            var productConnection = Configuration.GetConnectionString("SpartacusContext");
-            services.AddDbContext<CoreContext>(options =>
-            {
-                options.UseSqlServer(productConnection);
-            });
-
-           
 
             //estrae informacion AppSetting
             //services.Configure<GetConfigurationResponse>(Configuration.GetSection("Services"));

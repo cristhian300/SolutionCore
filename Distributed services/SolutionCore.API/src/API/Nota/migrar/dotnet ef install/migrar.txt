@@ -1,0 +1,16 @@
+﻿
+* instalar por cmd dotnet ef
+
+dotnet  tool  install --global dotnet-ef
+ 
+dotnet ef 
+-------------------------------------------------
+
+dotnet  tool  update --global dotnet-ef
+
+------------------------------------------------------
+
+dotnet ef migrations add CredentialScheme --project   Pacagroup.Ecommerce.Persistence --startup-project Pacagroup.Ecommerce.Services.WebApi --output-dir Migrations  --context ApplicationDbContext
+
+
+dotnet ef  database  update --project   Pacagroup.Ecommerce.Persistence --startup-project Pacagroup.Ecommerce.Services.WebApi   --context ApplicationDbContext

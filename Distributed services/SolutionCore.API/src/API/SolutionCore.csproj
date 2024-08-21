@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="Abp" Version="5.12.0" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.7">
       <PrivateAssets>all</PrivateAssets>
@@ -158,6 +159,7 @@
     <ProjectReference Include="..\Data Acces\SolutionCore.Api.DataAcces\SolutionCore.Api.DataAcces.csproj" />
     <ProjectReference Include="..\Data Acces\SolutionCore.Repositories\SolutionCore.Repositories.csproj" />
     <ProjectReference Include="..\Infrastructure\Transport\SolutionCore.Infraestructura.Transport\SolutionCore.Infraestructura.Transport.csproj" />
+    <ProjectReference Include="..\Transversal.Mapper\Transversal.Mapper\Transversal.Mapper.csproj" />
   </ItemGroup>
 
   <ItemGroup>

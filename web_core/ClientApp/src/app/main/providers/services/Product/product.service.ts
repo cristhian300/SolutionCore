@@ -6,8 +6,10 @@ import { environment } from 'src/environments/environment.prod';
 
 import { StorageService } from '../common/storage.service';
 import { ConfigurationResponse } from '../configuration/configuration';
-import { AddProductRequest, EditProductRequest, ListProductResponse } from './product.interface';
+import { AddProductRequest, EditProductRequest   } from './product.interface';
 import { ApiService } from 'src/core/shared/common/services/services/api/api.service';
+import { ResponseDTO } from 'src/app/main/models/DTOs/response-dto';
+import { ListProductResponse } from 'src/app/main/models/DTOs/Product/productosDto';
 
 @Injectable({
   providedIn: 'root'
@@ -32,16 +34,14 @@ export class ProductService {
     const parameters = new PostParameter()
     parameters.PathOperation = this.Url + 'Product/ListProduct'
     parameters.RequestParameter = parameter
-    return this.networkManager.post(parameters) as Observable<ListProductResponse>;
+    return this.networkManager.post(parameters) as Observable<ResponseDTO>;
 
   }
 
   public AddProduct(parameter: AddProductRequest = null) {
-
     const parameters = new PostParameter()
     parameters.PathOperation = this.Url + 'Product/AddProduct'
     parameters.RequestParameter = parameter
-
     let files = []
     files.push({ name: 'Document', native: parameter.files });
 

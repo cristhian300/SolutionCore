@@ -1,25 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
+using SolutionCore.Application.DTO.Authorization.Request;
+using SolutionCore.Application.DTO.Authorization.Response;
 using SolutionCore.Contract;
- 
-using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Parameter;
-using SolutionCore.Infrastructure.Transport.Core.Authorization.CQS.Query.Result;
-using SolutionCore.Infrastructure.Transport.Core.Authorization.Request;
-using SolutionCore.Infrastructure.Transport.Core.Authorization.Response;
+using System.Threading.Tasks;
 
 namespace SolutionCore.Controllers
 {

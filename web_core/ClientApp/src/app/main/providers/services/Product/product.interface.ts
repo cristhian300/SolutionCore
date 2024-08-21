@@ -1,3 +1,4 @@
+
 export class AddProductRequest {
   files: File;
   Name: string;
@@ -13,17 +14,7 @@ export class EditProductRequest {
   Price: number;
 }
 
-export class ListProductResponse {
-  listProduct: ListProductEntity[];
 
-  /**
-   *
-   */
-  constructor() {
-    this.listProduct = []
-
-  }
-}
 
 export class ListProductEntity {
   productId: number;

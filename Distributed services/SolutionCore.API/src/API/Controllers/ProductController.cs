@@ -1,36 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Arch.EntityFrameworkCore.UnitOfWork;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Arch.EntityFrameworkCore.UnitOfWork;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.DotNet.PlatformAbstractions;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using PmfBff.Interfaces;
 using PmfBff.Models;
 using PmfBff.Models.Request;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
-using SolutionCore.Api.DataAcces.Infrastructure.Data.Entities;
 using SolutionCore.Application.Contracts.Contract.Product;
-using SolutionCore.Infraestructura.Transport.Core.Product.Request;
-using SolutionCore.Infraestructura.Transport.Core.Product.Response;
-
-using System.Web;
-using Azure;
-using Microsoft.Net.Http.Headers;
+using SolutionCore.Application.DTO.Product.Request;
+using SolutionCore.Application.DTO.Product.Response.Product;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.IO.Compression;
-using Microsoft.AspNetCore.StaticFiles;
-using System.IO.Pipes;
-using System.Xml.XPath;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SolutionCore.Controllers
 {
@@ -60,14 +47,17 @@ namespace SolutionCore.Controllers
             _Configuration = configuration;
         }
 
-        // POST: api/Product
-        [HttpPost]
-        public async Task<ListProductResponse> ListProduct()
+        //POST: api/Product
+       [HttpPost]
+        public async Task<IActionResult> ListProduct()
         {
             ListProductRequest parameter = new ListProductRequest();
- 
-            parameter.PathUrlImage = $"{ _Configuration["Services:CoreUrl"]}/images/";
-            return await _IProductContract.ListProduct(parameter);
+
+            parameter.PathUrlImage = $"{_Configuration["Services:CoreUrl"]}/images/";
+
+            var response = await _IProductContract.ListProduct(parameter);
+
+            return  Ok(response);
         }
 
 

@@ -1,28 +1,33 @@
-﻿using SolutionCore.Application.Contracts.Contract.Product;
-using SolutionCore.Infraestructura.Transport.Core.Product.Request;
-using SolutionCore.Infraestructura.Transport.Core.Product.Response;
+﻿using AutoMapper;
+using SolutionCore.Application.Contracts.Contract.Product;
+using SolutionCore.Application.DTO.Product.QueryEntity;
+using SolutionCore.Application.DTO.Product.Request;
+using SolutionCore.Application.DTO.Product.Response.Product;
 using SolutionCore.Repositories;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
+
+using Transversal.Common;
 
 namespace SolutionCore.Application.Application.Product
 {
     public class ProductApplication : IProductContract
     {
 
-        IProductQuery _IProductQuery;
-        public ProductApplication(IProductQuery IProductQuery)
+        IProductRepository _IProductQuery;
+        private readonly IMapper _mapper;
+        public ProductApplication(IProductRepository IProductQuery, IMapper mapper)
         {
             _IProductQuery = IProductQuery;
+            _mapper = mapper;
         }
 
-        public Task<ListProductResponse> ListProduct(ListProductRequest parameter)
-        {
-            return Task.FromResult(_IProductQuery.ListProduct(parameter));
-        }
+        //public async Task<Response<List<ListProductDTO>>> ListProduct(ListProductRequest parameter)
+        //{
+        //     var result = new Response<List<ListProductDTO>>();
+
+
+
+        //    return _IProductQuery.ListProduct(parameter) ;
+        //}
 
         public Task<AddProductResponse> AddProduct(AddProductRequest parameter)
         {
@@ -38,6 +43,36 @@ namespace SolutionCore.Application.Application.Product
         public Task<DeleteProductResponse> DeleteProduct(DeleteProductRequest parameter)
         {
             return Task.FromResult(_IProductQuery.DeleteProduct(parameter));
+        }
+
+        public async Task<Response<List<ListProductDTO>>> ListProduct(ListProductRequest parameter)
+        {
+            var response = new Response<List<ListProductDTO>>();
+
+            try
+            {
+                
+
+                var listProduct = await _IProductQuery.ListProduct(parameter);
+                response.Data = _mapper.Map<List<ListProductDTO>>(listProduct);
+                foreach (var p in response.Data)
+                {
+                    p.PathUrlImage = $"{parameter.PathUrlImage}{p.Photo}";
+                }
+
+                if (response.Data != null)
+                {
+                    response.IsSuccess = true;
+                    response.Message = "Consulta Exitosa!!!";
+                }
+            }
+            catch (Exception e)
+            {
+                response.IsSuccess = false;
+                response.Message = e.Message;
+            }
+            
+            return response;
         }
     }
 }

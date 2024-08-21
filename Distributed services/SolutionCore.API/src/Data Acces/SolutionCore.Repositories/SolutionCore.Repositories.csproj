@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\SolutionCore.Application.DTO\SolutionCore.Application.DTO.csproj" />
     <ProjectReference Include="..\SolutionCore.Api.DataAcces\SolutionCore.Api.DataAcces.csproj" />
   </ItemGroup>
 

@@ -1,17 +1,17 @@
-﻿
-using SolutionCore.Infraestructura.Transport.Core.Product.Request;
-using SolutionCore.Infraestructura.Transport.Core.Product.Response;
-using System;
+﻿using SolutionCore.Application.DTO.Product.QueryEntity;
+using SolutionCore.Application.DTO.Product.Request;
+using SolutionCore.Application.DTO.Product.Response.Product;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using Transversal.Common;
+
 
 namespace SolutionCore.Application.Contracts.Contract.Product
 {
-   public interface IProductContract
+    public interface IProductContract
     {
 
-        Task<ListProductResponse> ListProduct(ListProductRequest parameter);
+        Task<Response<List<ListProductDTO>>> ListProduct(ListProductRequest parameter);
 
         Task<AddProductResponse> AddProduct(AddProductRequest parameter);
 
