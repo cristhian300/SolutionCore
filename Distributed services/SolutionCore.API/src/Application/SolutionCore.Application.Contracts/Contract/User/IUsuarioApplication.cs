@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace SolutionCore.Contract
 {
-    public  interface IUsuarioContract
+    public  interface IUsuarioApplication
     {
          
             Task<UsuarioResponse> GetUsuario(UsuarioRequest parameter);

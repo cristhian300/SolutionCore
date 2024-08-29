@@ -10,17 +10,21 @@ namespace SolutionCore.Repositories
     public interface IRepositoryBase<TEntity> where TEntity : class
     {
 
-        Task<ICollection<TEntity>> GetAsync();
+        
 
-        Task<ICollection<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<ICollection<TEntity>> GetAllAsync( );
+
+        Task<ICollection<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate);
 
         //Task<ICollection<TEntity>> GetAsync<TKey>(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity?> GetAsync(object id);
 
+      
+
         void InsertAsync(TEntity entity);
         void DeleteAsync(int id);
 
-        void UpdateAsync(TEntity entity);
+        Task<bool> UpdateAsync(TEntity entity, object id);
 
         public TEntity MyEntity { get; }
     }

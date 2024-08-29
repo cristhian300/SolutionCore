@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
-using SolutionCore.Application.Application.Product;
+using SolutionCore.Application.Application.Products;
 using SolutionCore.Application.Contracts.Contract.Product;
 using SolutionCore.Contract;
 using SolutionCore.Distributed_Processes.Dominio.Application;
@@ -23,8 +23,8 @@ namespace SolutionCore.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
 
-            services.AddTransient<IUsuarioContract, UsuarioApplication>();
-            services.AddTransient<IProductContract, ProductApplication>();
+            services.AddTransient<IUsuarioApplication, UsuarioApplication>();
+            services.AddTransient<IProductApplication, ProductApplication>();
             return services;
         }
 

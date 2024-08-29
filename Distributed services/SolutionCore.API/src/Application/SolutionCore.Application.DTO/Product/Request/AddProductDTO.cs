@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SolutionCore.Application.DTO.Product.Request
 {
-    public class AddProductRequest
+    public class AddProductDTO
     {
 
 
@@ -16,6 +16,6 @@ namespace SolutionCore.Application.DTO.Product.Request
         //public DateTime? UpdatedDate { get; set; }
         //public bool Deleted { get; set; }
         //public string Photo { get; set; }
-        public List<IFormFile> files { get; set; }
+        public  IFormFile  files { get; set; }
     }
 }

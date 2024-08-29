@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolutionCore.Repositories
+namespace SolutionCore.Repositories.Repositories
 {
     public class RespositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
@@ -27,23 +27,29 @@ namespace SolutionCore.Repositories
             _context.Set<TEntity>().Remove(objDeleted);
         }
 
-        public Task<ICollection<TEntity>> GetAsync()
+
+
+        public async Task<ICollection<TEntity>> GetAllAsync()
         {
-            throw new NotImplementedException();
+
+
+            return await _context.Set<TEntity>().AsNoTracking().ToListAsync();
         }
 
-        public async Task<ICollection<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<ICollection<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate)
         {
 
             var query = await _context.Set<TEntity>()
-                 .AsNoTracking()
-                 .ToListAsync();
+             .Where(predicate)
+             .AsNoTracking()
+             .ToListAsync();
             return query;
         }
 
+
         public async Task<TEntity?> GetAsync(object id)
         {
-            return _context.Set<TEntity?>().Find(id);
+            return  await _context.Set<TEntity?>().FindAsync(id);
         }
 
         public void InsertAsync(TEntity entity)
@@ -52,10 +58,21 @@ namespace SolutionCore.Repositories
             _context.Entry(entity).State = EntityState.Added;
         }
 
-        public void UpdateAsync(TEntity entity)
+        public async Task<bool> UpdateAsync(TEntity entity, object id)
         {
-            _context.Set<TEntity>().Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
+          
+
+            var objEntity =  _context.Set<TEntity>().FindAsync(id).Result;
+             
+            if (objEntity!=null)
+            {
+                _context.Entry(objEntity).State = EntityState.Detached;
+                _context.Entry(entity).State = EntityState.Modified;
+
+                return await Task.FromResult(true) ;
+            }
+           // _context.Set<TEntity>().Attach(entity);
+          return await Task.FromResult(false);
 
 
         }
@@ -64,5 +81,10 @@ namespace SolutionCore.Repositories
         {
             _context.Dispose();
         }
+
+
+
+
+
     }
 }

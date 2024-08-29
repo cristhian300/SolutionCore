@@ -13,7 +13,7 @@ using PmfBff.Interfaces;
 using PmfBff.Services;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
 using SolutionCore.Application;
-using SolutionCore.Application.Application.Product;
+using SolutionCore.Application.Application.Products;
 using SolutionCore.Application.Contracts.Contract.Product;
 using SolutionCore.Contract;
 using SolutionCore.Distributed_Processes.Dominio.Application;

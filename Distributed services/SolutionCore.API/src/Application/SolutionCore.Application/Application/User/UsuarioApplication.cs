@@ -6,7 +6,7 @@ using SolutionCore.Repositories;
 
 namespace SolutionCore.Distributed_Processes.Dominio.Application
 {
-    public class UsuarioApplication : IUsuarioContract
+    public class UsuarioApplication : IUsuarioApplication
     {
 
 

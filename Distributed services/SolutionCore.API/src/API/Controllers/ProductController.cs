@@ -26,7 +26,7 @@ namespace SolutionCore.Controllers
     public class ProductController : ControllerBase
     {
         // GET: api/Product
-        private IProductContract _IProductContract;
+        private IProductApplication _IProductContract;
         private readonly IWebHostEnvironment _env;
         IUnitOfWork<CoreContext> _CoreContext;
         private IConfiguration _Configuration;
@@ -34,7 +34,7 @@ namespace SolutionCore.Controllers
         public IPmfRestClient _pmfRestClient { get; }
 
         public ProductController(
-           IProductContract IProductContract,
+           IProductApplication IProductContract,
             IWebHostEnvironment env, IUnitOfWork<CoreContext> CoreContext,
             IPmfRestClient pmfRestClient,
             IConfiguration configuration
@@ -56,23 +56,33 @@ namespace SolutionCore.Controllers
             parameter.PathUrlImage = $"{_Configuration["Services:CoreUrl"]}/images/";
 
             var response = await _IProductContract.ListProduct(parameter);
+            if (response.IsSuccess)
+                return Ok(response);
 
+            return BadRequest(response);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddProduct([FromForm] AddProductDTO parameter)
+        {
+            var response = await _IProductContract.AddProduct(parameter);
+            if(response.IsSuccess)
+            return Ok(response);
+
+            return BadRequest(response);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> EditProduct([FromForm] EditProductDTO parameter)
+        {
+
+            var response = await _IProductContract.EditProduct(parameter);
+            if(response.IsSuccess)
             return  Ok(response);
-        }
 
-
-        [HttpPost]
-        public async Task<AddProductResponse> AddProduct([FromForm] AddProductRequest parameter)
-        {
-
-            return await _IProductContract.AddProduct(parameter);
-        }
-
-
-        [HttpPost]
-        public async Task<EditProductResponse> EditProduct([FromForm] EditProductRequest parameter)
-        {
-            return await _IProductContract.EditProduct(parameter);
+            return BadRequest(response);
         }
 
         [HttpDelete("{productId}")]

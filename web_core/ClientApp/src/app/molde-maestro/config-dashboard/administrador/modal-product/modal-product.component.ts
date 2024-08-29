@@ -151,10 +151,11 @@ export class ModalProductComponent implements OnInit {
       // this.formParent.get("imageLoad").updateValueAndValidity;
 
       var reader = new FileReader();
-      reader.readAsDataURL(this.fileData);
+      // reader.readAsDataURL(this.fileData);
       reader.onload = (event: any) => {
         //preview Base 64
         this.previewImg = reader.result as string;
+        //read name file
         (this.nameFileLoad.nativeElement as HTMLElement).innerText = this.fileData.name
       }
       reader.readAsDataURL(this.fileData)
@@ -165,7 +166,8 @@ export class ModalProductComponent implements OnInit {
   CargarProduct() {
     this.isSummit = true
 
-    this.formParent.controls.image.setValidators(this.files.length > 0 || this.previewImg ? null : [Validators.required]);
+    this.formParent.controls.image.setValidators(this.files.length > 0 ||
+       this.previewImg ? null : [Validators.required]);
     this.formParent.controls.image.updateValueAndValidity();
 
     if (this.formParent.valid) {

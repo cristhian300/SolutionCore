@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SolutionCore.Api.DataAcces.Infrastructure.Data.Entities
 {
-    public partial class Product
+    public  class Product
     {
         public int ProductId { get; set; }
         public string Name { get; set; }

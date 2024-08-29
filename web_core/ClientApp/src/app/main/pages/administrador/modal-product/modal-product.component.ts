@@ -24,6 +24,8 @@ export class ModalProductComponent implements OnInit {
   messageError: string = 'existe un error'
   currentControl: AbstractControlDirective | AbstractControl;
   isSummit: boolean = false
+
+
   constructor(private formbuilder: FormBuilder,
     private productService: ProductService,
     private modalProduct: MatDialogRef<ModalProductComponent>,
@@ -134,17 +136,8 @@ export class ModalProductComponent implements OnInit {
   CargaImagen(event) {
 
     if (event.target.files) {
-
       this.fileData = <File>event.target.files[0];
-
-
-      // this.formParent.patchValue({
-      //   imageLoad: this.fileData
-      // })
-      // this.formParent.get("imageLoad").updateValueAndValidity;
-
       var reader = new FileReader();
-      reader.readAsDataURL(this.fileData);
       reader.onload = (event: any) => {
         this.imagen = reader.result as string;
         (this.nameFileLoad.nativeElement as HTMLElement).innerText = this.fileData.name
@@ -154,24 +147,25 @@ export class ModalProductComponent implements OnInit {
   };
 
 
-  CargarProduct() {
+  CargarProduct(formParent: FormGroup) {
     this.isSummit = true
     if (this.formParent.valid) {
       if (!this.data) {
-        this.insertar();
+        this.insertar(formParent);
       } else {
         this.update();
       }
     }
   };
 
-  insertar() {
+  insertar(formParent: FormGroup) {
     let request = new AddProductRequest()
 
-    request.files = this.fileData;
-    request.Name = this.formParent.get("name").value;
-    request.Price = this.formParent.get("precio").value;
+      request.files = this.fileData;
+     request.Name = this.formParent.get("name").value;
+      request.Price = this.formParent.get("precio").value;
     request.Description = this.formParent.get("detalle").value;
+
 
     if (!request.files) {
       this.snackBar.open('No existe archivo cargado', 'close', { duration: 5000, panelClass: ['error-snackbar'] });
@@ -194,8 +188,8 @@ export class ModalProductComponent implements OnInit {
 
     let request = new EditProductRequest()
     request.ProductId = this.data.productId;
-    // request.files = this.fileData;
-    request.files = this.formParent.get("imageLoad").value;
+    request.files = this.fileData;
+    // request.files = this.formParent.get("imageLoad").value;
     request.Name = this.formParent.get("name").value;
     request.Price = this.formParent.get("precio").value;
     request.Description = this.formParent.get("detalle").value;

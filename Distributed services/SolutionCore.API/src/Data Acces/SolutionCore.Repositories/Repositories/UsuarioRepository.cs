@@ -6,7 +6,7 @@ using SolutionCore.Application.DTO.Authorization.Request;
 using SolutionCore.Application.DTO.Authorization.Response;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.QueryEntity;
 
-namespace SolutionCore.Repositories
+namespace SolutionCore.Repositories.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {

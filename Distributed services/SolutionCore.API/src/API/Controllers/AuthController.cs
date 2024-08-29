@@ -18,7 +18,7 @@ namespace SolutionCore.Controllers
         // GET: api/Auth
         //eduard100
         //Pass@123456
-        private IUsuarioContract _IUsuarioContract;
+        private IUsuarioApplication _IUsuarioContract;
         [AllowAnonymous]
         [HttpGet]
         public string MetAuth()
@@ -65,7 +65,7 @@ namespace SolutionCore.Controllers
         //    return Unauthorized();
         //}
 
-        public AuthController(IUsuarioContract IUsuarioContract)
+        public AuthController(IUsuarioApplication IUsuarioContract)
         {
 
             _IUsuarioContract = IUsuarioContract;

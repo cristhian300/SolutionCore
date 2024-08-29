@@ -6,7 +6,7 @@
 
 
 
-<form [formGroup]="formParent" (submit)="CargarProduct()">
+<form [formGroup]="formParent" (submit)="CargarProduct(formParent)">
 
 
   <perfect-scrollbar style="width: 100%;height: 60vh">
@@ -75,9 +75,10 @@
             </div>
 
             <div class="row" style="display: flex; justify-content: center;flex-direction: column;">
-              <p style="margin: auto;" >
-                <input formControlName="imageLoad" style='display: none;' #image id="file-upload"
+              <p style="margin: auto;">
+                <input #image formControlName="imageLoad" style='display: none;'  id="file-upload"
                   (change)="CargaImagen($event)" type="file" />
+
                 <button type="button" (click)="image.click()" mat-raised-button>
                   Cargar Imagen
                 </button>
@@ -85,7 +86,7 @@
               <p style="margin: auto;">
                 <label #nameFile></label>
               </p>
-              <mat-error style="margin: auto;"  *ngIf="validationErrores('imageLoad')">
+              <mat-error style="margin: auto;" *ngIf="validationErrores('imageLoad')">
                 <p *ngFor="let messageError of listOfErrors('imageLoad')">
                   {{messageError}}
                 </p>

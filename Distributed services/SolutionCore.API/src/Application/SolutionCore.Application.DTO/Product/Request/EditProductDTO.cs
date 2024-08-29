@@ -5,13 +5,13 @@ using System.Text;
 
 namespace SolutionCore.Application.DTO.Product.Request
 {
-    public class EditProductRequest
+    public class EditProductDTO
     {
         public int ProductId { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public decimal? Price { get; set; }
 
-        public List<IFormFile> files { get; set; }
+        public IFormFile files { get; set; }
     }
 }

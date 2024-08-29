@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
+using SolutionCore.Repositories.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

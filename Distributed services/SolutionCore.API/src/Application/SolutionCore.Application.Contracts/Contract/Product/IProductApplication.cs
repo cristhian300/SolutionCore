@@ -8,15 +8,15 @@ using Transversal.Common;
 
 namespace SolutionCore.Application.Contracts.Contract.Product
 {
-    public interface IProductContract
+    public interface IProductApplication
     {
 
         Task<Response<List<ListProductDTO>>> ListProduct(ListProductRequest parameter);
 
-        Task<AddProductResponse> AddProduct(AddProductRequest parameter);
+        Task<Response<bool>> AddProduct(AddProductDTO parameter);
 
 
-        Task<EditProductResponse> EditProduct(EditProductRequest parameter);
+        Task<Response<bool>> EditProduct(EditProductDTO parameter);
 
         Task<DeleteProductResponse> DeleteProduct(DeleteProductRequest parameter);
         

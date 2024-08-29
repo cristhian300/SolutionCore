@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
@@ -7,7 +7,6 @@
 	</PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Data Acces\SolutionCore.Api.DataAcces\SolutionCore.Api.DataAcces.csproj" />
     <ProjectReference Include="..\..\Data Acces\SolutionCore.Repositories\SolutionCore.Repositories.csproj" />
     <ProjectReference Include="..\..\Transversal.Common\Transversal.Common.csproj" />
     <ProjectReference Include="..\SolutionCore.Application.Contracts\SolutionCore.Application.Contracts.csproj" />
