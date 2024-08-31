@@ -1,7 +1,5 @@
 ﻿namespace SolutionCore.Repositories.Repositories
 {
-
-    using Arch.EntityFrameworkCore.UnitOfWork;
     using AutoMapper;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -15,7 +13,6 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
     public class ProductRepository : RespositoryBase<Product>, IProductRepository
     {
@@ -95,13 +92,22 @@
                                                          !p.Deleted);
                 if (Queryproduct != null)
                 {
-                //_CoreContext.Entry(Queryproduct).State = EntityState.Detached;
-
                
-                   _CoreContext.Products.UpdateRange(Queryproduct);
+
+                 if(string.IsNullOrEmpty(parameter.Photo)) {
+                    parameter.Photo = Queryproduct.Photo;
+
+                    _CoreContext.Products.UpdateRange(parameter);
+                    return await Task.FromResult(true);
+                    }
+                else
+                {
+                    _CoreContext.Products.UpdateRange(parameter);
                     return await Task.FromResult(true);
                 }
-
+    
+              
+                }
                 return await Task.FromResult(false);
           
 

@@ -19,12 +19,13 @@ export class ModalProductComponent implements OnInit {
   @ViewChild("nameFile", { static: true }) nameFileLoad: ElementRef;
 
 
-  formParent: FormGroup;
+  solicitudForm: FormGroup;
   title: string;
   messageError: string = 'existe un error'
   currentControl: AbstractControlDirective | AbstractControl;
   isSummit: boolean = false
-
+  selectedFile: File = null;
+  imagen: string = ''
 
   constructor(private formbuilder: FormBuilder,
     private productService: ProductService,
@@ -45,9 +46,9 @@ export class ModalProductComponent implements OnInit {
   loadForm() {
     if (this.data) {
       this.title = "Editar Productos"
-      this.formParent.get('name').setValue(this.data.name)
-      this.formParent.get('precio').setValue(this.data.price);
-      this.formParent.get('detalle').setValue(this.data.description);
+      this.solicitudForm.get('name').setValue(this.data.name)
+      this.solicitudForm.get('precio').setValue(this.data.price);
+      this.solicitudForm.get('detalle').setValue(this.data.description);
       this.imagen = this.data.pathUrlImage;
     }
     else {
@@ -60,7 +61,7 @@ export class ModalProductComponent implements OnInit {
 
   CreateForm() {
 
-    this.formParent = this.formbuilder.group({
+    this.solicitudForm = this.formbuilder.group({
       name: ["",
         [Validators.required, Validators.minLength(0), Validators.maxLength(10),
         Validators.pattern(`^[a-zA-Z'ñÑáéíóúÁÉÍÓÚ][a-zA-Z 'ñÑáéíóúÁÉÍÓÚ]*$`),]
@@ -75,7 +76,7 @@ export class ModalProductComponent implements OnInit {
   validationErrores(nameControl: string): boolean {
 
 
-    this.currentControl = this.formParent.get(nameControl)
+    this.currentControl = this.solicitudForm.get(nameControl)
 
     return (this.currentControl.errors
       &&
@@ -94,7 +95,7 @@ export class ModalProductComponent implements OnInit {
 
   listOfErrors(nameControl: string): Array<string> {
     let errors: Array<string> = [];
-    const control = this.formParent.get(nameControl).errors
+    const control = this.solicitudForm.get(nameControl).errors
     if (control) {
       errors = Object.keys(control).map(
         (typeError) =>
@@ -130,78 +131,98 @@ export class ModalProductComponent implements OnInit {
 
 
 
-  fileData: File = null;
-  imagen: string = ''
+
 
   CargaImagen(event) {
 
     if (event.target.files) {
-      this.fileData = <File>event.target.files[0];
+      this.selectedFile = <File>event.target.files[0];
       var reader = new FileReader();
       reader.onload = (event: any) => {
         this.imagen = reader.result as string;
-        (this.nameFileLoad.nativeElement as HTMLElement).innerText = this.fileData.name
+        (this.nameFileLoad.nativeElement as HTMLElement).innerText = this.selectedFile.name
+
+        this.solicitudForm.patchValue({ imageLoad: this.selectedFile })
       }
-      reader.readAsDataURL(this.fileData)
+      reader.readAsDataURL(this.selectedFile)
     }
   };
 
 
   CargarProduct(formParent: FormGroup) {
     this.isSummit = true
-    if (this.formParent.valid) {
-      if (!this.data) {
-        this.insertar(formParent);
-      } else {
-        this.update();
-      }
+
+    if (!this.data) {
+      this.insertar(formParent);
+    } else {
+      this.update();
     }
+
   };
 
-  insertar(formParent: FormGroup) {
-    let request = new AddProductRequest()
+  insertar(form: FormGroup) {
 
-      request.files = this.fileData;
-     request.Name = this.formParent.get("name").value;
-      request.Price = this.formParent.get("precio").value;
-    request.Description = this.formParent.get("detalle").value;
+    // let request = new AddProductRequest()
+
+    // // request.files = this.fileData;
+    // request.files = this.solicitudForm.get("imageLoad").value;
+    // request.Name = this.solicitudForm.get("name").value;
+    // request.Price = this.solicitudForm.get("precio").value;
+    // request.Description = this.solicitudForm.get("detalle").value;
 
 
-    if (!request.files) {
-      this.snackBar.open('No existe archivo cargado', 'close', { duration: 5000, panelClass: ['error-snackbar'] });
-      return
+    // if (!request.files) {
+    //   this.snackBar.open('No existe archivo cargado', 'close', { duration: 5000, panelClass: ['error-snackbar'] });
+    //   return
+    // }
+
+    if (this.solicitudForm.valid) {
+
+      this.productService.AddProduct(form.value).subscribe(
+        response => {
+          this.modalProduct.close()
+        },
+        error => {
+          this.snackBar.open(error, 'close'
+            , { duration: 5000, panelClass: ['error-snackbar'] });
+          console.error(error);
+        },
+        () => { }
+
+      );
     }
-
-    this.productService.AddProduct(request).subscribe(
-      response => {
-        this.modalProduct.close()
-      },
-      error => { },
-      () => { }
-
-    );
-
   }
 
 
   update() {
 
-    let request = new EditProductRequest()
-    request.ProductId = this.data.productId;
-    request.files = this.fileData;
-    // request.files = this.formParent.get("imageLoad").value;
-    request.Name = this.formParent.get("name").value;
-    request.Price = this.formParent.get("precio").value;
-    request.Description = this.formParent.get("detalle").value;
+    if (this.selectedFile) {
+      this.solicitudForm.get('imageLoad')
 
-    this.productService.EditProduct(request).subscribe(
-      response => {
-        this.modalProduct.close()
-      },
-      error => { },
-      () => { }
+        .addValidators(Validators.required);
+    }
+    else {
+      this.solicitudForm.get('imageLoad').setErrors(null);
+    }
 
-    );
+    if (this.solicitudForm.valid) {
+      let request = new EditProductRequest()
+      request.ProductId = this.data.productId;
+      //request.files = this.fileData;
+      request.files = this.solicitudForm.get("imageLoad").value;
+      request.Name = this.solicitudForm.get("name").value;
+      request.Price = this.solicitudForm.get("precio").value;
+      request.Description = this.solicitudForm.get("detalle").value;
+
+      this.productService.EditProduct(request).subscribe(
+        response => {
+          this.modalProduct.close()
+        },
+        error => { },
+        () => { }
+
+      );
+    }
   }
 
 

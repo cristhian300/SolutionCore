@@ -12,6 +12,6 @@ namespace SolutionCore.Application.DTO.Product.Request
         public string? Description { get; set; }
         public decimal? Price { get; set; }
 
-        public IFormFile files { get; set; }
+        public IFormFile? files { get; set; }
     }
 }
