@@ -1,8 +1,9 @@
 import { Observable } from "rxjs";
 import { HttpHeaders, HttpClient } from "@angular/common/http";
-import { PostParameter } from "./post-parameter";
+
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { PostParameter } from "./post-parameter";
 
 @Injectable()
 export class NetworkManager {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductsHomeComponent } from './products-home/products-home.component';
+
 import { HomePortadaComponent } from './home-portada.component';
 
 const routes: Routes = [
@@ -14,11 +14,7 @@ const routes: Routes = [
         component: HomePortadaComponent,
         data: { titulo: 'Home' }
       },
-      {
-        path: 'products',
-        component: ProductsHomeComponent,
-        data: { titulo: 'products' }
-      },
+
     ]
   },
 ];

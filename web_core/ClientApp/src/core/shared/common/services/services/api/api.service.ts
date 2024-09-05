@@ -90,12 +90,12 @@ export class ApiService {
       }
     }
 
-    // if (files.length) {
-    //   files.forEach((file) => {
-    //     console.log('files load', file);
-    //     formData.append(file.name, file.native, encodeURIComponent(file.native.name));
-    //   });
-    // }
+    if (files.length) {
+      files.forEach((file) => {
+        console.log('files load', file);
+        formData.append(file.name, file.native, encodeURIComponent(file.native.name));
+      });
+    }
 
 
     return (this.httpClient.post(parseApiUrl, formData, parseReqOptions as any) as any).pipe(

@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
-import { NetworkManager } from './agent/common/network-manager';
+import { NetworkManager } from './main/providers/legacy-agent/network-manager';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { InterceptorService } from './main/providers/interceptor/interceptor.service';
@@ -22,7 +22,7 @@ import { SecurityGuardGuard } from './main/providers/guard/security-guard.guard'
 import { ApiService } from 'src/core/shared/common/services/services/api/api.service';
 import { AppRoutingModule } from './app.routing.module';
 import { MainLayoutModule } from './main/layouts/main-layout/main-layout.module';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+
 // import { HeaderComponent } from './main/layouts/header/header.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { BlankLayoutModule } from './main/layouts/blank-layout/blank-layout.module';
@@ -38,7 +38,7 @@ import { NgbModule,NgbCarouselModule  } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
+
 
   ],
   imports: [

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NetworkManager } from 'src/app/agent/common/network-manager';
-import { PostParameter } from 'src/app/agent/common/post-parameter';
+import { NetworkManager } from 'src/app/main/providers/legacy-agent/network-manager';
+import { PostParameter } from 'src/app/main/providers/legacy-agent/post-parameter';
 import { environment } from 'src/environments/environment.prod';
 
 import { StorageService } from '../common/storage.service';
@@ -41,7 +41,7 @@ export class ProductService {
   public AddProduct(parameter: AddProductRequest = null) {
     let files = []
     files.push({ name: 'Document', native: parameter.files });
-    return this.apiService.postDataAndFile(this.Url + 'Product/AddProduct', parameter, files, {});
+    return this.apiService.post(this.Url + 'Product/AddProduct', parameter);
     // return this.networkManager.postFile(parameters, formData) as Observable<ListProductResponse>;
   }
 

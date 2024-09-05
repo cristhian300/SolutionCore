@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { NetworkManager } from 'src/app/agent/common/network-manager';
-import { PostParameter } from 'src/app/agent/common/post-parameter';
+import { NetworkManager } from 'src/app/main/providers/legacy-agent/network-manager';
+import { PostParameter } from 'src/app/main/providers/legacy-agent/post-parameter';
 import { ApiService } from 'src/core/shared/common/services/services/api/api.service';
 
 import { StorageService } from '../common/storage.service';

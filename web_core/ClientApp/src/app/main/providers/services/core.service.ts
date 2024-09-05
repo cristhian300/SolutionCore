@@ -7,7 +7,7 @@ import { ConfigurationResponse } from './configuration/configuration';
 import { debug } from 'console';
 import { ConfigurationService } from './configuration/configuration.service';
 import { AppConfig, APP_CONFIG } from 'src/app/shared/appconfig/appconfig.module';
-import { NetworkManager } from 'src/app/agent/common/network-manager';
+import { NetworkManager } from 'src/app/main/providers/legacy-agent/network-manager';
 
 
 

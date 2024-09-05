@@ -190,6 +190,9 @@ export class ModalProductComponent implements OnInit {
       return
     }
 
+    //  const request: IProductRequest= this.formParent.value
+    //  request.
+
     this.productService.insertProduct(this.formParent.value, this.files).subscribe(
       response => {
         this.modalProduct.close()
