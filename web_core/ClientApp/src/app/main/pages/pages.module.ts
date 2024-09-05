@@ -12,7 +12,6 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AlternativeComponent } from './alternative/alternative.component';
 import { HeaderComponent } from '../layouts/header/header.component';
 import { SidebarComponent } from '../layouts/sidebar/sidebar.component';
 import { ClientContactComponent } from './task/client-contact/client-contact.component';
@@ -30,7 +29,7 @@ import { BotonGenericComponent } from './usuarios/boton-generic/boton-generic.co
     ModalDeleteProductComponent,
     ModalUsuariosComponent,
     // MoldePageComponent,
-    AlternativeComponent,
+
     HeaderComponent,
     SidebarComponent,
     ClientContactComponent,

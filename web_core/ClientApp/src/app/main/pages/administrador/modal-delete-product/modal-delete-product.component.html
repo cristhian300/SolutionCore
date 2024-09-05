@@ -1,3 +1,36 @@
-<p>Desea eliminar este producto {{productDetails.name}}</p>
-<button>Cancelar</button>
-<button (click)="DeleteProduct(productDetails.productId)">Aceptar</button>
+<div class="container-fluid">
+
+  <div class="row" style=" color: white;  background-color: black; justify-content: space-between; flex-wrap: nowrap;">
+
+    <div class="col" style="font-size: 20px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+      Eliminar
+    </div>
+
+    <div class="col" style="text-align: end;">
+      <mat-icon (click)="CerrarModal()" style="cursor: pointer;font-size: 36px;">close</mat-icon>
+    </div>
+
+
+  </div>
+  <br>
+
+  <div class="row" fxLayoutAlign="center center">
+
+    <p>Desea eliminar el producto: <b>{{productDetails.name}} </b> </p>
+
+  </div>
+
+  <div class="row justify-content-center" fxLayoutGap="20px" fxLayout.xs="column">
+
+    <div>
+      <button style="width: 100%;" (click)="DeleteProduct(productDetails.productId)" mat-raised-button>Aceptar</button>
+    </div>
+
+    <div>
+      <button style="width: 100%;" (click)="CerrarModal()" mat-raised-button>Cancelar</button>
+    </div>
+
+
+
+  </div>
+</div>

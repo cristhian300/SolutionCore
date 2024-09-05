@@ -1,6 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { stringify } from '@angular/compiler/src/util';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, AbstractControlDirective, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AbstractControlDirective, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddProductRequest, EditProductRequest, ListProductEntity } from 'src/app/main/providers/services/Product/product.interface';
@@ -13,10 +14,10 @@ import { ProductService } from 'src/app/main/providers/services/Product/product.
   styleUrls: ['./modal-product.component.css']
 })
 export class ModalProductComponent implements OnInit {
-  @ViewChild("foto") foto: ElementRef;
+
   @ViewChild("image") image: ElementRef;
-  @ViewChild("imgProduct") imgProduct: ElementRef;
-  @ViewChild("nameFile", { static: true }) nameFileLoad: ElementRef;
+
+  // @ViewChild("nameFile", { static: false }) nameFileLoad: ElementRef;
 
 
   solicitudForm: FormGroup;
@@ -26,7 +27,7 @@ export class ModalProductComponent implements OnInit {
   isSummit: boolean = false
   selectedFile: File = null;
   imagen: string = ''
-
+  nameFileLoad = ''
   constructor(private formbuilder: FormBuilder,
     private productService: ProductService,
     private modalProduct: MatDialogRef<ModalProductComponent>,
@@ -38,7 +39,18 @@ export class ModalProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.CreateForm()
+
+    this.solicitudForm = this.formbuilder.group({
+      ProductId: new FormControl(0),
+      Name: ["",
+        [Validators.required, Validators.minLength(0), Validators.maxLength(200),
+          // Validators.pattern(`^[a-zA-Z'ñÑáéíóúÁÉÍÓÚ][a-zA-Z 'ñÑáéíóúÁÉÍÓÚ]*$`),
+        ]
+      ],
+      Price: ["", [Validators.required, Validators.min(0), Validators.max(1000)]],
+      Description: ["", [Validators.required]],
+      files: ["", [Validators.required]]
+    })
     this.loadForm()
   }
 
@@ -46,9 +58,10 @@ export class ModalProductComponent implements OnInit {
   loadForm() {
     if (this.data) {
       this.title = "Editar Productos"
-      this.solicitudForm.get('name').setValue(this.data.name)
-      this.solicitudForm.get('precio').setValue(this.data.price);
-      this.solicitudForm.get('detalle').setValue(this.data.description);
+      this.solicitudForm.get('ProductId').setValue(this.data.productId)
+      this.solicitudForm.get('Name').setValue(this.data.name)
+      this.solicitudForm.get('Price').setValue(this.data.price);
+      this.solicitudForm.get('Description').setValue(this.data.description);
       this.imagen = this.data.pathUrlImage;
     }
     else {
@@ -57,28 +70,16 @@ export class ModalProductComponent implements OnInit {
   }
 
 
-  fileName: any = '';
 
-  CreateForm() {
 
-    this.solicitudForm = this.formbuilder.group({
-      name: ["",
-        [Validators.required, Validators.minLength(0), Validators.maxLength(10),
-        Validators.pattern(`^[a-zA-Z'ñÑáéíóúÁÉÍÓÚ][a-zA-Z 'ñÑáéíóúÁÉÍÓÚ]*$`),]
-      ],
-      precio: ["", [Validators.required, Validators.min(0), Validators.max(100)]],
-      detalle: ["", [Validators.required]],
-      imageLoad: ["", [Validators.required]]
-    })
 
-  }
 
   validationErrores(nameControl: string): boolean {
 
 
     this.currentControl = this.solicitudForm.get(nameControl)
 
-    return (this.currentControl.errors
+    const indicador = (this.currentControl.errors
       &&
       (
         this.currentControl.touched
@@ -89,6 +90,9 @@ export class ModalProductComponent implements OnInit {
 
       || (this.isSummit && this.currentControl.invalid)
 
+      console.log(nameControl,this.currentControl);
+
+    return indicador
 
   }
 
@@ -140,11 +144,10 @@ export class ModalProductComponent implements OnInit {
       var reader = new FileReader();
       reader.onload = (event: any) => {
         this.imagen = reader.result as string;
-        (this.nameFileLoad.nativeElement as HTMLElement).innerText = this.selectedFile.name
-
-        this.solicitudForm.patchValue({ imageLoad: this.selectedFile })
       }
       reader.readAsDataURL(this.selectedFile)
+      this.nameFileLoad = this.selectedFile.name
+      this.solicitudForm.patchValue({ files: this.selectedFile })
     }
   };
 
@@ -162,57 +165,46 @@ export class ModalProductComponent implements OnInit {
 
   insertar(form: FormGroup) {
 
-    // let request = new AddProductRequest()
+    let request = new AddProductRequest()
 
-    // // request.files = this.fileData;
-    // request.files = this.solicitudForm.get("imageLoad").value;
-    // request.Name = this.solicitudForm.get("name").value;
-    // request.Price = this.solicitudForm.get("precio").value;
-    // request.Description = this.solicitudForm.get("detalle").value;
-
-
-    // if (!request.files) {
-    //   this.snackBar.open('No existe archivo cargado', 'close', { duration: 5000, panelClass: ['error-snackbar'] });
-    //   return
-    // }
-
+    request = this.solicitudForm.value
+    request.files = this.solicitudForm.get("files").value;
+    if (!request.files) {
+      this.snackBar.open('No existe archivo cargado', 'close', { duration: 5000, panelClass: ['error-snackbar'] });
+      return
+    }
     if (this.solicitudForm.valid) {
 
-      this.productService.AddProduct(form.value).subscribe(
+      this.productService.AddProduct(request).subscribe(
         response => {
           this.modalProduct.close()
         },
-        error => {
-          this.snackBar.open(error, 'close'
+        (error: HttpErrorResponse) => {
+          this.snackBar.open(error.message, 'close'
             , { duration: 5000, panelClass: ['error-snackbar'] });
           console.error(error);
-        },
-        () => { }
+        }
 
       );
     }
   }
 
-
+//https://stackoverflow.com/questions/47560696/angular-5-and-material-how-to-change-the-background-color-from-snackbar-compon
   update() {
 
     if (this.selectedFile) {
-      this.solicitudForm.get('imageLoad')
-
+      this.solicitudForm.get('files')
         .addValidators(Validators.required);
     }
     else {
-      this.solicitudForm.get('imageLoad').setErrors(null);
+      this.solicitudForm.get('files').setErrors(null);
     }
 
     if (this.solicitudForm.valid) {
+
       let request = new EditProductRequest()
-      request.ProductId = this.data.productId;
-      //request.files = this.fileData;
-      request.files = this.solicitudForm.get("imageLoad").value;
-      request.Name = this.solicitudForm.get("name").value;
-      request.Price = this.solicitudForm.get("precio").value;
-      request.Description = this.solicitudForm.get("detalle").value;
+      request = this.solicitudForm.value
+      request.files = this.solicitudForm.get("files").value;
 
       this.productService.EditProduct(request).subscribe(
         response => {

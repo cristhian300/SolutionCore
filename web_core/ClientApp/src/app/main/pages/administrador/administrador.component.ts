@@ -5,7 +5,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { StorageService } from '../../providers/services/common/storage.service';
 import { ConfigurationResponse } from '../../providers/services/configuration/configuration';
-import { ListProductEntity,   } from '../../providers/services/Product/product.interface';
+import { ListProductEntity, } from '../../providers/services/Product/product.interface';
 
 
 
@@ -13,6 +13,7 @@ import { ProductService } from '../../providers/services/Product/product.service
 import { ModalDeleteProductComponent } from './modal-delete-product/modal-delete-product.component';
 import { ModalProductComponent } from './modal-product/modal-product.component';
 import { ProductDto } from '../../models/DTOs/Product/productosDto';
+import { ResponseDTO } from '../../models/DTOs/response-dto';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class AdministradorComponent implements OnInit {
   /*find permite encontrar algun valor en el array */
 
   pageEvent: PageEvent;
-  listProduct :  ProductDto[]=[]
+  listProduct: ProductDto[] = []
   filtro: string = '';
   ListProductToShow: ProductDto[] = [];
   // public pathImage:string ='';
@@ -56,17 +57,18 @@ export class AdministradorComponent implements OnInit {
 
     this.ngxLoader.start();
     this.productService.ListProduct().subscribe(
-      response => {
+      (response: ResponseDTO) => {
 
+        console.log('response lista', response);
 
-        var  listProductResponse =response.data as ProductDto[]
-       this. listProduct = listProductResponse
-       this.totalSize =  listProductResponse.length;
+        var listProductResponse = response.data as ProductDto[]
+        this.listProduct = listProductResponse
+        this.totalSize = listProductResponse.length;
 
         const start = this.pageIndex * this.pageSize;
         const end = (this.pageIndex + 1) * this.pageSize;
 
-        this.ListProductToShow = this .listProduct.slice(start, end);
+        this.ListProductToShow = this.listProduct.slice(start, end);
 
         this.ngxLoader.stop();
       }, error => {
@@ -85,7 +87,7 @@ export class AdministradorComponent implements OnInit {
     this.pageSize = e.pageSize;
     const end = (this.pageIndex + 1) * this.pageSize;
     const start = this.pageIndex * this.pageSize;
-    this.ListProductToShow = this. listProduct.slice(start, end);
+    this.ListProductToShow = this.listProduct.slice(start, end);
   }
   // private setProduct(listProduct: ListProductEntity[]) {
   //   listProduct.forEach(element => {
@@ -104,7 +106,7 @@ export class AdministradorComponent implements OnInit {
 
     const modal = this.dialog.open(ModalProductComponent, {
       width: '90%',
-      height:'95%',
+      height: '95%',
     })
 
 
@@ -117,7 +119,7 @@ export class AdministradorComponent implements OnInit {
 
   inputChange(value) {
 
-    this.ListProductToShow = this .listProduct.filter(f => {
+    this.ListProductToShow = this.listProduct.filter(f => {
       return f.name.includes(value)
     });
   }
@@ -134,7 +136,7 @@ export class AdministradorComponent implements OnInit {
 
 
     modal.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+
       this.ListadoProducto();
     });
 
@@ -143,10 +145,13 @@ export class AdministradorComponent implements OnInit {
   delete(product: ListProductEntity) {
     const modal = this.dialog.open(ModalDeleteProductComponent,
       {
-        width: '90%',
+        width: '50%',
         data: product
       })
+    modal.afterClosed().subscribe(result => {
 
+      this.ListadoProducto();
+    });
 
   }
 }

@@ -19,7 +19,6 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
     children: [
       { path: 'menu', data: { titulo: 'menu' } },
-
       { path: 'molde', component: MoldePageComponent, data: { titulo: 'molde' } },
     ]
   },

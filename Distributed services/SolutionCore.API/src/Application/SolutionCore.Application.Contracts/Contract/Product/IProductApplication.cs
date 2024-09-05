@@ -18,7 +18,7 @@ namespace SolutionCore.Application.Contracts.Contract.Product
 
         Task<Response<bool>> EditProduct(EditProductDTO parameter);
 
-        Task<DeleteProductResponse> DeleteProduct(DeleteProductRequest parameter);
+        Task<Response<bool>> DeleteProduct(long productId);
         
     }
 }

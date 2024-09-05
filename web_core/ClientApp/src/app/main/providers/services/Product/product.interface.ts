@@ -1,5 +1,6 @@
 
 export class AddProductRequest {
+  ProductId: number;
   files: File;
   Name: string;
   Description: string;

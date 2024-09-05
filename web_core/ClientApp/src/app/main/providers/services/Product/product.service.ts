@@ -39,13 +39,9 @@ export class ProductService {
   }
 
   public AddProduct(parameter: AddProductRequest = null) {
-    const parameters = new PostParameter()
-    parameters.PathOperation = this.Url + 'Product/AddProduct'
-    parameters.RequestParameter = parameter
     let files = []
     files.push({ name: 'Document', native: parameter.files });
-
-    return this.apiService.postDataAndFile(parameters.PathOperation, parameter, files, {});
+    return this.apiService.postDataAndFile(this.Url + 'Product/AddProduct', parameter, files, {});
     // return this.networkManager.postFile(parameters, formData) as Observable<ListProductResponse>;
   }
 
@@ -67,10 +63,12 @@ export class ProductService {
 
 
   public deleteProduct(productId: number) {
-    const parameters = new PostParameter()
-    parameters.PathOperation = this.Url + 'Product/DeleteProduct'
+    // const parameters = new PostParameter()
+    // parameters.PathOperation = this.Url + 'Product/DeleteProduct'
     //parameters.RequestParameter = parameter
-    const body = {productId}
-    return this.apiService.delete(`${parameters.PathOperation}/{productId}`, body, { params: { productId } })
+    // const body = {productId}
+    // return this.apiService.delete(`${parameters.PathOperation}/{productId}`, body, { params: { productId } })
+    return this.apiService.delete(`${ this.Url + 'Product/DeleteProduct'}/${productId}`) as  Observable<ResponseDTO>
+
   }
 }

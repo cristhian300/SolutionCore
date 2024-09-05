@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './main/layouts/main-layout/main-layout.component';
 import { LoginComponent } from './main/login/login.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+
 import { AuthRoutingModule } from './node/auth/auth-routing.module';
 import { BlankLayoutComponent } from './main/layouts/blank-layout/blank-layout.component';
 
@@ -14,16 +14,10 @@ const routes: Routes = [
     path: '',
     children: [
 
-      // {
-      //   //flujo inicio
-      //   path: '',
-      //   component: BlankLayoutComponent,
-      // },
-
-
       {
-        //flujo Net core login
+        //flujo Net core Login
         path: '',
+        //component define el template de paginas a rutear
         component: BlankLayoutComponent,
         loadChildren:
           () => import('./main/login/login.module').then((m) => m.LoginModule)
@@ -31,7 +25,7 @@ const routes: Routes = [
 
       ,
       {
-        //flujo Net core pages
+        //flujo Net core pages login -> /
         path: '',
         component: MainLayoutComponent,
         loadChildren:
@@ -44,13 +38,14 @@ const routes: Routes = [
       },
 
       {
-        //**** //flujo home WEB_ME aqui se esta dashboard
+        //**** //flujo home WEB_ME aqui se esta dashboard -> dash
         path: '',
-        loadChildren: () => import('././molde-maestro/config-dashboard/administrador/administrador.module').then(m => m.AdministradorModule)
+        loadChildren: () => import('././molde-maestro/config-dashboard/administrador/administrador.module')
+        .then(m => m.AdministradorModule)
       },
 
       {
-        //ruta node_UD
+        //ruta node_UD (login node) --> node
         path: '',
         loadChildren: () => import('././node/auth/auth.module').then(m => m.AuthModule)
       }

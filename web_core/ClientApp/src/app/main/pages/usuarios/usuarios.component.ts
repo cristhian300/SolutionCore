@@ -14,8 +14,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ModalUsuariosComponent } from './modal-usuarios/modal-usuarios.component';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
-import { SecurityViewModel } from 'src/app/modules/security/SecurityViewModels/security-list-viewmodel';
-import { UserResultPanelViewModel } from 'src/app/modules/security/SecurityViewModels/user-result-panel-view.model';
+import { SecurityViewModel } from 'src/app/main/models/DTOs/Usuarios/security-list-viewmodel';
+import { UserResultPanelViewModel } from 'src/app/main/models/DTOs/Usuarios/user-result-panel-view.model';
 import { CoreService } from '../../providers/services/core.service';
 import { UsuariosService } from '../../providers/services/Usuarios/usuarios.service';
 import { AddUsuarioRequest, ListRoleResult, ListRolesRequest, ListUsuarioRequest, ListUsuarioResponse, ListUsuarioResult } from '../../providers/services/Usuarios/usuarios.interfaces';

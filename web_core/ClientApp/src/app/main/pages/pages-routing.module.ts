@@ -6,7 +6,6 @@ import { LoginComponent } from '../login/login.component';
 
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { MainLayoutComponent } from '../layouts/main-layout/main-layout.component';
-import { AlternativeComponent } from './alternative/alternative.component';
 import { ClientContactComponent } from './task/client-contact/client-contact.component';
 import { IntegracionDocumentosComponent } from './task/integracion-documentos/integracion-documentos.component';
 
@@ -28,7 +27,7 @@ const routes: Routes = [
       { path: 'administrador', component: AdministradorComponent , data: { breadCrumb: 'Admin' }},
       // { path: 'molde', component: MoldePageComponent, data: { breadCrumb: 'Molde Maestro' },
       //  },
-       { path: 'alterno', component: AlternativeComponent },
+
        { path: 'client-contact', component: ClientContactComponent },
        { path: 'integracion-doc', component: IntegracionDocumentosComponent },
     ]

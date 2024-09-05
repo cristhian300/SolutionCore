@@ -89,9 +89,29 @@ namespace SolutionCore.Application.Application.Products
             return response;  
         }
 
-        public Task<DeleteProductResponse> DeleteProduct(DeleteProductRequest parameter)
+        public async Task<Response<bool>> DeleteProduct(long productId)
         {
-            return Task.FromResult(_IProductQuery.DeleteProduct(parameter));
+
+            var response = new Response<bool>();
+
+            try
+            {
+               await _IProductQuery.DeleteProduct(productId);
+                response.Data = _unitOfWork.SaveChanges()>0;
+                if (response.Data) {
+                    response.IsSuccess = true;
+                    response.Message = "Eliminacion Exitosa!!!";
+                }
+
+
+            }
+            catch (Exception e )
+            {
+
+                response.Message = e.Message;
+            }
+
+            return response;
         }
 
         public async Task<Response<List<ListProductDTO>>> ListProduct(ListProductRequest parameter)

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SPINNER } from 'ngx-ui-loader';
-import { SystemStyleSheet } from './modules/enum/system-style-sheet';
+
 import { GoogleApiService } from 'src/core/shared/common/services/services/oauth2/google/google-api.service';
 import { AuthConfig, JwksValidationHandler, OAuthService } from 'angular-oauth2-oidc';
 import { LocalStorageService } from 'src/core/shared/common/services/services/storage/local-storage.service';
@@ -25,7 +25,7 @@ const oauthConfig: AuthConfig = {
 export class AppComponent {
   title = 'app';
 
-  public SystemStyleSheet = SystemStyleSheet;
+
   public SPINNER = SPINNER;
   claims: object;
 

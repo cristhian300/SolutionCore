@@ -16,8 +16,8 @@ namespace SolutionCore.Repositories
         Task<bool>   AddProduct(Product parameter);
 
         Task<bool> EditProduct(Product parameter);
-       
-        DeleteProductResponse DeleteProduct(DeleteProductRequest parameter);
+
+        Task<bool> DeleteProduct(long productId);
 
     }
 }

@@ -156,20 +156,22 @@
             return lstFileNames;
         }
 
-        public DeleteProductResponse DeleteProduct(DeleteProductRequest parameter)
+        public async Task< bool> DeleteProduct(long productId)
         {
 
-            var product = _CoreContext. Products.Where(x => x.ProductId == parameter.ProductId
-               && x.Deleted == false)
-                .FirstOrDefault();
+            var product = await _CoreContext. Products.Where(x => x.ProductId == productId
+            //   && x.Deleted == false
+               )
+                .FirstOrDefaultAsync();
 
             if (product != null)
             {
                 product.Deleted = true;
                 _CoreContext. Products.Update(product);
-                _CoreContext. SaveChanges();
+              return await Task.FromResult(true);
+                //_CoreContext. SaveChanges();
             }
-            return new DeleteProductResponse { };
+          return  await Task.FromResult(false);
         }
 
     }

@@ -85,14 +85,18 @@ namespace SolutionCore.Controllers
             return BadRequest(response);
         }
 
+
         [HttpDelete("{productId}")]
-        public async Task<DeleteProductResponse> DeleteProduct([FromRoute] int productId  , [FromBody] DeleteProductRequest parameter)
+        public async Task<IActionResult> DeleteProduct([FromRoute] long productId   )
         {
-            return await _IProductContract.DeleteProduct(parameter);
+
+            var response = await _IProductContract.DeleteProduct(productId);
+            if (response.IsSuccess) 
+                return Ok(response);
+            return BadRequest(response);
         }
 
-
-        [HttpPost]
+    [HttpPost]
         public async Task<IActionResult> TestProxy()
         {
 
