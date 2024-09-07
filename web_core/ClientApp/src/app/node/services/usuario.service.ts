@@ -1,15 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { RegisterForm } from '../interfaces/register-form';
-import { LoginForm } from '../interfaces/login-form';
+
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 
 declare const google: any;
 
-const baseUrl = environment.apiEndpointNode+'/api'
+const baseUrl = environment.apiEndpointNode + '/api'
 @Injectable({
   providedIn: 'root'
 })
@@ -58,7 +57,7 @@ export class UsuarioService {
 
 
 
-  crearUsuario(formData: RegisterForm) {
+  crearUsuario(formData: any) {
     console.log('Registrar Usuario');
     return this.http.post(`${baseUrl}/usuarios`, formData).pipe(
       tap((resp: any) => {
@@ -68,7 +67,7 @@ export class UsuarioService {
   }
 
 
-  login(formData: LoginForm) {
+  login(formData: any) {
 
     return this.http.post(`${baseUrl}/login`, formData).pipe(
       tap((resp: any) => {

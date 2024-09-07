@@ -3,8 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, pathMatch: 'full' },
-  { path: 'loginnet', component: LoginComponent },
+
+  {
+    path: '',
+    children: [
+      {
+        path: 'loginNet',
+        component: LoginComponent
+      },
+      { path: '', redirectTo: 'loginNet', pathMatch: 'full' },
+    ]
+
+
+
+
+  },
+  // { path: 'loginnet', component: LoginComponent },
 ];
 
 @NgModule({

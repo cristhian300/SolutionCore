@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/core/shared/common/services/services/api/api.service';
 
-import { IProductRequest, IProductResponse, IUpdateProductRequest } from '../../interfaces/product/product';
+import { IProductRequest, IProductResponse, IUpdateProductRequest } from '../../../molde-maestro/interfaces/product/product';
 import { environment } from 'src/environments/environment';
 
 const base_url = `${environment.apiEndpointNode}/api/products`

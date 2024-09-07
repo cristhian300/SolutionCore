@@ -23,10 +23,6 @@ import { BotonGenericComponent } from './usuarios/boton-generic/boton-generic.co
 @NgModule({
   declarations: [
     UsuariosComponent,
-
-    AdministradorComponent,
-    ModalProductComponent,
-    ModalDeleteProductComponent,
     ModalUsuariosComponent,
     // MoldePageComponent,
 
@@ -50,8 +46,7 @@ import { BotonGenericComponent } from './usuarios/boton-generic/boton-generic.co
   ],
   entryComponents: [
     ModalUsuariosComponent
-    , ModalProductComponent,
-    ModalDeleteProductComponent
+
   ]
 })
 export class PagesModule { }

@@ -7,7 +7,7 @@ const routes: Routes = [
 
   {
     path: '',
-
+    data: { breadCrumb: 'Ruta Principal' },
     children: [
       {
         path: '',

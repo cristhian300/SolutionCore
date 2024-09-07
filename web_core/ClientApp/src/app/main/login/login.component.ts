@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         if (response.payload) {
           localStorage.setItem("TokenUserN", JSON.stringify(response.payload.token))
           this.snackBar.open("Logeo exitoso", 'close', { duration: 3000 });
-          this.router.navigateByUrl("/usuarios").then();
+          this.router.navigateByUrl("/home").then();
         } else {
           this.snackBar.open("Revise su usuario o contraseña", 'close', { duration: 3000 });
         }
