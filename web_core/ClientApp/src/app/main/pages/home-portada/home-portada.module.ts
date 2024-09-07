@@ -8,6 +8,7 @@ import { ListProductHomeComponent } from '../../../../core/ui/component/list-pro
 import { CarouselPortadaComponent } from '../../../../core/ui/component/carousel-portada/carousel-portada.component';
 import { FooterModelComponent } from '../../../../core/ui/component/footer-model/footer-model.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MenuSideModule } from 'src/core/ui/component/menu-side/menu-side.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     HomePortadaRoutingModule,
-    NgbModule
+    NgbModule,
+    MenuSideModule
   ]
 })
 export class HomePortadaModule { }
