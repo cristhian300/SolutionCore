@@ -9,7 +9,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ModalProductComponent } from './modal-product/modal-product.component';
 import { ModalDeleteProductComponent } from './modal-delete-product/modal-delete-product.component';
 import { AdministradorComponent } from './administrador.component';
-// import { MenuSideModule } from 'src/core/ui/component/menu-side/menu-side.module';
+import { MenuSideModule } from 'src/core/ui/component/menu-side/menu-side.module';
+
 
 
 
@@ -27,7 +28,8 @@ import { AdministradorComponent } from './administrador.component';
     ReactiveFormsModule,
     PerfectScrollbarModule,
     FlexLayoutModule,
-    // MenuSideModule
+    MenuSideModule
+
   ],
   entryComponents: [
 

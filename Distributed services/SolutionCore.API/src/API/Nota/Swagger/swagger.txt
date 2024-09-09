@@ -1,0 +1,7 @@
+﻿
+
+ 
+ Swashbuckle.AspNetCore
+ Swashbuckle.AspNetCore.Swagger
+ Swashbuckle.AspNetCore.SwaggerGen
+ Swashbuckle.AspNetCore.SwaggerUI

@@ -1,0 +1,7 @@
+﻿
+
+ 
+ AspNetCore.HealthChecks.SqlServer
+ AspNetCore.HealthChecks.UI
+ AspNetCore.HealthChecks.UI.Client
+ AspNetCore.HealthChecks.UI.InMemory.Storage

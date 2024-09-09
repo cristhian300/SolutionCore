@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './shared/material/material.module';
+
 import { NetworkManager } from './main/providers/legacy-agent/network-manager';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -55,9 +55,10 @@ import { NgbModule,NgbCarouselModule  } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     MainLayoutModule,
     BlankLayoutModule,
-    MaterialModule,
+
     NgbModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+
   ],
   providers: [NetworkManager, ApiService,
     {

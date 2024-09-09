@@ -9,6 +9,7 @@ import { CarouselPortadaComponent } from '../../../../core/ui/component/carousel
 import { FooterModelComponent } from '../../../../core/ui/component/footer-model/footer-model.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuSideModule } from 'src/core/ui/component/menu-side/menu-side.module';
+// import { MenuSideModule } from 'src/core/ui/component/menu-side/menu-side.module';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { MenuSideModule } from 'src/core/ui/component/menu-side/menu-side.module
     HomePortadaRoutingModule,
     NgbModule,
     MenuSideModule
+    // MenuSideModule
   ]
 })
 export class HomePortadaModule { }
