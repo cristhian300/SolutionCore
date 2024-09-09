@@ -1,6 +1,6 @@
 ﻿using Arch.EntityFrameworkCore.UnitOfWork;
 using AutoMapper;
- 
+
 using IdentityModel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,7 +12,7 @@ using SolutionCore.Application.Contracts.Contract.Product;
 using SolutionCore.Application.DTO.Product.QueryEntity;
 using SolutionCore.Application.DTO.Product.Request;
 using SolutionCore.Application.DTO.Product.Response.Product;
-using SolutionCore.Repositories;
+using SolutionCore.Repositories.Persistence;
 using System;
 using System.Linq.Expressions;
 using Transversal.Common;

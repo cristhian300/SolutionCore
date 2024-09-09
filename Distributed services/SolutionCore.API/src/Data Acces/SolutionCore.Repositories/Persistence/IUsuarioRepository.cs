@@ -1,12 +1,11 @@
-﻿
-using SolutionCore.Application.DTO.Authorization.Request;
+﻿using SolutionCore.Application.DTO.Authorization.Request;
 using SolutionCore.Application.DTO.Authorization.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SolutionCore.Repositories
+namespace SolutionCore.Repositories.Persistence
 {
     public interface IUsuarioRepository
     {

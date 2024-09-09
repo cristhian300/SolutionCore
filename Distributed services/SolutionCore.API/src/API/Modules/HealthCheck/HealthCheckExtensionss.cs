@@ -15,9 +15,7 @@ namespace SolutionCore.Modules.HealthCheck
             services.AddHealthChecks()
            .AddSqlServer(configuration.GetConnectionString("SpartacusContext"), tags: new[] { "database" });
 
-            services.AddHealthChecksUI().AddInMemoryStorage();
           
-
             return services;
         }
 

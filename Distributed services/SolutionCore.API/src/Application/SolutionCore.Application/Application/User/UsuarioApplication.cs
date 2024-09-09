@@ -2,7 +2,7 @@
 using SolutionCore.Application.DTO.Authorization.Request;
 using SolutionCore.Application.DTO.Authorization.Response;
 using SolutionCore.Contract;
-using SolutionCore.Repositories;
+using SolutionCore.Repositories.Persistence;
 
 namespace SolutionCore.Distributed_Processes.Dominio.Application
 {

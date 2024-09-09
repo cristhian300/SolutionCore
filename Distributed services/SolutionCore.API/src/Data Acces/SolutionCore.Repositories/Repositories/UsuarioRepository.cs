@@ -5,6 +5,7 @@ using SolutionCore.Application.DTO.Authorization.QueryEntity;
 using SolutionCore.Application.DTO.Authorization.Request;
 using SolutionCore.Application.DTO.Authorization.Response;
 using SolutionCore.Infrastructure.Transport.Core.Authorization.QueryEntity;
+using SolutionCore.Repositories.Persistence;
 
 namespace SolutionCore.Repositories.Repositories
 {

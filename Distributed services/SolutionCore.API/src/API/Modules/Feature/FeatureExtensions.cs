@@ -15,8 +15,8 @@ namespace SolutionCore.Modules.Feature
                     builder => builder
                        // .AllowAnyOrigin()
                        .WithOrigins(
-                        "http://localhost:4200",
-                        "http://localhost:44512"
+                        configuration["Config:OriginCors"]
+                       
                         )
                         .AllowAnyMethod()
                         .AllowAnyHeader());

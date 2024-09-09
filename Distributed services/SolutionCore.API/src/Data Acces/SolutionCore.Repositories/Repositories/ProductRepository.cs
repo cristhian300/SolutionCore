@@ -8,6 +8,7 @@
     using SolutionCore.Api.DataAcces.Infrastructure.Data.Entities;
     using SolutionCore.Application.DTO.Product.Request;
     using SolutionCore.Application.DTO.Product.Response.Product;
+    using SolutionCore.Repositories.Persistence;
     using System;
     using System.Collections.Generic;
     using System.IO;

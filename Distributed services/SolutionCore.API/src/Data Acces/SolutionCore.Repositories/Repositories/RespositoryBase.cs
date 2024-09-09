@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic.FileIO;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
+using SolutionCore.Repositories.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;

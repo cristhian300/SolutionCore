@@ -1,3 +1,4 @@
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,7 @@ using PmfBff.Services;
 using SolutionCore.Application;
 using SolutionCore.Modules.Authentication;
 using SolutionCore.Modules.Feature;
+using SolutionCore.Modules.HealthCheck;
 using SolutionCore.Modules.Swagger;
 using SolutionCore.Repositories;
 using System.Text;
@@ -35,7 +37,7 @@ namespace SolutionCore
             services.addAuthentication(Configuration);
             services.AddFeature(Configuration);
             services.AddSwagger();
-           //services.AddHealthCheck(Configuration);
+            services.AddHealthCheck(Configuration);
             services.AddScoped<IPmfRestClient, PmfRestClient>();
 
         }
@@ -98,12 +100,12 @@ namespace SolutionCore
             {
                 endpoints.MapControllers();
 
-                //endpoints.MapHealthChecksUI();
-                //endpoints.MapHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
-                //{
-                //    Predicate = _ => true,
-                //    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-                //});
+                endpoints.MapHealthChecksUI();
+                endpoints.MapHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
             });
 
          
