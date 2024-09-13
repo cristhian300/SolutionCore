@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using PmfBff.Interfaces;
 using PmfBff.Services;
+using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
 using SolutionCore.Application;
 using SolutionCore.Modules.Authentication;
 using SolutionCore.Modules.Feature;
@@ -69,7 +70,13 @@ namespace SolutionCore
             });
             app.UseHttpsRedirection();
 
-            
+
+
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<CoreContext>();
+                context.Database.EnsureCreated();
+            }
 
             app.UseStaticFiles();
          /*   app.UseStaticFiles(new StaticFileOptions()

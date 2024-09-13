@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Infraestructura\Infraestructura.Data\Infraestructura.Data.csproj" />
     <ProjectReference Include="..\..\Application\SolutionCore.Application.DTO\SolutionCore.Application.DTO.csproj" />
     <ProjectReference Include="..\SolutionCore.Api.DataAcces\SolutionCore.Api.DataAcces.csproj" />
   </ItemGroup>

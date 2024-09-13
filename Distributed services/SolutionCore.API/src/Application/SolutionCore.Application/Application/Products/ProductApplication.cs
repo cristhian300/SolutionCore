@@ -124,8 +124,8 @@ namespace SolutionCore.Application.Application.Products
                 Expression<Func<Product, bool>>
                 predicate =  (p) => p.Deleted == false;  
  
-                var listProduct = await _IProductQuery.GetAllWhereAsync(predicate);
-                //var listProductx = await _IProductQuery.ListProduct(parameter);
+               // var listProduct = await _IProductQuery.GetAllWhereAsync(predicate);
+                 var listProduct  = await _IProductQuery.ListProduct(parameter);
                 response.Data = _mapper.Map<List<ListProductDTO>>(listProduct.OrderByDescending(x => x.ProductId));
                 foreach (var p in response.Data)
                 {

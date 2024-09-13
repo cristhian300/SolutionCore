@@ -1,5 +1,6 @@
 ﻿namespace SolutionCore.Repositories.Repositories
 {
+    using Arch.EntityFrameworkCore.UnitOfWork;
     using AutoMapper;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -14,6 +15,7 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using Infraestructura.Data.Extensions.Context;
 
     public class ProductRepository : RespositoryBase<Product>, IProductRepository
     {
@@ -24,24 +26,30 @@
         private readonly IMapper _mapper;
 
          CoreContext  _CoreContext;
-        public ProductRepository(IHostingEnvironment env,  CoreContext  CoreContext, IMapper mapper) : base(CoreContext)
+
+        IUnitOfWork<CoreContext> _unitOfWork;
+
+
+
+        public ProductRepository(IHostingEnvironment env, CoreContext CoreContext, IMapper mapper, IUnitOfWork<CoreContext> unitOfWork) : base(CoreContext)
         {
             hostingEnvironment = env;
             _CoreContext = CoreContext;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
 
         public async Task<List<Product>> ListProduct(ListProductRequest parameter)
         {
-
-            // //http://localhost:44342/images/
-            var listProduct = await _CoreContext.Set<Product>()
+           // //http://localhost:44342/images/
+           var listProduct = await _CoreContext.Set<Product>()
            .Where(p => p.Deleted == false)
            //.ProjectTo<ListProductQueryEntity>(_mapper.ConfigurationProvider)
            .OrderByDescending(p => p.ProductId).AsNoTracking()
            .ToListAsync();
             return listProduct;
+
         }
 
 
