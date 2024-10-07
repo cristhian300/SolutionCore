@@ -20,13 +20,13 @@
       }
     },
     "SolutionCore": {
-      "commandName": "IISExpress",
+      "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Production"
       },
-      "applicationUrl": "http://localhost:44342"
+      "applicationUrl": "https://localhost:44344;http://localhost:44342"
     },
     "Docker": {
       "commandName": "Docker",

@@ -29,16 +29,16 @@ namespace SolutionCore
         public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
 
- 
-             .ConfigureAppConfiguration((hostingContext, config) =>
+
+             .ConfigureAppConfiguration((  hostingContext, config) =>
              {
                  config
                      .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
                      .AddJsonFile("appsettings.json", false, true)
-                     .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", false,
-                         true)
-                     
+                     .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", false, true)
                      .AddEnvironmentVariables();
+
+                 
              })
 
 
