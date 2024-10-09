@@ -40,18 +40,28 @@ namespace SolutionCore.Application.Application.Products
         public async Task<Response<bool>> AddProduct(AddProductDTO parameter)
         {
             var response = new Response<bool>();
-            string Photo = ValidationFiles(parameter.files);
-            var product = _mapper.Map<Product>(parameter);
-            product.Photo = Photo;
 
-            await _IProductQuery.AddProduct(product);
-            response.Data = _unitOfWork.SaveChanges() > 0;
-
-            if (response.Data)
+            try
             {
-                response.IsSuccess = true;
-                response.Message = "Registro Exitoso!!!";
+                string Photo = ValidationFiles(parameter.files);
+                var product = _mapper.Map<Product>(parameter);
+                product.Photo = Photo;
+
+                await _IProductQuery.AddProduct(product);
+                response.Data = _unitOfWork.SaveChanges() > 0;
+
+                if (response.Data)
+                {
+                    response.IsSuccess = true;
+                    response.Message = "Registro Exitoso!!!";
+                }
             }
+            catch (Exception ex)
+            {
+
+                response.Message = ex.Message;
+            }
+            
 
             return response;
         }
