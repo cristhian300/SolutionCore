@@ -5,9 +5,9 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-         
-          "Host": "192.168.18.7",
-          "Port": 701
+
+          "Host": "ec2-3-142-95-144.us-east-2.compute.amazonaws.com",
+          "Port": 81
         }
       ],
       "UpstreamPathTemplate": "/core/api/{everything}",
@@ -15,8 +15,6 @@
     }
   ],
   "GlobalConfiguration": {
-
-   
-    "BaseUrl": "http://192.168.18.7:700/"
+    "BaseUrl": "http://ec2-3-142-95-144.us-east-2.compute.amazonaws.com:7000/"
   }
 }

@@ -1,6 +1,5 @@
 export const environment = {
   production: true,
-/*  apiEndpoint: "https://localhost:5052/api/employee/"*/
-  apiEndpoint: "http://localhost:5062",
+  apiEndpoint: "http://ec2-3-142-95-144.us-east-2.compute.amazonaws.com:700/",
   apiEndpointNode: 'http://localhost:3001'
 };
