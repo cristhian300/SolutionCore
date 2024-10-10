@@ -12,6 +12,18 @@
       ],
       "UpstreamPathTemplate": "/core/api/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ec2-3-142-95-144.us-east-2.compute.amazonaws.com",
+          "Port": 82
+        }
+      ],
+      "UpstreamPathTemplate": "/identity/api/{catchAll}"
     }
   ],
   "GlobalConfiguration": {
