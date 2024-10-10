@@ -64,7 +64,7 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 app.UseCors(options =>
-            options.WithOrigins("*").
+            options.WithOrigins(builder.Configuration["Config:OriginCors"]).
             AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.UseAuthentication();

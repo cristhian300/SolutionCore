@@ -13,6 +13,7 @@
 
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     },
+
     {
       "DownstreamPathTemplate": "/api/{catchAll}",
       "DownstreamScheme": "http",

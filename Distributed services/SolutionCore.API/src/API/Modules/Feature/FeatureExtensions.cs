@@ -13,11 +13,11 @@ namespace SolutionCore.Modules.Feature
             {
                 options.AddPolicy("mi_politica",
                     builder => builder
-                       // .AllowAnyOrigin()
-                       .WithOrigins(
-                        configuration["Config:OriginCors"]
-                       
-                        )
+
+                    .WithOrigins(
+                     configuration["Config:OriginCors"]
+                     )
+                         . AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader());
             });
