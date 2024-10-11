@@ -6,7 +6,7 @@
       "DownstreamHostAndPorts": [
         {
 
-          "Host": "ec2-3-142-95-144.us-east-2.compute.amazonaws.com",
+          "Host": "3.146.135.57",
           "Port": 81
         }
       ],
@@ -19,7 +19,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "ec2-3-142-95-144.us-east-2.compute.amazonaws.com",
+          "Host": "3.146.135.57",
           "Port": 82
         }
       ],
@@ -27,6 +27,6 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://ec2-3-142-95-144.us-east-2.compute.amazonaws.com:83/"
+    "BaseUrl": "http://3.146.135.57:83/"
   }
 }
