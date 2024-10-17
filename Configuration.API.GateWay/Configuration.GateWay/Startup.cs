@@ -25,7 +25,7 @@ namespace Configuration.GateWay
 
             services.AddOcelot();
 
-            String[] ruta = { "http://localhost:44512" , "http://localhost:5000" };
+            
 
             services.AddControllers();
             services.AddOptions();
