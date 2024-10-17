@@ -1,6 +1,5 @@
 export const environment = {
   production: true,
-  apiEndpoint: "http://3.146.135.57:83",
-
+  apiEndpoint: "https://gateway.botonerame.com",
   apiEndpointNode: 'http://localhost:3001'
 };
