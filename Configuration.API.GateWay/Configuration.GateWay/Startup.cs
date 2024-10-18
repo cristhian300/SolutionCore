@@ -24,15 +24,6 @@ namespace Configuration.GateWay
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddOcelot();
-
-            
-
-            services.AddControllers();
-            services.AddOptions();
-            services.AddLogging();
-
-
             services.AddCors(options =>
             {
                 options.AddPolicy("mi_politica",
@@ -44,22 +35,15 @@ namespace Configuration.GateWay
                         )
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                       
                         );
-
-                options.AddPolicy("AllowHeaders", builder =>
-                {
-                    builder.WithOrigins("http://botonerame.com","https://botonerame.com", "https://www.botonerame.com")
-                             .WithHeaders(HeaderNames.ContentType, HeaderNames.Server,
-                            HeaderNames.AccessControlAllowHeaders, HeaderNames.AccessControlExposeHeaders,
-                            "x-custom-header", "x-path", "x-record-in-use", HeaderNames.ContentDisposition);
-                });
             });
 
-
-            services
-
-              .Configure<GetConfigurationResponse>(_configuration.GetSection("Services"));
+            services.AddOcelot();
+            services.AddControllers();
+            services.Configure<GetConfigurationResponse>(_configuration.GetSection("Services"));
+            services.AddOptions();
+            services.AddLogging();
+              
 
         }
 
@@ -76,7 +60,6 @@ namespace Configuration.GateWay
 
             app.UseCors("mi_politica");
             app.UseAuthentication();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
