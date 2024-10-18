@@ -38,8 +38,8 @@ namespace Configuration.GateWay
                     builder => builder
                           //.AllowAnyOrigin()
                           .WithOrigins(
-                        _configuration["Config:OriginCors"]
-                        
+                        //_configuration["Config:OriginCors"]
+                        "http://localhost:4200", "http://localhost", "https://botonerame.com", "https://www.botonerame.com"
                         )
                         .AllowAnyMethod()
                         .AllowAnyHeader()
