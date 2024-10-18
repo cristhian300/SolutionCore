@@ -14,10 +14,11 @@ namespace SolutionCore.Modules.Feature
                 options.AddPolicy("mi_politica",
                     builder => builder
 
-                    //.WithOrigins(
-                    // configuration["Config:OriginCors"]
-                    // )
-                         . AllowAnyOrigin()
+                    .WithOrigins(
+                     configuration["Config:OriginCors"]
+                    
+                     )
+                         //. AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                       
