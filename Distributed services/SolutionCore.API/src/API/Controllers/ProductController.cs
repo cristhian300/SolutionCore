@@ -1,4 +1,5 @@
 ﻿using Arch.EntityFrameworkCore.UnitOfWork;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,7 @@ namespace SolutionCore.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [EnableCors("mi_politica")]
     public class ProductController : ControllerBase
     {
         // GET: api/Product

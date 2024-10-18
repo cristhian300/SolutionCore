@@ -19,9 +19,11 @@ namespace SolutionCore.Modules.Feature
                     // )
                          . AllowAnyOrigin()
                         .AllowAnyMethod()
-                        .AllowAnyHeader());
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                        );
             });
-
+            
             services.AddControllersWithViews();
             services.AddControllers();
 
