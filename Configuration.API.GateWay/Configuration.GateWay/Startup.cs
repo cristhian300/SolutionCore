@@ -1,5 +1,6 @@
 using Configuration.GateWay.models;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,11 +29,11 @@ namespace Configuration.GateWay
             {
                 options.AddPolicy("mi_politica",
                     builder => builder
-                         ////.AllowAnyOrigin()
-                         .WithOrigins(
-                        ////_configuration["Config:OriginCors"]
-                        "http://botonerame.com", "https://botonerame.com", "https://www.botonerame.com"
-                        )
+                         .AllowAnyOrigin()
+                        // .WithOrigins(
+                        //////_configuration["Config:OriginCors"]
+                        //"http://botonerame.com", "https://botonerame.com", "https://www.botonerame.com"
+                        //)
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         );
@@ -59,6 +60,8 @@ namespace Configuration.GateWay
             app.UseRouting();
 
             app.UseCors("mi_politica");
+
+           
             app.UseAuthentication();
             app.UseAuthorization();
 
