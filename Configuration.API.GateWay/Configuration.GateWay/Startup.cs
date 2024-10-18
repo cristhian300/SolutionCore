@@ -59,7 +59,7 @@ namespace Configuration.GateWay
 
             app.UseRouting();
 
-            app.UseCors("mi_politica");
+            //app.UseCors("mi_politica");
 
            
             app.UseAuthentication();
