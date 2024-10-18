@@ -43,7 +43,7 @@ namespace Configuration.GateWay
                         //)
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                        .AllowCredentials()
+                       
                         );
             });
 

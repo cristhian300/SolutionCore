@@ -20,7 +20,7 @@ namespace SolutionCore.Modules.Feature
                          . AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                        .AllowCredentials()
+                      
                         );
             });
             

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: "https://gateway.botonerame.com",
-  // apiEndpoint: 'http://localhost:5062',
+  //apiEndpoint: "https://gateway.botonerame.com",
+  apiEndpoint: 'http://localhost:5062',
   apiEndpointNode: 'http://localhost:3001'
 };
 
