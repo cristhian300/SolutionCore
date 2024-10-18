@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Net.Http.Headers;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using System;
@@ -36,15 +37,23 @@ namespace Configuration.GateWay
             {
                 options.AddPolicy("mi_politica",
                     builder => builder
-                         .AllowAnyOrigin()
-                        //  .WithOrigins(
+                         ////.AllowAnyOrigin()
+                         .WithOrigins(
                         ////_configuration["Config:OriginCors"]
-                        //"http://localhost:4200", "http://localhost", "https://botonerame.com", "https://www.botonerame.com"
-                        //)
+                        "http://botonerame.com", "https://botonerame.com", "https://www.botonerame.com"
+                        )
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                        
                         );
+
+                options.AddPolicy("AllowHeaders", builder =>
+                {
+                    builder.WithOrigins("http://botonerame.com","https://botonerame.com", "https://www.botonerame.com")
+                             .WithHeaders(HeaderNames.ContentType, HeaderNames.Server,
+                            HeaderNames.AccessControlAllowHeaders, HeaderNames.AccessControlExposeHeaders,
+                            "x-custom-header", "x-path", "x-record-in-use", HeaderNames.ContentDisposition);
+                });
             });
 
 
