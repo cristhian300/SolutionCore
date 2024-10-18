@@ -36,11 +36,11 @@ namespace Configuration.GateWay
             {
                 options.AddPolicy("mi_politica",
                     builder => builder
-                          //.AllowAnyOrigin()
-                          .WithOrigins(
-                        //_configuration["Config:OriginCors"]
-                        "http://localhost:4200", "http://localhost", "https://botonerame.com", "https://www.botonerame.com"
-                        )
+                         .AllowAnyOrigin()
+                        //  .WithOrigins(
+                        ////_configuration["Config:OriginCors"]
+                        //"http://localhost:4200", "http://localhost", "https://botonerame.com", "https://www.botonerame.com"
+                        //)
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials()
