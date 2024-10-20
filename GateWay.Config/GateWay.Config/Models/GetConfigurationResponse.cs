@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Configuration.GateWay.models
+﻿namespace GateWay.Api.Models
 {
     public class GetConfigurationResponse
     {
-
         public string SecurityUrl { get; set; }
         public string ImageUrl { get; set; }
         public string MaintenanceUrl { get; set; }

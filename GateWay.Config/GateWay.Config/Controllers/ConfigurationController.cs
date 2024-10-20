@@ -1,33 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Configuration.GateWay.models;
+﻿using GateWay.Api.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
-
-namespace SolutionCore.Controllers
+namespace GateWay.Config.Controllers
 {
-    [Route("api/v1/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
-     
     public class ConfigurationController : ControllerBase
     {
+
         private readonly IOptionsSnapshot<GetConfigurationResponse> _configurationOption;
-        public ConfigurationController(IOptionsSnapshot<GetConfigurationResponse>  configurationOption )
+        public ConfigurationController(IOptionsSnapshot<GetConfigurationResponse> configurationOption)
         {
             _configurationOption = configurationOption;
         }
 
 
-        [HttpPost]
+        [HttpPost,Route("GetConfiguration")]
         [AllowAnonymous]//No necesita Token
         public GetConfigurationResponse GetConfiguration() => _configurationOption.Value;
-
-
     }
 }
