@@ -16,9 +16,9 @@ namespace SolutionCore.Modules.Feature
                 options.AddPolicy("mi_politica",
                     builder => builder
 
-                    //.WithOrigins(
-                    // origen
-                    // )
+            //.WithOrigins(
+            // origen
+            // )
                     .AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader()

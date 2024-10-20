@@ -55,11 +55,13 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowOrigin",
         polycyBuilder =>
 
-            polycyBuilder.WithOrigins(
+            polycyBuilder
+            .WithOrigins(
                  origen)
+             .AllowAnyOrigin()
              .AllowAnyHeader()
              .AllowAnyMethod()
-             .AllowCredentials()
+              
                );
 });
 

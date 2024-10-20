@@ -64,9 +64,9 @@ export class LoginService {
 //https://localhost:5002/api/Authorization/Login
 
 // return this.http.post<ResponseDTO>('https://localhost:5064/api/Configuration',{});
-// return this.http.post<ResponseDTO>('https://localhost:8089/api/Authorization/Login',request);
- //return this.http.post<any>('https://localhost:44344/api/Product/ListProduct',null);
- return this.http.post<any>('http://localhost:5062/core/api/Product/ListProduct',null);
+ return this.http.post<any>('https://localhost:5064/identity/api/Authorization/Login',request);
+// return this.http.post<any>('http://localhost:5062/core/api/Product/ListProduct',null);
+ //return this.http.post<any>('http://localhost:5062/core/api/Product/ListProduct',null);
 
 
 

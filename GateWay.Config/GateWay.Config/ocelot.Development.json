@@ -14,6 +14,17 @@
       ],
       "UpstreamPathTemplate": "/core/api/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 3329
+        }
+      ],
+      "UpstreamPathTemplate": "/identity/api/{catchAll}"
     }
 
   ],
