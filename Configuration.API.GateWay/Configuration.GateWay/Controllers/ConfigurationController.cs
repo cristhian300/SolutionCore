@@ -14,7 +14,7 @@ namespace SolutionCore.Controllers
 {
     [Route("api/v1/[controller]/[action]")]
     [ApiController]
-     [EnableCors("mi_politica")]
+     
     public class ConfigurationController : ControllerBase
     {
         private readonly IOptionsSnapshot<GetConfigurationResponse> _configurationOption;

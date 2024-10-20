@@ -25,19 +25,20 @@ namespace Configuration.GateWay
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("mi_politica",
-            //        builder => builder
-            //             .AllowAnyOrigin()
-            //            // .WithOrigins(
-            //            //////_configuration["Config:OriginCors"]
-            //            //"http://botonerame.com", "https://botonerame.com", "https://www.botonerame.com"
-            //            //)
-            //            .AllowAnyMethod()
-            //            .AllowAnyHeader()
-            //            );
-            //});
+            var origenesAllow = _configuration.GetValue<string>("Config:OriginCors").Split(";");
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("mi_politica",
+                    builder => builder
+                        .WithOrigins(
+                         origenesAllow
+                         )
+                         .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        );
+            });
 
             services.AddOcelot();
             services.AddControllers();
@@ -59,7 +60,7 @@ namespace Configuration.GateWay
 
             app.UseRouting();
 
-            //app.UseCors("mi_politica");
+            app.UseCors("mi_politica");
 
            
             app.UseAuthentication();

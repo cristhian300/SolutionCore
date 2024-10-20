@@ -9,19 +9,19 @@ namespace SolutionCore.Modules.Feature
         public static IServiceCollection AddFeature(this IServiceCollection services, IConfiguration configuration)
         {
 
+            var origen = configuration.GetValue<string>("Config:OriginCors").Split(";");
+
             services.AddCors(options =>
             {
                 options.AddPolicy("mi_politica",
                     builder => builder
 
-                    .WithOrigins(
-                     configuration["Config:OriginCors"]
-                    
-                     )
-                         //. AllowAnyOrigin()
+                    //.WithOrigins(
+                    // origen
+                    // )
+                    .AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                      
                         );
             });
             

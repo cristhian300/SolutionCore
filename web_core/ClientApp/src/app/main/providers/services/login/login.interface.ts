@@ -24,3 +24,9 @@ export interface ITokenPayLoad {
   name:         string;
   username:     string;
 }
+
+export interface LoginDTOAlterno {
+
+  userName: string;
+  password: string;
+}

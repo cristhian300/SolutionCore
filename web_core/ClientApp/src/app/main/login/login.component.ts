@@ -75,4 +75,18 @@ export class LoginComponent implements OnInit {
     this.isLoading = false;
   }
 
+  pruebaServicio(){
+    console.log("tes");
+    this.loginService.LoginTest( ).subscribe({
+      next: (res) => {
+         console.log(res);
+
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+
+    }
+
 }
