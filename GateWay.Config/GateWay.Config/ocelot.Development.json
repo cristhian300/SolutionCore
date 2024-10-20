@@ -33,6 +33,6 @@
   "GlobalConfiguration": {
 
 
-    "BaseUrl": "http://localhost:5062/"
+    "BaseUrl": "http://localhost:5062"
   }
 }

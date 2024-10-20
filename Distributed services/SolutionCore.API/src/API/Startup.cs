@@ -101,7 +101,8 @@ namespace SolutionCore
 
             //se agrego de JWT
              app.UseAuthentication();
-            app.UseCors("mi_politica");
+             app.UseCors("mi_politica");
+            
              app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
