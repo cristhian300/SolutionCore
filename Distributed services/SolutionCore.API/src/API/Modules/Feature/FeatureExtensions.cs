@@ -19,7 +19,7 @@ namespace SolutionCore.Modules.Feature
                     .WithOrigins(
                      origen
                      )
-                    .AllowAnyOrigin()
+                    //.AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         );

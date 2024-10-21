@@ -68,7 +68,7 @@ namespace SolutionCore
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "TestService");
             });
-            app.UseHttpsRedirection();
+           
 
 
             //crear la base de datos que apunta

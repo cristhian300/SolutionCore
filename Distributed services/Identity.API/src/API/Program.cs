@@ -58,7 +58,7 @@ builder.Services.AddCors(options =>
             polycyBuilder
             .WithOrigins(
                  origen)
-             .AllowAnyOrigin()
+             //.AllowAnyOrigin()
              .AllowAnyHeader()
              .AllowAnyMethod()
               
@@ -80,7 +80,7 @@ var app = builder.Build();
 //}
 
 
-app.UseHttpsRedirection();
+ 
 app.UseCors("AllowOrigin");
 
 app.UseAuthentication();

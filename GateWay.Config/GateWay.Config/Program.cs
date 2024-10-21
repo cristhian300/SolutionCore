@@ -56,23 +56,13 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction() )
     app.UseSwaggerUI();
 }
 
- //app.UseHttpsRedirection();
-
-//app.UseCors("AllowOrigin");
-//app.UseCors(options =>
-//            options.WithOrigins(builder.Configuration["Config:OriginCors"])
-//           .AllowAnyOrigin()
-//            .AllowAnyMethod().AllowAnyHeader());
-
+  
 app.UseAuthentication();
 app.MapControllers();
 
 app.UseRouting();
 app.UseAuthorization();
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapControllers(); // Permite que tus controladores manejen las rutas
-//});
+ 
 
 app.MapControllers();
 app.UseCors("AllowOrigin");
