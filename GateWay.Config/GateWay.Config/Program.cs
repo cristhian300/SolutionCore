@@ -27,8 +27,6 @@ builder.Services.AddSwaggerGen();
 
 
 var origen = builder.Configuration.GetValue<string>("Config:OriginCors").Split(";");
-//var corsUrls = origen.Get<string[]>();
-
 
 builder.Services.AddCors(options =>
 {
@@ -58,7 +56,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction() )
     app.UseSwaggerUI();
 }
 
- app.UseHttpsRedirection();
+ //app.UseHttpsRedirection();
 
 //app.UseCors("AllowOrigin");
 //app.UseCors(options =>
