@@ -6,7 +6,7 @@ import { PostParameter } from 'src/app/main/providers/legacy-agent/post-paramete
 
 import { StorageService } from '../common/storage.service';
 import { ConfigurationResponse } from '../configuration/configuration';
-import { AddProductRequest, EditProductRequest   } from './product.interface';
+import { AddProductRequest, EditProductRequest } from './product.interface';
 import { ApiService } from 'src/core/shared/common/services/services/api/api.service';
 import { ResponseDTO } from 'src/app/main/models/DTOs/response-dto';
 import { ListProductResponse } from 'src/app/main/models/DTOs/Product/productosDto';
@@ -40,10 +40,15 @@ export class ProductService {
   }
 
   public AddProduct(parameter: AddProductRequest = null) {
-    let files = []
-    files.push({ name: 'Document', native: parameter.files });
-    return this.apiService.post(this.Url + 'Product/AddProduct', parameter);
-    // return this.networkManager.postFile(parameters, formData) as Observable<ListProductResponse>;
+    // let files = []
+    // files.push({ name: 'Document', native: parameter.files });
+    const formData = new FormData();
+    for (const key in parameter) {
+      if (parameter.hasOwnProperty(key)) {
+        formData.append(key, parameter[key]);
+      }
+    }
+    return this.apiService.post(this.Url + 'Product/AddProduct', formData);
   }
 
 
@@ -69,7 +74,7 @@ export class ProductService {
     //parameters.RequestParameter = parameter
     // const body = {productId}
     // return this.apiService.delete(`${parameters.PathOperation}/{productId}`, body, { params: { productId } })
-    return this.apiService.delete(`${ this.Url + 'Product/DeleteProduct'}/${productId}`) as  Observable<ResponseDTO>
+    return this.apiService.delete(`${this.Url + 'Product/DeleteProduct'}/${productId}`) as Observable<ResponseDTO>
 
   }
 }
