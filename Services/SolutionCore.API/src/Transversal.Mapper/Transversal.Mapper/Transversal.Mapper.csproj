@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Application\SolutionCore.Application.DTO\SolutionCore.Application.DTO.csproj" />
-    <ProjectReference Include="..\..\Data Acces\SolutionCore.Api.DataAcces\SolutionCore.Api.DataAcces.csproj" />
+    <ProjectReference Include="..\..\Infraestructura\SolutionCore.Api.DataAcces\SolutionCore.Api.DataAcces.csproj" />
   </ItemGroup>
 
 </Project>

@@ -66,8 +66,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\SolutionCore.Application.Contracts\SolutionCore.Application.Contracts.csproj" />
     <ProjectReference Include="..\Application\SolutionCore.Application\SolutionCore.Application.csproj" />
-    <ProjectReference Include="..\Data Acces\SolutionCore.Api.DataAcces\SolutionCore.Api.DataAcces.csproj" />
-    <ProjectReference Include="..\Data Acces\SolutionCore.Repositories\SolutionCore.Repositories.csproj" />
+ 
  
   </ItemGroup>
 
