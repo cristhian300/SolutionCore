@@ -58,8 +58,7 @@
         {
 
             //List<Product> lstProduct = new List<Product>();
-            try
-            {
+         
 
            //     string nameFiles = ValidationFiles(parameter.files);
                 //foreach (var nameFiles in lstfileNames)
@@ -80,12 +79,7 @@
 
                 return await Task.FromResult(true);
                // return new AddProductResponse { };
-            }
-            catch (Exception e)
-            {
-
-                throw new Exception(e.Message);
-            }
+           
 
         }
 
