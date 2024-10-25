@@ -30,7 +30,9 @@ namespace SolutionCore.Application.Application.Products
         private readonly IMapper _mapper;
         public ProductApplication(IProductRepository IProductQuery, IMapper mapper,
             IHostingEnvironment hostingEnvironment    ,
-            IUnitOfWork<CoreContext> unitOfWork    , IEventBus eventBus  )
+            IUnitOfWork<CoreContext> unitOfWork   
+           , IEventBus eventBus 
+            )
         {
             _IProductQuery = IProductQuery;
             _mapper = mapper;
@@ -59,7 +61,7 @@ namespace SolutionCore.Application.Application.Products
                     response.IsSuccess = true;
                     response.Message = "Registro Exitoso!!!";
 
- 
+
                     //var productCreatedEvent = _mapper.Map<ProductCreateEvent>(product);
                     //_eventBus.Publish(productCreatedEvent);
                 }

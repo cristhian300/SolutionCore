@@ -47,16 +47,16 @@ namespace SolutionCore
             services.AddScoped<IPmfRestClient, PmfRestClient>();
 
             services.AddScoped<IEventBus, EventBusRabbitMQ>();
-            //services.AddMassTransit(config =>
-            //{
-            //    config.UsingRabbitMq((ct, cfg) =>
-            //    {
-            //        cfg.Host(Configuration["EventBusSettings:HostAddress"]);
+            services.AddMassTransit(config =>
+            {
+                config.UsingRabbitMq((ct, cfg) =>
+                {
+                    cfg.Host(Configuration["EventBusSettings:HostAddress"]);
 
-            //        cfg.ConfigureEndpoints(ct);
-            //    });
+                    cfg.ConfigureEndpoints(ct);
+                });
 
-            //});
+            });
 
 
             services.Configure<KestrelServerOptions>( options=>
