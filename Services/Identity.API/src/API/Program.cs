@@ -1,9 +1,11 @@
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using YtMovieApis.EventBusCosumer;
 using YtMovieApis.Models.Domain;
 using YtMovieApis.Repositories.Abstract;
 using YtMovieApis.Repositories.Domain;
@@ -68,6 +70,21 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<IAuthorizaService, AuthorizationService>();
+
+
+//Mass Transit
+//builder.Services.AddMassTransit(config =>
+//{
+//    //Mark this as consumer
+//    config.AddConsumer<ProductCreatedConsumer>();
+  
+//    config.UsingRabbitMq((ctx, cfg) =>
+//    {
+//        cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]);
+ 
+//        cfg.ConfigureEndpoints(ctx);
+//    });
+//});
 
 var app = builder.Build();
 

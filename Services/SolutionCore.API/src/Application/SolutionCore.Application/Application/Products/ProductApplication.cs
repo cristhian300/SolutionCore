@@ -1,6 +1,6 @@
 ﻿using Arch.EntityFrameworkCore.UnitOfWork;
 using AutoMapper;
-
+using EventBus.Messages.Events;
 using IdentityModel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,10 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting.Internal;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Entities;
-using SolutionCore.Application.Contracts.Contract.Product;
 using SolutionCore.Application.DTO.Product.QueryEntity;
 using SolutionCore.Application.DTO.Product.Request;
 using SolutionCore.Application.DTO.Product.Response.Product;
+using SolutionCore.Application.Interface.Contract.Product;
+using SolutionCore.Application.Interface.InfraestructuraEventBus;
 using SolutionCore.Repositories.Persistence;
 using System;
 using System.Linq.Expressions;
@@ -24,19 +25,22 @@ namespace SolutionCore.Application.Application.Products
         private IHostingEnvironment _hostingEnvironment;
         IProductRepository _IProductQuery;
         IUnitOfWork<CoreContext> _unitOfWork;
+        private IEventBus _eventBus;
 
         private readonly IMapper _mapper;
         public ProductApplication(IProductRepository IProductQuery, IMapper mapper,
-            IHostingEnvironment hostingEnvironment = null, 
-            IUnitOfWork<CoreContext> unitOfWork = null)
+            IHostingEnvironment hostingEnvironment    ,
+            IUnitOfWork<CoreContext> unitOfWork    , IEventBus eventBus  )
         {
             _IProductQuery = IProductQuery;
             _mapper = mapper;
             _hostingEnvironment = hostingEnvironment;
             _unitOfWork = unitOfWork;
+            _eventBus = eventBus;
         }
 
- 
+
+
         public async Task<Response<bool>> AddProduct(AddProductDTO parameter)
         {
             var response = new Response<bool>();
@@ -54,6 +58,10 @@ namespace SolutionCore.Application.Application.Products
                 {
                     response.IsSuccess = true;
                     response.Message = "Registro Exitoso!!!";
+
+ 
+                    //var productCreatedEvent = _mapper.Map<ProductCreateEvent>(product);
+                    //_eventBus.Publish(productCreatedEvent);
                 }
             }
             catch (Exception ex)

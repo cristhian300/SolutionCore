@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Transversal.Common;
 
 
-namespace SolutionCore.Application.Contracts.Contract.Product
+namespace SolutionCore.Application.Interface.Contract.Product
 {
     public interface IProductApplication
     {
@@ -19,6 +19,6 @@ namespace SolutionCore.Application.Contracts.Contract.Product
         Task<Response<bool>> EditProduct(EditProductDTO parameter);
 
         Task<Response<bool>> DeleteProduct(long productId);
-        
+
     }
 }

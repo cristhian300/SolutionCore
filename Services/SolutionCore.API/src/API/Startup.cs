@@ -1,7 +1,9 @@
 using HealthChecks.UI.Client;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,12 +12,15 @@ using PmfBff.Interfaces;
 using PmfBff.Services;
 using SolutionCore.Api.DataAcces.Infrastructure.Data.Context;
 using SolutionCore.Application;
+using SolutionCore.Application.Interface.InfraestructuraEventBus;
+using SolutionCore.InfraestructureEvenBus;
 using SolutionCore.Modules.Authentication;
 using SolutionCore.Modules.Feature;
 using SolutionCore.Modules.HealthCheck;
 using SolutionCore.Modules.Swagger;
 using SolutionCore.Repositories;
 using System.Text;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace SolutionCore
 {
@@ -41,8 +46,26 @@ namespace SolutionCore
             services.AddHealthCheck(Configuration);
             services.AddScoped<IPmfRestClient, PmfRestClient>();
 
-        }
+            services.AddScoped<IEventBus, EventBusRabbitMQ>();
+            //services.AddMassTransit(config =>
+            //{
+            //    config.UsingRabbitMq((ct, cfg) =>
+            //    {
+            //        cfg.Host(Configuration["EventBusSettings:HostAddress"]);
 
+            //        cfg.ConfigureEndpoints(ct);
+            //    });
+
+            //});
+
+
+            services.Configure<KestrelServerOptions>( options=>
+                {
+                    options.Limits.MaxRequestBodySize = 10 * 1024 * 1024;//set 10 mb
+                }
+                );
+        }
+        
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

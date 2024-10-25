@@ -8,6 +8,8 @@
 
   <ItemGroup>
   
+    <ProjectReference Include="..\..\..\..\..\Infraestructura\EventBus.Messages\EventBus.Messages.csproj" />
+  
     <ProjectReference Include="..\..\..\..\..\Infraestructura\Infraestructura.Data\Infraestructura.Data.csproj" />
   
     <ProjectReference Include="..\..\Infraestructura\SolutionCore.Api.DataAcces\SolutionCore.Api.DataAcces.csproj" />
@@ -15,7 +17,7 @@
     <ProjectReference Include="..\..\Infraestructura\SolutionCore.Repositories\SolutionCore.Repositories.csproj" />
   
     <ProjectReference Include="..\..\Transversal.Common\Transversal.Common.csproj" />
-    <ProjectReference Include="..\SolutionCore.Application.Contracts\SolutionCore.Application.Contracts.csproj" />
+    <ProjectReference Include="..\SolutionCore.Application.Contracts\SolutionCore.Application.Interface.csproj" />
   </ItemGroup>
 
 </Project>

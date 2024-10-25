@@ -64,8 +64,9 @@
    
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\SolutionCore.Application.Contracts\SolutionCore.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Application\SolutionCore.Application.Contracts\SolutionCore.Application.Interface.csproj" />
     <ProjectReference Include="..\Application\SolutionCore.Application\SolutionCore.Application.csproj" />
+    <ProjectReference Include="..\Infraestructura\SolutionCore.InfraestructureEvenBus\SolutionCore.InfraestructureEvenBus.csproj" />
  
  
   </ItemGroup>

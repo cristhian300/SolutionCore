@@ -1,1 +1,18 @@
 ﻿docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4.0-management
+
+paquetes
+MassTransit.RabbitMQ
+*agregar el servicios al contenedor de dependencias 
+MassTransit.Extensions.DependencyInjection
+
+--------------------------------------
+para consumer
+
+MassTransit
+MassTransit.RabbitMQ
+Microsoft.Extensions.Hosting 
+
+--------------------------------------
+*para configurar una entidad con appSetting
+Microsoft.Extensions.Configuration.Binder
+

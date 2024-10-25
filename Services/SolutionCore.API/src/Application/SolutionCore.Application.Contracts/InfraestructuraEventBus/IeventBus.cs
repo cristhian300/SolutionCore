@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolutionCore.Application.Contracts.InfraestructuraEventBus
+namespace SolutionCore.Application.Interface.InfraestructuraEventBus
 {
-    public  interface IEventBus
+    public interface IEventBus
     {
         void Publish<T>(T @event);
     }

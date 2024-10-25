@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using SolutionCore.Application.DTO.Authorization.Request;
 using SolutionCore.Application.DTO.Authorization.Response;
-using SolutionCore.Contract;
+using SolutionCore.Application.Interface.Contract.User;
 using System.Threading.Tasks;
 
 namespace SolutionCore.Controllers
