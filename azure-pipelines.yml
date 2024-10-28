@@ -17,7 +17,7 @@ steps:
     git config  --global user.email "cristhian_666win@hotmail.com"
     git config  --global user.name "Cristhian Curiñaupa"
     git checkout master
-    git add --all
+    git add .
     git push https://$(gt)@github.com/cristhian300/SolutionCore.git
      git config --list
      echo $(gt)
