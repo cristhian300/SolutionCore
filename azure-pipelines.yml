@@ -20,6 +20,6 @@ steps:
     git add --all
     git push https://%gt%@github.com/cristhian300/SolutionCore.git
      git config --list
-     echo %gt%
+     echo $(gt)
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
