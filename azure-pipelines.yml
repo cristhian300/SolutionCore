@@ -17,6 +17,7 @@ steps:
     git config  --global user.email "cristhian_666win@hotmail.com"
     git config  --global user.name "cristhian300"
      
+     
     git remote add github  https://$(GITHUB_TOKEN)@github.com/cristhian300/SolutionCore.git
     git push github main --force
      git config --list
