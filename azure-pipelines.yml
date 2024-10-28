@@ -19,7 +19,7 @@ steps:
      
      
     git remote add github  https://$(GITHUB_TOKEN)@github.com/cristhian300/SolutionCore
-    git push github main --force
+    git push github master --force
      git config --list
      echo $(GITHUB_TOKEN)
     echo See https://aka.ms/yaml
