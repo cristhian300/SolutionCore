@@ -17,12 +17,12 @@ steps:
     git config  --global user.email "cristhian_666win@hotmail.com"
     git config  --global user.name "Cristhian Curiñaupa"
      
-    git remote add github  https://$(gt)@github.com/cristhian300/SolutionCore.git
+    git remote add github  https://$(GITHUB_TOKEN)@github.com/cristhian300/SolutionCore.git
     git push github main --force
      git config --list
-     echo $(gt)
+     echo $(GITHUB_TOKEN)
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
   env:
-      GITHUB_TOKEN: $(gt)
+      GITHUB_TOKEN: $(GITHUB_TOKEN)
