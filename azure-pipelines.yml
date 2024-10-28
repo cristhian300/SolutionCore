@@ -1,29 +1,27 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- master
+  branches:
+    include:
+      - master # Cambia al nombre de la rama que deseas sincronizar
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+  - checkout: self  # Realiza checkout del repositorio de Azure DevOps
 
-- script: |
-    git config  --global user.email "cristhian_666win@hotmail.com"
-    git config  --global user.name "cristhian300"
-     
-     
-    git remote add github  https://$(GITHUB_TOKEN)@github.com/cristhian300/SolutionCore
-    git push github master --force
-     git config --list
-     echo $(GITHUB_TOKEN)
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  - task: Bash@3
+    displayName: "Sincronizar con GitHub"
+    inputs:
+      targetType: 'inline'
+      script: |
+        # Configuración de usuario de Git
+        git config --global user.name "cristhian300"
+        git config --global user.email "cristhian_666win@hotmail.com"
 
-  env:
+        # Añadir el remoto de GitHub con autenticación usando el token
+        git remote add github https://$(GITHUB_TOKEN)@github.com/cristhian300/SolutionCore.git
+
+        # Forzar sincronización con GitHub, preservando el historial de commits
+        git push github master --force-with-lease
+    env:
       GITHUB_TOKEN: $(GITHUB_TOKEN)
