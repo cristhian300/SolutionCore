@@ -19,7 +19,7 @@ steps:
         git config --global user.email "cristhian_666win@hotmail.com"
 
         # Añadir el remoto de GitHub con autenticación usando el token
-        git remote add github https://$(GITHUB_TOKEN)@github.com/cristhian300/SolutionCore.git
+        git remote add github https://$(GITHUB_TOKEN)@github.com/cristhian300/SolutionCore
 
         # Forzar sincronización con GitHub, preservando el historial de commits
         git push github master --force-with-lease
