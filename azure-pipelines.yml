@@ -18,18 +18,12 @@ steps:
         git config --global user.name "cristhian300"
         git config --global user.email "cristhian_666win@hotmail.com"
 
-        mkdir git-test
-        cd git-test
-
-        git init
-
-        touch README.md
-        git add README.md
+    
  
             # Añadir el remoto de GitHub con autenticación usando el token
         git remote add github  https://$(GITHUB_TOKEN)@github.com/cristhian300/SolutionCore.git
 
-         
+        git checkout -b master
         # Forzar sincronización con GitHub, preservando el historial de commits
         git push github master --force-with-leas
        
