@@ -15,6 +15,6 @@ steps:
 
 - script: |
     git config  --global user.email "cristhian_666win@hotmail.com"
-    echo git config --list
+     git config --list
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
