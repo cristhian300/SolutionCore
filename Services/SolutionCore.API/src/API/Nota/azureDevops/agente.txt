@@ -1,0 +1,35 @@
+﻿*Crear un token de seguridad de azure
+>user settings >persona Acces Token >
+
+*Seleccionar la expiración
+Custom defined
+*Agent Pools 
+Marcar read , Read & manage
+
+
+
+**referencias https://www.youtube.com/watch?v=-3ZQ6U6AJ4U&t=89s*********************************
+
+**nota
+aveces dice S , pero colocar Y para aceptar
+
+*El token permite crear el agente
+
+*ir a la parte baja
+organization settings > Agent pools 
+*create el agente 
+add pool > self-hosted> denifinir el nombre
+***agente creado AgenteSolutionCore
+*dentro del agent pool creado ir a la opcion agents y crear otro agente para instalar en la pc
+Agents> new agent
+*descargar el agente 
+*seguir los paso
+
+*dato servidor
+https://dev.azure.com/MagicAzure
+*dato token
+ 
+*dato nombre del agente creado 
+AgenteSolutionCore
+*dato que funcione como servicios 
+Y / N
