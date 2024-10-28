@@ -23,7 +23,7 @@ steps:
  
         # Asegurarse de que el estado local está actualizado
         git fetch origin master
-        git reset --soft origin/master
+      
 
         # Crear el commit con los cambios
         git add -A
