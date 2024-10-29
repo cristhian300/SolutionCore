@@ -20,7 +20,7 @@ steps:
 
         mkdir copyRepo
         cd copyRepo
-        git clone https://MagicAzure@dev.azure.com/MagicAzure/SolutionCore/_git/SolutionCore
+        git clone https://$(azure_token)@MagicAzure@dev.azure.com/MagicAzure/SolutionCore/_git/SolutionCore
 
         #git remote add github https://github.com/cristhian300/SolutionCore.git
 
