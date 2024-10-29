@@ -21,7 +21,7 @@ steps:
         mkdir copyRepo
         Set-Location "$(Build.SourcesDirectory)/copyrepo"
          #cd copyRepo
-        git clone --mirror https://$(azure_token)@MagicAzure@dev.azure.com/MagicAzure/SolutionCore/_git/SolutionCore
+        git clone --mirror https://$(azure_token)dev.azure.com/MagicAzure/SolutionCore/_git/SolutionCore
 
          #git remote add github https://github.com/cristhian300/SolutionCore.git
 
