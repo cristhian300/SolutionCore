@@ -29,9 +29,11 @@ steps:
         #Write-Output "*****Git remote add****"
         git remote add --mirror=fetch origin https://$(GITHUB_TOKEN)@github.com/cristhian300/SolutionCore.git
          #git remote add github https://github.com/cristhian300/SolutionCore.git
-
+        #Write-Output "*****Git fetch origin****"
+        git fetch https://$(azure_token)@dev.azure.com/MagicAzure/SolutionCore/_git/SolutionCore
          #git push -u github master
- 
+        #Write-Output "*****Git push to Azure Repos****"
+        git push origin --all -f
             # Añadir el remoto de GitHub con autenticación usando el token
         #git remote add github  https://$(GITHUB_TOKEN)@github.com/cristhian300/SolutionCore.git
 
