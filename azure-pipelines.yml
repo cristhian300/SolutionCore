@@ -24,7 +24,7 @@ steps:
         git clone --mirror  https://$(azure_token)@dev.azure.com/MagicAzure/SolutionCore/_git/SolutionCore
         pwd
         ls -l
-        cd  "$(Build.SourcesDirectory)/copyrepo/SolutionCore/"
+        #cd  "$(Build.SourcesDirectory)/copyrepo/SolutionCore/"
         # Write-Host "*****Git removing remote origin****"
         #git remote rm origin
 
