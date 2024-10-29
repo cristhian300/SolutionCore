@@ -21,11 +21,11 @@ steps:
     
  
             # Añadir el remoto de GitHub con autenticación usando el token
-        git remote add github  https://$(GITHUB_TOKEN)@github.com/cristhian300/SolutionCore.git
+        #git remote add github  https://$(GITHUB_TOKEN)@github.com/cristhian300/SolutionCore.git
 
-        git checkout -b master
+        #git checkout -b master
         # Forzar sincronización con GitHub, preservando el historial de commits
-        git push github master --force-with-leas
+        #git push github master --force-with-leas
        
     env:
       GITHUB_TOKEN: $(GITHUB_TOKEN)
