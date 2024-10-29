@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-      - main # Cambia al nombre de la rama que deseas sincronizar
+      - master # Cambia al nombre de la rama que deseas sincronizar
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -19,7 +19,8 @@ steps:
         git config --global user.email "cristhian_666win@hotmail.com"
 
         git remote add github https://github.com/cristhian300/SolutionCore.git
-        git push -u github main
+        
+        #git push -u github master
  
             # Añadir el remoto de GitHub con autenticación usando el token
         #git remote add github  https://$(GITHUB_TOKEN)@github.com/cristhian300/SolutionCore.git
