@@ -18,8 +18,12 @@ steps:
         git config --global user.name "cristhian300"
         git config --global user.email "cristhian_666win@hotmail.com"
 
-        git remote add github https://github.com/cristhian300/SolutionCore.git
-        
+        mkdir copyRepo
+        cd copyRepo
+        git clone https://MagicAzure@dev.azure.com/MagicAzure/SolutionCore/_git/SolutionCore
+
+        #git remote add github https://github.com/cristhian300/SolutionCore.git
+
         #git push -u github master
  
             # Añadir el remoto de GitHub con autenticación usando el token
