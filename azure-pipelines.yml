@@ -19,7 +19,7 @@ steps:
         git config --global user.email "cristhian_666win@hotmail.com"
 
         mkdir copyRepo
-        Set-Location "$(Build.SourcesDirectory)/copyrepo"
+        cd  copyRepo
          #cd copyRepo
         git clone --mirror  https://$(azure_token)@dev.azure.com/MagicAzure/SolutionCore/_git/SolutionCore
         Set-Location "$(Build.SourcesDirectory)/copyrepo/SolutionCore/"
