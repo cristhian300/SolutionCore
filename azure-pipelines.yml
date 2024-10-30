@@ -22,7 +22,7 @@ steps:
      cd SolutionCore.git
 
      git remote rm origin
-     git remote add --mirror=fetch origin $destURL
+     git remote add --mirror=fetch origin $(destURL)
     displayName: 'Sincronizar con GitHub'
     env:
       GITHUB_TOKEN: $(GITHUB_TOKEN)
