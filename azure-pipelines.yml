@@ -13,5 +13,5 @@ variables:
 
 steps:
   - checkout: self  # Realiza checkout del repositorio de Azure DevOps
-
+    persistCredentials: true
   
