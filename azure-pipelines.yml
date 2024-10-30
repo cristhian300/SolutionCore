@@ -20,7 +20,7 @@ steps:
      cd copyrepo 
      git clone --mirror  $(sourceURL)
 
-     #cd SolutionCore.git
+     cd SolutionCore.git
 
       
        
