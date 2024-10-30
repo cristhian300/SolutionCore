@@ -20,6 +20,9 @@ steps:
       git config --global user.email "cristhian_666win@hotmail.com"
       git remote add github $(GITHUB_REPO_URL)
       git fetch github
+
+      git add .
+      git commit -m "sincronizacion"
       git push github master
     displayName: 'Sincronizar con GitHub'
     env:
