@@ -21,6 +21,7 @@ steps:
       git remote add github $(GITHUB_REPO_URL)
       git fetch github
       echo mostrado branch
+      git checkout -b master
       git branch 
     
       #git push github master
