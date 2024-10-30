@@ -23,8 +23,8 @@ steps:
       echo mostrado branch
       git checkout -b master
       git branch 
-    
-      #git push github master
+      git push github main
+       
     displayName: 'Sincronizar con GitHub'
     env:
       GITHUB_TOKEN: $(GITHUB_TOKEN)
