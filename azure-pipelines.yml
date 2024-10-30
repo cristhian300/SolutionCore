@@ -24,7 +24,7 @@ steps:
  
       git fetch github
  
-      git push github 
+      git push github master
       
        
     displayName: 'Sincronizar con GitHub'
