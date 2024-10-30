@@ -22,7 +22,7 @@ steps:
       #git remote rm origin
       git remote add github $(GITHUB_REPO_URL)
  
-      git fetch github
+      git fetch 
  
       git push github master
       
