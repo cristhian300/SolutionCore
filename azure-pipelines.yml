@@ -19,7 +19,9 @@ steps:
       git config --global user.name "cristhian300"
       git config --global user.email "cristhian_666win@hotmail.com"
       #git checkout -b master
-      #git remote add github $(GITHUB_REPO_URL)
+      git remote add github $(GITHUB_REPO_URL)
+      echo muestra remote
+      git remote
       #git fetch github
       echo mostrado branch
       git branch 
