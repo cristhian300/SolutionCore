@@ -7,7 +7,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  GITHUB_REPO_URL: "https://github.com/cristhian300/SolutionCore.git"
+  GITHUB_REPO_URL: "https://$(GitHubPAT)@github.com/cristhian300/SolutionCore.git"
   GITHUB_TOKEN: $(GitHubPAT) # GitHub PAT configurado en Azure DevOps como secreto
 
 
