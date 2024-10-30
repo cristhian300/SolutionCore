@@ -22,7 +22,7 @@ steps:
 
      cd SolutionCore.git
 
-      
+     git remote rm origin
        
     displayName: 'Sincronizar con GitHub'
     env:
