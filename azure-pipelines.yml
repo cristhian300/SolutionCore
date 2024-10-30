@@ -17,11 +17,6 @@ steps:
   - script: |
      
      mkdir copyrepo
-     
-     #$sourceURL = "https://$(azure_token)@dev.azure.com/MagicAzure/SolutionCore/_git/SolutionCore"
-     #$sourceURL = "https://$(GITPAT)@$(GITREPO)"
-     #$destURL = "https://$(AZUREREPOPAT)@$(AZUREPO)"
-
      cd copyrepo 
      git clone --mirror  $(sourceURL)
 
