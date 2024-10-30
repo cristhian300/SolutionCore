@@ -21,10 +21,10 @@ steps:
 
      cd SolutionCore.git
 
-     git remote rm origin
-     git remote add --mirror=fetch origin $(destURL)
+     #git remote rm origin
+     git remote add --mirror=fetch github $(destURL)
      git fetch $(sourceURL)
-     git push origin --all -f
+     git push github --all -f
     displayName: 'Sincronizar con GitHub'
     env:
       GITHUB_TOKEN: $(GITHUB_TOKEN)
