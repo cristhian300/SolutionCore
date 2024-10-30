@@ -18,10 +18,11 @@ steps:
   - script: |
       git config --global user.name "cristhian300"
       git config --global user.email "cristhian_666win@hotmail.com"
+      git checkout -b master
       git remote add github $(GITHUB_REPO_URL)
       git fetch github
       echo mostrado branch
-      #git checkout -b master
+      
       git branch 
       git push github master
        
