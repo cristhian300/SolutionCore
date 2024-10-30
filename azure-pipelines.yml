@@ -22,7 +22,8 @@ steps:
       echo mostrado branch
       git branch 
       #git checkout -b master
-      
+
+      git remote rm origin
       git remote add github $(GITHUB_REPO_URL)
 
       echo muestra remote
