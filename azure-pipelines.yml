@@ -21,9 +21,9 @@ steps:
       git remote add github $(GITHUB_REPO_URL)
       git fetch github
 
-      git add .
-      git commit -m "sincronizacion"
-      git push github master
+      git branch -b
+    
+      #git push github master
     displayName: 'Sincronizar con GitHub'
     env:
       GITHUB_TOKEN: $(GITHUB_TOKEN)
