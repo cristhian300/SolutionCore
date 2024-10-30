@@ -18,7 +18,7 @@ steps:
      
      mkdir copyrepo
      
-     $sourceURL = "https://$(azure_token)@$@dev.azure.com/MagicAzure/SolutionCore/_git/SolutionCore"
+     $sourceURL = "https://$(azure_token)@dev.azure.com/MagicAzure/SolutionCore/_git/SolutionCore"
      #$sourceURL = "https://$(GITPAT)@$(GITREPO)"
      #$destURL = "https://$(AZUREREPOPAT)@$(AZUREPO)"
 
