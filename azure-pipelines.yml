@@ -12,19 +12,29 @@ variables:
 
 
 steps:
-  - checkout: self  # Realiza checkout del repositorio de Azure DevOps
-    persistCredentials: true
+
 
   - script: |
-      git config --global user.name "cristhian300"
-      git config --global user.email "cristhian_666win@hotmail.com"
-      #git checkout -b master
-      #git remote rm origin
-      git remote add github $(GITHUB_REPO_URL)
- 
-      git fetch 
- 
-      git push github master
+     
+     mkdir copyrepo
+     
+     $sourceURL = "https://$(azure_token)@$@dev.azure.com/MagicAzure/SolutionCore/_git/SolutionCore"
+     #$sourceURL = "https://$(GITPAT)@$(GITREPO)"
+     $destURL = "https://$(AZUREREPOPAT)@$(AZUREPO)"
+
+     cd copyrepo 
+     git clone --mirror $sourceURL
+
+     cd SolutionCore.git
+/*
+Write-Host "*****Git removing remote origin****"
+git remote rm origin
+Write-Output "*****Git remote add****"
+git remote add --mirror=fetch origin $destURL
+Write-Output "*****Git fetch origin****"
+git fetch $sourceURL
+Write-Output "*****Git push to Azure Repos****"
+git push origin --all -f*/
       
        
     displayName: 'Sincronizar con GitHub'
