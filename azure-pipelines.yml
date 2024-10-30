@@ -23,7 +23,7 @@ steps:
       git fetch github
       echo mostrado branch
       
-      #git branch 
+      git branch 
       #git push github master
       pwd
       ls -l
