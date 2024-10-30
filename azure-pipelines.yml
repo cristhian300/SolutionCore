@@ -18,13 +18,13 @@ steps:
   - script: |
       git config --global user.name "cristhian300"
       git config --global user.email "cristhian_666win@hotmail.com"
-      git checkout -b master
-      git remote rm origin
+      #git checkout -b master
+      #git remote rm origin
       git remote add github $(GITHUB_REPO_URL)
  
       git fetch github
  
-      git push github master
+      git push github 
       
        
     displayName: 'Sincronizar con GitHub'
