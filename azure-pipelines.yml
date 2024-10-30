@@ -14,4 +14,8 @@ variables:
 steps:
   - checkout: self  # Realiza checkout del repositorio de Azure DevOps
     persistCredentials: true
-  
+
+  - script: |
+      git config --global user.name "cristhian300"
+      git config --global user.email "cristhian_666win@hotmail.com"
+      git remote add github $(GITHUB_REPO_URL)
