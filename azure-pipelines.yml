@@ -24,6 +24,7 @@ steps:
      git remote rm origin
      git remote add --mirror=fetch origin $(destURL)
      git fetch $(sourceURL)
+     git push origin --all -f
     displayName: 'Sincronizar con GitHub'
     env:
       GITHUB_TOKEN: $(GITHUB_TOKEN)
