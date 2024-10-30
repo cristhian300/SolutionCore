@@ -9,7 +9,7 @@ pool:
 variables:
   GITHUB_REPO_URL: "https://$(GitHubPAT)@github.com/cristhian300/SolutionCore.git"
   GITHUB_TOKEN: $(GitHubPAT) # GitHub PAT configurado en Azure DevOps como secreto
-
+  sourceURL: "https://$(azure_token)@dev.azure.com/MagicAzure/SolutionCore/_git/SolutionCore"
 
 steps:
 
@@ -23,7 +23,7 @@ steps:
      #$destURL = "https://$(AZUREREPOPAT)@$(AZUREPO)"
 
      cd copyrepo 
-     git clone --mirror https://$(azure_token)@dev.azure.com/MagicAzure/SolutionCore/_git/SolutionCore
+     git clone --mirror  $(sourceURL)
 
      #cd SolutionCore.git
 
