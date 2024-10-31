@@ -12,7 +12,9 @@ steps:
      echo version de ubuntu
      lsb_release -a
      cd $(System.DefaultWorkingDirectory)
+     echo directorio
      pwd
+     ls -la
 
 #- task: DotNetCoreCLI@2
  # inputs:
