@@ -8,9 +8,10 @@ pool:
 
 steps:
 
-- task: NuGetToolInstaller@1
+- script: |
+     echo version de ubuntu
+     lsb_release -a
 
-  
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
