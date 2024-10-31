@@ -1,8 +1,8 @@
-/*trigger:
+trigger:
   branches:
     include:
       - master # Cambia al nombre de la rama que deseas sincronizar
-*/
+
 pool:
   vmImage: 'ubuntu-latest'
 
