@@ -16,4 +16,4 @@ steps:
   inputs:
     command: 'build'
     projects: 'SolutionCore.csproj'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/SolutionCore/Services/SolutionCore.API/src/API'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/SolutionCore/Services/SolutionCore.API/src/API/'
