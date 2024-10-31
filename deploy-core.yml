@@ -19,5 +19,5 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '**/*.csproj'
+    projects: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/**/*.csproj'
     workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API'
