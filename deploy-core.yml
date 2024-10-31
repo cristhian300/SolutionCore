@@ -16,8 +16,8 @@ steps:
      pwd
      ls -la
 
-#- task: DotNetCoreCLI@2
- # inputs:
-  #  command: 'build'
-   # projects: 'SolutionCore.csproj'
-    #workingDirectory: '$(System.DefaultWorkingDirectory)/SolutionCore/Services/SolutionCore.API/src/API/'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: 'SolutionCore.csproj'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/'
