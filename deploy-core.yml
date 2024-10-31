@@ -8,16 +8,16 @@ pool:
 
 steps:
 
-- script: |
-     echo version de ubuntu
-     lsb_release -a
-     cd $(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API
-     echo directorio
-     pwd
-     ls -la
+#- script: |
+  #   echo version de ubuntu
+   #  lsb_release -a
+   #  cd $(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API
+   #  echo directorio
+   #  pwd
+    # ls -la
 
-#- task: DotNetCoreCLI@2
- # inputs:
-  #  command: 'build'
-   # projects: 'SolutionCore.csproj'
-    #workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: 'SolutionCore.csproj'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/'
