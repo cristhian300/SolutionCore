@@ -78,6 +78,7 @@
   <ItemGroup>
     <Folder Include="ExtractDestinyZip\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Nota\TestAutomatizacion\" />
   </ItemGroup>
 
  

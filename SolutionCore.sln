@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infraestructura.Data", "Inf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GateWay.Config", "GateWay.Config\GateWay.Config\GateWay.Config.csproj", "{DEF7FF2C-9D58-436B-B3A6-DAE25741E5FC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GateWat.Config", "GateWat.Config", "{C0407B20-2CB1-4C9A-800E-7A3375DBDD54}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GateWay.Config", "GateWay.Config", "{C0407B20-2CB1-4C9A-800E-7A3375DBDD54}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus.Messages", "Infraestructura\EventBus.Messages\EventBus.Messages.csproj", "{98F99610-0EC6-41A8-A4A3-1C633D33CB90}"
 EndProject
@@ -55,7 +55,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transversal.Mapper", "Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YtMovieApis", "Services\Identity.API\src\API\YtMovieApis.csproj", "{0B816993-34D0-418F-97F4-4F116AE9EF27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionCore.InfraestructureEvenBus", "Services\SolutionCore.API\src\Infraestructura\SolutionCore.InfraestructureEvenBus\SolutionCore.InfraestructureEvenBus.csproj", "{FB72E28B-5FAC-43BB-879B-1F571F36A122}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolutionCore.InfraestructureEvenBus", "Services\SolutionCore.API\src\Infraestructura\SolutionCore.InfraestructureEvenBus\SolutionCore.InfraestructureEvenBus.csproj", "{FB72E28B-5FAC-43BB-879B-1F571F36A122}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
