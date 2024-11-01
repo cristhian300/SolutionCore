@@ -31,7 +31,8 @@ steps:
     publishWebProjects: false
     workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/**/*.csproj'
     arguments:  '--configuration Release  --output $(Build.ArtifactStagingDirectory)'  
-
+    zipAfterPublish: false
+  
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
