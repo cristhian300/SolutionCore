@@ -17,12 +17,14 @@ steps:
     # ls -la
 
 - task: DotNetCoreCLI@2
+  displayName: 'compilacion'
   inputs:
     command: 'build'
     projects: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/**/*.csproj'
     workingDirectory: 'Services/SolutionCore.API/src/API'
   
 - task: DotNetCoreCLI@2
+  displayName: 'publicacion'
   inputs:
     command: 'publish'
     publishWebProjects: true
