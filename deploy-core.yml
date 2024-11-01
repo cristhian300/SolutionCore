@@ -32,11 +32,8 @@ steps:
     command: 'publish'
     publishWebProjects: false
     workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/**/*.csproj'
-    arguments:  '--configuration $(buidConfiguration)  --output $(Build.ArtifactStagingDirectory)'  
+    arguments:  '--configuration $(buidConfiguration)  '  
     zipAfterPublish: false
   
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
+
     
