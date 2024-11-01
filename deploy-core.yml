@@ -21,7 +21,7 @@ steps:
   inputs:
     command: 'build'
     projects: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/**/*.csproj'
-    arguments: --configuration 'Release'    
+    arguments:  '--configuration Release'  
     #workingDirectory: 'Services/SolutionCore.API/src/API'
   
 - task: DotNetCoreCLI@2
