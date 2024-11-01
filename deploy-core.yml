@@ -30,4 +30,5 @@ steps:
     command: 'publish'
     publishWebProjects: false
     workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/**/*.csproj'
-    arguments:  '--configuration Release  --output $(Buld.ArtifactStagingDirectory)'  
+    arguments:  '--configuration Release  --output $(Build.ArtifactStagingDirectory)'  
+
