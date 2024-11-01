@@ -31,7 +31,7 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: false
-    workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/**/*.csproj'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/'
     arguments:  '--configuration $(buidConfiguration)  '  
     zipAfterPublish: false
   
