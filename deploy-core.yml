@@ -28,5 +28,6 @@ steps:
   displayName: 'publicacion'
   inputs:
     command: 'publish'
-    publishWebProjects: true
-    workingDirectory: 'Services/SolutionCore.API/src/API'
+    publishWebProjects: false
+    workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/**/*.csproj'
+    arguments:  '--configuration Release  --output $(Buld.ArtifactStagingDirectory)'  
