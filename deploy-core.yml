@@ -32,3 +32,8 @@ steps:
     workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/**/*.csproj'
     arguments:  '--configuration Release  --output $(Build.ArtifactStagingDirectory)'  
 
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    
