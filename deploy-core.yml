@@ -8,20 +8,8 @@ pool:
 
 variables:
   buidConfiguration: 'Release'
-  - name: environment
-    value: 'Development'  # Valor predeterminado
-
-stages:
-- stage: Build
-  jobs:
-  - job: Build
-    variables:
-      - name: environment
-        value: $[ 
-          eq(variables['Build.SourceBranch'], 'refs/heads/master') ? 'Production' :
-          eq(variables['Build.SourceBranch'], 'refs/heads/staging') ? 'Staging' : 
-          variables['environment'] 
-        ]
+  -name: environment
+  value: 'Development'  # Valor predeterminado
 
 steps:
 #- script: |
@@ -31,7 +19,7 @@ steps:
    #  echo directorio
    #  pwd
     # ls -la
-- script: echo "Current Environment: $(environment)"
+
 
 - task: DotNetCoreCLI@2
   displayName: 'compilacion'
