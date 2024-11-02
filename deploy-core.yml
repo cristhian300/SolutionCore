@@ -6,17 +6,19 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-    
-  buidConfiguration: 'Release'   
- - name: one
-  value: initialValue 
-  
+ 
+ buidConfiguration: 'Release'
 
+# - name: environment
+#   value: Development
+ 
+  #echo ${{ variables.one }} # outputs initialValue
+parameters:
+  - name: environment
+    type: string
+    default:  Development
+   
 
- 
- #echo ${{ variables.one }} # outputs initialValue
- 
- 
 steps:
 - task: PowerShell@2
   displayName: 'Set environment Production'
