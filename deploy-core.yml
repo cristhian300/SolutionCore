@@ -32,7 +32,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/'
-    arguments:  '--configuration $(buidConfiguration)  --output $(Build.ArtifactStagingDirectory)'  
+    arguments:  '--configuration $(buidConfiguration)  --output $(Build.ArtifactStagingDirectory) /p:EnvironmentName=Development'  
     zipAfterPublish: false
   
   #guarda el artefacto para el release
