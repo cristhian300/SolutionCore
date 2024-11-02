@@ -6,10 +6,12 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-         
-- name: environment
-  value: Development 
-   buidConfiguration:'Release'
+    
+  buidConfiguration: 'Release'   
+  environment : 'Development'
+  
+
+
  
  #echo ${{ variables.one }} # outputs initialValue
  
