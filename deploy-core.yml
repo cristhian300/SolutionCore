@@ -1,0 +1,44 @@
+
+
+#trigger:
+#- master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  buidConfiguration: 'Release'
+steps:
+
+#- script: |
+  #   echo version de ubuntu
+   #  lsb_release -a
+   #  cd $(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API
+   #  echo directorio
+   #  pwd
+    # ls -la
+
+- task: DotNetCoreCLI@2
+  displayName: 'compilacion'
+  inputs:
+    command: 'build'
+    projects: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/**/*.csproj'
+    arguments:  '--configuration Release'  
+    workingDirectory: 'Services/SolutionCore.API/src/API'
+  
+- task: DotNetCoreCLI@2
+  displayName: 'publicacion'
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/'
+    arguments:  '--configuration $(buidConfiguration)  --output $(Build.ArtifactStagingDirectory)'  
+    zipAfterPublish: false
+  
+  #guarda el artefacto para el release
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+   
+    
