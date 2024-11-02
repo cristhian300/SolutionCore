@@ -23,7 +23,7 @@ steps:
     targetType: 'inline'
     script: |
       echo "##vso[task.setvariable variable=environment]Production"
-      echo $(environment)
+      echo $environment
 - task: PowerShell@2
   displayName: 'Set environment Development'
   condition:  eq(variables['Build.SourceBranch'], 'refs/heads/dev')
@@ -31,7 +31,7 @@ steps:
     targetType: 'inline'
     script: |
       echo "##vso[task.setvariable variable=environment]Development" 
-      echo $(environment)
+      echo $environment
 
 - script: |
     echo "Valor modificado de la variable: $(environment)"
