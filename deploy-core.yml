@@ -29,6 +29,7 @@ steps:
     echo ${{ variables.one }} # outputs initialValue
     echo $(one) # outputs secondValue
     displayName: Second variable pass
+    
 #- script: |
   #   echo version de ubuntu
    #  lsb_release -a
