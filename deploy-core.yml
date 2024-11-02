@@ -8,7 +8,8 @@ pool:
 variables:
     
   buidConfiguration: 'Release'   
-  environment : 'Development'
+ - name: one
+  value: initialValue 
   
 
 
