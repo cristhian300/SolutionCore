@@ -6,40 +6,32 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-
-#-buidConfiguration: 'Release'
-- name: one
-  value: initialValue 
+         
+- name: environment
+  value: Development 
+   buidConfiguration:'Release'
+ 
+ #echo ${{ variables.one }} # outputs initialValue
+ 
  
 steps:
-
-  
-- script: |
-      echo ${{ variables.one }} # outputs initialValue
-      echo $(one)
-  displayName: First variable pass
-
- 
 - task: PowerShell@2
   displayName: 'Set environment Production'
   condition:  eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     targetType: 'inline'
     script: |
-      echo "##vso[task.setvariable variable=one]Production"
-      
+      echo "##vso[task.setvariable variable=environment]Production"
+      echo $(environment)
 - task: PowerShell@2
   displayName: 'Set environment Development'
   condition:  eq(variables['Build.SourceBranch'], 'refs/heads/dev')
   inputs:
     targetType: 'inline'
     script: |
-      echo "##vso[task.setvariable variable=one]Development" 
-
-- script: |
-    echo ${{ variables.one }} # outputs initialValue
-    echo $(one) # outputs secondValue
-  displayName: Second variable pass
+      echo "##vso[task.setvariable variable=environment]Development" 
+      echo $(environment)
+ 
 
 #- script: |
   #   echo version de ubuntu
