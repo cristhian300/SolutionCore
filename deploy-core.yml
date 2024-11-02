@@ -4,19 +4,16 @@
 
 pool:
   vmImage: ubuntu-latest
-
+  
 variables:
  
  buidConfiguration: 'Release'
-
+ environment: Development
 # - name: environment
 #   value: Development
  
   #echo ${{ variables.one }} # outputs initialValue
-parameters:
-  - name: environment
-    type: string
-    default:  Development
+ 
    
 
 steps:
