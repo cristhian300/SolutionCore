@@ -9,10 +9,7 @@ variables:
  
  buidConfiguration: 'Release'
  environment: 'Development'
-# - name: environment
-#   value: Development
- 
-  #echo ${{ variables.one }} # outputs initialValue
+
 
 
 steps:
@@ -33,9 +30,7 @@ steps:
       echo "##vso[task.setvariable variable=environment]Development" 
       echo $environment
 
-- script: |
-    echo "Valor modificado de la variable: $(environment)"
-  displayName: "Mostrar valor modificado de MiVariable"
+
 
 #- script: |
   #   echo version de ubuntu
@@ -46,27 +41,27 @@ steps:
     # ls -la
 
 
-# - task: DotNetCoreCLI@2
-#   displayName: 'compilacion'
-#   inputs:
-#     command: 'build'
-#     projects: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/**/*.csproj'
-#     arguments:  '--configuration Release'  
-#     workingDirectory: 'Services/SolutionCore.API/src/API'
+- task: DotNetCoreCLI@2
+  displayName: 'compilacion'
+  inputs:
+    command: 'build'
+    projects: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/**/*.csproj'
+    arguments:  '--configuration Release'  
+    workingDirectory: 'Services/SolutionCore.API/src/API'
   
-# - task: DotNetCoreCLI@2
-#   displayName: 'publicacion'
-#   inputs:
-#     command: 'publish'
-#     publishWebProjects: false
-#     workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/'
+- task: DotNetCoreCLI@2
+  displayName: 'publicacion'
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/'
  
-#     arguments:  '--configuration $(buidConfiguration)  --output $(Build.ArtifactStagingDirectory) /p:EnvironmentName=Development'  
+    arguments:  '--configuration $(buidConfiguration)  --output $(Build.ArtifactStagingDirectory) /p:EnvironmentName=$(environment)'  
 
-#     zipAfterPublish: false
+    zipAfterPublish: false
   
-#   #guarda el artefacto para el release
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#     ArtifactName: 'drop'
+  #guarda el artefacto para el release
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
