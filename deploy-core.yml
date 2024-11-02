@@ -22,7 +22,7 @@ steps:
  
 - task: PowerShell@2
   displayName: 'Set new variable value'
-  condition:  eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  condition:  eq(variables['Build.SourceBranch'], 'refs/heads/qa')
   inputs:
     targetType: 'inline'
     script: |
