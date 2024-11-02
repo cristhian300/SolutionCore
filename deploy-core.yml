@@ -21,15 +21,21 @@ steps:
 
  
 - task: PowerShell@2
-  displayName: 'Set new variable value'
-  condition:  eq(variables['Build.SourceBranch'], 'refs/heads/qa')
+  displayName: 'Set environment Production'
+  condition:  eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     targetType: 'inline'
     script: |
-     
-      echo "##vso[task.setvariable variable=one]secondValue"
+      echo "##vso[task.setvariable variable=one]Production"
+      
+- task: PowerShell@2
+  displayName: 'Set environment Development'
+  condition:  eq(variables['Build.SourceBranch'], 'refs/heads/dev')
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "##vso[task.setvariable variable=one]Development" 
 
-  
 - script: |
     echo ${{ variables.one }} # outputs initialValue
     echo $(one) # outputs secondValue
