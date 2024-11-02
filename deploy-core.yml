@@ -8,13 +8,12 @@ pool:
 variables:
  
  buidConfiguration: 'Release'
- environment: Development
+ environment: 'Development'
 # - name: environment
 #   value: Development
  
   #echo ${{ variables.one }} # outputs initialValue
- 
-   
+
 
 steps:
 - task: PowerShell@2
@@ -33,7 +32,10 @@ steps:
     script: |
       echo "##vso[task.setvariable variable=environment]Development" 
       echo $(environment)
- 
+
+- script: |
+    echo "Valor modificado de la variable: $(environment)"
+  displayName: "Mostrar valor modificado de MiVariable"
 
 #- script: |
   #   echo version de ubuntu
