@@ -4,42 +4,33 @@
 
 pool:
   vmImage: ubuntu-latest
-
-variables:
-
-#-buidConfiguration: 'Release'
-- name: one
-  value: initialValue 
- 
-steps:
-
   
-- script: |
-      echo ${{ variables.one }} # outputs initialValue
-      echo $(one)
-  displayName: First variable pass
-
+variables:
  
+ buidConfiguration: 'Release'
+ environment: 'Development'
+
+
+
+steps:
 - task: PowerShell@2
   displayName: 'Set environment Production'
   condition:  eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     targetType: 'inline'
     script: |
-      echo "##vso[task.setvariable variable=one]Production"
-      
+      echo "##vso[task.setvariable variable=environment]Production"
+      echo $environment
 - task: PowerShell@2
   displayName: 'Set environment Development'
   condition:  eq(variables['Build.SourceBranch'], 'refs/heads/dev')
   inputs:
     targetType: 'inline'
     script: |
-      echo "##vso[task.setvariable variable=one]Development" 
+      echo "##vso[task.setvariable variable=environment]Development" 
+      echo $environment
 
-- script: |
-    echo ${{ variables.one }} # outputs initialValue
-    echo $(one) # outputs secondValue
-  displayName: Second variable pass
+
 
 #- script: |
   #   echo version de ubuntu
@@ -50,27 +41,27 @@ steps:
     # ls -la
 
 
-# - task: DotNetCoreCLI@2
-#   displayName: 'compilacion'
-#   inputs:
-#     command: 'build'
-#     projects: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/**/*.csproj'
-#     arguments:  '--configuration Release'  
-#     workingDirectory: 'Services/SolutionCore.API/src/API'
+- task: DotNetCoreCLI@2
+  displayName: 'compilacion'
+  inputs:
+    command: 'build'
+    projects: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/**/*.csproj'
+    arguments:  '--configuration Release'  
+    workingDirectory: 'Services/SolutionCore.API/src/API'
   
-# - task: DotNetCoreCLI@2
-#   displayName: 'publicacion'
-#   inputs:
-#     command: 'publish'
-#     publishWebProjects: false
-#     workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/'
+- task: DotNetCoreCLI@2
+  displayName: 'publicacion'
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    workingDirectory: '$(System.DefaultWorkingDirectory)/Services/SolutionCore.API/src/API/'
  
-#     arguments:  '--configuration $(buidConfiguration)  --output $(Build.ArtifactStagingDirectory) /p:EnvironmentName=Development'  
+    arguments:  '--configuration $(buidConfiguration)  --output $(Build.ArtifactStagingDirectory) /p:EnvironmentName=$(environment)'  
 
-#     zipAfterPublish: false
+    zipAfterPublish: false
   
-#   #guarda el artefacto para el release
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#     ArtifactName: 'drop'
+  #guarda el artefacto para el release
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
