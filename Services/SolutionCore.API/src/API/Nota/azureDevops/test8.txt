@@ -1,0 +1,6 @@
+﻿namespace SolutionCore.Nota.azureDevops
+{
+    public class test8
+    {
+    }
+}
