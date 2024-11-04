@@ -61,6 +61,14 @@
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Nota\azureDevops\Test6.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Nota\azureDevops\Test6.txt" />
+  </ItemGroup>
+
    
 
   <ItemGroup>
