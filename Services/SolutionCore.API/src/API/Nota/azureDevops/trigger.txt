@@ -1,0 +1,13 @@
+﻿
+**Escoger la rama para pipelina especifico
+*una vez creado el pipeline
+ir a edit > Triggers >
+habilitar - Override the YAML continuous integration trigger from here
+
+habilitar - Enable continuos integration
+
+*branch filter
+
+include -> master
+
+------------------------------------------------

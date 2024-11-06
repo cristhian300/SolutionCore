@@ -57,7 +57,8 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.loginForm.value).subscribe(
       (response: ITokenResponse) => {
         if (response.payload) {
-          localStorage.setItem("TokenUserN", JSON.stringify(response.payload.token))
+         // localStorage.setItem("TokenUserN", JSON.stringify(response.payload.token))
+          localStorage.setItem("TokenUserN", response.payload.token)
           this.snackBar.open("Logeo exitoso", 'close', { duration: 3000 });
           this.router.navigateByUrl("/home").then();
         } else {
