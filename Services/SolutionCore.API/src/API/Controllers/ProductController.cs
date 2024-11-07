@@ -27,6 +27,7 @@ namespace SolutionCore.Controllers
     [ApiController]
     [EnableCors("mi_politica")]
     //[Authorize]  //Todos los metodos necesitan token 
+    [AllowAnonymous]
     public class ProductController : ControllerBase
     {
         // GET: api/Product
