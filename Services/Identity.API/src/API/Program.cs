@@ -1,6 +1,7 @@
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -88,11 +89,18 @@ builder.Services.AddTransient<IAuthorizaService, AuthorizationService>();
 
 var app = builder.Build();
 
+using (var serviceScope = app.Services.CreateScope())
+{
+    var context = serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
+    context.Database.EnsureCreated();
+}
+
+
 // Configure the HTTP request pipeline.
 
 //if (app.Environment.IsDevelopment())
 //{
-    app.UseSwagger();
+app.UseSwagger();
     app.UseSwaggerUI();
 //}
 

@@ -46,7 +46,7 @@ namespace SolutionCore
             services.AddHealthCheck(Configuration);
             services.AddScoped<IPmfRestClient, PmfRestClient>();
 
-            services.AddScoped<IEventBus, EventBusRabbitMQ>();
+            //services.AddScoped<IEventBus, EventBusRabbitMQ>();
             //services.AddMassTransit(config =>
             //{
             //    config.UsingRabbitMq((ct, cfg) =>

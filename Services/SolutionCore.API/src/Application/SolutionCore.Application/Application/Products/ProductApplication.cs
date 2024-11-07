@@ -25,20 +25,20 @@ namespace SolutionCore.Application.Application.Products
         private IHostingEnvironment _hostingEnvironment;
         IProductRepository _IProductQuery;
         IUnitOfWork<CoreContext> _unitOfWork;
-        private IEventBus _eventBus;
+        //private IEventBus _eventBus;
 
         private readonly IMapper _mapper;
         public ProductApplication(IProductRepository IProductQuery, IMapper mapper,
             IHostingEnvironment hostingEnvironment    ,
             IUnitOfWork<CoreContext> unitOfWork   
-           , IEventBus eventBus 
+           //, IEventBus eventBus 
             )
         {
             _IProductQuery = IProductQuery;
             _mapper = mapper;
             _hostingEnvironment = hostingEnvironment;
             _unitOfWork = unitOfWork;
-            _eventBus = eventBus;
+            //_eventBus = eventBus;
         }
 
 
