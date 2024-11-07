@@ -23,8 +23,8 @@ export class InterceptorService implements HttpInterceptor {
         //   alertify.error(err.error);
         // }
         if (err.status === 401) {
-          localStorage.removeItem('TokenUserN');
-          this.router.navigate(['/loginnet']).then(() => {
+         // localStorage.removeItem('TokenUserN');
+          this.router.navigate(['/auth/loginNet']).then(() => {
             window.location.reload();
             console.warn(err)
           });
