@@ -26,7 +26,7 @@ namespace SolutionCore.Controllers
     [Route("api/[controller]/[action]")]
     [ApiController]
     [EnableCors("mi_politica")]
-    [Authorize]  //Todos los metodos necesitan token 
+    //[Authorize]  //Todos los metodos necesitan token 
     public class ProductController : ControllerBase
     {
         // GET: api/Product
