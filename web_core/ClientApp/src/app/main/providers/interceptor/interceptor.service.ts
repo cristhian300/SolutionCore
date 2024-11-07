@@ -24,11 +24,13 @@ export class InterceptorService implements HttpInterceptor {
         // }
         if (err.status === 401) {
          // localStorage.removeItem('TokenUserN');
-          this.router.navigate(['/auth/loginNet']).then(() => {
-            window.location.reload();
-            console.warn(err)
-          });
+          // this.router.navigate(['/auth/loginNet']).then(() => {
+          //   window.location.reload();
+          //   console.warn(err)
+          // });
+          console.warn(err)
         }
+        console.warn(err)
         // if (err.status === StatusCodes.FORBIDDEN) {
         //   alertify.error('Acceso denegado.');
         // }
