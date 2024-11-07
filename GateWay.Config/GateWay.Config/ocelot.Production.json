@@ -7,7 +7,7 @@
         {
 
           "Host": "core.botonerame.com",
-          "Port": 80
+          "Port": 443
         }
       ],
       "UpstreamPathTemplate": "/core/api/{everything}",
@@ -15,15 +15,16 @@
     },
 
     {
-      "DownstreamPathTemplate": "/api/{catchAll}",
+      "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "identity.botonerame.com",
-          "Port": 80
+          "Port": 443
         }
       ],
-      "UpstreamPathTemplate": "/identity/api/{catchAll}"
+      "UpstreamPathTemplate": "/identity/api/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     }
   ],
   "GlobalConfiguration": {
